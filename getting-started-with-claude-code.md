@@ -1,19 +1,19 @@
 # getting started with claude code (the practical version)
 
-So I've been onboarding a few people on projects lately and trying to get them into an AI-native workflow. What I noticed is that getting started with Claude Code is genuinely hard, not because the tool is complicated, but because when you search online there's so much shit out there. Half of it was written six months ago and is completely irrelevant now.
+So I've been onboarding a few people on projects lately and trying to get them into an AI-native workflow. What I noticed is that getting started with Claude Code is genuinely hard, not because the tool is complicated, but because when you search online there's so much shit out there. Half of it was written six months ago and is completely irrelevant now (as will this text be two months from now).
 
 So I put together a short list of stuff I typically walk people through. It's not a grand methodology. I'm not going to tell you to write detailed specs first or follow some five-step framework. Just get going, try things, and let Claude figure out the best approach with you.
 
 ## starting a project
 
-- **Greenfield (new project):** tell Claude what functionality you want to build. If you're unsure about the tech stack, ask it to research current best practices first. Letting it make a quick plan before coding tends to save you time, but don't overthink it
+- **Greenfield (new project):** tell Claude what functionality you want to build. Be opinionated about the tech stack you want, or ask it to research current best practices first. Let it build a detailed plan, iterate on it until you're happy, then just hit implement
 - **Brownfield (existing project):** let it explore first. Point it at the codebase, tell it what you're working on, and give it time to understand what's already there. Then have it update your CLAUDE.md with what it learned. Claude is surprisingly good at grasping project structure if you don't rush it
 
 ## think in user functionality, not technical features
 
 This is probably the biggest mindset switch. Don't think "I need to create a database table and an API endpoint and a form component." Think about what the user actually wants to do. "A user should be able to invite teammates to their workspace by email." That's it. Express that as clearly as you can, and let Claude work out the technical side.
 
-Then separately, be opinionated about *how* you want things built. Your CLAUDE.md handles that (use PostgreSQL not SQLite, write tests for everything, whatever you care about). But I keep coming back to this: starting from the user's perspective instead of the technical breakdown produces noticeably better output.
+Then separately, be opinionated about *how* you want things built. If you care about writing tests for everything, or a specific code style, just tell Claude and have it save that in your CLAUDE.md. That way it sticks. But I keep coming back to this: starting from the user's perspective instead of the technical breakdown produces noticeably better output.
 
 ## plugins worth installing
 
