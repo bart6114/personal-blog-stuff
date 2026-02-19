@@ -34,6 +34,7 @@ This sounds obvious but people forget it all the time. Claude is good at looking
 
 - **Outdated library knowledge:** LLMs were trained on a ton of open data, and most of that contains older implementations of whatever SDK you're using. So Claude might confidently reach for patterns that were best practice two versions ago. There are tools for this (Context7, etc.), but I think it's all overkill. Just tell it: "before you implement anything, do a web search for the latest docs on [whatever library] and read them." Talk to it like you would talk to an intern. It works
 - **Not sure how to do something in Claude Code?** Just ask it. "What's the best way to do X in Claude Code?" or "How do I set up Y?" It knows its own features pretty well. Way faster than digging through docs or Discord
+- **Not sure its answer is correct?** Tell it to do research first. "Before you implement this, look up how this actually works." Don't just accept the first thing it gives you if something feels off. Push back, make it verify
 
 ## workflow habits that help
 
