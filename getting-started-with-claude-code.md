@@ -28,6 +28,13 @@ I change my mind about plugins every few weeks (so take this with that caveat), 
 - **MCP vs bash tools:** some MCPs are genuinely useful (Supabase MCP is better than the Supabase CLI, for example), but in general just let Claude use bash. It's great with command line tools and it's faster than routing through an MCP server for most things
 - **Model selection:** this used to be a whole debate. Honestly, just ignore it now. Claude Code handles routing well on its own. Pick whatever feels right and move on
 
+## just ask the agent
+
+This sounds obvious but people forget it all the time. Claude is good at looking things up, so use that.
+
+- **Outdated library knowledge:** LLMs were trained on a ton of open data, and most of that contains older implementations of whatever SDK you're using. So Claude might confidently reach for patterns that were best practice two versions ago. There are tools for this (Context7, etc.), but I think it's all overkill. Just tell it: "before you implement anything, do a web search for the latest docs on [whatever library] and read them." Talk to it like you would talk to an intern. It works
+- **Not sure how to do something in Claude Code?** Just ask it. "What's the best way to do X in Claude Code?" or "How do I set up Y?" It knows its own features pretty well. Way faster than digging through docs or Discord
+
 ## workflow habits that help
 
 - **Plan mode (Shift+Tab twice):** use this for complex implementations and tough bugs. It increases thinking intensity and keeps Claude from jumping straight into code when it should be reasoning first
