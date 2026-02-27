@@ -44,7 +44,7 @@ If building costs drop (and they are, fast), the upfront technical spend that us
 
 It's the commercial side. Market capture. Audience. Distribution. Brand. All the stuff that a lot of technical founders (myself included, honestly) have historically treated as secondary to the product itself.
 
-I'll be blunt about the uncomfortable implication here. If GTM is the primary differentiator and building costs trend toward zero, the logical endgame is that the best *marketers* win, regardless of product quality. That's a world where attention-hacking matters more than craftsmanship. I don't love that conclusion, but I think it's where things are heading. At least for a while.
+I'll be blunt about the uncomfortable implication here. If GTM is the primary differentiator and building costs trend toward zero, the logical endgame is that the best *marketers* win, regardless of product quality. That's a world where attention-hacking matters more than craftsmanship. I don't love that conclusion, but I think it's where things are heading. At least for a while. Maybe it's time startups start offering marketers the same perks as engineers. Free oat milk, a meditation room, and a recruiter who won't stop calling them on LinkedIn.
 
 ## So yeah
 
