@@ -18,9 +18,9 @@ That unlocked a whole generation of companies that simply couldn't have existed 
 
 Software development has been gated by the same dynamics for decades. You needed experienced engineers. They were scarce and expensive. Building anything meaningful took months, sometimes years, and required either raising capital to hire a team or paying consultancies with timelines that made the carbon certification story feel familiar.
 
-AI is compressing that. Not to zero, let's not get carried away. But the drop is steep enough that the economics are fundamentally changing. That six-month consultancy engagement? Maybe it's a two-week sprint now. That feature you couldn't justify building because the dev cost exceeded the expected revenue? Maybe it's worth trying.
+AI is compressing that. Not to zero, let's not get carried away. And most non-technical founders aren't suddenly building it all themselves either. They're still pulling in someone with technical skills, a freelancer, a small team, a technical partner. But that engagement that used to cost tens of thousands and take six months? Maybe it's a two-week sprint now. Maybe it costs a fraction of what it used to. The technical person is still in the loop, they're just moving a lot faster.
 
-I keep hearing people frame this as "AI will replace developers." I think that misses the point entirely. The more interesting story isn't about the people who already have developers. It's about the people who never did.
+I keep hearing people frame this as "AI will replace developers." I think that misses the point entirely. The more interesting story isn't about the people who already have developers. It's about the people who never could afford them.
 
 ## what this actually unlocks
 
@@ -28,8 +28,8 @@ The people I find most interesting in all of this aren't developers. They're the
 
 These people have something most technical founders don't: deep understanding of the problem and existing relationships with the people who have it. What they've never had is a way to turn that into software without spending a fortune.
 
-That's the gap AI is closing. Not by replacing technical people, but by giving non-technical founders a way to actually execute. The cost of building your first version, of testing whether an idea works, of shipping something real to real users, that cost is dropping fast enough that "I can't afford to build it" stops being the default answer.
+That's the gap AI is closing. Not by making everyone a developer, but by making technical collaboration affordable. A domain expert who used to need a full dev team can now work with a single technical person who's 5x more productive with AI tooling. The expertise still matters. The cost of accessing it just dropped through the floor.
 
-That's the parallel. Online advertising didn't replace marketing departments. It unlocked a generation of founders who couldn't afford the old way of reaching customers. AI development isn't replacing engineering teams. It's unlocking a generation of founders who couldn't afford the old way of building products.
+That's the parallel. Online advertising didn't replace marketing departments. It unlocked a generation of founders who couldn't afford the old way of reaching customers. AI development isn't replacing engineering teams. It's making technical talent accessible to people who were previously priced out entirely.
 
 I don't know exactly how it plays out. I never do. But the pattern feels familiar enough that I'm paying attention.
