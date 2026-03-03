@@ -2,7 +2,7 @@
 
 Ok so here's a take that might age terribly.
 
-Five years from now, most backend business logic is an agent loop. Not the database layer. Not auth. Not the API gateway. The business logic. The if/then/else spaghetti that lives in your controllers and services, the stuff that routes requests, handles edge cases, and implements whatever "it depends" logic your product actually runs on.
+Five years from now, 80% of backend business logic is an agent loop. Not the database layer. Not auth. Not the API gateway. The business logic. The if/then/else spaghetti that lives in your controllers and services, the stuff that routes requests, handles edge cases, and implements whatever "it depends" logic your product actually runs on.
 
 I realize this sounds like the kind of thing people say at conferences right before getting dunked on for the next decade. But hear me out.
 
@@ -22,7 +22,9 @@ Most business logic is fuzzy. It's routing decisions, exception handling, "well 
 
 Rules engines tried to solve this for decades. They mostly sucked. (Sorry to everyone who spent years configuring Drools. I feel your pain.)
 
-What's different now is the economics. Token costs have dropped roughly 10x per year. Late 2022, you were looking at about $20 per million tokens. By 2025, that's somewhere around $0.40 per million. If that trajectory holds (big if, but still), what costs $100/day in agent inference today costs maybe $0.50/day in two years. At some point the math just works, even for boring CRUD-adjacent business logic.
+What's different now is the economics. Token costs have dropped roughly 10x per year. Late 2022, you were looking at about $20 per million tokens. By 2025, that's somewhere around $0.40 per million.
+
+If that trajectory holds (big if, but still), what costs $100/day in agent inference today costs maybe $0.50/day in two years. At some point the math just works, even for boring CRUD-adjacent business logic.
 
 There's also a design argument. Declarative beats imperative for most business logic. "Describe what should happen" is closer to how business people think about their processes than "code every possible branch." We've been trying to close that gap forever. Agents might actually do it.
 
