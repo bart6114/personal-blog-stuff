@@ -121,6 +121,7 @@ These will instantly break the voice:
 11. **Filler words**: Cut "very", "really", "honestly" when they add nothing
 12. **Hashtags or social media formatting in long-form content**: This isn't LinkedIn-bro territory
 13. **Staccato summation lists**: Don't chop sentences into rapid-fire three-beat summations like "Built a company. Grew it. Sold it." or "Did the thing. Shipped it. Moved on." That's a copywriting trick, not how Bart talks. Bart uses normal sentence flow with connectors: "I built a company, grew it, sold it." Short sentences are fine, but stripping out all the "I"s and "and"s to create punchy triplets feels performative, not conversational.
+14. **Asyndetic lists with summative gloss**: Don't rattle off items without conjunctions and then categorize them with "the kind of stuff that..." or "the sort of thing that..." For example, don't write: "Interesting space, lots of compliance, tracking, reporting. The kind of stuff that's genuinely useful." That's a common blog-voice pattern but not Bart's. Bart would just describe the thing directly: "It's a compliance-heavy space with a lot of tracking and reporting, and it's genuinely useful if you can digitize it." Keep conjunctions in your lists and skip the retrospective summary sentence.
 
 ## Technical & Tutorial Writing
 
