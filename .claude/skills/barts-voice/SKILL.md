@@ -21,6 +21,11 @@ Vary your sentence length naturally. A short sentence hits harder when it follow
 
 The rhythm should feel conversational, not staccato. Mix longer sentences that develop an idea with shorter ones that land a point. Fragments work for emphasis in small doses ("Pretty simple, really." "Nothing fancy.") but they shouldn't be the default mode.
 
+Two fragment patterns to tell apart:
+
+- **Conversational ellipsis (fine)**: implicit-subject fragments where the missing word is obvious in context. "Feels fine until it doesn't." "Worked great." "Depends." This is how people actually talk. The subject is dropped but understood.
+- **Noun-phrase section intros (AI slop)**: "A few real limits." "Security boundaries too." "A couple of things to flag." These are headline rhythm doing the job of a topic sentence. If the next natural word would be "there are," "there's," or "and also," that's the tell. The missing material isn't ellipsis, it's real connective tissue that got chopped to sound punchy. Write the full sentence instead ("There are a few real limits" / "Same thing with security boundaries").
+
 Rhetorical questions are natural connective tissue: "Do I like the name? Yes. Is it the best for discoverability? Unsure."
 
 Short declarative statements work for emphasis, but use them sparingly so they keep their punch: "Look, it all comes down to having the right team. Period."
@@ -35,7 +40,7 @@ Instead, pick one of these patterns:
 - **The blunt observation**: "There's so much AI crap floating around at the moment. Sigh." / "ok so this might be controversial but whatever."
 - **The casual meta-statement**: "Well, this is new. And fun." / "So last Friday was it."
 - **The reflective question**: Start with the question that drove the piece. Not a rhetorical flourish, but genuine curiosity.
-- **The "So..." opener**: "So I tried something." feels very natural for project or product posts.
+- **The "So..." opener (only with a concrete object in the first clause)**: "So I tried something." / "So I made this little script the other day." / "So last Friday was it." Works when the first sentence points at a *thing*: a script, a date, an action, an object. Does NOT work when it points at a mental process ("So I've been thinking about..." / "So I've been re-reading..." / "So I kept catching myself..."). If you can't name a concrete object inside the first clause, use a different opener. "So..." is not a free pass to abstraction.
 
 The opening should make readers feel like they walked into a conversation already in progress.
 
@@ -194,6 +199,21 @@ AI models massively overuse certain words compared to human writers. If you catc
 - **"Foster"** / "fostering innovation" — corporate-speak dressed up as warmth.
 - **"Multifaceted"** — if something is complex, describe the facets. Don't just say "multifaceted."
 - **"Arguably"** — either argue the point or don't.
+- **"Showcasing"** — detection research flags this as 20x more frequent in AI than human writing. Use "shows" or describe what you're showing.
+- **"Aligns with"** / "align with" — corporate cliche. Use "matches," "fits," or just "is."
+- **"Highlighting"** — skip the meta-verb and state the thing.
+- **"Enhance"** / "enhancing" — what did you improve, specifically? Say that.
+- **"Testament"** / "a testament to" — literary filler. Say "shows," "proves," or "demonstrates."
+- **"Boasts"** / "boasts a" — product-marketing copy. Use "has."
+- **"Nestled"** / "in the heart of" — travel-brochure register. Delete.
+- **"Meticulous"** / "meticulously" — if the work was careful, show the care. Don't label it.
+- **"Resonate"** / "resonate with" — vague emotional claim. Be specific about the reaction.
+- **"Seamless"** — usually means "we haven't tested the hard cases."
+- **"Unlock"** / "harness" / "empower" / "elevate" / "streamline" — the product-marketing verb family. All empty energy. Use a concrete verb or describe what actually changes.
+- **"Cutting-edge"** / "state-of-the-art" / "groundbreaking" / "revolutionary" / "transformative" — empty inflation. If the thing is new, say what's new.
+- **"Ecosystem"** — overused into meaninglessness. Say "tools," "products," or name the actual things.
+- **"Interplay"** — ten-dollar word for "how X and Y work together."
+- **"Bolstered"** / "surpassing" / "impacting" / "garner" — ten-dollar words for "helped," "beating," "affecting," "get."
 
 ### Dead giveaway openings
 
@@ -208,6 +228,10 @@ These opening patterns are AI signatures. Never use them:
 - "Let's delve into..."
 - "When it comes to..."
 - "In this article, we'll explore..."
+- "This aims to explore..."
+- "Notable works include..."
+- "Rest assured..."
+- "I hope this helps..." / "I hope this finds you well..." (email contexts)
 
 ### Structural tells
 
@@ -221,6 +245,10 @@ AI writing has a predictable shape. Watch for these patterns and break them:
 - **The summary paragraph at the end of every section**: AI adds a concluding sentence that restates what was just said. If you just said it, the reader got it.
 - **The treadmill**: multiple sentences restating the same point in slightly different words. The text hovers instead of advancing. If you've made the point, move on.
 - **Parallel structure everywhere**: "X is about Y. It's about Z. It's about W." Real writing varies its constructions.
+- **Copulative avoidance**: AI shies away from plain "is/are" and reaches for "serves as," "stands as," "represents," "marks." If you can replace the verb with "is," you probably should. "The library serves as a toolkit" wants to be "The library is a toolkit."
+- **Title Case in headings**: AI defaults to "The Future Of Open Source" because training data skews toward Title Case for headlines. Conversational writing wants sentence case: "The future of open source."
+- **The "Future Outlook" closer**: "Looking Ahead" / "The Road Ahead" / "Future Outlook" as a final section. Compositional reflex, not insight. If you don't have a specific prediction, don't add a section pretending you do.
+- **The challenges-then-outlook formula**: "Despite its [positive qualities], [X] faces several challenges..." followed by a vague forward-looking paragraph. Skip both halves.
 
 ### Tone tells
 
@@ -236,7 +264,7 @@ AI writing has a predictable shape. Watch for these patterns and break them:
 ### Sentence-level tells
 
 - **The rule of three**: AI loves triads. "Fast, efficient, and reliable." "Clear, concise, and compelling." Always three adjectives, three phrases, three examples. Vary the count.
-- **"Not just X, but Y"**: "This is not just a tool, but a transformative approach to..." These challenge an assumption nobody was making. Say what it *is* instead of what it isn't.
+- **"Not just X, but Y" / "It's not X, it's Y"**: the single biggest AI tell of the last two years, bigger than em dashes. "This isn't just a tool, it's a way of thinking..." Claude, GPT, and Gemini all gravitate to this contrastive reframe, and it's showing up in roughly 6% of AI-generated text in recent studies. It challenges an assumption nobody was making. Say what the thing *is* instead of performing a contrast.
 - **Thesaurus syndrome**: AI rotates synonyms to avoid repetition. A person becomes "the individual," then "the professional," then "the key stakeholder" in one paragraph. Humans repeat words naturally. Repetition is fine.
 - **Present participle chains**: "Building on this foundation, revealing key insights, transforming the way we think about..." AI uses present participles roughly 5x more than human writers.
 
@@ -244,7 +272,7 @@ AI writing has a predictable shape. Watch for these patterns and break them:
 
 This is the most important antipattern. AI constantly writes about its own writing: it announces what it's about to say, narrates its own transitions, and directs the reader's emotional response. A good writer just *does* these things through their actual choices.
 
-**Announcement sentences** ("Here's [noun]" patterns): "Here's what changed." "Here's the thing." "Here's where it gets interesting." "Here's the kicker." These are drumrolls before content that would land fine on its own. Delete the announcement and start with the content itself. "Here's what changed: we stopped shipping weekly" should just be "We stopped shipping weekly."
+**Announcement sentences** ("Here's [noun]" patterns): "Here's what changed." "Here's the thing." "Here's where it gets interesting." "Here's the kicker." "Here's what most people miss." "But here's the truth." "Here's what nobody's saying." These are drumrolls before content that would land fine on its own. Delete the announcement and start with the content itself. "Here's what changed: we stopped shipping weekly" should just be "We stopped shipping weekly."
 
 **Meta-narrative mic-drops**: "And that changes everything." "And that's exactly the problem." "And that's the whole game." "That last part is key." These are stage directions, telling the reader what to feel about content instead of letting it speak. One per essay might work. AI uses them to close every section.
 
@@ -256,7 +284,27 @@ This is the most important antipattern. AI constantly writes about its own writi
 
 **Bridge announcements**: "Which brings me to..." "So where does that leave us?" "The result?" "The catch?" If you can delete the bridge and the next paragraph still follows logically, delete it. Good transitions are built into the content, not bolted on top.
 
+**Introspection-as-opener**: "I've been thinking about X lately." "I kept catching myself doing Y." "I've been re-reading Z." "Lately I've noticed myself doing..." These stage a private mental process as if it were a moment worth reporting on. Nobody literally catches themselves making a tradeoff. It's essay-intro theater dressed up as a casual anecdote. If the piece is about Taleb, open with Taleb. If it's about a tradeoff, open with the tradeoff. Don't open with your own reflection *about* the thing. The first clause should point at an object in the world, not a process inside your head.
+
 **The underlying principle**: if a sentence describes what the essay is doing rather than actually doing it, cut it.
+
+### Format and punctuation tells
+
+- **Curly quotes** (" " ') showing up when you weren't working in a rich-text editor: telltale paste from ChatGPT or Claude output. Convert to straight quotes.
+- **Bold inside prose**, two or three words per paragraph, to signal "key concept." Real prose doesn't need the reader's eyes herded. Reserve bold for lists.
+- **Thematic breaks (`---`) between most sections**: one or two can work; five or six in a single post reads as AI formatting instinct.
+- **Tables for three or four data points** that would read fine as a sentence. Only use tables when the comparison grid is actually doing work.
+- **Emoji used as bullet markers**: either write prose or use normal bullets. Mixing them is a tell.
+- **Copy-paste artifacts** like `contentReference[oaicite...]` or `turn0search0`: always catch and delete before shipping.
+
+### Claude-specific tells
+
+Bart drafts with Claude, so these are worth calling out explicitly:
+
+- **Opening sycophancy**: "You're absolutely right!" / "Excellent question!" / "Great insight!" Claude 4.x shipped with this tic and Anthropic has been patching it. It still bleeds into written drafts. Strip on sight.
+- **"Genuinely"** as a hedge-intensifier ("this is genuinely interesting," "I'm genuinely curious about"). Claude reaches for it more than GPT does. Once per post is fine; twice is a signal.
+- **Structural verbosity**: Claude tends to roughly double the word count of a tight human draft. Not through ornate sentences (that's GPT's failure mode), but through extra clauses, extra restatements, extra transitional paragraphs. When editing Claude output, cutting 30 to 50% usually improves it.
+- **Em-dash overuse**: Bart doesn't use em dashes anyway, but worth noting that em dashes are now *more* of a Claude tell than a GPT tell. GPT-5 suppresses them; Claude 4.x still leans on them heavily.
 
 ### The meta-rule
 
