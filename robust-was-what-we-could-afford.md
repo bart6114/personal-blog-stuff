@@ -1,6 +1,6 @@
 # Robust was what we could afford
 
-I've been re-reading Taleb over the weekend, and it gave me a name for a tradeoff I've been making in code without one: robust vs antifragile. I think AI coding just tipped the balance away from robust, and most of us haven't updated our instincts yet.
+I was re-reading Taleb's [*Antifragile*](https://www.amazon.com/Antifragile-Things-That-Disorder-Incerto/dp/0812979680) last weekend, and it gave me a name for a tradeoff I've been making in code without one: robust vs antifragile. I think AI coding just tipped the balance away from robust, and most of us haven't updated our instincts yet.
 
 Quick recap for anyone who hasn't read Antifragile (or been cornered by someone who has). He splits systems into three types. Fragile things break under stress. Robust things don't break, but they don't improve either. Antifragile things actually get *better* when you stress them. Muscles and immune systems work this way, and so does a good postmortem culture (if you've got one).
 
