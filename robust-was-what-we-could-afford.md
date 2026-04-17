@@ -1,8 +1,8 @@
 # Robust was what we could afford
 
-AI coding changed the math on a software engineering tradeoff that used to feel settled. Robust vs antifragile. I think robust just lost.
+I've been re-reading Taleb over the weekend, and it gave me a name for a tradeoff I've been making in code without one: robust vs antifragile. I think AI coding just tipped the balance away from robust, and most of us haven't updated our instincts yet.
 
-Quick recap for anyone who hasn't had Taleb shouting at them via Twitter for the past decade. He splits systems into three types. Fragile things break under stress. Robust things don't break, but they don't improve either. Antifragile things actually get *better* when you stress them. Muscles and immune systems work this way, and so does a good postmortem culture (if you've got one).
+Quick recap for anyone who hasn't read Antifragile (or been cornered by someone who has). He splits systems into three types. Fragile things break under stress. Robust things don't break, but they don't improve either. Antifragile things actually get *better* when you stress them. Muscles and immune systems work this way, and so does a good postmortem culture (if you've got one).
 
 Then there's extremistan vs mediocristan. Mediocristan is where errors average out. Things like height or marathon times. Add one more sample and the mean barely moves. Extremistan is where one outlier eats everything. Wealth distribution is the canonical example, and book sales work the same way. If Jeff Bezos walks into a bar, the average net worth of everyone in that bar is now completely meaningless.
 
