@@ -7,9 +7,10 @@ This `site/` folder is the **publish root** for the Cloudflare Pages project
 ```
 site/                       <- publish root (this folder is what gets deployed)
   index.html                <- landing page (lists projects)
-  knowledge-work-atlas/     <- https://stuff.barts.space/knowledge-work-atlas/
+  skill-atlas/              <- https://stuff.barts.space/skill-atlas/
     index.html
     tasks.yaml  build.py  README.md
+  _redirects                <- 301s the old /knowledge-work-atlas/* path here
   <future-project>/         <- just drop a new folder here -> /<future-project>/
 ```
 
@@ -35,11 +36,11 @@ wrangler pages deploy site \
 
 ## After editing the atlas catalog
 
-`site/knowledge-work-atlas/tasks.yaml` is the source of truth. If you change it,
+`site/skill-atlas/tasks.yaml` is the source of truth. If you change it,
 regenerate the page before deploying (data is embedded in `index.html`):
 
 ```bash
-cd site/knowledge-work-atlas && python3 build.py && cd ../..
+cd site/skill-atlas && python3 build.py && cd ../..
 # then run the deploy command above
 ```
 
@@ -55,6 +56,11 @@ cd site/knowledge-work-atlas && python3 build.py && cd ../..
 
 - The whole `site/` tree is public, including each project's `tasks.yaml`, `build.py`,
   `README.md` (intended — open data).
+- **Path vs project name:** the public URL path is `/skill-atlas/` (the folder under
+  `site/`), but the Cloudflare **Pages project** is still named `knowledge-work-atlas`
+  (its `.pages.dev` subdomain and dashboard entry) — they're independent, so the deploy
+  command's `--project-name` stays `knowledge-work-atlas`. `site/_redirects` 301s the old
+  `/knowledge-work-atlas/*` path to `/skill-atlas/*` so prior links keep working.
 - **Future-aligned alternative (Workers Static Assets):** a `wrangler.jsonc` with
   `{"name":"...","compatibility_date":"2025-01-01","assets":{"directory":"./site"}}`
   + `wrangler deploy`. Same free static serving; the path Cloudflare pushes for new projects.

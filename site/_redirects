@@ -1,0 +1,4 @@
+# Old knowledge-work-atlas path -> new skill-atlas path (301 permanent).
+# Covers the page, tasks.yaml, and every asset under the old prefix.
+/knowledge-work-atlas      /skill-atlas/            301
+/knowledge-work-atlas/*    /skill-atlas/:splat      301

@@ -295,7 +295,7 @@ First, fetch this file. It's a catalog of ~2,800 small, automatable
 knowledge-work tasks, each tagged with domain, roles, inputs/outputs, tools, how
 automatable it is, and how much human oversight it needs:
 
-  https://stuff.barts.space/knowledge-work-atlas/tasks.yaml
+  https://stuff.barts.space/skill-atlas/tasks.yaml
 
 It's ~2MB, so download and skim or sample it rather than reading every line. Use
 it as inspiration for the shape of a good automatable task, not as a fixed menu.
