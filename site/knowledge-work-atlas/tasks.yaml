@@ -34793,3 +34793,1875 @@
   tools: ["Tax software", "Document management system", "Spreadsheet", "Client portal"]
   frequency: daily
   trigger: "Show me which 8879s are still outstanding for the April 15 batch and flag any returns we can't transmit yet"
+
+- id: reconcile-ceu-contact-hours-against-accrediting-body-criteri
+  title: "Reconcile CEU contact hours against accrediting body criteria"
+  domain: "Learning & Development"
+  roles: ["Certification Administrator", "L&D Specialist", "Training Coordinator"]
+  description: "Cross-checks a completed course's logged contact hours, activity types, and delivery format against the sponsoring accrediting body's specific credit requirements to confirm eligibility before submission. Surfaces any shortfalls or format mismatches that would cause a credit denial."
+  inputs: ["course completion records", "accrediting body criteria sheet", "course agenda with timed segments"]
+  outputs: ["CEU eligibility checklist", "discrepancy report", "submission-ready credit summary"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["spreadsheet", "document editor"]
+  frequency: monthly
+  trigger: "Check whether our new 4-hour webinar series qualifies for 3.5 PDU credits before I submit it to PMI."
+
+- id: convert-slide-speaker-notes-into-scorm-narration-scripts-wit
+  title: "Convert slide speaker notes into SCORM narration scripts with cue marks"
+  domain: "Learning & Development"
+  roles: ["Instructional Designer", "Learning Experience Designer", "E-learning Developer"]
+  description: "Extracts speaker notes from a presentation deck, restructures them into timed narration segments with slide-transition cue marks and estimated audio duration per slide, formatted for a voice-over or TTS workflow in an authoring tool."
+  inputs: ["slide deck with speaker notes", "module timing guide", "voice-over style guide"]
+  outputs: ["narration script with cue marks", "estimated audio runtime per slide", "transition timing sheet"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["presentation software", "document editor"]
+  frequency: ad-hoc
+  trigger: "Turn the speaker notes in this deck into a ready-to-record narration script, timestamped per slide."
+
+- id: draft-bloom-s-taxonomy-aligned-learning-objectives-from-sme
+  title: "Draft Bloom's taxonomy-aligned learning objectives from SME notes"
+  domain: "Learning & Development"
+  roles: ["Instructional Designer", "L&D Specialist"]
+  description: "Takes unstructured subject-matter-expert notes or a raw content outline and rewrites each point as a measurable learning objective at the specified Bloom's cognitive level, using approved action verbs and the ABCD (Audience, Behavior, Condition, Degree) format."
+  inputs: ["SME content notes", "target Bloom's level per module", "action-verb reference list"]
+  outputs: ["numbered ABCD-format learning objectives", "Bloom's level mapping table"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["document editor", "LLM"]
+  frequency: ad-hoc
+  trigger: "Here are my SME's raw notes for the new safety module. Write me Apply-level learning objectives for each section."
+
+- id: map-course-catalog-coverage-to-a-competency-framework-gap-ma
+  title: "Map course catalog coverage to a competency framework gap matrix"
+  domain: "Learning & Development"
+  roles: ["L&D Analyst", "Instructional Designer", "Training Program Manager"]
+  description: "Matches each competency in a role's framework against available courses in the catalog, surfaces competencies with no or insufficient coverage, and produces a gap heat-map showing coverage percentage by domain for prioritization."
+  inputs: ["competency framework", "course catalog metadata", "target role profiles"]
+  outputs: ["competency-coverage gap matrix", "coverage percentage by competency domain", "prioritized gap list"]
+  automation: high
+  human_in_loop: approve
+  tools: ["spreadsheet", "LMS", "document editor"]
+  frequency: quarterly
+  trigger: "Cross-reference our engineering competency framework with the current course catalog and show me which competencies have no coverage."
+
+- id: write-decision-tree-branching-paths-for-a-compliance-simulat
+  title: "Write decision-tree branching paths for a compliance simulation scenario"
+  domain: "Learning & Development"
+  roles: ["Instructional Designer", "Compliance Training Manager", "Learning Experience Designer"]
+  description: "Authors the full narrative decision tree for a branching compliance scenario, including correct-choice reinforcement text, wrong-choice consequence explanations with policy citations, node IDs for the authoring tool, and remediation hints that link back to source policy."
+  inputs: ["compliance policy excerpt", "scenario premise and character profiles", "authoring tool node schema"]
+  outputs: ["branching narrative script with node IDs", "consequence text per wrong path", "remediation link map"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document editor", "storyboarding tool", "LLM"]
+  frequency: ad-hoc
+  trigger: "Write a branching scenario where a manager has to decide how to handle an employee's expense report with red flags for policy violations."
+
+- id: audit-lms-completion-records-against-employee-roster-before
+  title: "Audit LMS completion records against employee roster before a compliance deadline"
+  domain: "Learning & Development"
+  roles: ["LMS Administrator", "Compliance Training Manager", "Training Coordinator"]
+  description: "Joins the LMS course-completion export with the authoritative headcount roster, flags non-completers, and groups them by manager and department so escalation messages can be routed correctly before the regulatory due date."
+  inputs: ["LMS completion export CSV", "employee roster CSV with manager hierarchy", "training due date"]
+  outputs: ["non-completer list with manager hierarchy", "completion percentage by department", "escalation routing table"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "LMS", "HRIS"]
+  frequency: weekly
+  trigger: "The GDPR refresher is due Friday. Pull the completion data and show me who hasn't finished, grouped by manager."
+
+- id: generate-tiered-escalation-nudge-email-sequence-for-incomple
+  title: "Generate tiered escalation nudge email sequence for incomplete mandatory training"
+  domain: "Learning & Development"
+  roles: ["Training Coordinator", "L&D Specialist", "Compliance Training Manager"]
+  description: "Drafts a three-stage escalation email sequence for employees who miss mandatory training deadlines — learner reminder, manager copy-in, and HR alert — with tone escalating at each stage and correct personalization tokens for mail-merge."
+  inputs: ["training name and deadline date", "escalation interval schedule", "manager and HR name tokens", "course link"]
+  outputs: ["three email drafts with subject lines", "personalization token reference sheet", "send schedule"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["email client", "document editor", "LLM"]
+  frequency: monthly
+  trigger: "Write the escalation email series for our annual harassment prevention training—three levels, 7 days apart, starting gentle and ending with an HR cc."
+
+- id: compute-pre-post-assessment-score-delta-and-kirkpatrick-l2-s
+  title: "Compute pre/post assessment score delta and Kirkpatrick L2 summary for a cohort"
+  domain: "Learning & Development"
+  roles: ["L&D Analyst", "Instructional Designer", "Training Program Manager"]
+  description: "Joins pre-training and post-training quiz results by learner ID, calculates individual and cohort-level knowledge-gain delta, highlights assessment items with lowest post-training accuracy, and produces a Kirkpatrick Level 2 narrative summary."
+  inputs: ["pre-assessment results CSV", "post-assessment results CSV", "passing threshold", "item-level question text"]
+  outputs: ["knowledge-gain summary table", "underperforming item list with accuracy rates", "Kirkpatrick L2 narrative paragraph"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "data analysis tool", "LLM"]
+  frequency: monthly
+  trigger: "Here are the pre and post quiz exports from last week's leadership program. Compute the learning gain and flag any questions where the class still underperformed after training."
+
+- id: rewrite-a-policy-manual-chapter-as-a-mobile-microlearning-ca
+  title: "Rewrite a policy-manual chapter as a mobile microlearning card deck"
+  domain: "Learning & Development"
+  roles: ["Instructional Designer", "Learning Experience Designer", "L&D Specialist"]
+  description: "Breaks a dense policy chapter into a sequence of short, single-concept cards formatted for mobile microlearning platform constraints — each card has a headline, 2-3 sentence body capped at the platform character limit, and one key takeaway callout."
+  inputs: ["policy chapter text", "card character limit", "target audience description", "platform formatting spec"]
+  outputs: ["numbered card deck script with headline, body, and takeaway per card", "estimated card count and read time"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["document editor", "LLM", "microlearning authoring tool"]
+  frequency: ad-hoc
+  trigger: "Convert chapter 4 of our travel and expense policy into a mobile card deck, max 120 words per card."
+
+- id: build-a-domain-specific-translation-glossary-for-localized-t
+  title: "Build a domain-specific translation glossary for localized training content"
+  domain: "Learning & Development"
+  roles: ["L&D Localization Specialist", "Instructional Designer", "Training Coordinator"]
+  description: "Extracts technical and company-specific terms from source training material, adds contextual usage examples, flags terms that must remain untranslated (product names, legal terms), and formats the glossary for the translation vendor's CAT tool import."
+  inputs: ["source training script or course text", "list of preferred translations if available", "do-not-translate term list"]
+  outputs: ["bilingual glossary table with context notes", "do-not-translate flagged entries", "CAT tool import file"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document editor", "translation management system", "LLM"]
+  frequency: ad-hoc
+  trigger: "We're localizing the onboarding course into Spanish. Build a glossary of all the internal jargon so the translation vendor stays consistent."
+
+- id: reconcile-vendor-issued-training-certificates-against-intern
+  title: "Reconcile vendor-issued training certificates against internal LMS completion records"
+  domain: "Learning & Development"
+  roles: ["Certification Administrator", "LMS Administrator", "Training Coordinator"]
+  description: "Cross-matches a batch of externally-issued training certificates (learner name, course, completion date, credit hours) against LMS transcript records, identifies missing, mismatched, or duplicate entries, and produces a reconciliation report with a manual-entry queue."
+  inputs: ["vendor certificate batch (PDF or CSV)", "LMS transcript export", "employee name-matching reference"]
+  outputs: ["matched records list", "discrepancy report with gap type", "manual LMS entry queue"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["LMS", "spreadsheet", "document parser"]
+  frequency: monthly
+  trigger: "We got 40 completion certificates from the external safety vendor. Check them against what's in our LMS and tell me what's missing or wrong."
+
+- id: flag-training-content-for-refresh-based-on-policy-or-regulat
+  title: "Flag training content for refresh based on policy or regulatory change dates"
+  domain: "Learning & Development"
+  roles: ["L&D Analyst", "Compliance Training Manager", "LMS Administrator"]
+  description: "Compares each course's last-reviewed date in the LMS against a changelog of recent policy or regulation updates, identifies content that references superseded rules, and outputs a prioritized refresh queue with the specific change description per course."
+  inputs: ["course metadata with last-reviewed dates", "policy and regulation changelog", "effective date of each change"]
+  outputs: ["prioritized content refresh queue", "per-course change description summary", "regulatory reference mapping"]
+  automation: high
+  human_in_loop: approve
+  tools: ["LMS", "spreadsheet", "document editor"]
+  frequency: quarterly
+  trigger: "Our OSHA standards changed last month. Which of our safety courses still reference the old requirements and need to be updated first?"
+
+- id: assign-ofccp-disposition-codes-to-applicant-flow-log-entries
+  title: "Assign OFCCP disposition codes to applicant-flow log entries"
+  domain: "Recruiting & Talent"
+  roles: ["OFCCP Compliance Specialist", "Recruiting Operations Manager", "HRIS Analyst"]
+  description: "Map each stage-exit record in the ATS to the correct OFCCP-standard disposition code based on the captured rejection reason, filling gaps before the annual applicant-flow log is finalized. Flags ambiguous or missing rejection reasons that require recruiter clarification."
+  inputs: ["ATS stage-exit export", "OFCCP disposition code reference table", "rejection reason taxonomy"]
+  outputs: ["disposition-coded applicant flow log", "exception list for recruiter review"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "ATS", "data transformation script"]
+  frequency: monthly
+  trigger: "Pull all Q3 applicant-flow records from Greenhouse and assign OFCCP disposition codes so I can start the log audit."
+
+- id: scan-interview-question-bank-for-potentially-unlawful-pre-em
+  title: "Scan interview question bank for potentially unlawful pre-employment inquiries"
+  domain: "Recruiting & Talent"
+  roles: ["Talent Acquisition Manager", "Employment Counsel", "Recruiting Operations Manager"]
+  description: "Review a compiled question bank and flag questions that touch protected characteristics (age, national origin, disability, family/marital status, religion) or elicit information that could constitute a pre-employment inquiry violation under federal or state law."
+  inputs: ["interview question bank document", "jurisdiction-specific pre-employment inquiry rules"]
+  outputs: ["annotated question bank with risk flags", "suggested compliant rewrites"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["document editor", "legal reference database"]
+  frequency: ad-hoc
+  trigger: "We just inherited an interview guide from an acquisition — check it for legally risky questions before we start using it."
+
+- id: assemble-comp-recommendation-memo-for-an-individual-offer
+  title: "Assemble comp recommendation memo for an individual offer"
+  domain: "Recruiting & Talent"
+  roles: ["Compensation Partner", "Talent Acquisition Business Partner", "Total Rewards Analyst"]
+  description: "Combine external market survey percentile data, internal equity comparisons for similar roles, leveling criteria, and the candidate's stated expectations into a structured offer recommendation memo ready for hiring manager and finance approval."
+  inputs: ["comp band data", "market survey export", "internal equity report", "candidate comp expectation", "role level definition"]
+  outputs: ["offer recommendation memo", "comp positioning summary"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["spreadsheet", "HRIS", "compensation planning tool"]
+  frequency: ad-hoc
+  trigger: "Build the comp memo for the Senior PM offer — candidate is asking for $175k and our band tops at $168k."
+
+- id: detect-agency-duplicate-submittals-before-source-of-hire-clo
+  title: "Detect agency duplicate submittals before source-of-hire clock starts"
+  domain: "Recruiting & Talent"
+  roles: ["Talent Acquisition Coordinator", "Recruiting Operations Manager"]
+  description: "Match each incoming agency-submitted resume against existing ATS candidate records using name, email, phone, and LinkedIn URL to identify prior-source conflicts and flag fee liability risk before the recruiter formally acknowledges receipt."
+  inputs: ["agency resume batch", "ATS candidate records export", "agency contract terms"]
+  outputs: ["duplicate flag report", "prior-source conflict list with submission dates"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["ATS", "deduplication script", "spreadsheet"]
+  frequency: daily
+  trigger: "Agency just sent over 14 candidates for the Staff Engineer req — check them all against the ATS before I acknowledge."
+
+- id: audit-offer-letter-merge-fields-before-e-signature-dispatch
+  title: "Audit offer letter merge fields before e-signature dispatch"
+  domain: "Recruiting & Talent"
+  roles: ["Talent Acquisition Coordinator", "Recruiting Operations Manager"]
+  description: "Verify every variable field in a generated offer letter — equity grant details, sign-on amount, start date, PTO accrual tier, reporting manager name, and job code — is correctly populated, internally consistent, and matches the approved offer in the ATS before the document is sent for signature."
+  inputs: ["generated offer letter draft", "approved offer record in ATS", "equity grant memo", "HR policy reference"]
+  outputs: ["validated offer letter", "field-mismatch exception report"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["document editor", "ATS", "e-signature platform"]
+  frequency: ad-hoc
+  trigger: "Double-check the offer letter for Jamie Chen before I send it — the equity number came from two different systems."
+
+- id: build-panel-availability-matrix-for-multi-interviewer-loop-s
+  title: "Build panel availability matrix for multi-interviewer loop scheduling"
+  domain: "Recruiting & Talent"
+  roles: ["Talent Acquisition Coordinator", "Recruiting Coordinator"]
+  description: "Pull calendar availability for all assigned panelists across time zones, generate a ranked matrix of viable interview slots, and identify the earliest window that satisfies both the candidate's constraints and the full panel requirement without double-booking."
+  inputs: ["panelist list with time zones", "candidate availability window", "interview format and duration", "calendar availability data"]
+  outputs: ["ranked slot matrix", "candidate scheduling link or draft invite"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["calendar system", "scheduling automation tool", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Schedule a 5-person onsite loop for Priya — two interviewers are in London and she can only do mornings Pacific."
+
+- id: enroll-silver-medalist-candidates-in-role-specific-nurture-s
+  title: "Enroll silver-medalist candidates in role-specific nurture sequences"
+  domain: "Recruiting & Talent"
+  roles: ["Sourcing Specialist", "Talent Acquisition Business Partner", "Candidate Experience Manager"]
+  description: "Tag final-round candidates who were not selected with their evaluated competency strengths and the stage at which they exited, then enroll them in differentiated drip sequences that surface relevant future openings and maintain engagement without over-communicating."
+  inputs: ["finalist candidate list with stage and rejection reason", "competency scorecard summaries", "open requisition list", "nurture sequence templates"]
+  outputs: ["enrolled nurture cohort in CRM", "sequence assignment log"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["CRM", "ATS", "email automation tool"]
+  frequency: weekly
+  trigger: "We just closed the VP of Product search — enroll the two runners-up in nurture so we can re-engage them for the next senior PM opening."
+
+- id: validate-employee-referral-payout-eligibility-before-hr-proc
+  title: "Validate employee referral payout eligibility before HR processing"
+  domain: "Recruiting & Talent"
+  roles: ["Recruiting Operations Manager", "HR Operations Specialist", "Talent Acquisition Coordinator"]
+  description: "Cross-check each referral claim against policy rules — referrer tenure gate, eligible relationship type, timing of submission relative to first contact, and whether the new hire has passed the payout cliff — then flag exceptions before HR cuts the payment."
+  inputs: ["referral claim record", "new hire start and cliff date", "referral program policy document", "ATS first-contact date"]
+  outputs: ["eligibility determination per claim", "exception memo for policy violations"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["HRIS", "ATS", "spreadsheet"]
+  frequency: monthly
+  trigger: "Process this month's referral payouts — flag any claims where the referrer submitted after we already had the candidate in the system."
+
+- id: reconcile-conflicting-source-of-hire-tags-on-a-multi-touch-c
+  title: "Reconcile conflicting source-of-hire tags on a multi-touch candidate record"
+  domain: "Recruiting & Talent"
+  roles: ["Recruiting Operations Manager", "HRIS Analyst", "Talent Acquisition Coordinator"]
+  description: "Resolve cases where a single candidate record carries competing source tags (e.g., LinkedIn outreach, inbound apply, agency, and employee referral) by applying the defined source-hierarchy rules and updating the canonical source field to ensure accurate pipeline and cost-per-hire reporting."
+  inputs: ["candidate record with multi-source tags", "source hierarchy policy", "source event timestamps"]
+  outputs: ["corrected source-of-hire field in ATS", "reconciliation log for reporting"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["ATS", "data transformation script", "spreadsheet"]
+  frequency: weekly
+  trigger: "Our source-of-hire report is dirty — clean up all Q2 hires where more than one source tag is present so the board deck numbers are accurate."
+
+- id: generate-requisition-aging-report-with-recruiter-level-accou
+  title: "Generate requisition aging report with recruiter-level accountability view"
+  domain: "Recruiting & Talent"
+  roles: ["Talent Acquisition Manager", "Recruiting Operations Manager", "Head of Talent Acquisition"]
+  description: "Identify all open requisitions that have exceeded their target-time-to-fill threshold, segment by recruiter owner and hiring department, compute days-over-target, and draft a summary table for TA leadership to use in weekly pipeline review."
+  inputs: ["open requisition list with open dates and targets", "recruiter assignment data", "department headcount plan"]
+  outputs: ["aging report by recruiter and department", "narrative summary for leadership review"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["ATS", "spreadsheet", "reporting dashboard"]
+  frequency: weekly
+  trigger: "Pull the req aging report ahead of Monday's TA leadership sync — I want to see which recruiters are carrying the most stalled reqs."
+
+- id: pre-submission-audit-of-annual-eeo-applicant-flow-log
+  title: "Pre-submission audit of annual EEO applicant flow log"
+  domain: "Recruiting & Talent"
+  roles: ["OFCCP Compliance Specialist", "Recruiting Operations Manager", "HR Compliance Manager"]
+  description: "Check the compiled EEO applicant flow log for missing demographic fields, unassigned or invalid disposition codes, row-count mismatches against ATS totals, and duplicate entries before the log is submitted to the OFCCP or retained for audit readiness."
+  inputs: ["draft EEO applicant flow log", "ATS applicant count by requisition", "OFCCP filing requirements checklist"]
+  outputs: ["audit finding report", "corrected applicant flow log", "certification checklist"]
+  automation: high
+  human_in_loop: sign-off
+  tools: ["spreadsheet", "ATS", "data validation script"]
+  frequency: quarterly
+  trigger: "Our OFCCP audit window opens in 30 days — run the pre-submission check on the applicant flow log and tell me what needs fixing."
+
+- id: calibrate-divergent-interviewer-scores-after-panel-debrief
+  title: "Calibrate divergent interviewer scores after panel debrief"
+  domain: "Recruiting & Talent"
+  roles: ["Talent Acquisition Business Partner", "Talent Acquisition Manager", "Recruiting Operations Manager"]
+  description: "Detect statistical outliers and anchor-bias patterns in a panel's individual scorecards — such as a single 1-out-of-5 dragging an otherwise strong candidate — and produce a normalized score summary and calibration prompt for the hiring committee to review before the final decision."
+  inputs: ["individual interviewer scorecards", "competency rubric", "interview format and weighting"]
+  outputs: ["normalized panel score summary", "calibration discussion guide for hiring committee"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["ATS", "spreadsheet", "survey tool"]
+  frequency: ad-hoc
+  trigger: "The debrief for the Data Science candidate is tomorrow — one interviewer gave all 1s while everyone else scored 4-5; summarize the scorecard spread and flag the outlier."
+
+- id: multi-country-per-diem-rate-calculation-for-executive-trip
+  title: "Multi-country per-diem rate calculation for executive trip"
+  domain: "Executive / Admin Support"
+  roles: ["Executive Assistant", "Travel Coordinator"]
+  description: "Calculate the applicable government per-diem rates for each leg of a multi-destination executive trip, applying travel-day percentage rules, deducting catered meals, and producing a reimbursable-amount worksheet by country and day."
+  inputs: ["approved travel itinerary", "per-diem rate tables", "meal provision schedule"]
+  outputs: ["per-diem calculation worksheet", "reimbursable totals by country"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "travel policy document"]
+  frequency: ad-hoc
+  trigger: "Calculate per-diem for my NYC to London to Dubai trip next week including the conference dinner on night two"
+
+- id: executive-bio-version-matrix-synchronization-after-credentia
+  title: "Executive bio version matrix synchronization after credential change"
+  domain: "Executive / Admin Support"
+  roles: ["Executive Assistant", "Chief of Staff", "Communications Coordinator"]
+  description: "Update all versioned bio variants — 6-word, 25-word, 100-word, and full-page — after a title change, board appointment, or major award, ensuring every length variant reflects the same updated facts before redistribution to conference programs and press kits."
+  inputs: ["existing bio versions in all lengths", "new title or credential details"]
+  outputs: ["synchronized bio set in all required lengths"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["document editor", "content management system"]
+  frequency: ad-hoc
+  trigger: "Update all my bios to reflect my new board seat at the foundation before the conference packet goes out"
+
+- id: protocol-compliant-seating-chart-for-formal-executive-dinner
+  title: "Protocol-compliant seating chart for formal executive dinner"
+  domain: "Executive / Admin Support"
+  roles: ["Executive Assistant", "Events Coordinator", "Chief of Staff"]
+  description: "Assign seats for a formal executive dinner using seniority and protocol rules — alternating hosts with guests, placing the guest of honor correctly, separating couples, and accounting for flagged interpersonal tensions or language preferences."
+  inputs: ["guest list with titles and affiliations", "dietary and accessibility notes", "relationship tension flags"]
+  outputs: ["seating chart diagram", "place card list"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["diagramming tool", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Create a seating chart for Thursday's dinner with the board chair, two external partners, and our CFO"
+
+- id: pre-meeting-counterpart-intelligence-brief
+  title: "Pre-meeting counterpart intelligence brief"
+  domain: "Executive / Admin Support"
+  roles: ["Executive Assistant", "Chief of Staff", "Research Analyst"]
+  description: "Compile a one-page brief on an external meeting counterpart covering recent news coverage, professional background, shared connections, previous interaction history from the CRM, and suggested conversation hooks relevant to the meeting agenda."
+  inputs: ["counterpart name and organization", "meeting topic and agenda", "CRM interaction history"]
+  outputs: ["counterpart one-page brief"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["search engine", "CRM", "document editor"]
+  frequency: ad-hoc
+  trigger: "Prep me a brief on the CFO I'm meeting from Acme Corp on Friday — we last spoke 18 months ago"
+
+- id: year-to-date-gift-log-reconciliation-against-per-recipient-p
+  title: "Year-to-date gift log reconciliation against per-recipient policy caps"
+  domain: "Executive / Admin Support"
+  roles: ["Executive Assistant", "Compliance Coordinator", "Chief of Staff"]
+  description: "Cross-reference the year-to-date corporate gift and hospitality log against per-recipient annual caps and jurisdiction-specific limits, flagging entries approaching or breaching thresholds before year-end gift-giving season begins."
+  inputs: ["gift and hospitality log", "corporate gift policy", "applicable jurisdiction rules"]
+  outputs: ["reconciliation report", "flagged near-limit entries"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "compliance document store"]
+  frequency: quarterly
+  trigger: "Check whether we're close to any gift limits for our top clients before the holiday season"
+
+- id: mixed-group-expense-receipt-split-coding-across-cost-centers
+  title: "Mixed-group expense receipt split-coding across cost centers"
+  domain: "Executive / Admin Support"
+  roles: ["Executive Assistant", "Finance Coordinator"]
+  description: "Parse a single expense receipt covering attendees from multiple departments and produce line-level split allocations to the correct cost centers based on headcount or pre-agreed ratios, formatted for submission in the expense system."
+  inputs: ["receipt or invoice", "attendee list with cost center assignments", "allocation rules or ratios"]
+  outputs: ["split-coded expense lines ready for submission"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["expense management system", "spreadsheet"]
+  frequency: monthly
+  trigger: "Split last night's team dinner receipt between the marketing and sales cost centers by headcount"
+
+- id: business-visa-support-package-assembly-to-consulate-specific
+  title: "Business visa support package assembly to consulate specification"
+  domain: "Executive / Admin Support"
+  roles: ["Executive Assistant", "Travel Coordinator"]
+  description: "Compile the complete document package required for a business visa application — invitation letter, stamped itinerary, hotel confirmations, financial guarantees, host company letterhead — formatted precisely to the destination consulate's current checklist."
+  inputs: ["travel dates and destination", "consulate requirements checklist", "host organization details"]
+  outputs: ["visa invitation letter", "supporting document package"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document editor", "travel management system"]
+  frequency: ad-hoc
+  trigger: "Prepare all the visa support documents for my China trip in September — the consulate needs them within the week"
+
+- id: board-agenda-conflict-of-interest-pre-screen-against-disclos
+  title: "Board agenda conflict-of-interest pre-screen against disclosure register"
+  domain: "Executive / Admin Support"
+  roles: ["Board Secretary", "Chief of Staff", "Executive Assistant"]
+  description: "Before distributing board meeting materials, cross-reference each agenda item against directors' standing conflict-of-interest disclosures, annotate the agenda with required recusals, and generate advance notifications to affected directors."
+  inputs: ["draft board agenda", "director conflict-of-interest disclosure register"]
+  outputs: ["annotated agenda with recusal notes", "director pre-notification messages"]
+  automation: high
+  human_in_loop: approve
+  tools: ["document editor", "spreadsheet", "governance platform"]
+  frequency: monthly
+  trigger: "Screen the upcoming board agenda for conflicts before we send the board pack on Friday"
+
+- id: structured-decision-log-extraction-from-meeting-transcript
+  title: "Structured decision log extraction from meeting transcript"
+  domain: "Executive / Admin Support"
+  roles: ["Executive Assistant", "Chief of Staff", "Meeting Facilitator"]
+  description: "Parse a raw meeting transcript or notes to extract a structured decision log capturing: decision text, rationale, decision owner, deadline, and any recorded dissenting positions, distinct from open action items."
+  inputs: ["meeting transcript or raw notes"]
+  outputs: ["structured decision log document"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["transcription tool", "document editor"]
+  frequency: weekly
+  trigger: "Pull all the decisions — not just action items — from today's leadership team transcript"
+
+- id: calendar-placeholder-sweep-and-organizer-confirmation
+  title: "Calendar placeholder sweep and organizer confirmation"
+  domain: "Executive / Admin Support"
+  roles: ["Executive Assistant", "Chief of Staff"]
+  description: "Review all tentative and placeholder holds on the executive calendar over the next 60–90 days, confirm active holds with respective organizers, release lapsed ones, and convert confirmed holds to firm calendar invites — producing a log of changes made."
+  inputs: ["executive calendar with tentative holds", "organizer contact list"]
+  outputs: ["updated calendar", "released-holds log", "confirmation messages to organizers"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["calendar system", "email client"]
+  frequency: weekly
+  trigger: "Clean up all the tentative holds on my calendar — there are at least a dozen that should either be confirmed or dropped"
+
+- id: speaking-engagement-technical-rider-gap-analysis
+  title: "Speaking engagement technical rider gap analysis"
+  domain: "Executive / Admin Support"
+  roles: ["Executive Assistant", "Events Coordinator"]
+  description: "Compare an event organizer's technical requirements and consent provisions against the executive's standard speaking rider, flag discrepancies in recording rights, slide format, microphone type, or honorarium terms, and draft a response requesting amendments."
+  inputs: ["event organizer technical requirements", "executive standard speaking rider template"]
+  outputs: ["gap analysis summary", "response email to organizer requesting changes"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["document editor", "email client"]
+  frequency: ad-hoc
+  trigger: "Check if the conference's AV and recording terms conflict with my standard speaking setup before I confirm"
+
+- id: vip-inbound-correspondence-response-deadline-tracker
+  title: "VIP inbound correspondence response-deadline tracker"
+  domain: "Executive / Admin Support"
+  roles: ["Executive Assistant", "Chief of Staff"]
+  description: "Maintain a rolling tracker of inbound correspondence from board members, major clients, government officials, and media requiring executive response, surfacing items approaching expected response windows with current draft status and days-until-due."
+  inputs: ["inbound email and mail log", "correspondent tier classification", "response SLA rules"]
+  outputs: ["correspondence tracking report with overdue and at-risk flags"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["email client", "CRM", "task management system"]
+  frequency: daily
+  trigger: "Show me every VIP email still awaiting a response that is due within the next 48 hours"
+
+- id: extract-conditional-business-rules-into-a-decision-table
+  title: "Extract conditional business rules into a decision table"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Analyst", "Functional Consultant", "Policy Analyst"]
+  description: "Parse narrative policy or procedure documents to identify all conditional logic (if/then/else, thresholds, exceptions) and convert each rule into a structured decision table with condition columns and outcome columns. Flags overlapping or contradictory rule combinations."
+  inputs: ["policy document", "procedure manual", "business rules narrative"]
+  outputs: ["decision table (condition/outcome matrix)", "ambiguity flag list"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["document parser", "spreadsheet", "requirements management system"]
+  frequency: ad-hoc
+  trigger: "Turn the pricing eligibility section of this policy PDF into a decision table I can attach to the FSD"
+
+- id: detect-orphaned-requirements-with-no-uat-coverage
+  title: "Detect orphaned requirements with no UAT coverage"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Analyst", "QA Analyst", "Test Manager"]
+  description: "Cross-reference the requirements traceability matrix against the UAT test-case register to identify any requirement IDs that have zero linked test cases. Produces a gap report so the test team can close coverage before sign-off."
+  inputs: ["requirements traceability matrix", "UAT test case register"]
+  outputs: ["uncovered requirement list", "coverage gap summary"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["requirements management system", "spreadsheet", "test management system"]
+  frequency: weekly
+  trigger: "Check if every requirement in the RTM has at least one test case before we go into UAT"
+
+- id: compile-assumption-register-from-discovery-workshop-notes
+  title: "Compile assumption register from discovery workshop notes"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Analyst", "Solution Architect", "Business Systems Analyst"]
+  description: "Scan raw workshop transcripts or meeting notes for explicit and implicit assumptions (e.g., 'we assumed', 'as long as', 'provided that') and compile them into a numbered assumption register with owner, date, and dependency tags. Surfaces unstated assumptions for validation before requirements are baselined."
+  inputs: ["workshop transcript", "meeting notes", "whiteboard photos"]
+  outputs: ["assumption register", "dependency tag list"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["document parser", "note-taking tool", "requirements management system"]
+  frequency: ad-hoc
+  trigger: "Extract all assumptions from yesterday's discovery session notes and put them in the assumption log"
+
+- id: document-exception-and-error-path-flows-missing-from-happy-p
+  title: "Document exception and error-path flows missing from happy-path diagrams"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Analyst", "Process Analyst", "Functional Consultant"]
+  description: "Given a process map that covers only the nominal flow, analyze each step to enumerate realistic error triggers, boundary conditions, and rollback paths that stakeholders typically skip. Produces annotated exception flows and a list of open questions to confirm with the business."
+  inputs: ["as-is or to-be process map", "user story list", "stakeholder notes"]
+  outputs: ["exception flow addendum", "open questions log"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["process modelling tool", "diagramming tool", "requirements management system"]
+  frequency: ad-hoc
+  trigger: "We only mapped the happy path in the session — generate the exception flows for each step in the order fulfilment diagram"
+
+- id: audit-acceptance-criteria-for-objective-testability
+  title: "Audit acceptance criteria for objective testability"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Analyst", "QA Analyst", "Product Owner"]
+  description: "Review a backlog of user stories and flag any acceptance criteria that use subjective or unmeasurable language ('fast', 'easy to use', 'robust') rather than observable, verifiable conditions. For each flagged item, suggest a rewritten criterion with concrete thresholds or observable outcomes."
+  inputs: ["user story backlog", "acceptance criteria list"]
+  outputs: ["testability audit report", "suggested rewritten criteria"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["project management tool", "requirements management system"]
+  frequency: weekly
+  trigger: "Flag every acceptance criterion in this sprint backlog that can't be objectively pass/fail tested"
+
+- id: trace-derived-field-calculation-spec-from-source-to-output
+  title: "Trace derived field calculation spec from source to output"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Systems Analyst", "Data Analyst", "Functional Consultant"]
+  description: "For a specific calculated or derived field in a target system, document the precise formula — including conditional branches, rounding rules, null handling, and unit of measure — by tracing back through source field definitions, transformation logic, and business rules. Produces a field-level calculation spec ready for developer handoff."
+  inputs: ["data mapping spreadsheet", "source system data dictionary", "business rules document"]
+  outputs: ["derived field calculation spec", "dependency list of source fields"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["data dictionary tool", "spreadsheet", "requirements management system"]
+  frequency: ad-hoc
+  trigger: "Write the full calculation spec for the 'Effective Annual Rate' field including all edge cases so dev can implement it"
+
+- id: identify-silent-stakeholders-omitted-from-raci
+  title: "Identify silent stakeholders omitted from RACI"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Analyst", "Change Manager", "Project Manager"]
+  description: "Cross-reference the project RACI against the as-is process map, data flow diagram, and organisational chart to surface roles that interact with in-scope systems or data but were not included in any workshop or sign-off. Outputs an expanded RACI with recommended engagement actions for each newly identified party."
+  inputs: ["RACI matrix", "as-is process map", "data flow diagram", "org chart"]
+  outputs: ["expanded RACI with gap annotations", "stakeholder engagement action list"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["document parser", "spreadsheet", "diagramming tool"]
+  frequency: ad-hoc
+  trigger: "Check if there are any teams or roles we've missed from the RACI before we send the project charter for sign-off"
+
+- id: score-requirements-backlog-by-change-volatility
+  title: "Score requirements backlog by change volatility"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Analyst", "Business Systems Analyst", "Solution Architect"]
+  description: "Analyse a baselined requirements set and rate each item on volatility indicators — regulatory uncertainty, number of stakeholders with competing views, dependency on unconfirmed vendor capabilities — to produce a ranked list of at-risk requirements. Helps the team prioritise early prototyping and schedule change-buffer contingency."
+  inputs: ["baselined requirements document", "stakeholder conflict log", "dependency register"]
+  outputs: ["requirements volatility scorecard", "top-risk requirements list"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["requirements management system", "spreadsheet"]
+  frequency: monthly
+  trigger: "Rate our requirements by how likely they are to change before go-live so we know where to spend design contingency"
+
+- id: tag-requirements-with-regulatory-clause-cross-references
+  title: "Tag requirements with regulatory clause cross-references"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Analyst", "Compliance Analyst", "Regulatory Affairs Specialist"]
+  description: "For each functional requirement, identify which specific clause, article, or section of an applicable regulation or standard it satisfies and append a citation tag. Produces an annotated requirement set that supports audit evidence and makes the traceability matrix defensible to a regulator."
+  inputs: ["requirements document", "regulatory text or standard", "compliance mapping template"]
+  outputs: ["requirements document with clause citations", "regulatory coverage gap list"]
+  automation: high
+  human_in_loop: sign-off
+  tools: ["document parser", "requirements management system", "compliance management tool"]
+  frequency: ad-hoc
+  trigger: "Map every requirement in the FSD to the GDPR article or recital it addresses and flag any gaps"
+
+- id: produce-dual-write-coexistence-field-reconciliation-spec
+  title: "Produce dual-write coexistence field reconciliation spec"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Systems Analyst", "Migration Analyst", "Integration Analyst"]
+  description: "For a system migration that runs old and new systems in parallel, specify exactly which fields are written by which system during the coexistence window, the reconciliation frequency, the tie-break rule when values differ, and the exit condition that ends the dual-write period. This prevents silent data drift during cutover."
+  inputs: ["migration plan", "source and target data dictionaries", "cutover schedule"]
+  outputs: ["dual-write field reconciliation spec", "coexistence period rule set"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["data mapping tool", "spreadsheet", "requirements management system"]
+  frequency: ad-hoc
+  trigger: "Write the field-level reconciliation rules for the six months we'll run legacy and new CRM side by side"
+
+- id: enumerate-process-variants-across-regions-or-business-units
+  title: "Enumerate process variants across regions or business units"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Analyst", "Process Analyst", "Global Process Owner"]
+  description: "Given a single reference process map, systematically compare how each region or business unit currently executes the process by extracting deviations from interview notes or local SOPs. Outputs a variant inventory table showing step, standard behaviour, and each deviation, which feeds the 'to-be' harmonisation discussion."
+  inputs: ["reference process map", "regional SOP documents", "workshop notes per business unit"]
+  outputs: ["process variant inventory table", "harmonisation candidate list"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document parser", "process modelling tool", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Build a table showing how the invoice approval process actually differs between EMEA, APAC, and Americas before we design the global to-be"
+
+- id: write-change-request-blast-radius-impact-register
+  title: "Write change-request blast-radius impact register"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Analyst", "Change Control Analyst", "Functional Consultant"]
+  description: "Given an approved change request, systematically enumerate every downstream artefact it touches — affected requirements, process steps, data fields, integration interfaces, UAT test cases, and training materials — and record the nature and effort of each impact. Provides a structured input to the change control board for scope and cost assessment."
+  inputs: ["change request document", "requirements traceability matrix", "data mapping spreadsheet", "interface register"]
+  outputs: ["blast-radius impact register", "preliminary effort estimate by artefact type"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["requirements management system", "change management tool", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "The business just raised CR-047 to add multi-currency support — list every requirement, test case, and interface that will need to change"
+
+- id: extract-implicit-assumptions-from-a-draft-prd
+  title: "Extract implicit assumptions from a draft PRD"
+  domain: "Product Management"
+  roles: ["Product Manager", "Senior PM", "Principal PM"]
+  description: "Scans a draft PRD for statements that rest on unvalidated assumptions about market size, user behavior, or technical feasibility, and surfaces them as a numbered risk register with a recommended validation method per item."
+  inputs: ["Draft PRD document"]
+  outputs: ["Assumption register with risk rating and validation suggestion per item"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["document editor", "LLM"]
+  frequency: ad-hoc
+  trigger: "Flag all the hidden assumptions in this PRD before I send it for review"
+
+- id: segment-release-notes-into-audience-specific-versions
+  title: "Segment release notes into audience-specific versions"
+  domain: "Product Management"
+  roles: ["Product Manager", "Technical Writer", "Release Manager"]
+  description: "Takes one set of raw developer-authored release notes and rewrites separate versions for end-users, API developers, and internal stakeholders, adjusting terminology and detail level for each audience."
+  inputs: ["Raw release notes", "Audience persona definitions"]
+  outputs: ["End-user release note draft", "Developer release note draft", "Internal release note draft"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["document editor", "LLM"]
+  frequency: weekly
+  trigger: "Rewrite these release notes for non-technical users and also for our API partners"
+
+- id: audit-feature-flag-registry-for-stale-flags-eligible-for-ret
+  title: "Audit feature flag registry for stale flags eligible for retirement"
+  domain: "Product Management"
+  roles: ["Product Manager", "Feature Flag Owner", "Platform PM"]
+  description: "Scans a feature flag registry and rollout percentages, identifies flags at 100% rollout or dormant beyond a threshold date, and drafts removal tickets with justification for each candidate."
+  inputs: ["Feature flag registry export", "Rollout history log"]
+  outputs: ["Stale flag report", "Draft removal tickets"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["feature flag system", "project tracker"]
+  frequency: monthly
+  trigger: "Which feature flags can we safely clean up this sprint?"
+
+- id: generate-pre-launch-instrumentation-gap-report-for-an-a-b-ex
+  title: "Generate pre-launch instrumentation gap report for an A/B experiment"
+  domain: "Product Management"
+  roles: ["Product Manager", "Experimentation Analyst", "Growth PM"]
+  description: "Before an experiment goes live, cross-checks the experiment's success metrics against the event tracking plan to identify missing or mis-named events that would invalidate results, categorizing each gap as blocking or non-blocking."
+  inputs: ["Experiment design document", "Event tracking plan"]
+  outputs: ["Instrumentation gap report with blocking vs non-blocking classification"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["analytics platform", "experiment management system", "document editor"]
+  frequency: ad-hoc
+  trigger: "Check whether we have all the tracking events in place for this experiment before we launch"
+
+- id: map-competitor-changelog-entries-to-internal-roadmap-items
+  title: "Map competitor changelog entries to internal roadmap items"
+  domain: "Product Management"
+  roles: ["Product Manager", "Competitive Intelligence Analyst", "Senior PM"]
+  description: "Ingests a competitor's recent changelog or release blog and maps each announced capability to existing roadmap items, open backlog tickets, or unaddressed gaps, flagging areas where the competitor is moving faster."
+  inputs: ["Competitor changelog or release blog", "Internal roadmap export"]
+  outputs: ["Competitor-to-roadmap mapping table with gap and urgency flags"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["web browser", "document editor", "spreadsheet"]
+  frequency: monthly
+  trigger: "Map Competitor X's latest release to our roadmap and tell me where we're behind"
+
+- id: tag-user-interview-quotes-to-jobs-to-be-done-categories
+  title: "Tag user interview quotes to Jobs-to-be-Done categories"
+  domain: "Product Management"
+  roles: ["Product Manager", "UX Researcher", "Customer Insights Analyst"]
+  description: "Parses a user interview transcript and tags each meaningful quote to a JTBD category (functional, emotional, or social job) plus a pain/gain valence, producing a tagged quote bank ready for synthesis and opportunity sizing."
+  inputs: ["Interview transcript", "JTBD taxonomy definition"]
+  outputs: ["Tagged quote bank spreadsheet"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["document editor", "spreadsheet", "LLM"]
+  frequency: ad-hoc
+  trigger: "Tag all the quotes from today's interviews to our JTBD framework"
+
+- id: check-acceptance-criteria-for-missing-edge-case-states
+  title: "Check acceptance criteria for missing edge-case states"
+  domain: "Product Management"
+  roles: ["Product Manager", "Business Analyst", "QA Lead"]
+  description: "Reviews each acceptance criterion in a ticket against a standard checklist of required states — empty state, error state, loading state, permission boundary, mobile breakpoint — and lists which states are unspecified along with suggested additional ACs."
+  inputs: ["User story ticket with acceptance criteria"]
+  outputs: ["Gap list of unaddressed edge-case states", "Suggested additional acceptance criteria"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["project tracker", "LLM"]
+  frequency: ad-hoc
+  trigger: "Review these ACs and tell me what we've missed before grooming"
+
+- id: audit-roadmap-items-for-okr-traceability
+  title: "Audit roadmap items for OKR traceability"
+  domain: "Product Management"
+  roles: ["Product Manager", "Head of Product", "VP of Product"]
+  description: "Scans the current quarter's roadmap and checks that each initiative or epic links to at least one OKR key result; surfaces orphan items with no OKR linkage and items linked to retired or superseded OKRs."
+  inputs: ["Roadmap export", "Current OKR document"]
+  outputs: ["Traceability report listing orphan items and mislinked items"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["roadmap tool", "OKR tracker", "spreadsheet"]
+  frequency: quarterly
+  trigger: "Which roadmap items can't be tied back to any of our Q3 OKRs?"
+
+- id: generate-weekly-beta-cohort-health-summary
+  title: "Generate weekly beta cohort health summary"
+  domain: "Product Management"
+  roles: ["Product Manager", "Beta Program Manager", "Customer Success PM"]
+  description: "Aggregates the week's beta usage metrics, bug report severity distribution, and NPS responses into a one-page health summary for the product team, flagging any cohort segments that fall below predefined engagement thresholds."
+  inputs: ["Usage metrics export", "Bug tracker severity report", "NPS survey results"]
+  outputs: ["Beta cohort weekly health summary"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["analytics platform", "bug tracker", "survey tool", "document editor"]
+  frequency: weekly
+  trigger: "Prepare this week's beta health summary from the exports I've dropped here"
+
+- id: draft-rollout-gating-scorecard-for-a-phased-feature-release
+  title: "Draft rollout gating scorecard for a phased feature release"
+  domain: "Product Management"
+  roles: ["Product Manager", "Release Manager", "Platform PM"]
+  description: "Produces a scorecard specifying the exact metric thresholds, error-rate ceilings, and bug severity limits that must be satisfied before advancing from each rollout percentage gate, enabling data-driven go/pause decisions during phased rollout."
+  inputs: ["Feature description", "Known risk areas", "Prior incident history"]
+  outputs: ["Rollout gating scorecard with pass/fail criteria per stage"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["document editor", "metrics dashboard"]
+  frequency: ad-hoc
+  trigger: "Build a gating scorecard for the phased rollout of our new checkout flow"
+
+- id: identify-stale-epics-and-draft-owner-status-check-messages
+  title: "Identify stale epics and draft owner status-check messages"
+  domain: "Product Management"
+  roles: ["Product Manager", "Program Manager", "Engineering Manager"]
+  description: "Scans the backlog for epics with no ticket status change beyond a configured dormancy window and drafts a concise status-check message to each owning team lead, ready to send via the team's messaging platform."
+  inputs: ["Epic list with last-activity timestamps", "Team ownership mapping"]
+  outputs: ["Stale epic list", "Draft status-check messages per owner"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["project tracker", "messaging platform"]
+  frequency: weekly
+  trigger: "Find any epics dormant for more than 3 weeks and draft a check-in for each owner"
+
+- id: convert-a-b-test-metric-tables-into-stakeholder-narrative-re
+  title: "Convert A/B test metric tables into stakeholder narrative readout"
+  domain: "Product Management"
+  roles: ["Product Manager", "Experimentation Analyst", "Growth PM"]
+  description: "Takes a structured experiment results table containing treatment/control deltas, confidence intervals, and segment breakdowns and writes a concise narrative readout explaining what happened, what it means for the product, and the recommended next action."
+  inputs: ["Experiment results table", "Experiment hypothesis document"]
+  outputs: ["Experiment narrative readout document"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["analytics platform", "document editor", "LLM"]
+  frequency: ad-hoc
+  trigger: "Turn these experiment results into a readout I can share with leadership"
+
+- id: reconcile-post-oe-enrollment-confirmations-against-hr-system
+  title: "Reconcile post-OE enrollment confirmations against HR system records"
+  domain: "HR & People Ops"
+  roles: ["Benefits Administrator", "HR Coordinator"]
+  description: "After open enrollment closes, cross-match employee confirmation receipts against the benefits system snapshot to surface elections that were confirmed but never recorded, or recorded without a matching confirmation."
+  inputs: ["enrollment confirmation export", "HR system enrollment snapshot", "employee roster"]
+  outputs: ["discrepancy report", "list of employees requiring manual follow-up"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "HR information system", "email platform"]
+  frequency: ad-hoc
+  trigger: "Open enrollment just closed — identify any employees whose elections didn't make it into the system"
+
+- id: flag-carrier-invoice-line-item-discrepancies-against-payroll
+  title: "Flag carrier invoice line-item discrepancies against payroll deduction register"
+  domain: "HR & People Ops"
+  roles: ["Benefits Administrator", "Payroll Analyst"]
+  description: "Row-by-row match of monthly carrier billing invoice against the payroll deduction register to identify employees billed at the wrong coverage tier, added to the wrong plan, or absent from the carrier roster entirely."
+  inputs: ["carrier invoice CSV", "payroll deduction register", "plan tier reference table"]
+  outputs: ["discrepancy summary", "correction request to carrier", "adjusted invoice approval memo"]
+  automation: high
+  human_in_loop: approve
+  tools: ["spreadsheet", "document parser", "HR information system"]
+  frequency: monthly
+  trigger: "I need to find where our carrier invoice and payroll deductions don't match before I approve this month's payment"
+
+- id: track-intermittent-fmla-episode-frequency-against-approved-l
+  title: "Track intermittent FMLA episode frequency against approved leave pattern"
+  domain: "HR & People Ops"
+  roles: ["Leave Administrator", "HR Business Partner"]
+  description: "Tally recorded intermittent FMLA absences over a rolling period against the frequency and duration approved in the medical certification to flag potential pattern deviation or trigger a recertification request."
+  inputs: ["approved FMLA certification with frequency/duration", "absence log", "employee leave history"]
+  outputs: ["compliance summary per employee", "recertification trigger notice if threshold exceeded"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["HRIS", "absence management system", "document editor"]
+  frequency: weekly
+  trigger: "Flag any employees whose intermittent FMLA usage exceeded their certified pattern this month"
+
+- id: generate-cobra-election-period-expiry-warning-notices
+  title: "Generate COBRA election-period expiry warning notices"
+  domain: "HR & People Ops"
+  roles: ["Benefits Administrator", "HR Coordinator"]
+  description: "Identify qualified beneficiaries whose 60-day COBRA election window closes within 10 business days and draft individualized reminder letters citing remaining days, premium amounts, and election instructions."
+  inputs: ["COBRA beneficiary log with election deadlines", "premium rate table", "notice template"]
+  outputs: ["batch of reminder letters", "updated beneficiary status log"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["document editor", "HR information system", "email platform"]
+  frequency: weekly
+  trigger: "Which COBRA-eligible individuals haven't elected yet and are within 10 days of their deadline?"
+
+- id: validate-qle-supporting-document-completeness-before-process
+  title: "Validate QLE supporting-document completeness before processing benefit change"
+  domain: "HR & People Ops"
+  roles: ["Benefits Administrator", "HR Coordinator"]
+  description: "Check that all required documents for a qualifying life event are present, legible, and within the allowed date range before triggering the enrollment change, and draft a deficiency notice if anything is missing."
+  inputs: ["QLE request form", "document checklist by event type", "uploaded supporting documents"]
+  outputs: ["completeness check result", "approval confirmation or deficiency notice to employee"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["document management system", "HR information system", "document editor"]
+  frequency: ad-hoc
+  trigger: "Employee submitted a QLE for a new dependent — check if their documents are complete enough for me to process the change"
+
+- id: identify-employees-short-on-wellness-incentive-credits-befor
+  title: "Identify employees short on wellness incentive credits before program deadline"
+  domain: "HR & People Ops"
+  roles: ["Benefits Administrator", "Wellness Program Coordinator"]
+  description: "Cross-reference completed wellness activities against required credit thresholds and produce a gap report for employees below target, listing activities still available to close the gap before the deadline."
+  inputs: ["wellness activity completion ledger", "credit threshold requirements", "program calendar", "available activity list"]
+  outputs: ["per-employee gap report", "targeted reminder email drafts"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["wellness platform export", "spreadsheet", "email platform"]
+  frequency: monthly
+  trigger: "Show me who is still short on wellness points with 6 weeks left in the program year"
+
+- id: flag-employees-approaching-401k-deferral-limit-without-catch
+  title: "Flag employees approaching 401k deferral limit without catch-up election"
+  domain: "HR & People Ops"
+  roles: ["Benefits Administrator", "Payroll Analyst"]
+  description: "Identify employees aged 50 or older projected to hit the IRS elective deferral limit before year-end but who have not elected catch-up contributions, and draft a prompt for each to update their deferral rate."
+  inputs: ["year-to-date 401k contribution data", "employee age and date-of-birth list", "IRS annual deferral limits"]
+  outputs: ["list of affected employees with projected limit-hit date", "catch-up election prompt letters"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["payroll system", "HR information system", "document editor"]
+  frequency: monthly
+  trigger: "Which employees over 50 are on track to max out their 401k before December without a catch-up election?"
+
+- id: validate-aca-1095-c-line-code-combinations-for-safe-harbor-c
+  title: "Validate ACA 1095-C line-code combinations for safe-harbor compliance"
+  domain: "HR & People Ops"
+  roles: ["Benefits Compliance Analyst", "HR Compliance Manager"]
+  description: "For each employee-month in the draft 1095-C dataset, verify that the Line 14, Line 15, and Line 16 code combination is valid under IRS rules and flag any pairings that would expose the employer to shared-responsibility penalties."
+  inputs: ["draft 1095-C dataset", "IRS code-combination validation table", "affordability threshold data"]
+  outputs: ["error report with row-level flags", "corrected 1095-C dataset ready for vendor submission"]
+  automation: high
+  human_in_loop: approve
+  tools: ["spreadsheet", "data validation tool", "HR information system"]
+  frequency: ad-hoc
+  trigger: "Run a validation pass on the draft 1095-C file before we submit to the ACA reporting vendor"
+
+- id: draft-retroactive-premium-adjustment-explanation-memos-for-a
+  title: "Draft retroactive premium-adjustment explanation memos for affected employees"
+  domain: "HR & People Ops"
+  roles: ["Benefits Administrator", "HR Communications Specialist"]
+  description: "When a retroactive benefits deduction correction is applied to payroll, generate a plain-language memo per affected employee explaining the reason, prior and corrected amounts, net paycheck impact, and the pay periods covered."
+  inputs: ["correction transaction file", "affected employee list", "pay period dates", "memo template"]
+  outputs: ["individualized employee memos", "distribution list for payroll team"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["document editor", "HR information system", "mail merge tool"]
+  frequency: ad-hoc
+  trigger: "We're correcting medical premiums for 30 employees going back three months — draft the explanation memos before payroll runs"
+
+- id: generate-fmla-designation-notice-for-borderline-eligible-emp
+  title: "Generate FMLA designation notice for borderline-eligible employee"
+  domain: "HR & People Ops"
+  roles: ["Leave Administrator", "HR Business Partner"]
+  description: "For an employee near the 12-month tenure or 1,250-hour threshold, calculate actual hours worked, confirm eligibility, and produce the appropriate WH-382 Designation Notice approving or denying the request with a supporting eligibility calculation worksheet."
+  inputs: ["employee hire date", "hours-worked log", "leave request form", "WH-382 template"]
+  outputs: ["completed WH-382 designation or denial notice", "eligibility calculation worksheet"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["HRIS", "timekeeping system", "document editor"]
+  frequency: ad-hoc
+  trigger: "Employee requested FMLA but they were hired 11.5 months ago — generate the eligibility calculation and the correct notice"
+
+- id: reconcile-401k-recordkeeper-posted-contributions-against-pay
+  title: "Reconcile 401k recordkeeper posted contributions against payroll deferral file"
+  domain: "HR & People Ops"
+  roles: ["Benefits Administrator", "Payroll Analyst"]
+  description: "After each payroll cycle, match deferral amounts remitted to the 401k recordkeeper against the payroll register, identifying funding gaps, over-remittances, or employees missing from the transmission file."
+  inputs: ["payroll deferral register", "recordkeeper contribution confirmation file"]
+  outputs: ["reconciliation variance report", "correction request to recordkeeper"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "payroll system", "recordkeeper portal export"]
+  frequency: weekly
+  trigger: "Reconcile last payroll's 401k contribution file against what the recordkeeper confirmed receiving"
+
+- id: compute-state-specific-accrued-leave-payout-for-terminating
+  title: "Compute state-specific accrued leave payout for terminating employee"
+  domain: "HR & People Ops"
+  roles: ["HR Coordinator", "Payroll Analyst", "Leave Administrator"]
+  description: "Given a terminating employee's final day and leave balance, apply the applicable state's payout rules to calculate the exact dollar amount owed on the final paycheck, flagging any state-specific notice or timing requirements."
+  inputs: ["employee termination date", "accrued leave balance report", "state leave payout rules reference", "hourly or salary rate"]
+  outputs: ["final leave payout calculation", "payroll instruction memo", "state compliance checklist"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["HR information system", "payroll system", "compliance reference database"]
+  frequency: ad-hoc
+  trigger: "Employee in California is leaving Friday — calculate how much accrued PTO we owe them on their final check"
+
+- id: flag-loa-impacted-employees-missed-from-merit-cycle
+  title: "Flag LOA-impacted employees missed from merit cycle"
+  domain: "HR & People Ops"
+  roles: ["Compensation Analyst", "HR Business Partner"]
+  description: "Cross-reference the merit eligibility roster against leave-of-absence records to identify employees who were inactive during the cycle window, then produce a deferral list with recommended make-good adjustment dates."
+  inputs: ["merit eligibility roster", "LOA/leave records export"]
+  outputs: ["deferral roster with recommended adjustment dates"]
+  automation: high
+  human_in_loop: approve
+  tools: ["HRIS", "spreadsheet"]
+  frequency: quarterly
+  trigger: "Find every employee on LOA who was excluded from this merit cycle so we can schedule make-goods."
+
+- id: compute-compa-ratio-outlier-report-by-department-before-meri
+  title: "Compute compa-ratio outlier report by department before merit finalization"
+  domain: "HR & People Ops"
+  roles: ["Compensation Analyst", "Total Rewards Analyst"]
+  description: "Calculate each active employee's compa-ratio against their pay-band midpoint, flag individuals below 80% or above 120%, and group results by department and direct manager for review before merit recommendations are locked."
+  inputs: ["employee base pay data", "pay band table"]
+  outputs: ["compa-ratio outlier report ranked by department"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["HRIS", "spreadsheet"]
+  frequency: quarterly
+  trigger: "Run compa-ratio outlier report before we finalize merit recommendations."
+
+- id: cross-walk-internal-job-codes-to-external-survey-benchmark-j
+  title: "Cross-walk internal job codes to external survey benchmark jobs"
+  domain: "HR & People Ops"
+  roles: ["Compensation Analyst", "Total Rewards Manager"]
+  description: "Map each internal job title and level to the closest equivalent benchmark job in the compensation survey library, documenting match confidence and partial-match caveats so market analysis can be run against consistent anchors."
+  inputs: ["internal job catalog", "compensation survey job library export"]
+  outputs: ["job-matching crosswalk table with match confidence ratings"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["spreadsheet", "document editor"]
+  frequency: quarterly
+  trigger: "We just got this year's compensation survey export — map our levels to survey jobs before we run market analysis."
+
+- id: generate-manager-level-review-completion-rate-tracker-during
+  title: "Generate manager-level review completion rate tracker during cycle"
+  domain: "HR & People Ops"
+  roles: ["HR Analyst", "HR Operations Manager"]
+  description: "Pull real-time performance-review submission statuses from the HRIS, compute per-manager and per-department completion percentages, and produce a ranked list with days-remaining until the cycle deadline."
+  inputs: ["review submission status export", "org hierarchy"]
+  outputs: ["manager completion rate ranked report with deadline countdown"]
+  automation: high
+  human_in_loop: none
+  tools: ["HRIS", "spreadsheet"]
+  frequency: daily
+  trigger: "Give me today's performance review completion rates by manager so I can follow up with stragglers."
+
+- id: redline-pip-draft-against-disciplinary-policy-required-eleme
+  title: "Redline PIP draft against disciplinary policy required-element checklist"
+  domain: "HR & People Ops"
+  roles: ["Employee Relations Manager", "HR Business Partner"]
+  description: "Compare a performance improvement plan draft against the company's disciplinary policy to flag missing required elements such as improvement timeline, consequence statement, and check-in cadence before legal reviews the document."
+  inputs: ["PIP draft", "disciplinary policy document"]
+  outputs: ["annotated PIP with missing-element flags and gap summary"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["document editor", "text analysis"]
+  frequency: ad-hoc
+  trigger: "Check this PIP draft against our policy and flag anything missing before legal reviews it."
+
+- id: cluster-exit-interview-free-text-responses-by-departure-reas
+  title: "Cluster exit interview free-text responses by departure-reason theme"
+  domain: "HR & People Ops"
+  roles: ["HR Analyst", "People Analytics Analyst"]
+  description: "Apply thematic clustering to open-ended exit survey text to group comments by departure reason — compensation, management style, career growth, work-life balance, etc. — and produce a frequency-ranked theme table for quarterly reporting."
+  inputs: ["exit interview free-text responses"]
+  outputs: ["departure-reason theme frequency table with representative quotes"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["text analysis", "spreadsheet"]
+  frequency: monthly
+  trigger: "Summarize last quarter's exit interview comments by theme and rank by frequency."
+
+- id: diff-new-wage-and-hour-law-text-against-current-pto-and-over
+  title: "Diff new wage-and-hour law text against current PTO and overtime policy"
+  domain: "HR & People Ops"
+  roles: ["HR Compliance Analyst", "People Operations Manager"]
+  description: "Parse a newly enacted state or local wage-and-hour regulation and compare it against the current PTO and overtime policy text, flagging specific clauses that conflict with or are absent from company policy."
+  inputs: ["new regulation text", "current PTO and overtime policy"]
+  outputs: ["redline summary with clause-level conflict annotations"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["document editor", "legal research database"]
+  frequency: ad-hoc
+  trigger: "New state paid sick leave law just passed — find where our PTO policy conflicts with it."
+
+- id: reconcile-manager-of-record-fields-in-hris-against-approved
+  title: "Reconcile manager-of-record fields in HRIS against approved org chart post-reorg"
+  domain: "HR & People Ops"
+  roles: ["HR Data Analyst", "HR Operations Specialist"]
+  description: "Extract manager-of-record assignments from the HRIS and cross-reference against the current approved org chart to surface orphaned reporting relationships, duplicate manager assignments, or stale entries left over from a recent reorganization."
+  inputs: ["HRIS manager-of-record export", "approved org chart"]
+  outputs: ["discrepancy report with orphaned and stale assignment list"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["HRIS", "spreadsheet"]
+  frequency: monthly
+  trigger: "After last week's reorg, find every employee whose reporting manager in the HRIS doesn't match the new org chart."
+
+- id: identify-headcount-variance-between-hris-actuals-and-finance
+  title: "Identify headcount variance between HRIS actuals and finance budget by cost center"
+  domain: "HR & People Ops"
+  roles: ["Workforce Planning Analyst", "Headcount Analyst", "HR Business Partner"]
+  description: "Compare active headcount in the HRIS against approved budget headcount by cost center and level band, producing a variance table that highlights over- and under-budget cost centers for the current fiscal period."
+  inputs: ["HRIS active headcount export", "approved headcount budget by cost center"]
+  outputs: ["headcount variance table by cost center and level band"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["HRIS", "spreadsheet"]
+  frequency: monthly
+  trigger: "Pull the headcount variance between HRIS actuals and finance's approved headcount budget for Q2."
+
+- id: generate-er-case-chronology-from-hris-case-notes-before-term
+  title: "Generate ER case chronology from HRIS case notes before termination review"
+  domain: "HR & People Ops"
+  roles: ["Employee Relations Manager", "HR Business Partner"]
+  description: "Extract all timestamped employee-relations case notes from the HRIS for a specific employee, sort them into a chronological timeline, and format them as a structured case summary with key milestones — warnings, PIPs, counseling — highlighted."
+  inputs: ["HRIS employee case notes", "employee HR record"]
+  outputs: ["structured ER case chronology document"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["HRIS", "document editor"]
+  frequency: ad-hoc
+  trigger: "Compile a timeline of all documented interactions for this ER case before tomorrow's termination review."
+
+- id: compute-range-penetration-percentile-by-tenure-cohort-to-sur
+  title: "Compute range penetration percentile by tenure cohort to surface pay compression"
+  domain: "HR & People Ops"
+  roles: ["Compensation Analyst", "Total Rewards Analyst"]
+  description: "Calculate each employee's position within their pay band as a range penetration percentile, then segment results by tenure cohort and job level to expose structural compression where longer-tenured employees cluster near newer hires."
+  inputs: ["employee base pay data", "pay band minimums and maximums", "tenure records"]
+  outputs: ["range penetration percentile report segmented by tenure and level"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "HRIS"]
+  frequency: quarterly
+  trigger: "Show me range penetration percentiles by tenure band so we can identify compression before the merit cycle."
+
+- id: summarize-pay-equity-regression-residuals-by-demographic-coh
+  title: "Summarize pay equity regression residuals by demographic cohort for legal review"
+  domain: "HR & People Ops"
+  roles: ["Compensation Analyst", "People Analytics Analyst", "HR Compliance Analyst"]
+  description: "After a pay equity regression controlling for job level, tenure, and geography, extract the unexplained residual pay gaps and summarize them by gender and ethnicity cohort in a structured brief formatted for presentation to legal counsel."
+  inputs: ["pay equity regression output", "employee demographic data"]
+  outputs: ["residuals summary table by demographic cohort", "legal-review brief"]
+  automation: medium
+  human_in_loop: sign-off
+  tools: ["statistical analysis tool", "document editor"]
+  frequency: quarterly
+  trigger: "Summarize the residual gaps from our pay equity regression by gender and ethnicity so legal can review before we publish."
+
+- id: reconcile-utm-parameters-across-all-campaign-tracked-links-b
+  title: "Reconcile UTM parameters across all campaign tracked links before launch"
+  domain: "Marketing & Content"
+  roles: ["Campaign Operations Specialist", "Marketing Operations Manager"]
+  description: "Before a campaign goes live, extract every tracked URL from ads, emails, and social posts, then verify that source, medium, campaign, and content values are consistent with the naming convention schema. Flag any deviations or missing parameters."
+  inputs: ["campaign asset inventory", "UTM naming convention schema", "tracked URL list"]
+  outputs: ["UTM audit report", "list of non-conforming URLs with corrected versions"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "URL scraper", "marketing automation platform"]
+  frequency: ad-hoc
+  trigger: "Check all UTM params are consistent and follow our naming convention before the Q3 campaign goes live"
+
+- id: detect-dead-end-branches-in-a-nurture-workflow-before-activa
+  title: "Detect dead-end branches in a nurture workflow before activation"
+  domain: "Marketing & Content"
+  roles: ["Marketing Automation Specialist", "Demand Generation Manager"]
+  description: "Walk every branch path in a multi-step nurture program to identify contact states where no further step, wait, or exit action is defined. Produces a branch-path map highlighting terminal dead ends so they can be resolved before the workflow is activated."
+  inputs: ["nurture workflow definition export", "step-and-branch logic diagram"]
+  outputs: ["dead-end branch report", "list of affected entry conditions and steps"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["marketing automation platform", "workflow diagram tool"]
+  frequency: ad-hoc
+  trigger: "Audit the new webinar follow-up nurture for any dead-end branches before I turn it on"
+
+- id: validate-pre-launch-a-b-test-sample-size-and-projected-runti
+  title: "Validate pre-launch A/B test sample size and projected runtime"
+  domain: "Marketing & Content"
+  roles: ["Growth Marketing Manager", "Campaign Operations Specialist"]
+  description: "Given current daily traffic or send volume, calculate the minimum detectable effect, required sample size per variant, and estimated days to statistical significance at 95% confidence. Flags tests that are under-powered or that would need an unrealistically long runtime."
+  inputs: ["baseline conversion rate", "current daily traffic or list size", "minimum detectable effect target", "confidence level"]
+  outputs: ["sample size calculation", "projected test duration", "power analysis summary"]
+  automation: high
+  human_in_loop: none
+  tools: ["statistical calculator", "spreadsheet", "analytics platform"]
+  frequency: ad-hoc
+  trigger: "Will our homepage headline A/B test have enough traffic to reach significance before the end of the quarter?"
+
+- id: audit-landing-page-form-consent-fields-for-regional-complian
+  title: "Audit landing page form consent fields for regional compliance"
+  domain: "Marketing & Content"
+  roles: ["Marketing Compliance Analyst", "Marketing Operations Manager"]
+  description: "For each landing page in a campaign, verify that consent checkboxes, opt-in language, and privacy policy links meet GDPR, CASL, or CAN-SPAM requirements for the target region. Produces a per-page compliance checklist with pass/fail status."
+  inputs: ["list of campaign landing page URLs", "regional compliance requirement checklist", "privacy policy URL"]
+  outputs: ["consent compliance audit report", "list of non-compliant fields with remediation notes"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["web scraper", "forms audit tool", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "QA the consent language and opt-in checkboxes on all our EMEA campaign landing pages before launch"
+
+- id: check-email-suppression-list-sync-against-crm-unsubscribe-re
+  title: "Check email suppression list sync against CRM unsubscribe records"
+  domain: "Marketing & Content"
+  roles: ["Email Marketing Specialist", "Marketing Automation Specialist"]
+  description: "Compare the global suppression list in the email platform against the opt-out and unsubscribe records in the CRM. Identify contacts that have unsubscribed in the CRM but are not yet on the suppression list, and contacts on suppression not reflected in the CRM."
+  inputs: ["CRM unsubscribe export", "email platform suppression list export"]
+  outputs: ["sync gap report", "contacts to add to suppression", "contacts to reconcile in CRM"]
+  automation: high
+  human_in_loop: approve
+  tools: ["CRM", "email marketing platform", "spreadsheet"]
+  frequency: monthly
+  trigger: "Make sure our suppression list is fully in sync with CRM opt-outs before the next large batch send"
+
+- id: detect-campaign-budget-pacing-deviation-against-daily-plan
+  title: "Detect campaign budget pacing deviation against daily plan"
+  domain: "Marketing & Content"
+  roles: ["Paid Media Manager", "Demand Generation Manager"]
+  description: "Pull actual daily spend per campaign and compare against the pro-rated daily budget target. Flag any campaign where cumulative pacing is more than a set threshold (e.g. 15%) over or under plan, with a projected end-of-period spend at the current burn rate."
+  inputs: ["campaign budget plan", "actual daily spend data from ad platform"]
+  outputs: ["pacing variance report", "list of at-risk campaigns with projected over/underspend"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["ad platform API", "spreadsheet", "BI dashboard"]
+  frequency: daily
+  trigger: "Alert me if any active paid campaign is pacing more than 15% off the daily spend plan"
+
+- id: identify-campaigns-with-high-mql-volume-but-poor-opportunity
+  title: "Identify campaigns with high MQL volume but poor opportunity conversion"
+  domain: "Marketing & Content"
+  roles: ["Revenue Operations Analyst", "Demand Generation Manager"]
+  description: "Query MQL and opportunity creation data by campaign source, then calculate each campaign's MQL-to-opportunity conversion rate. Flag campaigns where MQL volume is above threshold but conversion is statistically below the cohort average, surfacing possible ICP mismatch or routing issues."
+  inputs: ["MQL records with campaign attribution", "opportunity records with lead source", "date range"]
+  outputs: ["MQL-to-opportunity rate by campaign", "list of anomalous campaigns with conversion gap"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["CRM", "BI tool", "spreadsheet"]
+  frequency: weekly
+  trigger: "Which of our campaigns are generating lots of MQLs that never turn into pipeline?"
+
+- id: scan-active-campaign-destination-urls-for-redirect-chain-iss
+  title: "Scan active campaign destination URLs for redirect chain issues"
+  domain: "Marketing & Content"
+  roles: ["Campaign Operations Specialist", "Paid Media Manager"]
+  description: "Crawl all active campaign destination URLs, follow the full redirect chain for each, and flag any that have a broken final destination, redirect loops, or more than two hops. Outputs a remediation list with the resolved final URL."
+  inputs: ["list of active campaign destination URLs"]
+  outputs: ["redirect chain audit report", "list of broken or over-hopped URLs with suggested fixes"]
+  automation: high
+  human_in_loop: none
+  tools: ["URL crawler", "HTTP client", "spreadsheet"]
+  frequency: weekly
+  trigger: "Check that none of our live paid campaign URLs are broken or have too many redirects"
+
+- id: flag-email-send-window-collisions-for-overlapping-audience-s
+  title: "Flag email send-window collisions for overlapping audience segments"
+  domain: "Marketing & Content"
+  roles: ["Email Marketing Specialist", "Marketing Operations Manager"]
+  description: "Before scheduling a new email send, query the upcoming 7-day send calendar and check for overlaps where the same contact segment will receive more than one email in a defined suppression window. Returns a conflict report with alternative time slots."
+  inputs: ["proposed send date and target segment", "scheduled send calendar", "email frequency cap rules"]
+  outputs: ["send conflict report", "list of affected contacts", "suggested alternative send slots"]
+  automation: high
+  human_in_loop: approve
+  tools: ["marketing automation platform", "calendar tool", "CRM"]
+  frequency: ad-hoc
+  trigger: "Make sure this nurture email doesn't conflict with the product announcement going to the same segment this week"
+
+- id: validate-contact-list-field-mapping-before-crm-import
+  title: "Validate contact list field mapping before CRM import"
+  domain: "Marketing & Content"
+  roles: ["Marketing Operations Manager", "Campaign Operations Specialist"]
+  description: "Before importing an inbound contact list (e.g. from a sponsored event or partner), compare column headers and sample values against the CRM target schema. Identify missing required fields, mismatched data types, and picklist values not in the accepted set."
+  inputs: ["inbound contact list file", "CRM field schema and picklist definitions"]
+  outputs: ["field mapping validation report", "transformation map", "list of records with invalid values"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["CRM", "spreadsheet", "data transformation tool"]
+  frequency: ad-hoc
+  trigger: "We got a contact list from the event sponsor — validate the fields before I import it into the CRM"
+
+- id: analyze-webinar-reminder-sequence-touchpoints-for-show-up-ra
+  title: "Analyze webinar reminder sequence touchpoints for show-up rate drop-off"
+  domain: "Marketing & Content"
+  roles: ["Field Marketing Manager", "Marketing Automation Specialist"]
+  description: "After a webinar, match the registration list against the attendee list and then cross-reference each registrant against email engagement data to identify which reminder emails had the lowest open and click rates, correlating with non-attendance."
+  inputs: ["webinar registration list", "attendee list", "reminder email engagement metrics"]
+  outputs: ["show-up rate funnel breakdown", "per-touchpoint open and click rates", "recommendations for sequence timing or copy"]
+  automation: high
+  human_in_loop: none
+  tools: ["webinar platform", "marketing automation platform", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Our last webinar show-up rate was only 32% — break down where registrants dropped off in the reminder sequence"
+
+- id: audit-lead-scoring-rule-weights-for-model-drift-after-a-crm
+  title: "Audit lead scoring rule weights for model drift after a CRM data migration"
+  domain: "Marketing & Content"
+  roles: ["Revenue Operations Analyst", "Marketing Automation Specialist"]
+  description: "After a CRM or MAP data migration, compare the current lead score distribution histogram against the pre-migration baseline. Identify scoring rules whose contribution to total score has materially shifted, and flag rules referencing fields that may have been renamed or depopulated."
+  inputs: ["pre-migration lead score distribution snapshot", "post-migration lead score data", "lead scoring rule definitions"]
+  outputs: ["score distribution comparison report", "list of drifted or broken scoring rules", "recommended recalibration actions"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["marketing automation platform", "CRM", "BI tool", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Our MQL volume dropped sharply after the MAP migration — check if the lead scoring rules are still working correctly"
+
+- id: reformat-article-section-to-match-competitor-featured-snippe
+  title: "Reformat article section to match competitor featured snippet"
+  domain: "Marketing & Content"
+  roles: ["SEO Content Strategist", "Content Editor"]
+  description: "Takes an existing article section and restructures it (into a concise definition, numbered list, or comparison table) to match the structural format of the featured snippet currently held by a competitor for that keyword."
+  inputs: ["article URL", "target keyword", "competitor featured snippet HTML"]
+  outputs: ["reformatted section draft", "suggested heading hierarchy change"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["search engine API", "web scraper", "content editor"]
+  frequency: ad-hoc
+  trigger: "Competitor is holding the featured snippet for our target keyword — reformat section 3 of this article to match their answer box format"
+
+- id: validate-hreflang-reciprocal-pairs-across-multilingual-conte
+  title: "Validate hreflang reciprocal pairs across multilingual content hub"
+  domain: "Marketing & Content"
+  roles: ["International SEO Specialist", "Web Localization Manager"]
+  description: "Crawls hreflang annotations across a multilingual site and flags pages where reciprocal language/region pairs are absent, language codes are malformed (e.g. 'en' instead of 'en-us'), or linked alternate URLs return non-200 status."
+  inputs: ["sitemap XML or URL list", "hreflang specification"]
+  outputs: ["validation report with error type per URL", "suggested fixes"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["website crawler", "XML parser", "HTTP client"]
+  frequency: monthly
+  trigger: "Run a hreflang audit on our Spanish and German blog mirrors before the international campaign goes live"
+
+- id: strip-filler-words-and-false-starts-from-podcast-transcript
+  title: "Strip filler words and false starts from podcast transcript"
+  domain: "Marketing & Content"
+  roles: ["Podcast Producer", "Content Editor"]
+  description: "Processes a raw auto-generated podcast transcript by removing filler words (um, uh, like, you know), false starts, and overlapping speaker artifacts to produce a clean verbatim transcript ready for publication or downstream repurposing."
+  inputs: ["raw auto-generated transcript (VTT or TXT)", "filler-word list"]
+  outputs: ["cleaned transcript (TXT)", "change summary with removal count per speaker"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["transcript editor", "text processor"]
+  frequency: weekly
+  trigger: "Clean the raw transcript from last week's episode — strip all filler words and false starts before we publish it to the show notes"
+
+- id: check-press-release-boilerplate-against-approved-canonical-v
+  title: "Check press-release boilerplate against approved canonical version"
+  domain: "Marketing & Content"
+  roles: ["PR Content Manager", "Communications Coordinator"]
+  description: "Compares the About the Company paragraph at the end of a batch of press release drafts against the current approved canonical boilerplate, flagging deviations such as outdated headcount figures, stale product names, or superseded taglines."
+  inputs: ["batch of press release drafts (DOCX or PDF)", "approved boilerplate text"]
+  outputs: ["diff report listing deviations per press release", "corrected boilerplate inserts"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["document parser", "text diff engine"]
+  frequency: ad-hoc
+  trigger: "Check all five press releases from the agency against the approved boilerplate and flag anything out of date before we send them to the wire"
+
+- id: audit-lead-magnet-cta-destination-urls-in-published-blog-pos
+  title: "Audit lead-magnet CTA destination URLs in published blog posts"
+  domain: "Marketing & Content"
+  roles: ["Content Operations Manager", "Demand Generation Manager"]
+  description: "Scans published blog posts for all anchor links pointing to gated content (e-books, white papers, webinar registrations) and verifies that each destination resolves to a live, reachable landing page rather than a 404, redirect loop, or expired registration form."
+  inputs: ["list of published blog post URLs", "known gated-content domain patterns"]
+  outputs: ["audit table of CTA URLs with HTTP status, redirect chain, and pass/fail flag"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["link checker", "HTTP client", "web crawler"]
+  frequency: monthly
+  trigger: "Before Q3 campaign launches, verify all e-book CTAs in our top 50 posts still point to live landing pages"
+
+- id: generate-plain-text-fallback-for-html-email-newsletter
+  title: "Generate plain-text fallback for HTML email newsletter"
+  domain: "Marketing & Content"
+  roles: ["Email Marketing Specialist", "CRM Manager"]
+  description: "Converts a finished HTML email newsletter into an accurate plain-text version, preserving heading hierarchy, section separators, and full destination URLs in parentheses after link labels, for subscribers whose clients block HTML rendering."
+  inputs: ["HTML email template or rendered HTML source"]
+  outputs: ["plain-text email (.txt) with formatted sections and inline URLs"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["HTML parser", "text formatter"]
+  frequency: weekly
+  trigger: "Generate the plain-text fallback for this week's newsletter HTML before I upload it to the ESP"
+
+- id: audit-open-graph-and-twitter-card-metadata-on-published-urls
+  title: "Audit Open Graph and Twitter Card metadata on published URLs"
+  domain: "Marketing & Content"
+  roles: ["SEO Specialist", "Web Content Manager"]
+  description: "Fetches a batch of published page URLs and checks each for presence, character-count compliance, and image-dimension correctness of og:title, og:description, og:image, twitter:card, and twitter:image tags, flagging fields that are missing, truncated beyond platform limits, or using under-resolution images."
+  inputs: ["list of published URLs", "OG and Twitter Card specification limits"]
+  outputs: ["audit spreadsheet with per-tag status, character counts, image resolution, and action required"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["HTTP client", "HTML parser", "image dimension checker"]
+  frequency: monthly
+  trigger: "Audit the OG tags on every article published last quarter to make sure social preview cards will render correctly"
+
+- id: detect-and-rank-orphaned-articles-in-content-hub-link-graph
+  title: "Detect and rank orphaned articles in content hub link graph"
+  domain: "Marketing & Content"
+  roles: ["Content Manager", "SEO Specialist"]
+  description: "Crawls the internal link graph of a content hub, identifies published articles that have no other page linking to them, and ranks the orphans by organic traffic potential so editors can prioritize which interlinking gaps to fix first."
+  inputs: ["site URL or crawl export", "organic traffic data export"]
+  outputs: ["ranked list of orphaned URLs with suggested anchor-text phrases and candidate linking pages"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["website crawler", "analytics integration", "content management system"]
+  frequency: monthly
+  trigger: "Find all published blog posts with no internal links pointing to them and suggest where we should add those links"
+
+- id: batch-score-article-drafts-against-target-readability-grade
+  title: "Batch-score article drafts against target readability grade level"
+  domain: "Marketing & Content"
+  roles: ["Managing Editor", "Content Editor"]
+  description: "Runs a batch of article drafts or published URLs through a readability scoring model and flags pieces that exceed the target grade level, returning the specific sentences with the highest complexity scores so writers know exactly what to simplify."
+  inputs: ["list of article URLs or draft documents", "target readability grade level"]
+  outputs: ["per-article readability score with pass/fail flag", "list of flagged complex sentences per article"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["text analyzer", "content management system"]
+  frequency: weekly
+  trigger: "Score all drafts in the review queue against a grade 8 readability target and flag anything above threshold with the offending sentences"
+
+- id: audit-image-alt-text-for-missing-duplicate-and-keyword-stuff
+  title: "Audit image alt-text for missing, duplicate, and keyword-stuffed instances"
+  domain: "Marketing & Content"
+  roles: ["Web Content Editor", "Accessibility Specialist", "SEO Specialist"]
+  description: "Crawls a set of published pages and reports on images that lack alt-text entirely, share identical alt-text with other images, or whose alt-text appears to be keyword-stuffed rather than descriptive, returning a per-image action table with suggested replacements."
+  inputs: ["list of page URLs or site crawl export"]
+  outputs: ["per-image report with URL, alt-text value, issue type, and suggested replacement"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["website crawler", "HTML parser", "text classifier"]
+  frequency: quarterly
+  trigger: "Run an alt-text audit on all blog posts from this year and flag anything missing, duplicated, or keyword-stuffed"
+
+- id: map-competitor-heading-gaps-against-draft-content-brief
+  title: "Map competitor heading gaps against draft content brief"
+  domain: "Marketing & Content"
+  roles: ["SEO Content Strategist", "Content Strategist"]
+  description: "Fetches the top-10 organic results for a target keyword, extracts all H2 and H3 headings from each, clusters them semantically, and produces a gap list of heading topics present in two or more competitor pages but absent from the current draft brief."
+  inputs: ["target keyword", "draft content brief", "number of competitor URLs to analyze"]
+  outputs: ["gap heading list with competitor frequency count", "suggested brief additions"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["search engine API", "web scraper", "text clustering model"]
+  frequency: ad-hoc
+  trigger: "Analyze the top 10 results for 'project management for remote teams' and tell me which heading topics our draft brief is missing"
+
+- id: generate-expiring-asset-report-from-digital-asset-library-me
+  title: "Generate expiring-asset report from digital asset library metadata"
+  domain: "Marketing & Content"
+  roles: ["Digital Asset Manager", "Content Operations Manager"]
+  description: "Scans a digital asset management library for stock images, videos, and fonts whose commercial license expires within a configurable window, then cross-references each asset against published content to produce a prioritized renewal or replacement list."
+  inputs: ["DAM export or API feed with license metadata", "expiry window threshold (e.g. 90 days)"]
+  outputs: ["prioritized expiry report with asset ID, expiry date, usage count, and affected content URLs"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["digital asset management system", "metadata reader", "content management system"]
+  frequency: monthly
+  trigger: "Pull all stock assets expiring in the next 90 days from the DAM and show me which published pages are using them so I can prioritize renewals"
+
+- id: audit-pre-staged-dark-site-content-for-factual-currency
+  title: "Audit pre-staged dark site content for factual currency"
+  domain: "Communications & PR"
+  roles: ["Crisis Communications Manager", "Corporate Communications Director"]
+  description: "Cross-reference the pre-built crisis microsite against current company facts—leadership names, product lines, facility locations, legal disclaimers—to flag stale information before an incident forces it live."
+  inputs: ["dark site copy", "current company fact sheet", "org chart", "legal disclaimer archive"]
+  outputs: ["annotated discrepancy list", "updated dark site copy draft"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["content management system", "document comparison tool", "web editor"]
+  frequency: quarterly
+  trigger: "Review our dark site and flag anything that's out of date before the quarterly legal review"
+
+- id: draft-embargo-lift-confirmation-email-to-journalist-distribu
+  title: "Draft embargo lift confirmation email to journalist distribution list"
+  domain: "Communications & PR"
+  roles: ["Media Relations Manager", "PR Coordinator"]
+  description: "Compose the time-stamped email confirming an embargo lift, incorporating time zone conversions, links to finalized assets, and any last-minute corrections to previously distributed materials."
+  inputs: ["journalist distribution list", "embargo time and date", "finalized asset URLs", "correction notes"]
+  outputs: ["draft embargo lift email", "time zone conversion reference table"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["email client", "media database", "document store"]
+  frequency: ad-hoc
+  trigger: "Draft the embargo lift email for tomorrow's 9am ET announcement—we have journalists in London and Singapore on the list too"
+
+- id: validate-press-release-formatting-against-wire-service-submi
+  title: "Validate press release formatting against wire service submission requirements"
+  domain: "Communications & PR"
+  roles: ["PR Coordinator", "PR Manager"]
+  description: "Check a draft press release against the target wire service's technical specifications—headline character limits, subhead rules, word count, multimedia embed format, and boilerplate placement—and flag or auto-correct each violation."
+  inputs: ["draft press release", "wire service style guide and spec sheet"]
+  outputs: ["compliance violation report", "corrected press release draft"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["text editor", "style-guide reference", "word processor"]
+  frequency: ad-hoc
+  trigger: "Check this press release against the wire service's requirements before I submit it this afternoon"
+
+- id: assemble-analyst-pre-briefing-background-sheet-from-coverage
+  title: "Assemble analyst pre-briefing background sheet from coverage and talking points"
+  domain: "Communications & PR"
+  roles: ["Analyst Relations Manager", "Corporate Communications Director"]
+  description: "Pull together a single-page briefing document for an upcoming analyst call by cross-referencing the analyst's recent published notes, known beat focus, competitor mentions, and the company's latest approved talking points."
+  inputs: ["analyst's recent research notes", "internal talking points", "competitor coverage clips", "product fact sheet"]
+  outputs: ["one-page analyst briefing sheet"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["media monitoring platform", "document editor", "research database"]
+  frequency: ad-hoc
+  trigger: "I have a Gartner briefing next Tuesday—pull together a background sheet on what she's been covering lately and align it to our messaging"
+
+- id: deduplicate-syndicated-story-instances-in-a-media-coverage-c
+  title: "Deduplicate syndicated story instances in a media coverage clip report"
+  domain: "Communications & PR"
+  roles: ["PR Coordinator", "Communications Manager"]
+  description: "Identify and collapse duplicate mentions where the same wire story has been republished verbatim across multiple outlets, so clip reports reflect true earned coverage rather than inflated syndication counts."
+  inputs: ["raw clip report export", "known wire syndication source list"]
+  outputs: ["deduplicated clip report", "syndication summary table with true earned count"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["media monitoring platform", "spreadsheet", "text similarity tool"]
+  frequency: weekly
+  trigger: "Our clip report shows 47 hits but half look like wire syndication—deduplicate and give me the real earned media count"
+
+- id: audit-spokesperson-quote-attribution-consistency-across-outb
+  title: "Audit spokesperson quote attribution consistency across outbound press materials"
+  domain: "Communications & PR"
+  roles: ["PR Manager", "Communications Manager"]
+  description: "Scan a batch of press releases and media materials to verify that all attributed quotes match current spokesperson titles, conform to house style, and do not contradict each other or approved message house language."
+  inputs: ["batch of press releases and media materials", "approved quote bank", "current org chart"]
+  outputs: ["attribution discrepancy report", "corrected quote list"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["document search", "text editor", "quote bank"]
+  frequency: monthly
+  trigger: "Before we send the next release batch, check that every executive quote uses the right current title and doesn't contradict our earlier statements"
+
+- id: repackage-a-single-talk-abstract-for-multiple-conference-sub
+  title: "Repackage a single talk abstract for multiple conference submission portals"
+  domain: "Communications & PR"
+  roles: ["PR Strategist", "Awards & Recognition Coordinator", "Communications Manager"]
+  description: "Adapt one source abstract into formatted submissions for multiple conferences, tailoring word count, track labels, audience framing, and required fields to each portal's specifications while preserving core message integrity."
+  inputs: ["source abstract", "list of target conferences with submission specs and deadlines"]
+  outputs: ["per-conference formatted submission drafts"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["document editor", "conference portal guidelines"]
+  frequency: ad-hoc
+  trigger: "We want to submit this talk to five different conferences—adapt the abstract for each one's format and stated theme"
+
+- id: update-media-list-from-journalist-beat-reassignments-in-mast
+  title: "Update media list from journalist beat reassignments in masthead changes"
+  domain: "Communications & PR"
+  roles: ["Media Relations Manager", "PR Coordinator"]
+  description: "Parse trade publication masthead updates and journalist movement alerts to identify beat reassignments, departures, or new hires, then propagate those changes to the working media list with corrected contact details and coverage areas."
+  inputs: ["journalist movement alerts", "current publication masthead pages", "existing media list"]
+  outputs: ["updated media list", "change log of reassignments and departures"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["media database", "web scraper", "spreadsheet"]
+  frequency: monthly
+  trigger: "Several journalists on our beat list have moved around this quarter—update the list from the latest masthead changes"
+
+- id: cross-check-a-reactive-statement-draft-against-prior-public
+  title: "Cross-check a reactive statement draft against prior public statements for contradictions"
+  domain: "Communications & PR"
+  roles: ["Crisis Communications Manager", "Issues Manager", "PR Manager"]
+  description: "Before releasing a prepared reactive statement, compare its claims and figures against a searchable archive of prior press releases, earnings quotes, and public statements to surface any factual or tonal inconsistencies."
+  inputs: ["draft reactive statement", "archive of prior press releases and public statements"]
+  outputs: ["contradiction flag report", "annotated draft with highlighted conflicts"]
+  automation: high
+  human_in_loop: approve
+  tools: ["document search", "text comparison tool", "statement archive"]
+  frequency: ad-hoc
+  trigger: "Check this holding statement against everything we've said publicly in the last 12 months before we release it"
+
+- id: analyze-earned-media-coverage-to-identify-under-represented
+  title: "Analyze earned media coverage to identify under-represented message house pillars"
+  domain: "Communications & PR"
+  roles: ["PR Strategist", "Communications Manager", "Corporate Communications Director"]
+  description: "Map recent press coverage by topic against the approved message house pillars to quantify which core messages are receiving insufficient pick-up, producing a prioritized brief for the next pitching cycle."
+  inputs: ["clip report with topic tags", "message house document"]
+  outputs: ["pillar coverage gap matrix", "recommended pitching priorities brief"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["media monitoring platform", "spreadsheet", "text analysis tool"]
+  frequency: monthly
+  trigger: "Look at last quarter's coverage and tell me which of our four message pillars isn't getting through in the press"
+
+- id: compile-a-broadcast-segment-spokesperson-prep-card-with-appr
+  title: "Compile a broadcast segment spokesperson prep card with approved soundbites"
+  domain: "Communications & PR"
+  roles: ["Media Trainer", "Corporate Communications Director", "PR Manager"]
+  description: "Produce a compact one-page briefing card for a TV or radio appearance listing likely interview questions, approved sub-10-second soundbites, key statistics, prohibited topics, and on-air demeanor notes."
+  inputs: ["interview brief and topic", "approved talking points", "Q&A bank", "prohibited topics list"]
+  outputs: ["one-page broadcast prep card"]
+  automation: high
+  human_in_loop: approve
+  tools: ["document editor", "Q&A bank", "talking points library"]
+  frequency: ad-hoc
+  trigger: "The CEO has a live TV hit tomorrow morning—pull together a prep card with likely questions and tight soundbites under ten seconds"
+
+- id: map-award-judging-criteria-to-internal-proof-points-before-d
+  title: "Map award judging criteria to internal proof points before drafting an entry"
+  domain: "Communications & PR"
+  roles: ["Awards & Recognition Coordinator", "PR Coordinator", "Communications Manager"]
+  description: "Parse the published judging rubric for an industry award and match each criterion to specific internal proof points—metrics, case studies, testimonials—to structure a compliant entry outline before any narrative drafting begins."
+  inputs: ["award judging rubric", "internal metrics and KPIs", "case study library", "prior award submission"]
+  outputs: ["criterion-to-proof-point mapping table", "entry outline"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["document editor", "internal data repository", "research tool"]
+  frequency: ad-hoc
+  trigger: "We're entering the PRWeek awards—map each judging criterion to concrete evidence we have before I start writing the narrative"
+
+- id: triangulate-bottoms-up-vs-top-down-tam-estimates
+  title: "Triangulate bottoms-up vs top-down TAM estimates"
+  domain: "Strategy & Consulting"
+  roles: ["Strategy Associate", "Corporate Strategy Manager"]
+  description: "Build both a bottoms-up (buyer count × ARPU) and a top-down (industry report fraction) TAM model for the same market, compare the two headline figures, and document the divergence with likely explanations."
+  inputs: ["industry analyst reports", "customer segmentation data", "pricing benchmarks"]
+  outputs: ["TAM triangulation table", "divergence commentary memo"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "document editor"]
+  frequency: ad-hoc
+  trigger: "Build a TAM model for the SMB payroll software market and cross-check the bottoms-up number against Gartner's top-down figure"
+
+- id: decompose-a-problem-statement-into-a-mece-hypothesis-tree
+  title: "Decompose a problem statement into a MECE hypothesis tree"
+  domain: "Strategy & Consulting"
+  roles: ["Management Consultant", "Strategy Associate", "Engagement Manager"]
+  description: "Parse a strategic problem statement or RFP excerpt into a two-level, MECE hypothesis tree where each branch is framed as a testable yes/no hypothesis, and annotate any coverage gaps."
+  inputs: ["problem statement or RFP excerpt", "engagement scope notes"]
+  outputs: ["hypothesis tree document", "MECE gap annotation"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["document editor", "diagramming tool"]
+  frequency: ad-hoc
+  trigger: "Break down 'should we enter the APAC market?' into a full hypothesis tree I can use to structure the engagement"
+
+- id: build-a-sensitivity-tornado-chart-for-a-strategy-model
+  title: "Build a sensitivity tornado chart for a strategy model"
+  domain: "Strategy & Consulting"
+  roles: ["Strategy Associate", "Corporate Development Analyst"]
+  description: "Vary each model input independently across a defined ±% range, record the resulting output swing for each, and rank inputs from highest to lowest impact to produce the data for a tornado chart."
+  inputs: ["financial or market model", "input range assumptions table"]
+  outputs: ["sensitivity ranking table", "tornado chart data"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "charting tool"]
+  frequency: ad-hoc
+  trigger: "Rank which assumptions drive the most variance in our 5-year EBITDA forecast"
+
+- id: cluster-stakeholder-interview-transcripts-into-strategic-ins
+  title: "Cluster stakeholder interview transcripts into strategic insight themes"
+  domain: "Strategy & Consulting"
+  roles: ["Strategy Associate", "Senior Consultant", "Management Consultant"]
+  description: "Extract discrete insights from a set of stakeholder interview transcripts, group them into labeled themes, and attach representative verbatim quotes to each theme for use in a synthesis deck."
+  inputs: ["interview transcripts", "interview guide"]
+  outputs: ["insight cluster table", "theme summary with supporting quotes"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["document editor", "text analysis tool"]
+  frequency: ad-hoc
+  trigger: "Synthesize our 14 customer discovery interviews into 5–7 strategic themes with supporting quotes"
+
+- id: map-workstream-interdependencies-for-a-pmi-critical-path-pla
+  title: "Map workstream interdependencies for a PMI critical-path plan"
+  domain: "Strategy & Consulting"
+  roles: ["M&A Integration Manager", "Strategy Director", "PMI Program Manager"]
+  description: "List all post-merger integration workstreams, identify upstream/downstream dependencies between them, and flag which workstreams sit on the critical path and block others from starting."
+  inputs: ["workstream list", "milestone dates", "RAID log"]
+  outputs: ["dependency matrix", "critical path annotation", "blocker summary"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["project management tool", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Which of our 12 integration workstreams are on the critical path and what are their key interdependencies?"
+
+- id: validate-okr-cascade-coverage-against-company-level-strategy
+  title: "Validate OKR cascade coverage against company-level strategy"
+  domain: "Strategy & Consulting"
+  roles: ["Strategy Director", "Chief of Staff", "OKR Coach"]
+  description: "Map every team-level OKR to its parent company OKR, surface strategic priorities that have zero team-level coverage, and flag objectives duplicated across teams."
+  inputs: ["company OKRs", "all team OKRs"]
+  outputs: ["coverage heatmap", "strategic gap list", "duplication list"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "document editor"]
+  frequency: quarterly
+  trigger: "Check whether all our company-level OKRs for Q3 are covered by at least one team OKR and flag any gaps"
+
+- id: draft-benchmarking-peer-set-inclusion-exclusion-justificatio
+  title: "Draft benchmarking peer set inclusion/exclusion justification"
+  domain: "Strategy & Consulting"
+  roles: ["Strategy Associate", "Competitive Intelligence Analyst", "Corporate Strategy Manager"]
+  description: "Apply defined comparability criteria (revenue band, geography, business model) to a long list of candidate peers, document the include/exclude decision and rationale for each company, and produce the final defensible peer set."
+  inputs: ["candidate peer long list", "comparability criteria", "public company filings"]
+  outputs: ["peer selection log", "final peer set table with rationale"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["spreadsheet", "document editor"]
+  frequency: ad-hoc
+  trigger: "Narrow our 30-company long list down to a defensible 10-peer benchmarking set and document why each was included or cut"
+
+- id: author-scenario-narratives-for-a-strategic-planning-cycle
+  title: "Author scenario narratives for a strategic planning cycle"
+  domain: "Strategy & Consulting"
+  roles: ["Strategy Director", "Corporate Strategy Manager", "Strategy Associate"]
+  description: "For each planning scenario (e.g., base, upside, stress), write a one-page narrative covering the key macro and competitive assumptions, the world-state logic, and the primary strategic implications for the business."
+  inputs: ["scenario parameters table", "macro indicator assumptions", "prior year plan"]
+  outputs: ["scenario narrative documents (one per scenario)"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["document editor"]
+  frequency: quarterly
+  trigger: "Write the scenario narratives for our three planning cases ahead of the annual strategy off-site"
+
+- id: stress-test-ic-memo-assumptions-with-a-structured-sensitivit
+  title: "Stress-test IC memo assumptions with a structured sensitivity table"
+  domain: "Strategy & Consulting"
+  roles: ["Strategy Associate", "Corporate Development Analyst", "Investment Committee Analyst"]
+  description: "Extract every material assumption from a strategy or investment committee memo, assign a confidence rating and a plausible downside value to each, and calculate the impact on the headline recommendation metric if each assumption proves wrong."
+  inputs: ["IC memo draft", "financial model", "assumption list"]
+  outputs: ["assumption stress-test table", "headline metric sensitivity summary"]
+  automation: high
+  human_in_loop: approve
+  tools: ["spreadsheet", "document editor"]
+  frequency: ad-hoc
+  trigger: "Build a table that shows what happens to our projected IRR if each key assumption in the IC memo is wrong by 20%"
+
+- id: categorize-and-time-m-a-synergies-into-a-realization-waterfa
+  title: "Categorize and time M&A synergies into a realization waterfall"
+  domain: "Strategy & Consulting"
+  roles: ["Corporate Development Analyst", "M&A Integration Manager", "Strategy Director"]
+  description: "Classify identified synergies by type (cost/revenue/financial), assign a realization timeline and confidence tier to each, and lay them out as a cumulative waterfall showing synergy value build-up by year post-close."
+  inputs: ["synergy identification list", "deal model", "integration timeline"]
+  outputs: ["synergy waterfall table", "synergy realization schedule by year"]
+  automation: high
+  human_in_loop: approve
+  tools: ["spreadsheet", "charting tool"]
+  frequency: ad-hoc
+  trigger: "Build a synergy waterfall showing how $80M in identified synergies from the Acme deal ramp over three years post-close"
+
+- id: author-role-briefings-and-scenario-cards-for-a-competitive-w
+  title: "Author role briefings and scenario cards for a competitive war game"
+  domain: "Strategy & Consulting"
+  roles: ["Strategy Director", "Senior Consultant", "Competitive Intelligence Analyst"]
+  description: "Write player role briefings (perspective, objectives, likely competitive moves) and scenario trigger cards (market shock, competitive entry event) used to run a structured competitive war game facilitation session."
+  inputs: ["competitor profiles", "market scenario parameters", "war game agenda"]
+  outputs: ["player role briefing documents", "scenario trigger card set"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["document editor"]
+  frequency: ad-hoc
+  trigger: "Draft the role briefings and scenario cards for a war game simulating a well-funded new entrant launching in our core market"
+
+- id: decompose-historical-revenue-growth-into-price-volume-and-mi
+  title: "Decompose historical revenue growth into price, volume, and mix components"
+  domain: "Strategy & Consulting"
+  roles: ["Strategy Associate", "Business Strategy Analyst", "Corporate Strategy Manager"]
+  description: "For each reporting period, calculate the share of revenue growth attributable to price changes, volume changes, product-mix shift, and new product launches using a bridge methodology, and annotate which drivers are structural vs. one-time."
+  inputs: ["revenue data by product and segment", "period-over-period unit and price data"]
+  outputs: ["growth decomposition bridge table", "structural vs. one-time driver annotation"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "charting tool"]
+  frequency: quarterly
+  trigger: "Break down our last four quarters of revenue growth into price, volume, mix, and new product contributions"
+
+- id: extract-analyst-report-pull-quotes-for-sales-enablement-slid
+  title: "Extract analyst-report pull quotes for sales enablement slides"
+  domain: "Research & Competitive Intel"
+  roles: ["Competitive Intelligence Analyst", "Product Marketer"]
+  description: "Scan a purchased analyst report for 3–5 quotable sentences that confirm market direction or validate the vendor's positioning. Format them as attribution-ready callout blocks with page citations."
+  inputs: ["analyst report PDF", "current positioning brief"]
+  outputs: ["pull quote list with page citations", "suggested slide callout text"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["document reader", "text extractor", "document composer"]
+  frequency: ad-hoc
+  trigger: "Pull the most useful quotes from this Gartner report that support our enterprise security messaging"
+
+- id: reconcile-conflicting-tam-estimates-across-analyst-reports
+  title: "Reconcile conflicting TAM estimates across analyst reports"
+  domain: "Research & Competitive Intel"
+  roles: ["Market Research Analyst", "Strategy Analyst"]
+  description: "Compare two or more analyst reports citing different total-addressable-market figures for the same segment. Document the assumptions behind each estimate and produce a reconciliation memo with a recommended internal figure."
+  inputs: ["analyst report excerpts (2+)", "market segment definition"]
+  outputs: ["TAM reconciliation memo", "recommended figure with rationale"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["document reader", "spreadsheet", "document composer"]
+  frequency: ad-hoc
+  trigger: "Gartner says the market is $4B but IDC says $6.2B for the same segment—can you reconcile these for the board deck?"
+
+- id: detect-messaging-drift-in-competitor-positioning-across-webs
+  title: "Detect messaging drift in competitor positioning across website versions"
+  domain: "Research & Competitive Intel"
+  roles: ["Competitive Intelligence Analyst", "Product Marketer"]
+  description: "Compare current competitor website hero copy and value-proposition statements against a prior snapshot to identify changed emphasis, dropped claims, or newly introduced terminology that signals a strategic pivot."
+  inputs: ["current competitor homepage text", "prior snapshot text with date stamp"]
+  outputs: ["claim diff summary (added / removed / shifted)", "commentary on inferred strategic intent"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["web scraper", "text diff tool", "document composer"]
+  frequency: monthly
+  trigger: "Has Competitor X changed their core messaging since Q1? Show me what shifted and what it might signal."
+
+- id: map-recent-competitor-patent-filings-to-inferred-product-roa
+  title: "Map recent competitor patent filings to inferred product roadmap areas"
+  domain: "Research & Competitive Intel"
+  roles: ["Patent Intelligence Analyst", "Competitive Intelligence Analyst"]
+  description: "Pull the past 12 months of a competitor's published patent applications, cluster them by technology theme, and annotate each cluster with the likely product area or capability it signals."
+  inputs: ["competitor patent filing list", "internal product area taxonomy"]
+  outputs: ["annotated patent cluster map", "roadmap signal summary by theme"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["patent database search", "text classifier", "document composer"]
+  frequency: quarterly
+  trigger: "What has Competitor Y been filing patents on in the last year and what might it mean for their roadmap?"
+
+- id: compile-pre-call-briefing-pack-for-an-expert-network-intervi
+  title: "Compile pre-call briefing pack for an expert-network interview"
+  domain: "Research & Competitive Intel"
+  roles: ["Competitive Intelligence Analyst", "Primary Research Manager"]
+  description: "Aggregate a target expert's recent publications, LinkedIn activity, and public talks into a one-page brief, then generate a ranked question list aligned to the active research hypothesis."
+  inputs: ["expert LinkedIn profile URL", "expert CV or bio", "research hypothesis list"]
+  outputs: ["one-page expert briefing doc", "ranked interview question list"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["web search", "document composer"]
+  frequency: ad-hoc
+  trigger: "I have an expert-network call tomorrow on cloud cost optimization—brief me on Dr. Smith and suggest 10 questions"
+
+- id: synthesize-win-loss-call-transcripts-into-a-structured-patte
+  title: "Synthesize win/loss call transcripts into a structured pattern brief"
+  domain: "Research & Competitive Intel"
+  roles: ["Win/Loss Analyst", "Sales Enablement Manager", "Competitive Intelligence Analyst"]
+  description: "Process a batch of win/loss interview transcripts to extract recurring themes by deal outcome, decision-maker persona, and competitive displacement pattern; output a structured brief with frequency counts and representative verbatim quotes."
+  inputs: ["win/loss call transcript batch", "deal metadata (outcome, competitor, segment)"]
+  outputs: ["pattern brief with thematic clusters", "quote bank by theme", "frequency table by competitor"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["transcript processor", "text classifier", "document composer"]
+  frequency: monthly
+  trigger: "Synthesize last quarter's win/loss calls against Competitor Z into a pattern brief for the sales team"
+
+- id: build-a-feature-gated-pricing-tier-comparison-table-from-com
+  title: "Build a feature-gated pricing tier comparison table from competitor pricing pages"
+  domain: "Research & Competitive Intel"
+  roles: ["Competitive Intelligence Analyst", "Pricing Analyst", "Product Manager"]
+  description: "Read competitor pricing pages, extract plan names, prices, included features, excluded features, and usage limits per tier, then normalize into a side-by-side comparison table against the company's own pricing."
+  inputs: ["competitor pricing page URLs or screenshots", "internal pricing tier sheet"]
+  outputs: ["normalized pricing comparison table", "summary of key differentiators by tier"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["web scraper", "spreadsheet", "document composer"]
+  frequency: quarterly
+  trigger: "Pull together a pricing tier comparison across our top 4 competitors and flag where we look underpriced or overpriced"
+
+- id: draft-updated-battlecard-objection-responses-after-a-competi
+  title: "Draft updated battlecard objection responses after a competitor product launch"
+  domain: "Research & Competitive Intel"
+  roles: ["Competitive Intelligence Analyst", "Sales Enablement Manager"]
+  description: "Given a competitor launch announcement and the existing battlecard, identify which objection-response rows are now outdated or weaker, and draft replacement copy for those rows with a change log."
+  inputs: ["competitor launch announcement", "current battlecard", "internal product capability notes"]
+  outputs: ["revised battlecard objection rows", "change log of updated sections"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["document editor", "web search"]
+  frequency: ad-hoc
+  trigger: "Competitor just announced feature X that mirrors our differentiator—update the battlecard objections section immediately"
+
+- id: extract-hiring-signal-intelligence-from-competitor-job-posti
+  title: "Extract hiring-signal intelligence from competitor job postings"
+  domain: "Research & Competitive Intel"
+  roles: ["Competitive Intelligence Analyst", "Market Research Analyst"]
+  description: "Collect recent job postings from a competitor, categorize roles by department and technology stack keywords, and produce a hiring-trend report flagging strategic bets such as heavy ML investment or new geographic expansion."
+  inputs: ["competitor careers page scrape or job board export", "prior-period hiring signal report"]
+  outputs: ["hiring trend summary by function and tech keyword", "delta report vs. prior period"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["web scraper", "text classifier", "document composer"]
+  frequency: monthly
+  trigger: "What do Competitor Y's current job postings reveal about where they're investing engineering resources this quarter?"
+
+- id: compile-a-secondary-source-emergence-brief-on-a-newly-identi
+  title: "Compile a secondary-source emergence brief on a newly identified competitor"
+  domain: "Research & Competitive Intel"
+  roles: ["Competitive Intelligence Analyst", "Market Research Analyst"]
+  description: "When a previously untracked vendor is flagged in a deal or analyst mention, rapidly synthesize all publicly available information—website, funding rounds, employee count, product reviews, news—into a one-page emergence brief with a preliminary threat rating."
+  inputs: ["company name", "deal context or analyst mention excerpt", "public web sources"]
+  outputs: ["emergence brief (overview, funding, product, GTM signals, threat rating)"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["web search", "document composer"]
+  frequency: ad-hoc
+  trigger: "A company called Acme just showed up in two enterprise deals this week—give me a quick brief on who they are"
+
+- id: audit-analyst-report-library-for-coverage-gaps-against-activ
+  title: "Audit analyst report library for coverage gaps against active research questions"
+  domain: "Research & Competitive Intel"
+  roles: ["Research Manager", "Competitive Intelligence Analyst", "Strategy Analyst"]
+  description: "Compare the index of purchased analyst reports (topics, recency, analyst firm) against the current list of open strategic research questions; flag topics with no recent coverage and recommend specific report titles or analyst contacts to close each gap."
+  inputs: ["purchased report library index", "active research question list"]
+  outputs: ["coverage gap matrix by research question", "recommended report purchases or analyst contacts"]
+  automation: high
+  human_in_loop: approve
+  tools: ["document indexer", "spreadsheet", "document composer"]
+  frequency: quarterly
+  trigger: "Map our analyst subscriptions against this quarter's research agenda and show me where we have blind spots"
+
+- id: generate-a-geographic-expansion-signal-report-from-competito
+  title: "Generate a geographic expansion signal report from competitor filings and announcements"
+  domain: "Research & Competitive Intel"
+  roles: ["Competitive Intelligence Analyst", "Market Research Analyst"]
+  description: "Scan competitor press releases, regulatory filings, job postings, and news over the past quarter for geographic expansion signals such as new office announcements, local entity registrations, regional hires, or localized product pages; compile into a signal report by region."
+  inputs: ["competitor news feed", "press release archive", "job posting data"]
+  outputs: ["geo expansion signal report by region", "evidence link list per signal"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["web search", "news aggregator", "document composer"]
+  frequency: quarterly
+  trigger: "Which regions is Competitor Z showing expansion signals in this quarter and what's the evidence?"
