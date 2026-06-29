@@ -32765,3 +32765,2031 @@
   tools: ["DoD honors request portal", "Document processor", "Email client"]
   frequency: ad-hoc
   trigger: "Veteran case—submit the military honors request for Friday's graveside committal and confirm which branch handles it"
+
+- id: verify-cdt-code-to-tooth-surface-mapping-on-pending-claim
+  title: "Verify CDT code-to-tooth-surface mapping on pending claim"
+  domain: "Finance & Accounting"
+  roles: ["Dental Billing Specialist", "Insurance Coordinator"]
+  description: "Before submitting a dental claim, confirm that each procedure code requiring tooth number and surface entries (e.g., D2391–D2394 resin composites) has correct surface designations and that tooth positions match the patient's chart. Flag incomplete or mismatched entries before they reach the clearinghouse."
+  inputs: ["Pending claim batch", "Patient clinical chart", "CDT code surface-requirement reference"]
+  outputs: ["Corrected claim batch", "Pre-submission error flag report"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Practice management system", "Claim scrubber"]
+  frequency: daily
+  trigger: "Flag any claims in today's batch where composite codes are missing tooth or surface entries before we submit to Delta"
+
+- id: generate-patient-treatment-plan-estimate-with-ada-code-break
+  title: "Generate patient treatment plan estimate with ADA code breakdown"
+  domain: "Customer Success & Support"
+  roles: ["Treatment Coordinator", "Dental Front Desk Coordinator"]
+  description: "Produce an itemized patient estimate listing each planned CDT procedure code, the practice fee, estimated insurance benefit based on verified breakdown of benefits, and patient out-of-pocket responsibility. Format for chair-side presentation and patient signature."
+  inputs: ["Proposed treatment plan with CDT codes", "Verified breakdown of benefits", "Practice UCR fee schedule"]
+  outputs: ["Signed patient treatment plan estimate", "Patient financial responsibility summary"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Practice management system", "Document generation system"]
+  frequency: ad-hoc
+  trigger: "Generate a treatment estimate for Maria's crown and two composites on #18 and #19 using her MetLife benefits"
+
+- id: reconcile-contracted-fee-schedule-against-ucr-master-fee-sch
+  title: "Reconcile contracted fee schedule against UCR master fee schedule"
+  domain: "Finance & Accounting"
+  roles: ["Dental Billing Specialist", "Dental Office Manager"]
+  description: "Compare per-procedure contracted rates in each active insurance fee schedule against the practice's UCR fee schedule to calculate expected contractual write-off amounts per code and flag any codes where the contracted rate represents an outsized reduction."
+  inputs: ["Insurer-issued fee schedule PDF or download", "Practice UCR fee schedule", "Active plan roster"]
+  outputs: ["Fee schedule comparison spreadsheet", "Write-off analysis by CDT code", "Under-contracted code flag list"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Spreadsheet", "Practice management system"]
+  frequency: quarterly
+  trigger: "Delta just sent the updated 2026 fee schedule—compare it against our UCR and flag any codes where we are losing more than 30%"
+
+- id: draft-clinical-narrative-for-implant-pre-authorization
+  title: "Draft clinical narrative for implant pre-authorization"
+  domain: "Finance & Accounting"
+  roles: ["Dental Billing Specialist", "Implant Coordinator", "Oral Surgeon Treatment Coordinator"]
+  description: "Write a supporting clinical narrative letter for a D6010/D6011 implant pre-authorization submission, summarizing bone density findings, extraction date, radiographic evidence, and medical necessity language required by the payer to accompany the pre-auth package."
+  inputs: ["Patient chart notes and treatment plan", "Periapical or panoramic radiograph description", "Extraction date and history", "Payer pre-auth requirements"]
+  outputs: ["Clinical narrative letter", "Complete pre-authorization package"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Practice management system", "Document generation system"]
+  frequency: ad-hoc
+  trigger: "Write the clinical narrative for patient #4432's implant pre-auth for United Concordia—extraction was March 2025 and we have the panorex"
+
+- id: flag-missing-tooth-clause-risk-on-implant-or-bridge-claim
+  title: "Flag missing tooth clause risk on implant or bridge claim"
+  domain: "Finance & Accounting"
+  roles: ["Dental Billing Specialist", "Insurance Coordinator"]
+  description: "Cross-reference the patient's dental insurance effective date against the extraction date of the tooth being replaced to determine whether the missing tooth clause applies, and generate a patient notice and documentation note if a denial is likely."
+  inputs: ["Insurance effective date", "Extraction date from chart or prior claims history", "Plan benefit summary or EOB"]
+  outputs: ["Missing tooth clause risk assessment", "Patient communication note", "Pre-auth cover letter language if proceeding"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Practice management system", "Eligibility verification system"]
+  frequency: ad-hoc
+  trigger: "Check if Mrs. Chen's Cigna plan will cover the bridge on #30—it was extracted two years before she joined her husband's plan"
+
+- id: calculate-cob-primary-and-secondary-benefit-for-dual-coverag
+  title: "Calculate COB primary and secondary benefit for dual-coverage patient"
+  domain: "Finance & Accounting"
+  roles: ["Dental Billing Specialist", "Insurance Coordinator"]
+  description: "Apply coordination of benefits (COB) rules—non-duplication clause, birthday rule, or carve-out—to calculate the split between primary and secondary insurance and the resulting patient balance for a proposed or completed treatment."
+  inputs: ["Primary plan EOB or estimated benefit", "Secondary plan benefit summary and COB rule type", "Completed or proposed claim with CDT codes"]
+  outputs: ["COB worksheet", "Patient balance calculation", "Secondary claim submission data"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["Practice management system", "Spreadsheet"]
+  frequency: ad-hoc
+  trigger: "The child has coverage under both parents. Run the COB for the sealants using the birthday rule and tell me what the family owes"
+
+- id: generate-orthodontic-financial-agreement-with-installment-sc
+  title: "Generate orthodontic financial agreement with installment schedule"
+  domain: "Finance & Accounting"
+  roles: ["Orthodontic Treatment Coordinator", "Orthodontist"]
+  description: "Produce a signed orthodontic financial contract specifying total case fee, insurance credit applied, required down payment, monthly installment amount, payment due dates, and delinquency or missed-payment terms for a braces or clear aligner case."
+  inputs: ["Case fee", "Insurance benefit estimate", "Down payment amount", "Payment term in months", "Patient and guarantor information"]
+  outputs: ["Signed orthodontic financial contract", "Installment payment schedule", "Patient ledger initialization"]
+  automation: high
+  human_in_loop: approve
+  tools: ["Practice management system", "Document generation system", "E-signature system"]
+  frequency: ad-hoc
+  trigger: "Set up a 24-month payment contract for Jake's braces: $5,800 case fee, $800 Delta benefit, $500 down, spread the rest evenly"
+
+- id: check-plan-frequency-limitations-before-scheduling-covered-s
+  title: "Check plan frequency limitations before scheduling covered services"
+  domain: "Operations & Project Mgmt"
+  roles: ["Dental Front Desk Coordinator", "Insurance Coordinator", "Dental Recall Coordinator"]
+  description: "Before booking an appointment for prophylaxis, bitewing series, panoramic X-ray, or comprehensive exam, verify the patient's remaining plan frequency allotments within the coverage period to avoid scheduling non-covered services without prior patient notice."
+  inputs: ["Patient insurance plan benefit summary", "Last service dates by CDT code from chart or EOB", "Requested appointment type"]
+  outputs: ["Frequency eligibility report", "Scheduling flag with coverage note", "Patient cost estimate if service is non-covered"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Eligibility verification system", "Practice management system"]
+  frequency: daily
+  trigger: "Mrs. Patel wants a cleaning next week—check if she has hit her two-cleanings-per-year limit with Aetna"
+
+- id: post-and-reconcile-era-against-open-claim-balances
+  title: "Post and reconcile ERA against open claim balances"
+  domain: "Finance & Accounting"
+  roles: ["Dental Billing Specialist", "Dental Office Manager"]
+  description: "Match incoming Electronic Remittance Advice (ANSI 835) transactions to open claims in the practice management system, post insurance payments and contractual adjustments by CDT code and tooth, and flag line-item discrepancies where payment differs from the estimated allowed amount."
+  inputs: ["ERA file or clearinghouse portal download", "Open claims ledger with expected payment", "Current fee schedule write-off table"]
+  outputs: ["Posted payment batch", "Unresolved discrepancy report", "Claims requiring follow-up or appeal"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Practice management system", "Clearinghouse portal"]
+  frequency: daily
+  trigger: "The Delta ERA came in this morning—auto-post the payments and flag anything that paid less than the contracted rate"
+
+- id: generate-perio-chart-summary-with-psr-classification
+  title: "Generate perio chart summary with PSR classification"
+  domain: "Operations & Project Mgmt"
+  roles: ["Registered Dental Hygienist", "Periodontist"]
+  description: "Convert chair-side 6-point probing depth measurements, bleeding on probing (BOP), recession, furcation class, and mobility scores into a formatted periodontal chart note and calculate the patient's Periodontal Screening and Recording (PSR) score, flagging sextants that meet referral threshold."
+  inputs: ["6-point probing depth readings per tooth", "BOP flags", "Recession measurements", "Furcation class and mobility scores"]
+  outputs: ["Formatted periodontal chart note", "PSR score by sextant", "Periodontal classification and treatment recommendation flag"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Practice management system", "Digital perio charting module"]
+  frequency: ad-hoc
+  trigger: "I just finished charting on room 2—generate the perio summary and flag whether she needs a referral to the periodontist"
+
+- id: draft-downcode-appeal-letter-with-cdt-clinical-justification
+  title: "Draft downcode appeal letter with CDT clinical justification"
+  domain: "Finance & Accounting"
+  roles: ["Dental Billing Specialist", "Insurance Coordinator"]
+  description: "Write a formal appeal letter when an insurer has downgraded a submitted procedure code—such as D2392 composite to D2160 amalgam, or D4341 scaling and root planing to D1110 prophylaxis—citing ADA CDT definitions, clinical documentation (probing depths, surface count, radiographic findings), and applicable plan contract language."
+  inputs: ["Original claim and EOB showing the downcode and denial reason", "Clinical chart notes and radiographs", "CDT code official definitions", "Plan contract or benefit booklet language"]
+  outputs: ["Formal appeal letter with clinical attachments", "Resubmission package with corrected claim"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Practice management system", "Document generation system"]
+  frequency: ad-hoc
+  trigger: "MetLife downgraded my patient's D4341 to a prophy again—write an appeal letter using the probing depths as clinical evidence"
+
+- id: generate-recall-notice-with-unscheduled-treatment-flag
+  title: "Generate recall notice with unscheduled treatment flag"
+  domain: "Customer Success & Support"
+  roles: ["Dental Recall Coordinator", "Dental Front Desk Coordinator"]
+  description: "Produce personalized recall outreach messages for patients overdue for hygiene reappointment, incorporating any outstanding unscheduled treatment plan items presented at the last visit (e.g., a crown, a watch, or a referral) to prompt both recall scheduling and case acceptance."
+  inputs: ["Overdue recall patient list with last hygiene date", "Unscheduled treatment plan items per patient", "Preferred contact method and patient demographic"]
+  outputs: ["Personalized recall messages by SMS, email, or letter", "Outreach log", "Follow-up call task list for non-responders"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Practice management system", "Patient communication platform"]
+  frequency: weekly
+  trigger: "Pull everyone who is 90 or more days past their recall due date and send a message reminding them about their cleaning and any open treatment"
+
+- id: reconcile-orthodontic-installment-ledger-and-generate-delinq
+  title: "Reconcile orthodontic installment ledger and generate delinquency notices"
+  domain: "Finance & Accounting"
+  roles: ["Orthodontic Treatment Coordinator", "Dental Office Manager"]
+  description: "Compare each active orthodontic patient's payment ledger against their signed installment contract schedule, identify accounts where one or more payments are past due, and generate patient-specific collection notices itemizing the overdue balance, missed payment date, and next steps."
+  inputs: ["Active orthodontic contract payment schedules", "Patient payment ledger entries", "Practice collection policy and notice templates"]
+  outputs: ["Delinquent account aging report", "Patient collection notices", "Internal follow-up task list for treatment coordinator"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Practice management system", "Document generation system"]
+  frequency: monthly
+  trigger: "Run the ortho AR and flag every patient who missed a payment this month so we can send reminders before the 30-day mark"
+
+- id: triage-ncpdp-reject-codes-and-map-corrective-actions
+  title: "Triage NCPDP reject codes and map corrective actions"
+  domain: "Operations & Project Mgmt"
+  roles: ["Claims Adjudication Specialist", "Pharmacy Billing Specialist", "PBM Operations Analyst"]
+  description: "Parse rejected claim files for NCPDP reject codes (e.g., 70 Product/Service Not Covered, 75 Prior Authorization Required, 76 Plan Limitations Exceeded) and generate a prioritized work queue with standard corrective actions mapped to each code."
+  inputs: ["claims rejection file (NCPDP D.0 format)", "payer reject code reference table", "benefit plan ruleset"]
+  outputs: ["triaged rejection queue by code category", "corrective action summary report", "resubmission candidates list"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["claims adjudication system", "spreadsheet", "workflow management system"]
+  frequency: daily
+  trigger: "Morning rejection queue has 340 claims; flag which codes need PA, which need NDC correction, and which are plan-limit issues."
+
+- id: validate-step-therapy-criteria-satisfaction-before-pa-submis
+  title: "Validate step-therapy criteria satisfaction before PA submission"
+  domain: "Legal & Compliance"
+  roles: ["Prior Authorization Pharmacist", "PA Technician", "Pharmacy Benefits Analyst"]
+  description: "Cross-reference patient medication history against the plan's step-edit protocol to confirm required first-line agents have been tried and failed before preparing a prior authorization request for the step-2 or step-3 agent."
+  inputs: ["patient medication history (claims or EMR)", "formulary step-edit criteria document", "requested drug NDC"]
+  outputs: ["step-therapy attestation checklist", "gap analysis of missing trial agents", "PA request pre-fill draft"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["PBM adjudication platform", "EMR integration", "document generation tool"]
+  frequency: daily
+  trigger: "PA request came in for Dupixent; confirm patient has documented trials of topical corticosteroids and calcineurin inhibitors per our step-edit."
+
+- id: flag-340b-duplicate-discount-violations-in-medicaid-ffs-clai
+  title: "Flag 340B duplicate discount violations in Medicaid FFS claims"
+  domain: "Legal & Compliance"
+  roles: ["340B Compliance Coordinator", "Pharmacy Reimbursement Analyst", "340B Program Manager"]
+  description: "Cross-reference 340B-purchased NDCs dispensed to Medicaid fee-for-service patients against rebate invoices to identify prohibited duplicate discounts, which expose covered entities to OPA audit risk and manufacturer contract termination."
+  inputs: ["340B dispensing log with NDC and patient eligibility", "Medicaid FFS claims file", "state Medicaid rebate invoices"]
+  outputs: ["duplicate discount violation report by NDC and date of service", "remediation action list", "OPA audit-ready evidence file"]
+  automation: high
+  human_in_loop: approve
+  tools: ["340B split-billing software", "claims data warehouse", "compliance reporting tool"]
+  frequency: monthly
+  trigger: "Run our monthly 340B duplicate discount scrub before submitting the rebate dispute to the state."
+
+- id: reconcile-mac-list-price-updates-against-open-dispensed-clai
+  title: "Reconcile MAC list price updates against open dispensed claims"
+  domain: "Finance & Accounting"
+  roles: ["MAC Pricing Analyst", "PBM Contracting Analyst", "Pharmacy Finance Manager"]
+  description: "When a PBM issues a MAC (Maximum Allowable Cost) list update, identify all claims dispensed in the lookback window at the superseded MAC price and calculate the net reimbursement delta, flagging claims eligible for MAC appeal under state MAC transparency laws."
+  inputs: ["updated MAC pricing list with effective date", "adjudicated claims extract (NDC, dispensed quantity, reimbursed amount)", "state MAC appeal window rules"]
+  outputs: ["variance report by NDC showing old vs. new MAC differential", "MAC appeal candidate list with deadline dates", "estimated financial impact summary"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["claims data warehouse", "pricing database", "spreadsheet"]
+  frequency: weekly
+  trigger: "PBM pushed a MAC update yesterday; show me which NDCs dropped more than 5% and which claims are still within the appeal window."
+
+- id: generate-state-pdmp-submission-file-for-schedule-ii-v-dispen
+  title: "Generate state PDMP submission file for Schedule II–V dispensing"
+  domain: "Legal & Compliance"
+  roles: ["Controlled Substance Compliance Officer", "Pharmacy Informatics Analyst", "Pharmacy Operations Manager"]
+  description: "Extract controlled substance dispensing records, format them per the state ASAP 4.2 (or state-specific) schema, validate required fields (prescriber DEA, patient DOB, days supply, refill number), and prepare the encrypted submission file for state PDMP upload."
+  inputs: ["dispensing system controlled substance extract", "state PDMP data format specification (ASAP schema)", "prescriber DEA registry"]
+  outputs: ["validated PDMP submission file", "validation error log", "submission confirmation receipt"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["pharmacy dispensing system", "PDMP reporting module", "file transfer/SFTP client"]
+  frequency: daily
+  trigger: "Generate and validate today's Schedule II CII-CV PDMP file for the state board submission before the 11:59 PM cutoff."
+
+- id: document-pharmacist-clinical-override-rationale-for-dur-aler
+  title: "Document pharmacist clinical override rationale for DUR alert"
+  domain: "Operations & Project Mgmt"
+  roles: ["Staff Pharmacist", "Clinical Pharmacist", "DUR Pharmacist"]
+  description: "When a pharmacist overrides a drug utilization review alert (drug-drug interaction, therapeutic duplication, age/gender conflict, high dose), generate a structured clinical override note capturing the alert type, severity level, prescriber consultation outcome, and patient-specific justification for the dispensing record."
+  inputs: ["DUR alert details (alert code, severity, interacting drugs)", "prescriber consultation notes", "patient diagnosis and indication data"]
+  outputs: ["structured DUR override documentation entry", "audit trail record", "counseling flag for dispensing queue"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["pharmacy dispensing system", "clinical decision support tool", "documentation platform"]
+  frequency: daily
+  trigger: "I just overrode a major DDI alert for warfarin plus fluconazole with prescriber approval; draft the override note for the dispensing record."
+
+- id: reconcile-manufacturer-rebate-invoice-against-contracted-tie
+  title: "Reconcile manufacturer rebate invoice against contracted tier and market share thresholds"
+  domain: "Finance & Accounting"
+  roles: ["Rebate Analyst", "PBM Contracting Analyst", "Pharmacy Finance Manager"]
+  description: "Match manufacturer rebate invoices to the formulary tier placement and market share performance thresholds defined in the rebate agreement, identify under- or over-paid amounts by drug and quarter, and prepare dispute documentation for discrepancies."
+  inputs: ["manufacturer rebate invoice", "rebate contract with tier criteria and market share targets", "PBM utilization claims extract by NDC and formulary tier"]
+  outputs: ["rebate reconciliation workpaper by drug class", "dispute letter draft for underpayments", "accrual adjustment journal entry"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["rebate management system", "claims data warehouse", "spreadsheet", "contract management system"]
+  frequency: quarterly
+  trigger: "Q1 rebate invoices are in; reconcile them against our contracted rates and flag any where the market share calculation looks off."
+
+- id: draft-mtm-comprehensive-medication-review-personal-medicatio
+  title: "Draft MTM Comprehensive Medication Review personal medication list and action plan"
+  domain: "Customer Success & Support"
+  roles: ["MTM Pharmacist", "Clinical Pharmacist", "Medicare Part D MTM Coordinator"]
+  description: "Using patient claims and self-reported medication data, generate a structured Personal Medication List (PML) and Medication Action Plan (MAP) in the CMS-approved format for a Medicare Part D Comprehensive Medication Review, ready for pharmacist review and patient delivery."
+  inputs: ["patient Part D claims history (12 months)", "patient self-reported OTC and supplement list", "CMS MTM CMR documentation template"]
+  outputs: ["Personal Medication List (PML) draft", "Medication Action Plan (MAP) with prioritized recommendations", "CMR completion record for TARx reporting"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["MTM platform", "Part D claims system", "document generation tool"]
+  frequency: ad-hoc
+  trigger: "Pull together the CMR packet for my 2 PM MTM appointment; patient is on 12 chronic meds and flagged for polypharmacy."
+
+- id: identify-underpaid-dispensing-fee-claims-against-contracted
+  title: "Identify underpaid dispensing fee claims against contracted fee schedule"
+  domain: "Finance & Accounting"
+  roles: ["Pharmacy Reimbursement Analyst", "Pharmacy Billing Specialist", "Network Contract Manager"]
+  description: "Compare the dispensing fees adjudicated on paid claims against the contracted dispensing fee schedule by payer, plan type, and drug category to surface systematic underpayments, especially for specialty, long-term care, or preferred network tiers."
+  inputs: ["paid claims extract with adjudicated dispensing fee", "provider contract dispensing fee schedule by plan/tier", "payer EOB data"]
+  outputs: ["underpaid claim list with delta amounts", "systematic variance summary by payer and plan type", "resubmission or dispute batch file"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["claims adjudication system", "contract fee schedule database", "data warehouse", "spreadsheet"]
+  frequency: monthly
+  trigger: "Run the dispensing fee audit for Medicare Advantage claims from last month and flag any plans paying below our contracted rate."
+
+- id: reconcile-wholesaler-chargeback-submissions-against-gpo-cont
+  title: "Reconcile wholesaler chargeback submissions against GPO contract pricing"
+  domain: "Finance & Accounting"
+  roles: ["GPO Contracting Specialist", "Pharmacy Purchasing Manager", "Chargeback Reconciliation Analyst"]
+  description: "Match submitted wholesaler chargeback claims to the underlying GPO or direct contract prices, verify eligibility of purchasing entity, and identify denied or short-paid chargebacks requiring re-submission or contract clarification."
+  inputs: ["chargeback submission file (contract, NDC, quantity, invoice price)", "GPO contract price file with eligibility dates", "wholesaler chargeback adjudication response"]
+  outputs: ["chargeback variance reconciliation report", "denied chargeback re-submission batch", "price discrepancy log for contract review"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["chargeback management system", "GPO contract database", "EDI transaction platform", "spreadsheet"]
+  frequency: weekly
+  trigger: "Wholesaler returned 87 denied chargebacks this week; map each denial reason and prep the re-submission file for eligible claims."
+
+- id: calculate-retroactive-dir-fee-impact-on-net-reimbursement-pe
+  title: "Calculate retroactive DIR fee impact on net reimbursement per claim"
+  domain: "Finance & Accounting"
+  roles: ["DIR Fee Analyst", "Pharmacy Reimbursement Analyst", "Pharmacy Finance Manager"]
+  description: "Apply retroactive Direct and Indirect Remuneration (DIR) fee clawbacks received from a PBM to the original point-of-sale adjudicated claims to compute true net reimbursement per claim, identify claims that fell below cost, and reconcile against accounts receivable."
+  inputs: ["DIR fee reconciliation statement from PBM (by performance period)", "original adjudicated claims extract with POS reimbursement", "drug acquisition cost (WAC or invoice)"]
+  outputs: ["net reimbursement per claim after DIR", "below-cost dispensing report by NDC and plan", "AR reconciliation entry", "DIR impact trend analysis"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["claims data warehouse", "DIR reconciliation module", "spreadsheet", "accounting system"]
+  frequency: quarterly
+  trigger: "Q4 DIR statements just posted; apply them back to the original claims and show me which preferred networks are actually losing us money after DIR."
+
+- id: audit-340b-accumulator-for-mixed-use-inventory-replenishment
+  title: "Audit 340B accumulator for mixed-use inventory replenishment accuracy"
+  domain: "Legal & Compliance"
+  roles: ["340B Compliance Coordinator", "340B Auditor", "Pharmacy Operations Manager"]
+  description: "For a covered entity using mixed-use inventory, verify that 340B replenishment orders placed with the wholesaler match the count of qualifying patient-dispensed 340B claims in OPAIS, ensuring no over-ordering that would constitute diversion under OPA guidelines."
+  inputs: ["340B qualifying patient dispensing log by NDC", "wholesaler 340B replenishment order history", "OPAIS eligibility records for dispensing period"]
+  outputs: ["replenishment-to-dispensing reconciliation report by NDC", "over-order variance flag list", "OPA audit-ready accumulator documentation"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["340B split-billing software", "wholesaler ordering platform", "OPAIS portal export", "spreadsheet"]
+  frequency: monthly
+  trigger: "Prep our monthly 340B accumulator audit before the OPA desk audit submission; flag any NDCs where we replenished more units than we dispensed to qualifying patients."
+
+- id: generate-pa-turnaround-time-compliance-report-against-regula
+  title: "Generate PA turnaround time compliance report against regulatory standards"
+  domain: "Data & Reporting (BI)"
+  roles: ["Prior Authorization Pharmacist", "PBM Compliance Analyst", "Pharmacy Benefits Manager"]
+  description: "Aggregate prior authorization request timestamps from intake to determination, segment by urgency class (standard vs. expedited), and compare against state-mandated and CMS turnaround time requirements (e.g., 72-hour standard, 24-hour expedited), flagging breaches."
+  inputs: ["PA request log with intake timestamp and determination timestamp", "plan-level TAT regulatory requirements by state and line of business", "PA denial and approval outcomes"]
+  outputs: ["TAT compliance scorecard by plan and urgency class", "breach list with patient and request identifiers", "regulatory filing summary for state submissions"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["PA management system", "data warehouse", "reporting/BI tool"]
+  frequency: weekly
+  trigger: "Pull the PA TAT report for last week and flag any expedited requests where we missed the 24-hour CMS benchmark, segmented by therapeutic category."
+
+- id: match-end-of-assignment-contractors-to-open-requisitions
+  title: "Match end-of-assignment contractors to open requisitions"
+  domain: "Sales & BizDev"
+  roles: ["Delivery Manager", "Talent Advisor", "Staffing Coordinator"]
+  description: "When a contractor's end date is within 10 days, compare their skills profile and location against all open unfilled requisitions to produce a ranked redeployment shortlist, reducing bench time and preserving margin."
+  inputs: ["Contractor end-date report", "Active requisition list", "Contractor skills profile", "Client preferred-supplier agreements"]
+  outputs: ["Ranked redeployment match list with fit rationale", "Outreach draft to contractor", "Internal alert to account manager"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["ATS", "VMS portal", "CRM", "spreadsheet"]
+  frequency: daily
+  trigger: "Show me all contractors rolling off in the next 10 days and which open reqs they could redeploy into."
+
+- id: reconcile-approved-timesheets-against-weekly-client-invoice
+  title: "Reconcile approved timesheets against weekly client invoice"
+  domain: "Finance & Accounting"
+  roles: ["Billing Specialist", "Staffing Controller", "Payroll Coordinator"]
+  description: "Compare contractor-approved timesheet hours and overtime by cost center against the draft client invoice line items, surfacing any rate mismatches, missing PO numbers, or unapproved overtime before the invoice is sent."
+  inputs: ["Approved timesheet export", "Draft client invoice", "Bill-rate schedule by placement", "Client PO register"]
+  outputs: ["Reconciliation exception report", "Corrected invoice line items", "Discrepancy log for client"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Payroll system", "Billing platform", "Spreadsheet"]
+  frequency: weekly
+  trigger: "Run the timesheet-to-invoice reconciliation for the week ending Friday and flag any billing exceptions."
+
+- id: flag-placements-below-target-bill-to-pay-spread-threshold
+  title: "Flag placements below target bill-to-pay spread threshold"
+  domain: "Finance & Accounting"
+  roles: ["Branch Manager", "Staffing Account Manager", "Margin Analyst"]
+  description: "Scan all active placements and compute the gross margin spread (bill rate minus pay rate minus burden) for each, then flag placements where the net margin falls below the branch-level floor or contracted minimum markup."
+  inputs: ["Active placement roster with bill rates and pay rates", "Burden rate table by employee type", "Target margin thresholds by job category"]
+  outputs: ["Below-threshold placement report sorted by margin gap", "Recommended corrective actions (rate renegotiation or assignment end)"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Payroll system", "Staffing back-office platform", "Spreadsheet"]
+  frequency: weekly
+  trigger: "Which active placements are running below our 18% gross margin floor this week?"
+
+- id: generate-i-9-section-3-reverification-due-list
+  title: "Generate I-9 Section 3 reverification due list"
+  domain: "Legal & Compliance"
+  roles: ["I-9 Compliance Coordinator", "Onboarding Specialist", "HR Compliance Analyst"]
+  description: "Pull all contractor I-9 records where a time-limited work-authorization document (EAD, OPT, TN) expires within 90 days, and generate a prioritized reverification task list with required Section 3 completion deadlines and contractor contact details."
+  inputs: ["I-9 tracker with document type and expiration dates", "Active placement roster", "Work-authorization category reference table"]
+  outputs: ["Reverification due list sorted by urgency", "Pre-filled Section 3 reminder emails to contractors", "Compliance calendar entries"]
+  automation: high
+  human_in_loop: approve
+  tools: ["I-9 management system", "HRIS", "Email platform"]
+  frequency: weekly
+  trigger: "Pull all contractors whose work-auth documents expire in the next 90 days and draft the reverification reminders."
+
+- id: run-aca-look-back-measurement-period-hours-audit
+  title: "Run ACA look-back measurement period hours audit"
+  domain: "Legal & Compliance"
+  roles: ["ACA Compliance Specialist", "PEO Benefits Manager", "Benefits Administrator"]
+  description: "Aggregate contractor hours across the standard or initial measurement period and identify variable-hour employees who have crossed the 130-hours-per-month ACA full-time equivalent threshold, triggering required coverage offers."
+  inputs: ["Contractor hours by pay period for measurement window", "ACA measurement period calendar", "Current benefits enrollment status"]
+  outputs: ["ACA eligibility determination list", "1095-C preparation data feed", "Coverage-offer trigger list with stability period start dates"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Payroll system", "Benefits administration platform", "Spreadsheet"]
+  frequency: monthly
+  trigger: "Run the ACA look-back audit for the standard measurement period ending last month and tell me who crossed the FTE threshold."
+
+- id: check-multi-state-payroll-tax-registration-requirements-for
+  title: "Check multi-state payroll tax registration requirements for new contractor work location"
+  domain: "Finance & Accounting"
+  roles: ["Multi-State Payroll Manager", "Payroll Tax Analyst", "PEO Compliance Specialist"]
+  description: "When a contractor starts an assignment in a state where the employer has no existing payroll tax nexus, identify the required state and local registrations (SUI, SIT withholding, SUI new employer rate, local tax) and generate a registration checklist with agency links and estimated timelines."
+  inputs: ["New contractor work-state and locality", "Employer nexus registry by state", "State payroll tax registration requirement reference"]
+  outputs: ["State nexus registration checklist", "Draft state agency registration forms", "Estimated SUI new-employer rate lookup"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["Payroll system", "State tax authority portals", "Compliance database"]
+  frequency: ad-hoc
+  trigger: "We just placed a contractor in New Mexico for the first time — what tax registrations do we need and what are the deadlines?"
+
+- id: audit-workers-comp-class-codes-against-active-placement-job
+  title: "Audit workers' comp class codes against active placement job titles"
+  domain: "Finance & Accounting"
+  roles: ["Workers' Comp Coordinator", "Staffing Operations Analyst", "Risk Manager"]
+  description: "Compare current workers' comp class codes assigned to each active placement against NCCI or state-specific classification schedules for the actual job duties performed, flagging misclassifications that could expose the agency to audit penalties or premium under-collection."
+  inputs: ["Active placement list with assigned WC class codes", "NCCI class code schedule", "Job duty descriptions by placement", "Current experience modification factor"]
+  outputs: ["Misclassified placement report with correct class code recommendations", "Estimated premium impact of corrections", "Carrier notification draft"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["Workers' comp management system", "NCCI lookup", "Staffing back-office platform"]
+  frequency: monthly
+  trigger: "Run a workers' comp class code audit across all light-industrial placements and flag any that look misclassified."
+
+- id: parse-vms-requisition-and-format-internal-job-order-submitta
+  title: "Parse VMS requisition and format internal job order submittal packet"
+  domain: "Operations & Project Mgmt"
+  roles: ["VMS Coordinator", "MSP Program Manager", "Staffing Fulfillment Analyst"]
+  description: "Ingest a job requisition arriving through a VMS portal (e.g., Fieldglass, Beeline, or IQNavigator format), extract bill rate, required skills, submission deadline, and headcount, and generate a formatted internal job order and a submittal-ready candidate profile template."
+  inputs: ["VMS requisition export or notification", "Client rate card", "Internal job order template", "Submittal format requirements per client"]
+  outputs: ["Internal job order", "Submittal-ready candidate profile packet", "Priority-scored req intake summary for recruiters"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["VMS portal", "ATS", "Document automation"]
+  frequency: daily
+  trigger: "New reqs just dropped in the VMS — parse them and create internal job orders with the submittal templates."
+
+- id: report-markup-variance-by-client-against-contracted-rate-sch
+  title: "Report markup variance by client against contracted rate schedule"
+  domain: "Data & Reporting (BI)"
+  roles: ["Staffing Analyst", "Branch Controller", "Staffing Account Manager"]
+  description: "Compare actual bill rates and pay rates on all placements against the master service agreement rate card for each client, and produce a variance report showing placements where the charged markup deviates from the negotiated schedule by job category."
+  inputs: ["Active and closed placement data with actual rates", "Client MSA rate card by job category and tier", "Period start and end dates"]
+  outputs: ["Markup variance report by client and job category", "Over- and under-charged placement list", "Revenue leakage summary"]
+  automation: high
+  human_in_loop: none
+  tools: ["Staffing back-office platform", "BI/reporting tool", "Spreadsheet"]
+  frequency: monthly
+  trigger: "Generate this month's markup variance report for all MSP clients and show me where we're off the contracted rate card."
+
+- id: flag-long-tenure-contractors-for-co-employment-risk-review
+  title: "Flag long-tenure contractors for co-employment risk review"
+  domain: "Legal & Compliance"
+  roles: ["Compliance Manager", "Client Services Director", "Risk & Compliance Analyst"]
+  description: "Scan active placements for contractors who have been on-site with the same client for longer than the co-employment risk threshold (typically 18 or 24 months), and produce a report with recommended remediation actions such as tenure break, direct-hire conversion discussion, or client notification."
+  inputs: ["Active placement roster with start dates", "Co-employment tenure policy thresholds", "Client co-employment addendum terms"]
+  outputs: ["Co-employment risk flagged placement list", "Days-remaining-before-threshold column", "Recommended action per placement", "Draft client notification for longest-tenure cases"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["ATS", "Staffing back-office platform", "CRM"]
+  frequency: monthly
+  trigger: "Which contractors are approaching or past the co-employment threshold and what should we do about each one?"
+
+- id: draft-tnc-referral-notice-for-e-verify-tentative-nonconfirma
+  title: "Draft TNC referral notice for E-Verify tentative nonconfirmation"
+  domain: "Legal & Compliance"
+  roles: ["I-9 Compliance Coordinator", "Employment Eligibility Verifier", "Onboarding Specialist"]
+  description: "When an E-Verify case returns a Tentative Nonconfirmation (TNC), generate the required Further Action Notice (FAN) and referral letter for the employee, log the case status, and set a follow-up reminder for the 8-day federal agency referral deadline."
+  inputs: ["E-Verify TNC case result", "Contractor contact information", "TNC reason code (SSA or DHS)", "FAN template"]
+  outputs: ["Completed Further Action Notice", "Employee referral letter with agency instructions", "Case status log entry", "8-day follow-up calendar alert"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["E-Verify system", "I-9 management platform", "Email platform"]
+  frequency: ad-hoc
+  trigger: "We got a TNC result on a new contractor — generate the Further Action Notice and set the referral deadline reminder."
+
+- id: look-up-service-contract-act-wage-determination-for-governme
+  title: "Look up Service Contract Act wage determination for government staffing placement"
+  domain: "Legal & Compliance"
+  roles: ["SCA Administrator", "Government Contracts Compliance Analyst", "Federal Staffing Specialist"]
+  description: "For a placement on a federal service contract, retrieve the applicable DOL wage determination by place of performance and occupation code, confirm the correct WD number to reference in the contract, and extract the required wage rates and fringe benefits by labor classification."
+  inputs: ["Federal contract number or agency name", "Place of performance (city and county)", "SOC occupation code or labor classification title", "Contract period of performance"]
+  outputs: ["Applicable SCA wage determination number and effective date", "Wage and fringe benefit schedule by labor classification", "Compliance checklist for contractor offer letter"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["DOL Wage Determinations Online (WDOL)", "Federal procurement database", "Compliance database"]
+  frequency: ad-hoc
+  trigger: "We're staffing a contract at a federal facility in San Antonio — pull the SCA wage determination and tell me the required rates for Security Guard Class I."
+
+- id: notify-variable-hour-contractor-of-aca-benefits-enrollment-e
+  title: "Notify variable-hour contractor of ACA benefits enrollment eligibility"
+  domain: "HR & People Ops"
+  roles: ["PEO Benefits Manager", "ACA Compliance Specialist", "Benefits Administrator"]
+  description: "When a variable-hour contractor crosses the ACA full-time equivalency threshold during the measurement period and enters the stability period, generate the required coverage-offer notice with enrollment window dates, plan options, and consequences of waiving."
+  inputs: ["ACA eligibility determination output", "Benefits plan summary descriptions", "Stability period start and end dates", "Contractor contact data"]
+  outputs: ["ACA coverage-offer notice per contractor", "Enrollment window communication with deadline", "Waiver-of-coverage form if applicable", "Delivery log for compliance record"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Benefits administration platform", "HRIS", "Email platform"]
+  frequency: monthly
+  trigger: "Generate ACA enrollment notices for all variable-hour contractors who just became eligible at the start of the new stability period."
+
+- id: normalize-t-12-operating-statement-for-acquisition-underwrit
+  title: "Normalize T-12 operating statement for acquisition underwriting"
+  domain: "Finance & Accounting"
+  roles: ["Acquisitions Analyst", "REIT Asset Manager", "Capital Markets Associate"]
+  description: "Strip one-time, non-recurring items (insurance proceeds, casualty losses, management transition costs) from a trailing-12-month income statement to produce a stabilized NOI for underwriting. Produce a bridge schedule showing every adjustment."
+  inputs: ["T-12 operating statement (PDF or Excel)", "GL detail report", "property management notes"]
+  outputs: ["Normalized T-12 workpaper", "NOI bridge schedule"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["spreadsheet", "document parser"]
+  frequency: ad-hoc
+  trigger: "Normalize the T-12 for 123 Main St—strip the one-time roof replacement and the insurance reimbursement before I run the cap rate."
+
+- id: reconcile-co-broker-commission-split-against-executed-psa
+  title: "Reconcile co-broker commission split against executed PSA"
+  domain: "Finance & Accounting"
+  roles: ["Transaction Coordinator", "Capital Markets Associate", "Closing Analyst"]
+  description: "Compare the cooperating broker's commission entitlement in the signed Purchase and Sale Agreement to ALTA settlement statement line items and flag any shortfall or override before disbursement."
+  inputs: ["Executed PSA", "ALTA/HUD-1 settlement statement", "commission disbursement authorization form"]
+  outputs: ["Commission reconciliation memo", "variance log"]
+  automation: high
+  human_in_loop: approve
+  tools: ["document parser", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Check if the co-broker commission on the settlement statement matches the 1.5% split we agreed in the PSA for the Riverside portfolio."
+
+- id: flag-walt-and-occupancy-discrepancies-between-rent-roll-and
+  title: "Flag WALT and occupancy discrepancies between rent roll and offering memorandum"
+  domain: "Business / Functional Analysis"
+  roles: ["Acquisitions Analyst", "Due Diligence Analyst", "REIT Asset Manager"]
+  description: "Cross-check weighted average lease term (WALT) and physical/economic occupancy figures cited in the offering memorandum against the raw rent roll data and surface per-tenant variances driving any gap."
+  inputs: ["Offering memorandum (PDF)", "rent roll (Excel or PDF)", "lease expiration schedule"]
+  outputs: ["Discrepancy report", "corrected WALT calculation workpaper"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "document parser"]
+  frequency: ad-hoc
+  trigger: "The OM says 4.2 years WALT but my rent roll calc shows 3.7—reconcile these and flag which tenants are driving the gap."
+
+- id: draft-quarterly-lp-distribution-waterfall-notice
+  title: "Draft quarterly LP distribution waterfall notice"
+  domain: "Finance & Accounting"
+  roles: ["REIT Investor Relations Manager", "Fund Accountant", "Asset Manager"]
+  description: "Calculate and format the quarterly limited partner distribution notice, showing preferred return accrual, cumulative return of capital, and promote/carried interest splits per the operating agreement waterfall tiers."
+  inputs: ["Operating agreement waterfall provisions", "prior distribution history ledger", "cash available for distribution", "LP unit register"]
+  outputs: ["Investor distribution notice (per LP)", "waterfall calculation schedule"]
+  automation: medium
+  human_in_loop: sign-off
+  tools: ["spreadsheet", "document generator", "investor portal"]
+  frequency: quarterly
+  trigger: "Generate the Q2 distribution notice for Fund III—preferred return is 8%, we have $2.1M available across 14 LPs."
+
+- id: test-dscr-covenant-compliance-and-draft-lender-certification
+  title: "Test DSCR covenant compliance and draft lender certification"
+  domain: "Legal & Compliance"
+  roles: ["REIT Treasury Analyst", "Debt Capital Markets Associate", "Asset Manager"]
+  description: "Compare current-period NOI and debt service against loan agreement covenant thresholds (DSCR, LTV, occupancy floor) and produce a signed-ready covenant compliance certificate or draft a cure-plan memo if a trip event is detected."
+  inputs: ["Loan agreement covenant schedule", "T-12 NOI", "amortization/debt service schedule", "current rent roll"]
+  outputs: ["Covenant compliance certificate", "breach alert memo (if applicable)"]
+  automation: high
+  human_in_loop: approve
+  tools: ["spreadsheet", "document parser", "covenant tracking system"]
+  frequency: quarterly
+  trigger: "Run the Q3 DSCR covenant test for the Lakeview refi—our loan requires 1.25x and I need to know if the recent vacancy puts us at risk."
+
+- id: abstract-lease-economic-terms-into-master-rent-roll
+  title: "Abstract lease economic terms into master rent roll"
+  domain: "Operations & Project Mgmt"
+  roles: ["Lease Administrator", "Asset Manager", "Property Analyst"]
+  description: "Extract base rent, escalation schedule, commencement/expiration dates, TI allowance, free-rent period, renewal options, co-tenancy clauses, and kick-out rights from a fully executed lease and populate the master rent roll."
+  inputs: ["Executed lease document (PDF)", "master rent roll template"]
+  outputs: ["Updated rent roll row", "lease abstract one-pager"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["document parser", "spreadsheet", "lease abstraction system"]
+  frequency: ad-hoc
+  trigger: "Abstract the new anchor tenant lease for Suite 200 and add it to the rent roll—flag the co-tenancy clause and any kick-out rights."
+
+- id: log-closed-sale-comp-to-internal-transaction-database
+  title: "Log closed sale comp to internal transaction database"
+  domain: "Data & Reporting (BI)"
+  roles: ["Research Analyst", "Capital Markets Broker", "Acquisitions Analyst"]
+  description: "Parse a recorded deed, press release, or data provider alert to extract price per square foot, going-in cap rate, occupancy at sale, buyer/seller identities, and financing structure, then post a structured entry to the internal comp database."
+  inputs: ["Recorded deed or transfer document", "press release or newswire alert", "listing data export"]
+  outputs: ["Comp database entry", "transaction summary card (PDF)"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["document parser", "CRM / comp database", "web search"]
+  frequency: ad-hoc
+  trigger: "Greenway Office Park just closed—pull the deed and news, log the comp: price PSF, cap rate, occupancy, and buyer identity."
+
+- id: assemble-offering-memorandum-from-deal-room-source-documents
+  title: "Assemble offering memorandum from deal room source documents"
+  domain: "Marketing & Content"
+  roles: ["Capital Markets Associate", "Investment Sales Broker", "Marketing Coordinator"]
+  description: "Compile the core OM sections—executive summary, property overview, rent roll, T-12, lease expiration schedule, market overview, and site plan—from deal room uploads into a structured, client-ready draft following house style."
+  inputs: ["Executive summary template", "rent roll (Excel)", "T-12 operating statement", "aerials and site plan", "submarket report", "lease abstracts"]
+  outputs: ["Draft offering memorandum (formatted Word/PDF)"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document generator", "file storage", "design / layout tool"]
+  frequency: ad-hoc
+  trigger: "Assemble the first draft OM for the Westside Industrial Portfolio using the rent roll and T-12 I uploaded plus the broker market overview."
+
+- id: validate-argus-dcf-assumptions-against-current-market-rent-s
+  title: "Validate Argus DCF assumptions against current market rent survey"
+  domain: "Business / Functional Analysis"
+  roles: ["Acquisitions Analyst", "Valuation Analyst", "REIT Asset Manager"]
+  description: "Compare market rent growth, vacancy, exit cap rate, and expense ratio assumptions in the Argus DCF export against current-quarter submarket rent survey data and flag inputs deviating beyond defined tolerance bands."
+  inputs: ["Argus model assumption export (tab-delimited or Excel)", "current market rent and vacancy survey", "submarket report"]
+  outputs: ["Assumption variance report", "red-flag summary with recommended adjustments"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["spreadsheet", "document parser"]
+  frequency: ad-hoc
+  trigger: "Sanity-check the Argus assumptions for the downtown office deal—flag anything where rent growth or exit cap is more than 50bps off the broker survey."
+
+- id: update-acquisition-due-diligence-checklist-against-data-room
+  title: "Update acquisition due diligence checklist against data room manifest"
+  domain: "Operations & Project Mgmt"
+  roles: ["Acquisitions Analyst", "Due Diligence Manager", "Transaction Manager"]
+  description: "Ingest a standard acquisition DD checklist and cross-reference it against the virtual data room document index, marking each item received, outstanding, or waived, and surfacing open items as the inspection period deadline approaches."
+  inputs: ["DD checklist template", "VDR document index/manifest export", "PSA inspection period deadline"]
+  outputs: ["DD tracker with RAG status flags", "outstanding items summary email draft"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["document parser", "project tracker", "file storage"]
+  frequency: ad-hoc
+  trigger: "We're 10 days into our 30-day inspection period on Meridian Plaza—update the DD checklist from the data room and flag everything still outstanding."
+
+- id: reconcile-quarterly-borrowing-base-certificate-against-credi
+  title: "Reconcile quarterly borrowing base certificate against credit facility agreement"
+  domain: "Finance & Accounting"
+  roles: ["REIT Treasury Analyst", "Debt Capital Markets Associate", "Fund Accountant"]
+  description: "Verify that the quarterly borrowing base certificate submitted to the agent bank accurately reflects eligible assets, advance rates, and outstanding draw amounts per the credit facility agreement, and flag any asset that fails occupancy or LTV eligibility thresholds."
+  inputs: ["Borrowing base certificate draft", "credit facility agreement (eligible asset criteria)", "current asset schedule with occupancy and appraised values"]
+  outputs: ["Reconciliation workpaper", "exception memo for ineligible assets"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["spreadsheet", "document parser"]
+  frequency: quarterly
+  trigger: "Review the Q3 borrowing base certificate before we submit to the agent bank—make sure no assets slipped below the occupancy threshold for eligibility."
+
+- id: build-snda-execution-tracker-for-lender-closing-requirements
+  title: "Build SNDA execution tracker for lender closing requirements"
+  domain: "Legal & Compliance"
+  roles: ["Asset Manager", "Lease Administrator", "Closing Coordinator"]
+  description: "For a financing or sale closing, generate a tracking log of all tenants requiring SNDA (Subordination, Non-Disturbance and Attornment) agreements, cross-referencing executed vs. outstanding SNDAs against lender requirements and lease provisions, and queue outstanding request letters."
+  inputs: ["Rent roll with SNDA lease requirement flags", "lender SNDA form template", "executed SNDAs from data room"]
+  outputs: ["SNDA status tracker (Excel)", "outstanding SNDA request letters (drafted)"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["document parser", "spreadsheet", "document generator"]
+  frequency: ad-hoc
+  trigger: "The lender needs SNDAs from all tenants over 5,000 SF before closing—build a tracker of who has signed and who still needs to execute."
+
+- id: compute-quarterly-nav-per-unit-for-non-traded-reit-reporting
+  title: "Compute quarterly NAV per unit for non-traded REIT reporting"
+  domain: "Finance & Accounting"
+  roles: ["REIT Fund Accountant", "Investor Relations Manager", "Asset Manager"]
+  description: "Aggregate current-period appraised values or broker opinions of value against outstanding debt, accrued fees payable, and total unit count to compute and format the quarterly net asset value per unit for LP/shareholder reporting."
+  inputs: ["Property appraisals or broker opinions of value (BOVs)", "outstanding loan balance schedule", "accrued fees and liabilities schedule", "unit/share register"]
+  outputs: ["NAV calculation memo", "NAV per unit summary table (investor-facing)"]
+  automation: medium
+  human_in_loop: sign-off
+  tools: ["spreadsheet", "document generator"]
+  frequency: quarterly
+  trigger: "Compute the Q2 NAV per unit for the non-traded REIT—I've uploaded the BOVs and the outstanding debt schedule."
+
+- id: verify-net-revenue-interest-decimals-on-a-division-order
+  title: "Verify net revenue interest decimals on a division order"
+  domain: "Finance & Accounting"
+  roles: ["Division Order Analyst", "Royalty Accountant"]
+  description: "Cross-reference working interest (WI) and net revenue interest (NRI) decimals on a new or amended division order against the title opinion, recorded conveyances, and royalty lease burden to confirm the decimal chain sums to 1.000000 for each product code."
+  inputs: ["Division order draft", "Title opinion", "Executed royalty lease", "Recorded deeds and assignments"]
+  outputs: ["Decimal verification worksheet", "Exception report with out-of-balance line items"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Document parser", "Land management system", "Spreadsheet"]
+  frequency: ad-hoc
+  trigger: "New division order came in for the Permian Basin well — verify the NRI decimals balance before we execute."
+
+- id: audit-jib-cost-codes-against-approved-afe-line-items
+  title: "Audit JIB cost codes against approved AFE line items"
+  domain: "Finance & Accounting"
+  roles: ["Joint Interest Billing Accountant", "Oil & Gas Accountant"]
+  description: "Review monthly joint interest billing statements to confirm each charge code (intangible drilling cost, tangible equipment, workover) maps to an approved AFE line item and that working interest percentages match the executed joint operating agreement."
+  inputs: ["Monthly JIB statement", "Approved AFE with line item schedule", "Joint operating agreement (JOA)"]
+  outputs: ["JIB exception log", "Cost code variance report"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Document parser", "Accounting system", "Spreadsheet"]
+  frequency: monthly
+  trigger: "Pull the October JIB from Operator X and flag any charges that aren't on the approved AFE."
+
+- id: compute-monthly-severance-tax-liability-by-production-tax-ty
+  title: "Compute monthly severance tax liability by production tax type"
+  domain: "Finance & Accounting"
+  roles: ["Royalty Accountant", "Revenue Accountant", "Production Accountant"]
+  description: "Calculate state oil and gas severance tax liability by property, applying statutory rates and any applicable high-cost gas, stripper-well, or enhanced-recovery exemptions; output pre-populated return data formatted for each production state (e.g., Texas RRC, Oklahoma OCC, WOGCC)."
+  inputs: ["Monthly production volumes by property and product", "Working interest and royalty ownership decimals", "Current statutory severance tax rates", "Exemption certificates on file"]
+  outputs: ["Severance tax computation worksheet", "State return data file by jurisdiction"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Production accounting system", "Tax calculation engine", "Spreadsheet"]
+  frequency: monthly
+  trigger: "Run the Texas oil production tax calc for all our Midland Basin properties for September."
+
+- id: generate-afe-cost-to-date-variance-report-for-active-wells
+  title: "Generate AFE cost-to-date variance report for active wells"
+  domain: "Finance & Accounting"
+  roles: ["AFE Administrator", "Production Accountant", "Drilling Engineer"]
+  description: "Pull all posted expenditures against each open authorization for expenditure, compare actuals against approved line items, calculate percent-spent and remaining balance, and flag any line item exceeding 110% of the approved budget as a supplemental AFE trigger."
+  inputs: ["Open AFE budget schedules", "Posted cost ledger entries", "Supplemental AFE threshold policy"]
+  outputs: ["AFE variance report", "Supplemental AFE trigger list with overage amounts"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["ERP system", "Project cost tracking system", "Spreadsheet"]
+  frequency: weekly
+  trigger: "Show me where we stand on all active drilling AFEs — flag anything that's going to need a supp."
+
+- id: build-lease-rental-and-shut-in-royalty-obligation-calendar
+  title: "Build lease rental and shut-in royalty obligation calendar"
+  domain: "Legal & Compliance"
+  roles: ["Petroleum Land Technician", "Land Administration Specialist", "Land Manager"]
+  description: "Extract primary term end dates, annual delay rental amounts, Pugh clause triggers, and shut-in royalty payment deadlines from executed leases; build a forward-looking obligation calendar with 90/60/30-day payment alerts to prevent lease expiration by non-payment."
+  inputs: ["Executed oil and gas leases", "Land management system records", "County recorder index data"]
+  outputs: ["Obligation calendar with payment due dates", "At-risk lease alert list", "Total rental dollar amount summary"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["Document parser", "Land management system", "Calendar and alerting system"]
+  frequency: monthly
+  trigger: "Which of our acreage leases have rentals due in the next 60 days and what's the total dollar amount?"
+
+- id: reconcile-wellhead-production-volumes-to-plant-inlet-and-res
+  title: "Reconcile wellhead production volumes to plant inlet and residue allocation"
+  domain: "Operations & Project Mgmt"
+  roles: ["Production Accountant", "Gas Balancing Analyst"]
+  description: "Tie raw wellhead measured volumes through the gathering system to plant inlet receipts and allocated residue gas and NGL volumes, quantifying measurement variance and fuel/shrinkage against contractual allowances to produce an unaccounted-for gas (UFG) summary."
+  inputs: ["Wellhead meter data", "SCADA run-ticket export", "Midstream plant statement", "Gathering and processing agreement"]
+  outputs: ["Allocation variance report", "Unaccounted-for gas (UFG) summary", "Imbalance schedule by party"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["Production accounting system", "SCADA data export tool", "Spreadsheet"]
+  frequency: monthly
+  trigger: "Reconcile last month's Haynesville gathering volumes against the midstream plant statement and flag any UFG over 2%."
+
+- id: reconcile-crude-oil-run-tickets-against-lact-unit-meter-reco
+  title: "Reconcile crude oil run tickets against LACT unit meter records"
+  domain: "Finance & Accounting"
+  roles: ["Production Accountant", "Revenue Accountant"]
+  description: "Match pipeline-issued crude oil run tickets (volume, gravity, BS&W) against lease automatic custody transfer (LACT) meter readings and tank gauge statements; flag net-barrel discrepancies that would affect revenue recognition and royalty calculations."
+  inputs: ["Pipeline run tickets", "LACT unit meter printouts", "Tank gauge records", "BS&W centrifuge test reports"]
+  outputs: ["Run ticket reconciliation schedule", "Net barrel variance log with tolerance flags"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["Production accounting system", "Document parser", "Spreadsheet"]
+  frequency: monthly
+  trigger: "Reconcile the Permian LACT receipts for Q3 — I need to confirm the net barrels before we close revenue."
+
+- id: prepare-suspense-release-package-for-resolved-title-defects
+  title: "Prepare suspense release package for resolved title defects"
+  domain: "Finance & Accounting"
+  roles: ["Division Order Analyst", "Royalty Accountant", "Revenue Accountant"]
+  description: "Identify suspended royalty and working interest revenue tied to specific title defects (missing probate, unrecorded assignment, heirship dispute); verify curative document resolution; calculate back-pay liability and prepare a release memo with updated division order decimals."
+  inputs: ["Suspense account aging report", "Title curative document", "Original division order", "Held-revenue ledger detail"]
+  outputs: ["Suspense release memo", "Back-pay calculation schedule", "Updated division order decimal page"]
+  automation: low
+  human_in_loop: approve
+  tools: ["Accounting system", "Document parser", "Land management system", "Spreadsheet"]
+  frequency: ad-hoc
+  trigger: "The probate on the Smith estate is finally recorded — pull the suspense balance and prep the release package."
+
+- id: compile-and-pre-populate-state-oil-and-gas-commission-produc
+  title: "Compile and pre-populate state oil and gas commission production report"
+  domain: "Legal & Compliance"
+  roles: ["Regulatory Affairs Specialist", "Production Accountant"]
+  description: "Aggregate monthly well-level production volumes (oil, gas, water, condensate) by API well number and format them into the required state commission reporting form (e.g., Texas RRC Form PR, Oklahoma OCC Form 1002A, Wyoming WOGCC Form 14), flagging any wells with missing or anomalous volumes before submission."
+  inputs: ["Production accounting system monthly export", "API well number master list", "State regulatory form templates"]
+  outputs: ["Pre-populated state production report file", "Anomaly and missing-data exception report"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Production accounting system", "Regulatory filing portal", "Document generation tool"]
+  frequency: monthly
+  trigger: "Generate the Texas RRC production reports for all our operated wells in October before the filing deadline."
+
+- id: reconcile-ngl-yield-factors-on-gas-plant-statement-to-divisi
+  title: "Reconcile NGL yield factors on gas plant statement to division order entitlements"
+  domain: "Finance & Accounting"
+  roles: ["Gas Plant Accountant", "Revenue Accountant", "Royalty Accountant"]
+  description: "Compare per-product NGL yield (gallons per MCF) on the plant statement to the contractual keep-whole or percent-of-proceeds (POP) agreement; verify BTU content adjustments and confirm royalty allocations correctly reflect plant thermal reduction (PTR) and line-loss factors."
+  inputs: ["Gas plant statement", "Gas processing agreement (keep-whole or POP)", "Division order", "BTU analysis report"]
+  outputs: ["NGL yield reconciliation worksheet", "Royalty allocation variance memo"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["Accounting system", "Document parser", "Spreadsheet"]
+  frequency: monthly
+  trigger: "The plant statement for the Midcontinent assets looks off — reconcile the NGL yields against our POP contract and flag the royalty impact."
+
+- id: calculate-acreage-released-under-pugh-clause-after-horizonta
+  title: "Calculate acreage released under Pugh clause after horizontal well completion"
+  domain: "Legal & Compliance"
+  roles: ["Petroleum Land Technician", "Land Administration Specialist"]
+  description: "After a horizontal well is placed on production, apply the lease's horizontal (or vertical) Pugh clause to determine which depths or surface acreage tracts are released outside the pooled unit, and prepare an acreage release schedule for the land file."
+  inputs: ["Executed oil and gas lease with Pugh clause language", "Plat and survey map", "Directional survey or lateral plat", "Pooling and unit designation order"]
+  outputs: ["Pugh clause acreage release schedule", "Updated held-by-production (HBP) acreage notation"]
+  automation: low
+  human_in_loop: approve
+  tools: ["Land management system", "Document parser", "GIS mapping tool"]
+  frequency: ad-hoc
+  trigger: "The horizontal well in Section 12 just came online — calculate what acreage gets released under the Pugh clause so we can update the HBP schedule."
+
+- id: verify-copas-overhead-charges-against-applicable-accounting
+  title: "Verify COPAS overhead charges against applicable accounting procedure exhibit"
+  domain: "Finance & Accounting"
+  roles: ["Joint Interest Billing Accountant", "Oil & Gas Accountant"]
+  description: "Confirm that overhead charges billed in a monthly JIB statement match the overhead method elected in the COPAS Accounting Procedure Exhibit (fixed rate, percentage, or well-type rate), apply the current-year COPAS inflation index adjustment, and flag any amounts exceeding the allowable ceiling."
+  inputs: ["JIB statement with overhead line items", "COPAS Accounting Procedure Exhibit (APE)", "Current COPAS annual inflation indices"]
+  outputs: ["COPAS overhead compliance report", "Overbilling exception notice with dollar variance"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Document parser", "Accounting system", "Spreadsheet"]
+  frequency: monthly
+  trigger: "Check whether Operator Y's overhead on the Niobrara wells matches the COPAS procedure we signed — last month's number looked too high."
+
+- id: draft-pay-status-change-letter-for-division-order-title-defe
+  title: "Draft pay status change letter for division order title defect"
+  domain: "Customer Success & Support"
+  roles: ["Division Order Analyst", "Royalty Accountant"]
+  description: "When a title defect is identified on an existing royalty or overriding royalty interest (ORRI), draft a statutory pay status change notification letter explaining the defect, required curative action, and suspension effective date per applicable state requirements, and log the suspense notation in the revenue system."
+  inputs: ["Title opinion excerpt with defect description", "Interest owner contact record", "Applicable state curative statute reference", "Current division order on file"]
+  outputs: ["Pay status change letter", "Suspense notation in revenue accounting system"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Document generation tool", "Land management system", "Accounting system"]
+  frequency: ad-hoc
+  trigger: "We found a gap in the chain of title on Mary Johnson's royalty interest — draft the pay status change letter and note the suspense."
+
+- id: compile-monthly-npdes-dmr-from-effluent-lab-results
+  title: "Compile monthly NPDES DMR from effluent lab results"
+  domain: "Legal & Compliance"
+  roles: ["Environmental Compliance Specialist", "Wastewater Treatment Plant Operator", "Regulatory Affairs Manager"]
+  description: "Pull bench sheet and certified lab analytical results for each permitted outfall, calculate monthly averages and maximums, and populate EPA Form 3320-1 (Discharge Monitoring Report) fields ready for eDMR submission. Flag any permit limit exceedances for supervisor review."
+  inputs: ["Certified lab analytical reports", "Bench sheets", "NPDES permit effluent limits table", "Prior month DMR"]
+  outputs: ["Completed EPA Form 3320-1 draft", "Exceedance flag summary"]
+  automation: high
+  human_in_loop: sign-off
+  tools: ["Spreadsheet", "Compliance tracking system", "Document generator"]
+  frequency: monthly
+  trigger: "End of month — I need to compile our outfall 001 and 002 DMR numbers and check against permit limits before the 28th eDMR deadline."
+
+- id: draft-24-hour-sanitary-sewer-overflow-notification-letter
+  title: "Draft 24-hour sanitary sewer overflow notification letter"
+  domain: "Legal & Compliance"
+  roles: ["Environmental Compliance Specialist", "Collection System Superintendent", "Utility Operations Manager"]
+  description: "Using field-reported SSO data (location, estimated volume, cause, receiving water), draft the required 24-hour verbal follow-up written notification to the state environmental agency and, where required, the local health department, in the format mandated by the NPDES permit."
+  inputs: ["SSO field incident report", "Permit notification requirements", "Receiving water body name and classification"]
+  outputs: ["Draft SSO written notification letter", "Notification log entry"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Document generator", "Compliance tracking system", "Email client"]
+  frequency: ad-hoc
+  trigger: "We had a force main break last night — I need to get the 24-hour SSO notification drafted to the regional office before 10 a.m."
+
+- id: reconcile-hazardous-waste-manifest-against-facility-return-c
+  title: "Reconcile hazardous waste manifest against facility return copy"
+  domain: "Legal & Compliance"
+  roles: ["Environmental Health & Safety Coordinator", "Hazardous Waste Manager", "Environmental Compliance Specialist"]
+  description: "Match the generator's copy of EPA Uniform Hazardous Waste Manifest (Form 8700-22) against the signed return copy received from the designated treatment, storage, and disposal facility (TSDF). Flag manifests that have not received a signed return copy within 35 days (land disposal) or 45 days (other) per RCRA regulations."
+  inputs: ["Generator manifest copies (EPA Form 8700-22)", "TSDF return copies", "Manifest tracking log"]
+  outputs: ["Reconciled manifest register", "Exception report for overdue return copies", "Draft exception report letter to state agency"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Spreadsheet", "Document management system", "Compliance tracking system"]
+  frequency: weekly
+  trigger: "Pull all manifests shipped in the last 45 days that still don't have a signed return copy — I need to know if we owe the state an exception report."
+
+- id: log-drinking-water-lab-results-and-flag-mcl-exceedances
+  title: "Log drinking water lab results and flag MCL exceedances"
+  domain: "Legal & Compliance"
+  roles: ["Water Quality Analyst", "Drinking Water Compliance Coordinator", "Laboratory Technician"]
+  description: "Enter certified lab analytical results for regulated contaminants into the compliance database, compare each result against the applicable Maximum Contaminant Level (MCL) or action level, and generate a violation notice flag for any exceedance requiring public notification or Tier 1/2/3 reporting."
+  inputs: ["Certified laboratory report", "Current MCL/action level reference table", "Sampling location schedule"]
+  outputs: ["Updated compliance result log", "MCL exceedance alert list", "Draft public notification trigger memo"]
+  automation: high
+  human_in_loop: approve
+  tools: ["LIMS", "Compliance tracking system", "Spreadsheet"]
+  frequency: weekly
+  trigger: "Lab just emailed the quarterly coliform and nitrate results — enter them and let me know if anything crossed an MCL."
+
+- id: track-backflow-preventer-annual-test-compliance-by-account
+  title: "Track backflow preventer annual test compliance by account"
+  domain: "Operations & Project Mgmt"
+  roles: ["Cross-Connection Control Coordinator", "Water Distribution Supervisor", "Utility Compliance Technician"]
+  description: "Cross-reference incoming certified tester test report forms (AWWA/state standard) against the customer account database to update each backflow preventer's test status. Identify accounts with tests overdue or approaching the annual due date and generate compliance outreach notices."
+  inputs: ["Certified backflow test report forms", "Account/device registry with due dates", "Prior notice log"]
+  outputs: ["Updated device compliance register", "Overdue account list", "Draft compliance notice letters"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Utility CIS/billing system", "Document management system", "Email client"]
+  frequency: weekly
+  trigger: "Generate a list of commercial accounts whose backflow preventer test is 30 or more days past due so I can send second notices."
+
+- id: compile-biosolids-land-application-daily-log-summary
+  title: "Compile biosolids land-application daily log summary"
+  domain: "Legal & Compliance"
+  roles: ["Biosolids Program Coordinator", "Wastewater Compliance Specialist", "Land Application Supervisor"]
+  description: "Aggregate daily field operator logs for biosolids land application (acres applied, wet tons, site ID, weather conditions) and calculate cumulative nitrogen and phosphorus loading rates against permit-allowed agronomic rates. Flag any site approaching its annual loading limit."
+  inputs: ["Daily field application logs", "Permit agronomic rate tables", "Site nutrient management plan"]
+  outputs: ["Monthly land-application summary report", "Loading rate compliance table", "Sites-at-risk flag list"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Spreadsheet", "Compliance tracking system", "GIS viewer"]
+  frequency: monthly
+  trigger: "End of month — aggregate the biosolids application logs for all active sites and show me which fields are within 20% of their annual nitrogen limit."
+
+- id: process-chain-of-custody-form-for-field-sample-submission
+  title: "Process chain-of-custody form for field sample submission"
+  domain: "Operations & Project Mgmt"
+  roles: ["Environmental Field Technician", "Water Quality Sampler", "Environmental Compliance Specialist"]
+  description: "Complete a chain-of-custody (COC) form from field collection data: sample IDs, collection date/time, matrix, preservation method, requested analyses, and sampler signature. Verify preservation codes and holding times against lab requirements before sample shipment."
+  inputs: ["Field sample collection notes", "Lab analysis request list", "Preservation and holding time reference table"]
+  outputs: ["Completed chain-of-custody form", "Sample label set", "Holding time deadline checklist"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["LIMS", "Document generator", "Spreadsheet"]
+  frequency: ad-hoc
+  trigger: "I collected effluent and receiving-water samples this morning — fill out the COC for the Priority Pollutant scan and flag anything with a 24-hour holding time."
+
+- id: reconcile-waste-collection-route-stops-against-billable-acco
+  title: "Reconcile waste collection route stops against billable accounts"
+  domain: "Finance & Accounting"
+  roles: ["Route Supervisor", "Billing Analyst", "Operations Coordinator"]
+  description: "Compare the completed service stop records from the onboard vehicle tracking or driver manifest against the scheduled stop list and customer billing file. Identify missed stops, extra pickups, container size mismatches, and skipped bulk-waste events that require billing adjustment or service credit."
+  inputs: ["Driver route manifest or GPS stop log", "Scheduled route list", "Customer billing account file"]
+  outputs: ["Route completion reconciliation report", "Billing adjustment list (credits and surcharges)", "Missed-stop work order queue"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Route management system", "Billing/CIS system", "Spreadsheet"]
+  frequency: daily
+  trigger: "Morning closeout — compare yesterday's completed stops on Route 14 against the billing accounts and flag anything that needs a credit or additional charge."
+
+- id: flag-high-consumption-anomalies-before-billing-cycle-close
+  title: "Flag high-consumption anomalies before billing cycle close"
+  domain: "Finance & Accounting"
+  roles: ["Billing Analyst", "Meter Services Coordinator", "Customer Service Representative"]
+  description: "Run a pre-billing exception report to identify accounts whose current read exceeds a configurable threshold (e.g., 3× rolling 12-month average or absolute gallons ceiling). Categorize anomalies by likely cause (meter read error, estimated read, possible leak) and route each to the appropriate resolution queue."
+  inputs: ["Current meter read file", "Rolling consumption history (12 months)", "Estimated-read flag list"]
+  outputs: ["High-consumption exception report", "Categorized resolution queue", "Draft customer leak notification letters"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Billing/CIS system", "Spreadsheet", "Document generator"]
+  frequency: monthly
+  trigger: "Billing cycle closes Friday — run the consumption exception report and pull anything over 200% of the account average so my team can verify before bills go out."
+
+- id: compile-ms4-stormwater-annual-report-bmp-status-table
+  title: "Compile MS4 stormwater annual report BMP status table"
+  domain: "Legal & Compliance"
+  roles: ["Stormwater Program Coordinator", "Environmental Compliance Specialist", "Municipal Stormwater Manager"]
+  description: "Gather best management practice (BMP) implementation status updates from field staff and department contacts for each minimum control measure required under the MS4 NPDES permit, and populate the annual report BMP status table with completion status, measurable goals met/not met, and next-year planned activities."
+  inputs: ["Prior year BMP status table", "Field staff BMP activity logs", "MS4 permit minimum control measures list"]
+  outputs: ["Draft MS4 annual report BMP table", "Incomplete-data request list for field staff"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["Document generator", "Spreadsheet", "Compliance tracking system"]
+  frequency: quarterly
+  trigger: "Annual report is due in 60 days — pull last year's BMP table, prefill the activities we logged, and show me which rows still need field input."
+
+- id: update-environmental-permit-renewal-tracker-with-agency-corr
+  title: "Update environmental permit renewal tracker with agency correspondence"
+  domain: "Legal & Compliance"
+  roles: ["Environmental Compliance Specialist", "Regulatory Affairs Manager", "Permit Administrator"]
+  description: "Log new agency correspondence (acknowledgment letters, requests for additional information, draft permit notices, public comment period openings) into the permit renewal tracking register. Update milestone dates, responsible parties, and outstanding action items for each active permit renewal."
+  inputs: ["Incoming agency correspondence (email or letter)", "Permit renewal tracker", "Permit expiration calendar"]
+  outputs: ["Updated permit renewal tracker", "Action item list with due dates", "Internal status update memo"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Document management system", "Spreadsheet", "Email client", "Calendar"]
+  frequency: weekly
+  trigger: "We got a letter from the state requesting additional info on the NPDES renewal — log it, update the tracker, and add a task to respond within the 30-day window."
+
+- id: prepare-leachate-analysis-summary-for-landfill-groundwater-m
+  title: "Prepare leachate analysis summary for landfill groundwater monitoring report"
+  domain: "Data & Reporting (BI)"
+  roles: ["Landfill Environmental Monitor", "Environmental Compliance Specialist", "Geotechnical/Hydrogeological Consultant"]
+  description: "Pull quarterly groundwater monitoring well and leachate lab results, compare constituent concentrations against groundwater protection standards and background values, and draft the summary table for the semi-annual or annual detection monitoring report required under the post-closure permit."
+  inputs: ["Certified lab analytical reports for monitoring wells", "Background concentration table", "Groundwater protection standards", "Prior period monitoring report"]
+  outputs: ["Constituent trend summary table", "Detection monitoring compliance determination", "Draft regulatory report section"]
+  automation: high
+  human_in_loop: sign-off
+  tools: ["Spreadsheet", "LIMS", "Document generator", "Statistical analysis tool"]
+  frequency: quarterly
+  trigger: "Lab results are back for Q2 monitoring wells — build the detection monitoring summary table and flag any constituent that statistically exceeds background."
+
+- id: generate-lqg-hazardous-waste-biennial-report-data-extract
+  title: "Generate LQG hazardous waste biennial report data extract"
+  domain: "Legal & Compliance"
+  roles: ["Hazardous Waste Manager", "Environmental Health & Safety Coordinator", "Environmental Compliance Specialist"]
+  description: "For even-year EPA Biennial Report (BR) submission, extract two-year waste generation, on-site management, and off-site shipment records from the manifest tracking log, calculate totals by waste code and management method, and populate the BR state reporting forms or e-Manifest export file."
+  inputs: ["Two-year manifest log", "Waste stream characterization records", "EPA waste code reference table", "Prior biennial report"]
+  outputs: ["Draft Biennial Report data tables", "Waste-by-code quantity summary", "e-Manifest export file"]
+  automation: high
+  human_in_loop: sign-off
+  tools: ["Spreadsheet", "Compliance tracking system", "Document generator"]
+  frequency: quarterly
+  trigger: "Biennial Report year — pull all our manifest data since January 2024 and build the waste-by-code table so I can review it before we certify and submit."
+
+- id: audit-utility-invoice-against-submeter-readings-and-allocate
+  title: "Audit utility invoice against submeter readings and allocate costs by tenant"
+  domain: "Finance & Accounting"
+  roles: ["Utility Manager", "Facilities Manager", "Lease Administration Manager"]
+  description: "Compare utility provider invoice totals against building submeter logs, flag variances above threshold, and draft a cost-allocation schedule broken down by tenant suite or cost center per lease proration method."
+  inputs: ["utility invoice", "submeter log", "lease allocation schedule", "prior-period invoice"]
+  outputs: ["variance report", "tenant cost-allocation schedule"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document parser", "spreadsheet", "email"]
+  frequency: monthly
+  trigger: "The gas bill came in 18% above last month — run the submeter audit and generate the allocation sheet for all tenants"
+
+- id: generate-preventive-maintenance-work-orders-from-cmms-asset
+  title: "Generate preventive-maintenance work orders from CMMS asset schedule"
+  domain: "Operations & Project Mgmt"
+  roles: ["CMMS Administrator", "Maintenance Supervisor", "Building Engineer"]
+  description: "Query the CMMS asset register for equipment whose PM interval (runtime hours or calendar days) has elapsed and auto-generate work orders with trade classification, priority, and estimated labor hours pre-populated."
+  inputs: ["CMMS asset register", "PM interval schedule", "last-completed work order log"]
+  outputs: ["batch PM work orders"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["CMMS", "calendar"]
+  frequency: weekly
+  trigger: "Pull everything due for PM this week and create the work orders in the system"
+
+- id: produce-vendor-sla-compliance-scorecard-from-work-order-comp
+  title: "Produce vendor SLA compliance scorecard from work-order completion data"
+  domain: "Procurement & Vendor Mgmt"
+  roles: ["Facilities Manager", "Facilities Coordinator", "Vendor Relationship Manager"]
+  description: "Extract work-order response and completion timestamps for each service vendor, compare against contracted SLA tiers (Priority 1/2/3), and produce a scorecard with breach counts, trend lines, and a liquidated-damages calculation where applicable."
+  inputs: ["work order completion log", "vendor SLA exhibit", "service contract"]
+  outputs: ["SLA compliance scorecard", "breach summary", "liquidated-damages calculation"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["CMMS", "spreadsheet", "reporting dashboard"]
+  frequency: monthly
+  trigger: "Run the SLA scorecard for Q2 before the vendor review meeting on Thursday"
+
+- id: reconcile-elevator-certificates-of-inspection-against-ahj-ex
+  title: "Reconcile elevator certificates of inspection against AHJ expiry register"
+  domain: "Legal & Compliance"
+  roles: ["Compliance Manager", "Facilities Manager", "Building Engineer"]
+  description: "Cross-check elevator certificates of inspection (COIs) issued by the Authority Having Jurisdiction (AHJ) against the facility expiry register, flag certificates expiring within 90 days, and draft renewal-initiation letters to the contracted elevator company."
+  inputs: ["AHJ certificate of inspection", "elevator expiry register", "elevator maintenance contract"]
+  outputs: ["expiry gap report", "renewal initiation letters"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["document parser", "calendar", "email"]
+  frequency: monthly
+  trigger: "Check which elevator COIs are expiring in the next quarter and draft the renewal requests to the elevator company"
+
+- id: extract-fire-life-safety-deficiencies-from-inspection-report
+  title: "Extract fire-life-safety deficiencies from inspection report and build punch list"
+  domain: "Legal & Compliance"
+  roles: ["Facilities Manager", "Building Engineer", "Life Safety Compliance Specialist"]
+  description: "Parse a fire-life-safety inspection report (sprinkler, fire alarm, portable extinguisher) issued by the AHJ or third-party inspector, extract open deficiency items with NFPA code references, and create a tracked punch list with assigned trades and target remediation dates."
+  inputs: ["fire-life-safety inspection report", "NFPA code reference sheet", "prior deficiency log"]
+  outputs: ["deficiency punch list", "trade dispatch memo"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document parser", "task tracker", "email"]
+  frequency: ad-hoc
+  trigger: "The annual sprinkler inspection report just came in from the AHJ — extract all deficiencies and build the punch list with NFPA references"
+
+- id: populate-cmms-asset-records-from-equipment-commissioning-sub
+  title: "Populate CMMS asset records from equipment commissioning submittals"
+  domain: "Operations & Project Mgmt"
+  roles: ["CMMS Administrator", "Capital Projects Manager", "Building Engineer"]
+  description: "Parse equipment submittal sheets and O&M manuals delivered at capital project close-out to draft new CMMS asset records with nameplate data, warranty expiry, manufacturer-recommended PM intervals, and assigned cost center."
+  inputs: ["equipment submittal sheets", "O&M manuals", "commissioning report", "project asset list"]
+  outputs: ["CMMS asset records (draft)", "warranty register entries"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document parser", "CMMS"]
+  frequency: ad-hoc
+  trigger: "We just commissioned the new AHU units — create the asset records in the CMMS from the O&M submittals and start the PM clock"
+
+- id: update-capital-project-punch-list-status-and-generate-owner
+  title: "Update capital project punch-list status and generate owner close-out report"
+  domain: "Operations & Project Mgmt"
+  roles: ["Capital Projects Manager", "Facilities Manager", "Project Coordinator"]
+  description: "Aggregate contractor-submitted punch-list responses against the outstanding items list, update completion status per responsible subcontractor, and produce a formatted owner's punch-list status report showing open versus closed items ahead of substantial completion sign-off."
+  inputs: ["GC punch list", "contractor response log", "substantial completion certificate"]
+  outputs: ["punch-list status report", "open-item summary by contractor"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "task tracker", "email"]
+  frequency: weekly
+  trigger: "Update the punch list before tomorrow's project close-out meeting and show me what's still open by contractor"
+
+- id: draft-tenant-move-out-condition-report-from-inspection-check
+  title: "Draft tenant move-out condition report from inspection checklist and photos"
+  domain: "Operations & Project Mgmt"
+  roles: ["Property Manager", "Facilities Coordinator", "Lease Administration Manager"]
+  description: "Combine a completed move-out inspection checklist with timestamped photos to produce a formatted condition report itemizing damage beyond normal wear, referencing the prior move-in baseline, and estimating restoration costs by trade."
+  inputs: ["move-out inspection checklist", "move-out photos", "move-in condition report"]
+  outputs: ["move-out condition report", "damage itemization and cost estimate"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document parser", "image analysis", "word processor"]
+  frequency: ad-hoc
+  trigger: "Tenant in Suite 210 vacated Friday — here are the photos and checklist, draft the condition report against the move-in baseline"
+
+- id: compile-space-utilization-summary-from-occupancy-sensor-or-b
+  title: "Compile space-utilization summary from occupancy sensor or badge-access data"
+  domain: "Data & Reporting (BI)"
+  roles: ["Space Planner", "Facilities Manager", "Workplace Strategy Manager"]
+  description: "Aggregate raw badge-access or occupancy-sensor exports by floor and zone, calculate peak and average utilization rates against design capacity, and produce a heat-map summary with persistently underutilized areas flagged for consolidation or densification."
+  inputs: ["badge-access or sensor data export", "floor plan zone mapping", "design-capacity table"]
+  outputs: ["space utilization report", "utilization heat map", "underutilization flag list"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "BI reporting dashboard", "floor-plan software"]
+  frequency: weekly
+  trigger: "Pull last week's sensor data and show me which floors are consistently under 40% utilized so we can plan the consolidation"
+
+- id: flag-service-contracts-approaching-expiry-and-draft-re-bid-i
+  title: "Flag service contracts approaching expiry and draft re-bid initiation memo"
+  domain: "Procurement & Vendor Mgmt"
+  roles: ["Facilities Manager", "Facilities Coordinator", "Procurement Specialist"]
+  description: "Scan the service-contract register for agreements expiring within a configurable look-ahead window (60–90 days), categorize by trade (HVAC maintenance, janitorial, landscaping, pest control, elevator), and draft a re-bid or sole-source renewal initiation memo per procurement policy thresholds."
+  inputs: ["service contract register", "vendor contact list", "procurement policy thresholds"]
+  outputs: ["contract expiry alert list", "re-bid or renewal initiation memos"]
+  automation: high
+  human_in_loop: approve
+  tools: ["contract management system", "calendar", "email", "word processor"]
+  frequency: monthly
+  trigger: "What service contracts are expiring in the next 90 days and which ones need to go out to competitive bid?"
+
+- id: audit-backflow-preventer-test-reports-for-completeness-befor
+  title: "Audit backflow preventer test reports for completeness before water authority filing"
+  domain: "Legal & Compliance"
+  roles: ["Facilities Manager", "Building Engineer", "Compliance Coordinator"]
+  description: "Review annual backflow preventer test reports submitted by the licensed plumbing contractor, verify each device serial number, test date, pass/fail result, and tester backflow certification number are present, then assemble the completed submission package for the municipal water authority."
+  inputs: ["backflow test reports", "device inventory list", "water authority submission form", "tester certification roster"]
+  outputs: ["completed regulatory submission package", "deficiency flag list"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["document parser", "form filler", "email"]
+  frequency: ad-hoc
+  trigger: "The backflow test reports came in from the plumber — check them for completeness and prep the water authority filing"
+
+- id: reconcile-energy-star-portfolio-manager-entries-against-util
+  title: "Reconcile ENERGY STAR Portfolio Manager entries against utility invoices"
+  domain: "Finance & Accounting"
+  roles: ["Utility Manager", "Sustainability Coordinator", "Facilities Manager"]
+  description: "Cross-reference consumption and cost figures entered in ENERGY STAR Portfolio Manager against corresponding utility invoices for the benchmark period, flag data-entry mismatches, correct entries, and regenerate the ENERGY STAR score and site/source EUI summary."
+  inputs: ["Portfolio Manager data export", "utility invoices", "meter configuration file"]
+  outputs: ["reconciled utility data table", "updated ENERGY STAR score", "EUI summary"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document parser", "spreadsheet", "energy management platform"]
+  frequency: monthly
+  trigger: "Our Portfolio Manager score dropped unexpectedly — reconcile the entries against the actual bills for Q1 and fix any mismatches"
+
+- id: triage-and-dispatch-corrective-work-orders-by-trade-and-prio
+  title: "Triage and dispatch corrective work orders by trade and priority class"
+  domain: "Operations & Project Mgmt"
+  roles: ["Facilities Coordinator", "Maintenance Supervisor", "Dispatch Coordinator"]
+  description: "Parse incoming corrective-maintenance requests (tenant portal, FM inbox, IoT alert), classify by trade (mechanical, electrical, plumbing, general), assign a priority class (P1 emergency / P2 urgent / P3 routine), and route to the appropriate in-house technician or on-call vendor with estimated response time."
+  inputs: ["work order requests", "technician availability roster", "vendor on-call schedule"]
+  outputs: ["dispatched work orders", "technician and vendor assignment notifications"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["CMMS", "email", "SMS messaging", "calendar"]
+  frequency: daily
+  trigger: "There are 14 new work requests in the queue from overnight — triage and dispatch them before the morning shift briefing"
+
+- id: reconcile-officer-posted-hours-against-client-billing-statem
+  title: "Reconcile officer posted hours against client billing statement"
+  domain: "Finance & Accounting"
+  roles: ["Security Billing Coordinator", "Account Manager", "Security Operations Manager"]
+  description: "Compare officer time-and-attendance records against the client billing statement line-by-line to surface hour discrepancies before invoice submission. Flags post-level variances and annotates the draft invoice."
+  inputs: ["timekeeping system export", "post schedule", "draft client invoice"]
+  outputs: ["billing variance report", "annotated corrected invoice"]
+  automation: high
+  human_in_loop: approve
+  tools: ["spreadsheet", "billing system", "timekeeping system"]
+  frequency: monthly
+  trigger: "Reconcile this month's posted hours for Site 42 against the billing statement before I send the invoice."
+
+- id: flag-missed-patrol-checkpoints-in-guard-tour-log
+  title: "Flag missed patrol checkpoints in guard tour log"
+  domain: "Operations & Project Mgmt"
+  roles: ["Security Supervisor", "Operations Center Analyst"]
+  description: "Parse guard tour system exports to identify skipped or late NFC/wand checkpoint scans against the post-order-mandated patrol frequency. Produces an exception report with officer, post, checkpoint ID, and time delta."
+  inputs: ["guard tour system export", "post order patrol schedule"]
+  outputs: ["missed-checkpoint exception report"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["guard tour management system", "spreadsheet"]
+  frequency: daily
+  trigger: "Pull last night's tour data for the downtown campus and flag any missed checkpoints."
+
+- id: consolidate-daily-activity-reports-into-client-weekly-summar
+  title: "Consolidate daily activity reports into client weekly summary"
+  domain: "Customer Success & Support"
+  roles: ["Account Manager", "Security Operations Manager"]
+  description: "Aggregate officer Daily Activity Reports (DARs) from all posts at a client site into a single coherent weekly narrative, ordered by date and post, for client-facing delivery."
+  inputs: ["DAR submissions", "site post roster"]
+  outputs: ["weekly client activity summary report"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["report management system", "document editor"]
+  frequency: weekly
+  trigger: "Compile this week's DARs for Northgate Mall into the weekly client summary."
+
+- id: queue-guard-card-expiration-renewal-reminders
+  title: "Queue guard card expiration renewal reminders"
+  domain: "HR & People Ops"
+  roles: ["Licensing Compliance Officer", "HR Coordinator", "Workforce Manager"]
+  description: "Scan the officer certification register for state-issued guard cards expiring within 60 days and draft renewal reminder notices to affected officers and their direct supervisors, including state renewal portal links."
+  inputs: ["officer certification register", "state licensing renewal deadlines"]
+  outputs: ["expiring guard card list", "renewal reminder draft notices"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["HR information system", "document editor"]
+  frequency: weekly
+  trigger: "Which officers have guard cards expiring in the next 60 days? Draft reminders for their supervisors."
+
+- id: draft-bolo-alert-for-distribution-across-affected-posts
+  title: "Draft BOLO alert for distribution across affected posts"
+  domain: "Communications & PR"
+  roles: ["Security Operations Center Analyst", "Security Operations Manager"]
+  description: "Convert raw incident or suspicious-person notes into a formatted Be On the Lookout (BOLO) alert—suspect/vehicle description, last-seen location, guidance for officers—for distribution to all affected site posts."
+  inputs: ["incident report or narrative", "suspect/vehicle description", "affected site list"]
+  outputs: ["formatted BOLO alert", "post distribution list"]
+  automation: high
+  human_in_loop: approve
+  tools: ["document editor", "internal messaging system"]
+  frequency: ad-hoc
+  trigger: "We have a trespass suspect from last night's incident. Draft a BOLO for all downtown posts."
+
+- id: audit-visitor-badge-log-against-authorized-access-roster
+  title: "Audit visitor badge log against authorized access roster"
+  domain: "Legal & Compliance"
+  roles: ["Security Site Supervisor", "Access Control Coordinator", "Compliance Auditor"]
+  description: "Cross-reference the visitor and contractor badge-issuance log against the client's authorized access roster to flag unauthorized badge grants, unescorted-access violations, and unreturned badges."
+  inputs: ["visitor/contractor badge issuance log", "authorized access roster", "escort and access policy"]
+  outputs: ["access anomaly report", "unreturned badge list"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["access control system", "spreadsheet"]
+  frequency: weekly
+  trigger: "Audit this week's visitor badge log for Building C against the approved access list."
+
+- id: identify-uncovered-post-gaps-from-shift-clock-in-records
+  title: "Identify uncovered post gaps from shift clock-in records"
+  domain: "Operations & Project Mgmt"
+  roles: ["Security Scheduler", "Workforce Manager", "Security Operations Manager"]
+  description: "Compare the posted shift schedule against actual officer clock-in/clock-out timestamps to surface unstaffed post windows, rank them by duration, and produce a backfill action list."
+  inputs: ["shift schedule", "timekeeping clock-in/out records"]
+  outputs: ["uncovered post gap report", "backfill action list"]
+  automation: high
+  human_in_loop: approve
+  tools: ["workforce management system", "spreadsheet"]
+  frequency: daily
+  trigger: "Show me any posts that were uncovered last night due to no-shows or late arrivals."
+
+- id: compile-incident-reports-into-monthly-loss-event-trend-summa
+  title: "Compile incident reports into monthly loss-event trend summary"
+  domain: "Data & Reporting (BI)"
+  roles: ["Security Operations Manager", "Account Manager", "Security Risk Manager"]
+  description: "Aggregate incident reports by category (theft, trespass, injury, property damage, fire/medical assist) across all client sites for the month, producing counts, trend lines, and a notable-events narrative for client review."
+  inputs: ["incident report database export", "site list", "incident classification taxonomy"]
+  outputs: ["monthly loss-event trend summary", "category counts table"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["report management system", "spreadsheet"]
+  frequency: monthly
+  trigger: "Build the monthly incident summary across all retail sites for Q2."
+
+- id: verify-subcontractor-officer-credentials-before-deployment
+  title: "Verify subcontractor officer credentials before deployment"
+  domain: "Legal & Compliance"
+  roles: ["Licensing Compliance Officer", "Security Operations Manager"]
+  description: "Confirm that subcontracted officers hold valid state guard cards, required site-specific endorsements (armed carry, first aid/CPR, site induction), and completed background checks before authorizing deployment at a client site."
+  inputs: ["subcontractor officer roster", "credential copies", "site requirements matrix"]
+  outputs: ["credential verification checklist", "deployment clearance memo", "deficiency list"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["document management system", "state licensing database"]
+  frequency: ad-hoc
+  trigger: "We're onboarding 12 subcontract officers for the stadium event this weekend. Verify their credentials against site requirements."
+
+- id: draft-revised-post-order-from-client-change-request
+  title: "Draft revised post order from client change request"
+  domain: "Operations & Project Mgmt"
+  roles: ["Post Order Writer", "Account Manager", "Security Operations Manager"]
+  description: "Translate a client's requested site-procedure change into updated post order language, flag conflicts with existing instructions, and produce a redline draft with a change-summary log for supervisor sign-off."
+  inputs: ["existing post order", "client change request email or notes", "site-specific procedures"]
+  outputs: ["revised post order draft (redline)", "change summary log"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document editor", "document management system"]
+  frequency: ad-hoc
+  trigger: "The client wants to update the after-hours access procedure for Dock 4. Revise the post order and note what changed."
+
+- id: cross-check-armed-post-assignments-against-firearms-permit-r
+  title: "Cross-check armed post assignments against firearms permit register"
+  domain: "Legal & Compliance"
+  roles: ["Firearms Program Manager", "Licensing Compliance Officer"]
+  description: "Cross-check every officer currently assigned to an armed post against the carry-permit register and firearms qualification records to confirm currency and flag any gap before the next payroll cycle."
+  inputs: ["armed post assignment list", "firearms carry permit register", "annual qualification records"]
+  outputs: ["armed-officer compliance gap report", "reassignment action list"]
+  automation: high
+  human_in_loop: approve
+  tools: ["spreadsheet", "HR information system"]
+  frequency: monthly
+  trigger: "Confirm every officer on an armed post this month has a current carry permit and is within their qualification window."
+
+- id: generate-overtime-projection-alert-from-payroll-preview
+  title: "Generate overtime projection alert from payroll preview"
+  domain: "Finance & Accounting"
+  roles: ["Payroll Coordinator", "Security Scheduler", "Security Operations Manager"]
+  description: "Scan the mid-week payroll preview for officers projected to exceed overtime thresholds, flag each affected officer and post, and produce a cost-impact summary for management before the schedule locks."
+  inputs: ["payroll preview export", "overtime policy thresholds", "current shift schedule"]
+  outputs: ["overtime projection alert list", "estimated cost-impact summary"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["payroll system", "spreadsheet"]
+  frequency: weekly
+  trigger: "Flag anyone projected to hit overtime this week before the schedule locks tomorrow morning."
+
+- id: map-alarm-dispatch-response-times-against-client-sla-thresho
+  title: "Map alarm dispatch response times against client SLA thresholds"
+  domain: "Data & Reporting (BI)"
+  roles: ["Security Operations Center Manager", "Account Manager", "Quality Assurance Coordinator"]
+  description: "Extract alarm dispatch records, calculate officer on-scene arrival times, compare each against the contractually agreed response-time SLA per site, and flag breaches with timestamps for root-cause notation."
+  inputs: ["dispatch log export", "client SLA matrix", "site address list"]
+  outputs: ["SLA compliance report", "response-time breach flag list"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["dispatch management system", "spreadsheet"]
+  frequency: weekly
+  trigger: "Pull last week's alarm responses for all hospital sites and flag any that breached our SLA."
+
+- id: fuzzy-match-leverage-analysis-for-project-quote
+  title: "Fuzzy-match leverage analysis for project quote"
+  domain: "Sales & BizDev"
+  roles: ["Translation Project Manager", "Pre-Sales Analyst", "Localization Engineer"]
+  description: "Run source files against the client's translation memory to produce a match-band breakdown (100%, 95–99%, 85–94%, 75–84%, 50–74%, no-match, repetitions) and calculate weighted word counts for the client quote."
+  inputs: ["Source files (DOCX, XLIFF, HTML)", "Client TM (TMX)", "Rate card per match band"]
+  outputs: ["Leverage report spreadsheet", "Weighted word-count quote line items"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["CAT tool", "TM system", "Spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Run a leverage analysis on these 15 source files against the client TM and give me a weighted word-count breakdown for the quote."
+
+- id: mqm-error-scorecard-compilation-from-lqa-annotations
+  title: "MQM error-scorecard compilation from LQA annotations"
+  domain: "Data & Reporting (BI)"
+  roles: ["LQA Manager", "Translation QA Analyst", "Quality Manager"]
+  description: "Aggregate reviewer error annotations (Accuracy, Fluency, Terminology, Style, Locale Convention) into MQM-weighted quality scores per language pair and linguist, flagging any pair below the client's pass threshold."
+  inputs: ["LQA annotation files (XLIFF or spreadsheet)", "MQM error taxonomy and severity weights", "Client pass/fail threshold"]
+  outputs: ["MQM error scorecard per linguist", "Language-pair quality summary report"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["QA annotation tool", "Spreadsheet", "Reporting dashboard"]
+  frequency: weekly
+  trigger: "Compile the LQA error annotations from this week's reviewer batch into MQM scorecards per language pair and flag any fails."
+
+- id: linguist-po-generation-against-confirmed-net-word-count
+  title: "Linguist PO generation against confirmed net word count"
+  domain: "Finance & Accounting"
+  roles: ["Translation Project Manager", "Vendor Manager", "Accounts Payable Coordinator"]
+  description: "Issue purchase orders to freelance translators and reviewers based on confirmed net word count, agreed rate card by language pair and service type (translation, LQA review, MTPE), and project job number."
+  inputs: ["Confirmed net word count per linguist", "Linguist rate card", "Project job number"]
+  outputs: ["Signed PO PDF per linguist", "PO log entry in ERP/TMS"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Translation management system (TMS)", "ERP", "Document generator"]
+  frequency: daily
+  trigger: "Generate POs for all linguists on project #4812 using the confirmed net word counts and their rate cards."
+
+- id: xliff-tag-integrity-and-segment-status-pre-delivery-validati
+  title: "XLIFF tag-integrity and segment-status pre-delivery validation"
+  domain: "Operations & Project Mgmt"
+  roles: ["Localization Engineer", "Translation Project Manager"]
+  description: "Validate XLIFF handback files for broken or missing inline tags, locked untranslated segments, duplicate segment IDs, and target-language encoding issues before sending the final deliverable to the client."
+  inputs: ["XLIFF handback files", "Source XLIFF reference", "Client file specification"]
+  outputs: ["Validation error report", "Cleaned XLIFF files ready for delivery"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["XLIFF validator", "CAT tool", "Command-line diff utility"]
+  frequency: daily
+  trigger: "Run a pre-delivery check on these XLIFF files for broken tags, untranslated segments, and duplicate IDs before I send them to the client."
+
+- id: mt-post-editing-effort-classification-for-project-pricing
+  title: "MT post-editing effort classification for project pricing"
+  domain: "Business / Functional Analysis"
+  roles: ["MT Specialist", "Translation Project Manager", "Localization Engineer"]
+  description: "Score raw machine-translation output segments against source using edit-distance metrics and MT confidence scores to classify each segment as Light PE or Full PE, and flag segments requiring full human retranslation, enabling accurate MTPE project pricing."
+  inputs: ["MT engine output (bilingual file)", "Source segments", "PE speed benchmarks by language pair"]
+  outputs: ["Segment-level PE effort classification", "MTPE pricing estimate sheet"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["MT evaluation tool", "CAT tool", "Spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Score these MT output files for light vs. full PE effort and flag segments needing full retranslation so I can price the MTPE job."
+
+- id: multilingual-dtp-overset-text-issue-tracker-update
+  title: "Multilingual DTP overset-text issue tracker update"
+  domain: "Operations & Project Mgmt"
+  roles: ["DTP Coordinator", "Localization DTP Specialist", "Translation Project Manager"]
+  description: "Log overset text, underfit text boxes, and font-substitution issues found across language versions of a DTP deliverable (InDesign, Illustrator) into the DTP review tracker, noting character-count delta and assigning corrective actions to DTP operators."
+  inputs: ["DTP review notes per language", "Source layout file", "Character-count targets per text frame"]
+  outputs: ["Updated DTP issue tracker", "Operator task list with delta notes"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["Spreadsheet", "Project management tool", "DTP application"]
+  frequency: weekly
+  trigger: "Update the DTP review tracker with all overset-text issues found across the 12 language versions of the product brochure."
+
+- id: vendor-rate-card-reconciliation-against-linguist-invoices
+  title: "Vendor rate-card reconciliation against linguist invoices"
+  domain: "Finance & Accounting"
+  roles: ["Vendor Manager", "Accounts Payable Coordinator", "Localization Operations Manager"]
+  description: "Match each line item on incoming freelance linguist invoices against the contracted rate card (by language pair, service type, and volume tier), compute expected amounts, and flag any discrepancies exceeding tolerance for dispute resolution."
+  inputs: ["Linguist invoices (PDF or CSV)", "Contracted rate card per linguist", "Completed PO log"]
+  outputs: ["Reconciliation worksheet with variance flags", "Approved invoice batch for payment run"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Spreadsheet", "ERP", "TMS"]
+  frequency: monthly
+  trigger: "Reconcile this batch of linguist invoices against their rate cards and flag any lines that don't match."
+
+- id: candidate-term-extraction-and-tbx-conflict-check
+  title: "Candidate term extraction and TBX conflict check"
+  domain: "Operations & Project Mgmt"
+  roles: ["Terminologist", "Localization Engineer", "Translation Project Manager"]
+  description: "Parse new source content to extract candidate terminology, compare against the approved TBX termbase, surface net-new terms lacking approved translations, and flag terms that conflict with existing approved entries for terminologist review."
+  inputs: ["Source document", "Approved TBX termbase", "Client style guide"]
+  outputs: ["Candidate term list with conflict flags", "TBX update proposal for terminologist approval"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["Term extraction tool", "TBX editor", "CAT tool"]
+  frequency: ad-hoc
+  trigger: "Extract new candidate terms from this source document and flag any conflicts with our approved termbase before project kick-off."
+
+- id: on-time-delivery-report-by-pm-and-language-pair
+  title: "On-time delivery report by PM and language pair"
+  domain: "Data & Reporting (BI)"
+  roles: ["Localization Operations Manager", "Account Manager", "Translation Project Manager"]
+  description: "Pull project close-out timestamps and committed delivery dates from the TMS to compute on-time delivery percentage (OTD%) sliced by project manager, client, and language pair, and surface root-cause codes for late deliveries."
+  inputs: ["TMS project delivery log", "Committed delivery dates", "Late-delivery root-cause codes"]
+  outputs: ["OTD% summary dashboard", "PM-level late-delivery breakdown with root-cause tags"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["TMS", "BI/reporting tool", "Spreadsheet"]
+  frequency: monthly
+  trigger: "Generate the OTD report for last month broken down by PM and language pair and show me where we're consistently late."
+
+- id: pseudo-translation-file-generation-for-software-ui-testing
+  title: "Pseudo-translation file generation for software UI testing"
+  domain: "Operations & Project Mgmt"
+  roles: ["Localization Engineer", "Localization Test Manager", "QA Engineer (Localization)"]
+  description: "Generate pseudo-translated resource files (JSON, RESX, XLIFF) by expanding source strings with accented characters and length-padding tokens so development teams can run string-extraction completeness checks and layout stress tests before linguistic translation begins."
+  inputs: ["Source resource files (JSON, RESX, XLIFF)", "Pseudo-translation expansion ratio by language"]
+  outputs: ["Pseudo-translated resource files", "Unexportable-string report for dev team"]
+  automation: high
+  human_in_loop: none
+  tools: ["Localization engineering script", "CAT tool", "Version control system"]
+  frequency: ad-hoc
+  trigger: "Generate pseudo-translated files from these resource bundles so the dev team can run layout and string-expansion tests before we hand off to linguists."
+
+- id: cat-project-package-pre-flight-check-before-linguist-dispatc
+  title: "CAT project package pre-flight check before linguist dispatch"
+  domain: "Operations & Project Mgmt"
+  roles: ["Localization Engineer", "Translation Project Manager"]
+  description: "Validate a CAT-tool project package (SDLPPX, MQXLIFF, or TTXP) to confirm the correct TM is attached and writable, the client termbase is linked, language-pair settings match the PO, and segment filters are configured per job instructions before the package is dispatched to the linguist."
+  inputs: ["CAT project package file", "Job instructions", "Approved TM and TBX references"]
+  outputs: ["Pre-flight checklist sign-off", "Corrected project package"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["CAT tool", "TMS", "Checklist automation script"]
+  frequency: daily
+  trigger: "Check this sdlppx package before I send it: confirm the TM is attached, termbase is linked, and language pair matches the PO."
+
+- id: iso-17100-subcontractor-competency-file-audit
+  title: "ISO 17100 subcontractor competency file audit"
+  domain: "Legal & Compliance"
+  roles: ["Vendor Manager", "Quality Manager", "Compliance Officer (Localization)"]
+  description: "Verify that all linguists assigned to client projects hold current proof-of-competency documents required under ISO 17100 (CV with native-language declaration, signed NDA, qualification test result, current contact details) and flag any gaps before the next audit cycle."
+  inputs: ["Linguist roster for the period", "ISO 17100 competency document checklist", "Vendor management system records"]
+  outputs: ["Compliance gap report per linguist", "Remediation action list for vendor manager"]
+  automation: medium
+  human_in_loop: sign-off
+  tools: ["Vendor management system", "Document management system", "Spreadsheet"]
+  frequency: quarterly
+  trigger: "Audit all linguists assigned to this client's projects this quarter and confirm their ISO 17100 competency files are complete and current."
+
+- id: tm-segment-quarantine-for-superseded-product-terminology
+  title: "TM segment quarantine for superseded product terminology"
+  domain: "Operations & Project Mgmt"
+  roles: ["Translation Memory Administrator", "Terminologist", "Localization Engineer"]
+  description: "Query the translation memory for segments containing a retired product name, brand term, or regulatory label and batch-flag those segments as 'penalty' or move them to a quarantine TM to prevent auto-propagation into new projects while preserving the audit trail."
+  inputs: ["Active TM (TMX)", "List of superseded terms or brand names", "Client TM governance policy"]
+  outputs: ["Quarantine TM with flagged segments", "Change log of affected segments for client review"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["TM management tool", "CAT tool", "Spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Flag and quarantine all TM segments containing the retired product name before we kick off the next translation batch."
+
+- id: validate-survey-skip-logic-and-pipe-text-in-programmed-scrip
+  title: "Validate survey skip logic and pipe-text in programmed script"
+  domain: "Operations & Project Mgmt"
+  roles: ["Survey Programmer", "Research Operations Manager"]
+  description: "Parse the programmed questionnaire script to verify all skip patterns route to the correct question nodes and all pipe variables reference valid prior response fields. Surfaces broken skips, orphaned quota screens, and unresolved pipe tokens before launch."
+  inputs: ["programmed questionnaire script", "routing specification", "pipe variable map", "quota screen definitions"]
+  outputs: ["QC issue log with line references", "annotated script with flagged errors", "launch sign-off checklist"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["survey scripting platform", "document parser", "diff tool"]
+  frequency: ad-hoc
+  trigger: "Check the skip logic in this survey script before we push to soft launch"
+
+- id: draft-initial-code-frame-from-open-end-verbatim-sample
+  title: "Draft initial code frame from open-end verbatim sample"
+  domain: "Business / Functional Analysis"
+  roles: ["Coding Specialist", "Research Analyst"]
+  description: "Analyze a stratified sample of open-end responses to construct a mutually exclusive, collectively exhaustive thematic code frame, including code numbers, labels, and written inclusion/exclusion criteria for each bucket."
+  inputs: ["sample verbatim file (50-200 responses)", "research objectives document", "prior-wave code frame if applicable"]
+  outputs: ["code frame document with numeric codes and definitions", "residual/miscellaneous bucket specification"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["text analysis tool", "spreadsheet", "document editor"]
+  frequency: ad-hoc
+  trigger: "Build a code frame from this sample of 100 open-ends so we can kick off full coding"
+
+- id: flag-speeders-straight-liners-and-low-loi-completes-for-remo
+  title: "Flag speeders, straight-liners, and low-LOI completes for removal"
+  domain: "Data & Reporting (BI)"
+  roles: ["Data Quality Analyst", "Field Manager"]
+  description: "Apply configurable response-time thresholds and grid-variance rules to the raw completes file to identify speeder and straight-liner records and output a flagged exclusion list before data cleaning begins."
+  inputs: ["raw data file with per-question timestamps", "LOI target and acceptable range", "straight-line variance threshold specification"]
+  outputs: ["flagged completes report with disqualification reason codes", "cleaned data file with exclusions removed", "exclusion audit log"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["data processing script", "statistical analysis tool", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Run quality flags on the raw data before we clean — flag speeders and straight-liners"
+
+- id: reconcile-panel-incentive-payouts-against-approved-completes
+  title: "Reconcile panel incentive payouts against approved completes roster"
+  domain: "Finance & Accounting"
+  roles: ["Panel Operations Manager", "Incentive Reconciliation Analyst"]
+  description: "Match the incentive transaction ledger line-by-line against the approved completes list using respondent ID, applying the payout rate schedule to surface overpayments, missing payouts, and duplicate transactions."
+  inputs: ["incentive transaction ledger", "approved completes roster with respondent IDs", "payout rate schedule", "disqualified respondent list"]
+  outputs: ["reconciliation report", "exception list with variance amounts", "corrected payout summary for finance approval"]
+  automation: high
+  human_in_loop: approve
+  tools: ["spreadsheet", "data processing script", "finance system"]
+  frequency: weekly
+  trigger: "Reconcile this week's incentive payouts against the completes file before we submit to accounting"
+
+- id: monitor-live-quota-cell-fill-rates-and-alert-on-at-risk-cell
+  title: "Monitor live quota cell fill rates and alert on at-risk cells"
+  domain: "Operations & Project Mgmt"
+  roles: ["Field Manager", "Project Manager"]
+  description: "Parse the real-time field progress report and compute pace-to-close for each quota cell against the target completion date, flagging cells tracking behind pace or approaching a hard-stop threshold across all demographic strata."
+  inputs: ["live field progress report", "quota plan with hard-stop and soft-stop thresholds", "target completion date", "daily pacing model"]
+  outputs: ["quota status dashboard", "at-risk cell alert memo", "recommended field intervention actions (extend, boost, relax)"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["field management platform", "spreadsheet", "notification system"]
+  frequency: daily
+  trigger: "Check where we stand on quotas this morning and flag any cells that are going to miss"
+
+- id: build-banner-table-specification-from-study-design-and-demog
+  title: "Build banner table specification from study design and demographic plan"
+  domain: "Data & Reporting (BI)"
+  roles: ["Research Analyst", "Senior Research Manager"]
+  description: "Translate the study design document and agreed demographic breaks into a structured banner table spec that lists all column banners, net codes, base size filters, and significance test letter groupings for the tabulation team."
+  inputs: ["research brief", "agreed demographic plan", "final questionnaire", "significance test specification (alpha level)"]
+  outputs: ["banner table specification document", "tabulation instruction sheet with net definitions"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document editor", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Draft the banner spec for the tab house based on our research brief and the demo plan we agreed with the client"
+
+- id: qc-crosstab-tables-for-significance-testing-flag-accuracy
+  title: "QC crosstab tables for significance testing flag accuracy"
+  domain: "Data & Reporting (BI)"
+  roles: ["Data Quality Analyst", "Tabulation Specialist"]
+  description: "Cross-check letter-coded significance flags in delivered banner tables against cell base sizes and the alpha level in the tab plan, flagging cells where the significance indicator is missing, misapplied, or references the wrong letter group."
+  inputs: ["delivered banner tables", "tab plan with alpha level and base size thresholds", "significance test methodology note"]
+  outputs: ["QC error log with table and cell references", "corrected table set", "issue summary for tabulation vendor"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "statistical calculation script", "document parser"]
+  frequency: ad-hoc
+  trigger: "QC the banner tables the tab house sent back — check the significance flags before I send them to the analyst"
+
+- id: draft-topline-summary-memo-from-univariate-frequency-tables
+  title: "Draft topline summary memo from univariate frequency tables"
+  domain: "Communications & PR"
+  roles: ["Research Analyst", "Insights Manager"]
+  description: "Synthesize key top-box and bottom-box frequencies, statistically significant subgroup differences, and directional trends from frequency tables into a concise topline memo formatted for client delivery ahead of the debrief."
+  inputs: ["frequency tables", "banner tables with significance flags", "research objectives document", "topline memo template"]
+  outputs: ["topline memo (2-4 pages)", "key callout bullet list for client presentation"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document editor", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Draft a topline memo from these frequency tables — client debrief is tomorrow morning"
+
+- id: identify-duplicate-respondents-via-device-fingerprint-and-me
+  title: "Identify duplicate respondents via device fingerprint and metadata matching"
+  domain: "Data & Reporting (BI)"
+  roles: ["Panel Quality Analyst", "Data Quality Manager"]
+  description: "Cross-reference respondent metadata including IP address, device fingerprint hash, and user agent string across the completes file to detect panelists submitting multiple entries under different panel IDs."
+  inputs: ["completes file with respondent metadata fields", "deduplication rule set", "prior-wave respondent ID file if tracker"]
+  outputs: ["duplicate flagging report with match basis", "cleaned completes file", "deduplication audit trail"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["data processing script", "fingerprinting API", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Run dupe checks on the completes file before we close field — want to catch anyone gaming with multiple profiles"
+
+- id: draft-rfp-bid-response-with-incidence-adjusted-cost-model
+  title: "Draft RFP bid response with incidence-adjusted cost model"
+  domain: "Sales & BizDev"
+  roles: ["Research Director", "Business Development Manager"]
+  description: "Parse a client RFP and generate a proposal covering methodology rationale, sample source, LOI estimate, incidence-rate-adjusted cost model, and project timeline, drawing from internal rate card and historical IR benchmarks."
+  inputs: ["client RFP document", "rate card", "historical incidence rate benchmarks by category", "panel vendor CPI quotes"]
+  outputs: ["bid response document with methodology section", "cost model spreadsheet with IR sensitivity table", "project timeline"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["document editor", "spreadsheet", "CRM"]
+  frequency: ad-hoc
+  trigger: "Draft a bid response for the RFP that came in this morning — need it by EOD"
+
+- id: apply-existing-code-frame-to-new-wave-of-open-end-verbatims
+  title: "Apply existing code frame to new wave of open-end verbatims"
+  domain: "Business / Functional Analysis"
+  roles: ["Coding Specialist", "Research Analyst"]
+  description: "Map each open-end response in a new data wave against an established code frame, assigning all applicable codes per the multi-punch rules and flagging responses that fall outside the frame as uncoded residuals for human review."
+  inputs: ["new verbatim file", "existing code frame document with inclusion criteria", "coding instruction sheet"]
+  outputs: ["coded data file with numeric code assignments", "residual response list for frame expansion review", "inter-coder reliability score"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["text classification model", "spreadsheet", "coding platform"]
+  frequency: weekly
+  trigger: "Apply the Wave 1 code frame to the Wave 2 open-ends and flag anything that doesn't fit"
+
+- id: generate-wave-over-wave-tracker-delta-report-with-significan
+  title: "Generate wave-over-wave tracker delta report with significance testing"
+  domain: "Data & Reporting (BI)"
+  roles: ["Tracker Manager", "Insights Analyst"]
+  description: "Compare key metric frequencies across consecutive tracking wave data files, compute statistically significant point-change shifts at the agreed confidence level, and populate results into the standard client tracker template."
+  inputs: ["current wave data file", "prior wave frequency tables", "tracker template", "significance thresholds and base size minimums"]
+  outputs: ["wave-over-wave delta table", "significant change callout list", "updated tracker deck section with trend charts"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["statistical analysis tool", "spreadsheet", "presentation tool"]
+  frequency: weekly
+  trigger: "Run the wave-over-wave deltas for this week's tracker wave and highlight anything that moved significantly"
+
+- id: screen-open-end-responses-for-gibberish-placeholder-text-and
+  title: "Screen open-end responses for gibberish, placeholder text, and cross-respondent copy-paste"
+  domain: "Data & Reporting (BI)"
+  roles: ["Data Quality Analyst", "Panel Quality Manager"]
+  description: "Scan all verbatim fields in the raw data file for nonsense character strings, lorem ipsum and template placeholder text, and responses duplicated verbatim across multiple distinct respondent IDs."
+  inputs: ["raw data file with verbatim fields", "gibberish detection rule set", "minimum character length thresholds"]
+  outputs: ["flagged response report with respondent IDs and violation type", "list of IDs recommended for deletion", "quality audit summary statistics"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["text analysis script", "data processing tool", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Scan all the open-ends for garbage before we start coding — flag anything that looks like gibberish or copy-paste"
+
+- id: reconcile-vendor-invoice-against-signed-insertion-order
+  title: "Reconcile vendor invoice against signed insertion order"
+  domain: "Finance & Accounting"
+  roles: ["Media Business Manager", "Media Billing Coordinator", "Agency Accountant"]
+  description: "Match every line item, unit rate, and flight date on a publisher or broadcast station invoice against the corresponding countersigned IO, flagging rate discrepancies, over-billed units, or unapproved makegoods for credit resolution."
+  inputs: ["vendor invoice (PDF or EDI)", "signed insertion order", "media plan rate card"]
+  outputs: ["IO-vs-invoice variance report", "credit request or makegoods memo"]
+  automation: high
+  human_in_loop: approve
+  tools: ["spreadsheet", "order management system", "billing system", "document parser"]
+  frequency: monthly
+  trigger: "Received the October invoice from the publisher network — can you reconcile it against our signed IO and flag any billing discrepancies?"
+
+- id: verify-creative-asset-specs-against-publisher-ad-specificati
+  title: "Verify creative asset specs against publisher ad specification sheet"
+  domain: "Operations & Project Mgmt"
+  roles: ["Traffic Manager", "Campaign Trafficker", "Ad Operations Manager"]
+  description: "Check each incoming creative file's dimensions, weight, format, animation length, loop count, and click-through URL against the publisher's technical spec sheet before trafficking the unit into the ad server."
+  inputs: ["creative asset files", "publisher ad spec sheet", "trafficking worksheet"]
+  outputs: ["spec compliance checklist", "spec violation rejection notice to creative team"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["ad server", "traffic management system", "file metadata reader"]
+  frequency: ad-hoc
+  trigger: "Studio just delivered the display banners for the Q4 launch — run them against the publisher spec sheet and flag anything that won't pass trafficking."
+
+- id: build-post-buy-actualization-report-comparing-planned-vs-del
+  title: "Build post-buy actualization report comparing planned vs. delivered media"
+  domain: "Data & Reporting (BI)"
+  roles: ["Media Buyer", "Media Planner", "Investment Analyst", "Media Supervisor"]
+  description: "Compile actual impressions, GRPs, CPMs, and spend by line item from media vendor post-buy reports and reconcile them against the original authorized media plan to surface under- or over-delivery and efficiency variances."
+  inputs: ["vendor post-buy delivery reports", "original media plan", "authorized budget by flight"]
+  outputs: ["actualization report", "variance summary by medium and market", "makegood request list"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["spreadsheet", "media management platform", "reporting dashboard"]
+  frequency: monthly
+  trigger: "Campaign just wrapped — pull the post-buy actuals from all vendors and build the actualization vs. plan for the client presentation."
+
+- id: generate-talent-holding-fee-and-residual-payment-schedule-fr
+  title: "Generate talent holding fee and residual payment schedule from SAG-AFTRA contract"
+  domain: "Legal & Compliance"
+  roles: ["Business Affairs Manager", "Talent Payment Coordinator", "Broadcast Business Manager"]
+  description: "Extract holding fee cycle dates, use-period start and end, market tier classifications, and residual payment amounts from a signed SAG-AFTRA talent agreement and output a structured payment schedule with due dates."
+  inputs: ["signed SAG-AFTRA talent agreement", "campaign flight schedule", "union rate card"]
+  outputs: ["talent payment schedule", "holding fee calendar", "residual liability summary"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["contract management system", "rights management system", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "We just executed the talent agreement for the national TV spot — can you build out the holding fee and residual schedule so payroll knows what's due and when?"
+
+- id: build-media-flowchart-from-approved-budget-allocation
+  title: "Build media flowchart from approved budget allocation"
+  domain: "Operations & Project Mgmt"
+  roles: ["Media Planner", "Media Supervisor", "Communications Planner", "Investment Manager"]
+  description: "Convert a line-item media plan into a visual weekly flowchart showing flights, media channels, markets, estimated impressions, GRPs, and authorized spend per period so clients and internal teams can see the full schedule at a glance."
+  inputs: ["approved media plan spreadsheet", "authorized budget by medium", "flight dates by market"]
+  outputs: ["media flowchart (visual)", "spend-by-week summary table"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["media management platform", "spreadsheet", "presentation software"]
+  frequency: ad-hoc
+  trigger: "The media plan is approved — can you build the flowchart so we have something clean to walk the client through at kickoff?"
+
+- id: flag-out-of-flight-or-expired-talent-and-music-usage-rights
+  title: "Flag out-of-flight or expired talent and music usage rights"
+  domain: "Legal & Compliance"
+  roles: ["Business Affairs Manager", "Rights & Clearances Coordinator", "Producer", "Integrated Producer"]
+  description: "Cross-reference all active campaign flight dates against expiry dates logged in the usage rights register for talent, music synchronization licenses, and stock footage, and surface any assets running beyond their contracted usage window."
+  inputs: ["usage rights register", "campaign flight calendar", "talent and music contracts"]
+  outputs: ["expired or expiring rights alert list", "renewal request memo"]
+  automation: high
+  human_in_loop: approve
+  tools: ["rights management system", "contract management system", "calendar"]
+  frequency: weekly
+  trigger: "Before we extend the campaign through Q1, can you check the rights register and flag anything that expires before the new end date?"
+
+- id: reconcile-billable-timesheet-hours-against-sow-scoped-hours
+  title: "Reconcile billable timesheet hours against SOW scoped hours before billing run"
+  domain: "Finance & Accounting"
+  roles: ["Account Manager", "Agency Finance Manager", "Agency Controller", "Resource Manager"]
+  description: "Match timesheet entries logged by job code and department against the hours authorized in the client's signed scope of work, identifying overages and write-offs that need account director approval before the monthly fee invoice is issued."
+  inputs: ["timesheet export by project code", "signed scope of work", "fee estimate"]
+  outputs: ["SOW hours vs. actual hours variance report", "write-off approval request", "billing-ready hours summary"]
+  automation: high
+  human_in_loop: approve
+  tools: ["timesheet system", "project management system", "billing system", "spreadsheet"]
+  frequency: monthly
+  trigger: "Billing runs Friday — can you pull the timesheet hours for the retainer accounts and flag anything that's over scope so we can decide what to write off?"
+
+- id: draft-insertion-order-from-approved-media-plan-line-items
+  title: "Draft insertion order from approved media plan line items"
+  domain: "Procurement & Vendor Mgmt"
+  roles: ["Media Buyer", "Investment Manager", "Digital Media Buyer", "Programmatic Manager"]
+  description: "Generate a structured insertion order document from approved plan line items, populating placement name, ad unit, dimensions, flight dates, rate, total cost, billing instructions, and ad serving details ready for vendor countersignature."
+  inputs: ["approved media plan", "vendor rate confirmation", "standard IO terms and conditions"]
+  outputs: ["draft insertion order (PDF or digital form)", "IO summary log"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["order management system", "media management platform", "document generator"]
+  frequency: ad-hoc
+  trigger: "The broadcast buy is approved — draft the IOs for all five stations using the plan line items and our standard T&Cs."
+
+- id: summarize-competitive-media-spend-by-brand-and-medium-from-s
+  title: "Summarize competitive media spend by brand and medium from syndicated data"
+  domain: "Research & Competitive Intel"
+  roles: ["Media Planner", "Strategic Planner", "Account Planner", "Brand Planner", "Analytics Manager"]
+  description: "Pull and format brand-level competitive spend data by medium, daypart, and quarter from a syndicated competitive intelligence service, presenting share-of-voice calculations and year-over-year trend commentary."
+  inputs: ["syndicated competitive spend data export", "brand and competitor list", "date range"]
+  outputs: ["competitive spend summary by brand and medium", "share-of-voice table", "trend commentary slide"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["competitive intelligence platform", "spreadsheet", "presentation software"]
+  frequency: quarterly
+  trigger: "Client wants a competitive spend update for the QBR — pull the last four quarters of share-of-voice across TV, digital, and OOH for the top five competitors."
+
+- id: calculate-client-profitability-against-retainer-fee
+  title: "Calculate client profitability against retainer fee"
+  domain: "Finance & Accounting"
+  roles: ["Agency Finance Manager", "Agency Controller", "Client Finance Lead", "Account Director"]
+  description: "Compute actual revenue minus direct labor costs, third-party expenses, and overhead allocation for a client account to produce a net margin figure and compare it against the contracted retainer or project fee."
+  inputs: ["timesheet cost report by client", "vendor invoice log", "overhead rate card", "client fee schedule"]
+  outputs: ["client P&L summary", "margin-vs-target variance report"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["billing system", "timesheet system", "financial reporting system", "spreadsheet"]
+  frequency: monthly
+  trigger: "Can you run the profitability report for the top ten accounts so we can see which retainers are above and below target margin before the leadership review?"
+
+- id: audit-creative-job-ticket-for-completeness-at-project-kickof
+  title: "Audit creative job ticket for completeness at project kickoff"
+  domain: "Operations & Project Mgmt"
+  roles: ["Traffic Manager", "Project Manager", "Studio Manager", "Integrated Producer"]
+  description: "Check a newly opened creative job ticket against the agency's required-fields checklist — including client approval, billing codes, deliverable specs, usage rights instructions, routing approvals, and in-hands due dates — before releasing it to creative."
+  inputs: ["new creative job ticket", "required-fields checklist", "approved estimate or SOW"]
+  outputs: ["ticket completeness audit report", "missing-information request back to account team"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["project management system", "traffic management system"]
+  frequency: ad-hoc
+  trigger: "Three new jobs just came in from the account team — can you check each job ticket against the kickoff checklist and tell me what's missing before I open them to creative?"
+
+- id: reconcile-third-party-ad-server-delivery-against-io-contract
+  title: "Reconcile third-party ad server delivery against IO contracted impressions"
+  domain: "Data & Reporting (BI)"
+  roles: ["Ad Operations Manager", "Campaign Manager", "Media Analyst", "Programmatic Manager"]
+  description: "Compare impression, click, and viewability delivery recorded in the third-party ad server by placement against the contracted units per IO line item, calculating delivery percentage and identifying under-delivery for makegood negotiation."
+  inputs: ["third-party ad server delivery report", "signed insertion orders", "pacing report"]
+  outputs: ["ad server vs. IO delivery reconciliation", "under-delivery summary by vendor", "makegood negotiation brief"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["ad server", "order management system", "spreadsheet", "reporting dashboard"]
+  frequency: weekly
+  trigger: "Campaign is halfway through the flight — pull the ad server delivery and reconcile it against the IOs so I can see which vendors are under-delivering and need makegoods."
+
+- id: generate-estimate-revision-for-approved-out-of-scope-client
+  title: "Generate estimate revision for approved out-of-scope client request"
+  domain: "Finance & Accounting"
+  roles: ["Account Manager", "Integrated Producer", "Project Manager", "Agency Finance Manager"]
+  description: "Create a formal estimate revision (ER) document itemizing additional labor hours by discipline, third-party costs, and markup triggered by a client-approved change outside the original scope, referencing the original estimate number and SOW clause."
+  inputs: ["original approved estimate", "scope change brief", "labor rate card", "vendor quotes"]
+  outputs: ["estimate revision document", "revised project total", "client approval signature block"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["project management system", "billing system", "document generator", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "The client just approved the extra social cutdowns — can you draft an ER for the additional production hours and third-party costs so we can get it signed before the work starts?"
+
+- id: draft-engagement-letter-with-scope-and-fee-schedule
+  title: "Draft engagement letter with scope and fee schedule"
+  domain: "Operations & Project Mgmt"
+  roles: ["Engagement Partner", "Client Service Manager", "Audit Manager"]
+  description: "Generate a tailored engagement letter incorporating services scope (audit/review/compilation/tax), fee estimates, payment terms, and liability limitations based on prior engagement data and current-year scope changes."
+  inputs: ["Prior-year engagement letter", "Scope change memo", "Fee schedule template", "Client profile"]
+  outputs: ["Draft engagement letter", "Fee schedule exhibit"]
+  automation: high
+  human_in_loop: sign-off
+  tools: ["Document editor", "CRM", "Engagement management system"]
+  frequency: ad-hoc
+  trigger: "Draft the engagement letter for Riverside Manufacturing's FY2025 audit — same scope as last year but add the new R&D credit study"
+
+- id: build-pbc-request-list-from-prior-year-audit-workpapers
+  title: "Build PBC request list from prior-year audit workpapers"
+  domain: "Operations & Project Mgmt"
+  roles: ["Audit Senior", "Audit In-Charge", "Audit Manager"]
+  description: "Mine prior-year audit workpapers and the risk assessment to generate a current-year PBC request list, mapping each schedule to the responsible client contact and expected due date."
+  inputs: ["Prior-year workpaper index", "Risk assessment memo", "Prior-year PBC list", "Engagement timeline"]
+  outputs: ["PBC request list", "Client contact mapping"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Document management system", "Workpaper software", "Spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Build the PBC list for the Crestwood HOA audit using last year's workpapers and flag anything new from the risk assessment"
+
+- id: triage-irs-mef-e-file-rejection-codes-for-1040-1120-returns
+  title: "Triage IRS MeF e-file rejection codes for 1040/1120 returns"
+  domain: "Finance & Accounting"
+  roles: ["Tax Staff", "Tax Senior", "Tax Preparer"]
+  description: "Parse IRS Modernized e-File (MeF) rejection error codes (e.g., IND-031-04, R0000-194, F1120-013) against submitted return data to identify root cause and draft a corrective action memo for the preparer."
+  inputs: ["MeF rejection acknowledgment file", "Filed return PDF", "Taxpayer SSN/EIN data"]
+  outputs: ["Rejection triage memo", "Corrected return instructions"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Tax software", "E-file transmission log", "Document editor"]
+  frequency: daily
+  trigger: "We got a reject on the Henderson 1040 — code IND-031-04 — what needs to be fixed?"
+
+- id: track-pbc-aging-and-draft-tiered-client-follow-up-reminders
+  title: "Track PBC aging and draft tiered client follow-up reminders"
+  domain: "Customer Success & Support"
+  roles: ["Audit Senior", "Client Service Coordinator", "Audit Manager"]
+  description: "Compare the outstanding PBC request list against items received in the client portal, calculate aging of open requests, and draft tiered follow-up emails based on days overdue (7/14/21-day cadence)."
+  inputs: ["PBC master list", "Portal document log", "Engagement deadline", "Client contact list"]
+  outputs: ["PBC aging report", "Draft follow-up emails by tier"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Client portal", "Spreadsheet", "Email client", "Engagement management system"]
+  frequency: weekly
+  trigger: "Which PBC items for the Okafor Group audit are still open and need a follow-up nudge?"
+
+- id: index-tax-return-workpapers-to-return-line-items
+  title: "Index tax return workpapers to return line items"
+  domain: "Finance & Accounting"
+  roles: ["Tax Senior", "Tax Manager", "Tax Reviewer"]
+  description: "Map each workpaper schedule and supporting document in a tax return file to the corresponding line item or schedule on the Form 1120/1065/1040, generating a cross-reference index per the firm's workpaper standards."
+  inputs: ["Drafted tax return PDF", "Workpaper files", "Prior-year index", "Firm indexing template"]
+  outputs: ["Workpaper cross-reference index", "Missing schedules flag list"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Tax workpaper software", "Document management system", "PDF tools"]
+  frequency: ad-hoc
+  trigger: "Index all the workpapers for the Delacroix Enterprises 1120 return and flag anything missing before I do my review"
+
+- id: run-independence-and-conflict-of-interest-check-for-new-enga
+  title: "Run independence and conflict-of-interest check for new engagement"
+  domain: "Legal & Compliance"
+  roles: ["Independence Partner", "Risk Management Manager", "Engagement Partner"]
+  description: "Screen a prospective engagement against the firm's independence database, partner/staff financial interest disclosures, and AICPA/PCAOB independence rules, flagging direct/indirect financial interests, business relationships, or family member employment conflicts."
+  inputs: ["New client entity name and related parties list", "Firm independence database", "Staff financial interest disclosure forms"]
+  outputs: ["Independence clearance memo", "Conflict flag report", "Required remediation actions list"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["Independence management system", "CRM", "Document editor"]
+  frequency: ad-hoc
+  trigger: "We're about to sign Northfield Capital as a new audit client — run the independence check including all partners and senior managers"
+
+- id: reconcile-wip-balances-to-billed-amounts-and-compute-realiza
+  title: "Reconcile WIP balances to billed amounts and compute realization rate"
+  domain: "Finance & Accounting"
+  roles: ["Billing Manager", "Engagement Partner", "Practice Administrator", "Firm Administrator"]
+  description: "Pull unbilled WIP by engagement from the time-and-billing system, compare to standard fee budget, and calculate realization percentage and write-down amounts for partner review."
+  inputs: ["WIP aging report", "Engagement fee budgets", "Invoices issued", "Standard hourly rates by staff level"]
+  outputs: ["WIP-to-realization reconciliation schedule", "Write-down request form"]
+  automation: high
+  human_in_loop: approve
+  tools: ["Time-and-billing system", "Spreadsheet", "Reporting tool"]
+  frequency: monthly
+  trigger: "Pull the WIP realization report for all Q2 closed engagements and flag anything below 85% realization for partner review"
+
+- id: draft-manager-review-notes-on-staff-audit-workpapers
+  title: "Draft manager review notes on staff audit workpapers"
+  domain: "Operations & Project Mgmt"
+  roles: ["Audit Manager", "Audit Senior Manager", "Engagement Manager"]
+  description: "Analyze completed audit workpaper sections (e.g., cash, AR, prepaid expenses) against audit program steps and GAAS requirements, generating structured review notes with open/cleared status, procedure gaps, and documentation deficiencies."
+  inputs: ["Completed audit workpapers by section", "Audit program", "Prior-year review notes", "Audit risk memo"]
+  outputs: ["Open review notes log", "Cleared review notes", "Audit documentation deficiency memo"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Workpaper software", "Document editor"]
+  frequency: ad-hoc
+  trigger: "Review the cash and AR workpapers for the Lakeview Dental audit and generate review notes based on the audit program"
+
+- id: assemble-aicpa-peer-review-documentation-package
+  title: "Assemble AICPA peer review documentation package"
+  domain: "Legal & Compliance"
+  roles: ["Quality Control Partner", "Peer Review Coordinator", "Firm Administrator"]
+  description: "Compile the AICPA System Review or Engagement Review package — selected engagements, independence documentation, quality control policies, and completed checklists — formatted per AICPA peer review standards."
+  inputs: ["Selected engagement files", "QC policy manual", "Independence disclosures", "Prior peer review report", "AICPA peer review checklist"]
+  outputs: ["Peer review binder index", "Compiled documentation package", "Pre-review gap checklist"]
+  automation: medium
+  human_in_loop: sign-off
+  tools: ["Document management system", "PDF tools", "Checklist template"]
+  frequency: quarterly
+  trigger: "We have our peer review in 60 days — assemble the documentation package for the five selected engagements using the AICPA checklist"
+
+- id: compute-section-199a-qualified-business-income-deduction-wor
+  title: "Compute Section 199A qualified business income deduction worksheet"
+  domain: "Finance & Accounting"
+  roles: ["Tax Senior", "Tax Manager", "CPA"]
+  description: "Calculate the Section 199A QBI deduction for a pass-through entity owner, applying W-2 wage and UBIA of qualified property limitations, SSTB phase-out thresholds, and aggregation elections, and document the computation in a reviewable workpaper."
+  inputs: ["Schedule K-1 QBI amounts", "W-2 wages paid by entity", "UBIA of qualified property", "Taxpayer AGI", "Prior-year QBI carryforward losses"]
+  outputs: ["Section 199A computation workpaper", "Deduction amount for Form 1040", "Aggregation election statement"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Tax software", "Spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Run the 199A QBI deduction calc for the Marchetti brothers — they have three pass-throughs and one might be an SSTB"
+
+- id: generate-fluctuation-analysis-commentary-for-audit-analytica
+  title: "Generate fluctuation analysis commentary for audit analytical procedures"
+  domain: "Finance & Accounting"
+  roles: ["Audit Senior", "Audit In-Charge", "Audit Manager"]
+  description: "Compare current-year trial balance amounts to prior-year and budget, calculate variances by account in dollars and percentages, and draft preliminary explanations for significant fluctuations to present to the client for corroboration."
+  inputs: ["Current-year trial balance", "Prior-year trial balance", "Budget or forecast", "Client-provided explanations"]
+  outputs: ["Fluctuation analysis workpaper", "Draft explanatory memo", "Open client inquiry items"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Spreadsheet", "Workpaper software", "Data analysis tool"]
+  frequency: ad-hoc
+  trigger: "Run the preliminary analytics on the Horizon Foods trial balance — flag anything over 10% or $25K variance from last year"
+
+- id: reconcile-client-portal-uploads-against-pbc-request-list
+  title: "Reconcile client portal uploads against PBC request list"
+  domain: "Customer Success & Support"
+  roles: ["Audit Staff", "Client Service Coordinator", "Audit Senior"]
+  description: "Reconcile documents received in the client portal against each line item on the PBC request list, flagging incomplete uploads (wrong period, missing pages, wrong format) and updating the PBC tracker status."
+  inputs: ["PBC master request list", "Client portal document inventory", "Document naming conventions guide"]
+  outputs: ["PBC completion dashboard", "Incomplete or incorrect document flags", "Portal upload correction instructions for client"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Client portal", "Spreadsheet", "Document management system"]
+  frequency: daily
+  trigger: "Check what's been uploaded to the Summit Ridge portal against the PBC list and flag anything that's wrong or missing"
+
+- id: maintain-form-8879-e-file-authorization-tracking-log
+  title: "Maintain Form 8879 e-file authorization tracking log"
+  domain: "Operations & Project Mgmt"
+  roles: ["Tax Staff", "Tax Coordinator", "Office Administrator", "Tax Manager"]
+  description: "Generate and maintain a log of all returns requiring Form 8879 (IRS e-file signature authorization), tracking which forms have been sent to clients, signed, received back, and transmitted, with outstanding-days and deadline alerts."
+  inputs: ["Return list for current filing season", "Transmission log", "Signed 8879 files received", "Due date calendar"]
+  outputs: ["Form 8879 status tracker", "Overdue authorization alerts", "Transmission readiness report"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Tax software", "Document management system", "Spreadsheet", "Client portal"]
+  frequency: daily
+  trigger: "Show me which 8879s are still outstanding for the April 15 batch and flag any returns we can't transmit yet"
