@@ -982,7 +982,7 @@
   trigger: "turn this campaign brief into a publishing calendar"
 
 - id: influencer-disclosure-sweep
-  title: "Influencer Disclosure Compliance Sweep"
+  title: "Influencer disclosure compliance sweep"
   domain: "Marketing & Content"
   roles: ["Influencer Marketing Manager", "Brand Compliance Specialist"]
   description: "Check creator and partner posts for required sponsorship disclosures and brand-safety rules, flagging non-compliant items for follow-up."
@@ -995,7 +995,7 @@
   trigger: "audit this month's influencer posts for proper #ad disclosure"
 
 - id: localization-handoff-qa
-  title: "Localization Handoff QA Check"
+  title: "Localization handoff QA check"
   domain: "Marketing & Content"
   roles: ["Localization Coordinator", "Content Operations Specialist"]
   description: "Compare source and translated marketing copy for untranslated strings, placeholder/variable mismatches, and length overflow before regional handoff."
@@ -1008,7 +1008,7 @@
   trigger: "QA these translated landing pages before they go to the regional teams"
 
 - id: asset-license-expiration-tracker
-  title: "Marketing Asset License Expiration Tracker"
+  title: "Marketing asset license expiration tracker"
   domain: "Marketing & Content"
   roles: ["Brand Asset Manager", "Marketing Operations Specialist"]
   description: "Scan asset-library license metadata to flag stock images, fonts, or music nearing expiration and draft renewal or takedown notices."
@@ -1229,7 +1229,7 @@
   trigger: "Draft the emissions section of the sustainability report"
 
 - id: utm-tagging-audit
-  title: "UTM Tagging Audit Before Campaign Launch"
+  title: "UTM tagging audit before campaign launch"
   domain: "Marketing & Content"
   roles: ["Marketing Operations Manager", "Digital Marketing Specialist"]
   description: "Scan a batch of campaign URLs against the naming/UTM convention and flag missing, malformed, or inconsistent tags before launch."
@@ -1541,7 +1541,7 @@
   trigger: "draft a reply to this constituent about their delayed tax refund"
 
 - id: draft-contingency-deadline-reminders
-  title: "Draft Contingency Deadline Reminders"
+  title: "Draft contingency deadline reminders"
   domain: "Customer Success & Support"
   roles: ["Transaction Coordinator"]
   description: "Generate reminder emails to agents and clients for upcoming inspection, financing, and contingency deadlines."
@@ -1645,7 +1645,7 @@
   trigger: "turn this resolved ticket into a knowledge base article"
 
 - id: draft-lease-renewal-offers
-  title: "Draft Lease Renewal Offers"
+  title: "Draft lease renewal offers"
   domain: "Customer Success & Support"
   roles: ["Tenant Relations Coordinator"]
   description: "Generate renewal offer letters with updated rent, term options, and incentives for expiring leases."
@@ -3413,7 +3413,7 @@
   trigger: "compile taxable sales by state and draft the sales tax return numbers"
 
 - id: prepare-deposit-disposition-statement
-  title: "Prepare Security Deposit Disposition Statement"
+  title: "Prepare security deposit disposition statement"
   domain: "Finance & Accounting"
   roles: ["Tenant Relations Coordinator"]
   description: "Itemize move-out charges against the deposit using the inspection report and ledger; draft the disposition notice."
@@ -3517,7 +3517,7 @@
   trigger: "check these claim codes against the superbill and flag anything off"
 
 - id: reconcile-cam-charges
-  title: "Reconcile CAM Charges Against Lease Terms"
+  title: "Reconcile CAM charges against lease terms"
   domain: "Finance & Accounting"
   roles: ["Lease Administration Analyst"]
   description: "Compare landlord CAM/operating-expense reconciliation statements against the lease's pro-rata share and cap provisions."
@@ -4401,7 +4401,7 @@
   trigger: "Reconcile this period's 401k contributions to the payroll register"
 
 - id: benefits-carrier-invoice-reconciliation
-  title: "Reconcile Benefits Carrier Invoice Against Enrollment Records"
+  title: "Reconcile benefits carrier invoice against enrollment records"
   domain: "HR & People Ops"
   roles: ["Benefits Administrator", "HR Operations Specialist"]
   description: "Match monthly carrier invoice line items to HRIS enrollment data and flag mismatches (terminated staff still billed, missing dependents, wrong coverage tier)."
@@ -4622,7 +4622,7 @@
   trigger: "turn this job description into a LinkedIn post and a tightened job-board listing"
 
 - id: applicant-disposition-reason-audit
-  title: "Applicant Disposition Reason Audit"
+  title: "Applicant disposition reason audit"
   domain: "Recruiting & Talent"
   roles: ["Recruiting Operations", "Compliance Analyst", "Recruiter"]
   description: "Scan rejected candidates in the ATS for missing, vague, or non-compliant disposition reason codes and flag records needing correction before an EEO/OFCCP audit."
@@ -4648,7 +4648,7 @@
   trigger: "Put together the onboarding packet for our new hire"
 
 - id: background-check-vendor-handoff-packet
-  title: "Background Check Vendor Handoff Packet"
+  title: "Background check vendor handoff packet"
   domain: "Recruiting & Talent"
   roles: ["Recruiter", "Recruiting Operations"]
   description: "Assemble candidate data and consent confirmations to initiate a background check, flagging missing consents or fields before the vendor handoff."
@@ -4726,7 +4726,7 @@
   trigger: "map the companies and talent pools for a fintech compliance lead in London"
 
 - id: candidate-experience-complaint-triage
-  title: "Candidate Experience Complaint Triage"
+  title: "Candidate experience complaint triage"
   domain: "Recruiting & Talent"
   roles: ["Recruiting Operations", "Recruiter", "DEI Partner"]
   description: "Read inbound candidate feedback about the hiring process, classify severity, and route discrimination or legal-risk items to the right owner."
@@ -4804,7 +4804,7 @@
   trigger: "Clean up duplicate candidate records in the ATS"
 
 - id: diverse-interview-slate-audit
-  title: "Diverse Interview Slate Audit"
+  title: "Diverse interview slate audit"
   domain: "Recruiting & Talent"
   roles: ["Recruiting Operations", "Recruiter", "DEI Partner"]
   description: "Before onsite scheduling, check whether a final-round slate meets diverse-slate guidelines and flag reqs that fall short for sourcing follow-up."
@@ -4960,7 +4960,7 @@
   trigger: "summarize our Q2 hiring pipeline diversity and where candidates drop off by stage"
 
 - id: job-posting-pay-transparency-check
-  title: "Job Posting Pay-Transparency Compliance Check"
+  title: "Job posting pay-transparency compliance check"
   domain: "Recruiting & Talent"
   roles: ["Recruiting Operations", "Recruiter", "Compliance Analyst"]
   description: "Check live postings against jurisdiction pay-transparency rules; flag listings missing salary ranges or required disclosures and suggest compliant text."
@@ -5103,7 +5103,7 @@
   trigger: "Send the candidate experience survey and summarize the results"
 
 - id: staffing-agency-invoice-reconciliation
-  title: "Staffing Agency Invoice Reconciliation"
+  title: "Staffing agency invoice reconciliation"
   domain: "Recruiting & Talent"
   roles: ["Recruiting Operations", "Vendor Manager"]
   description: "Match agency placement invoices to ATS hire records, verifying fee percentage, guarantee period, and start date, and flag discrepancies before approval."
@@ -5610,7 +5610,7 @@
   trigger: "Draft a conflict waiver for this matter"
 
 - id: draft-covenant-violation-notices
-  title: "Draft Covenant Violation Notices"
+  title: "Draft covenant violation notices"
   domain: "Legal & Compliance"
   roles: ["HOA Community Manager"]
   description: "Turn inspection findings into CC&R violation notices citing the rule, cure period, and escalation step."
@@ -7313,7 +7313,7 @@
   trigger: "Draft this week's permit status report"
 
 - id: draft-preventive-maintenance-schedule
-  title: "Draft Preventive Maintenance Schedule"
+  title: "Draft preventive maintenance schedule"
   domain: "Operations & Project Mgmt"
   roles: ["Facilities Work-Order Coordinator"]
   description: "Generate a recurring PM calendar from the equipment asset register and manufacturer service intervals."
@@ -7729,7 +7729,7 @@
   trigger: "Prepare export docs for the Rotterdam shipment"
 
 - id: generate-lease-critical-date-alerts
-  title: "Generate Lease Critical-Date Alerts"
+  title: "Generate lease critical-date alerts"
   domain: "Operations & Project Mgmt"
   roles: ["Lease Administration Analyst"]
   description: "Scan the lease portfolio for upcoming renewal, option-exercise, and escalation dates and draft alert notices."
@@ -9471,7 +9471,7 @@
   trigger: "pull the business rules out of this credit approval policy into a table"
 
 - id: change-request-impact-prescreening
-  title: "Change Request Impact Pre-Screening"
+  title: "Change request impact pre-screening"
   domain: "Business / Functional Analysis"
   roles: ["Business Analyst", "Product Owner"]
   description: "Map an incoming change request to affected requirements and processes, then route to the right owners with an impact note."
@@ -9601,7 +9601,7 @@
   trigger: "draft a business case and cost-benefit comparison for these options"
 
 - id: draft-business-requirements-document
-  title: "Draft Business Requirements Document"
+  title: "Draft business requirements document"
   domain: "Business / Functional Analysis"
   roles: ["Business Analyst", "Functional Analyst"]
   description: "Turn intake notes, stakeholder inputs and project goals into a structured BRD with scope, objectives, requirements and assumptions."
@@ -9770,7 +9770,7 @@
   trigger: "Show providers whose coding looks off this month"
 
 - id: functional-spec-signoff-package
-  title: "Functional Spec Sign-Off Package Assembly"
+  title: "Functional spec sign-off package assembly"
   domain: "Business / Functional Analysis"
   roles: ["Business Analyst"]
   description: "Compile the functional spec, open questions, and approver list into a review-ready package and draft the sign-off request."
@@ -9861,7 +9861,7 @@
   trigger: "review these requirements for vague or untestable wording"
 
 - id: requirements-ambiguity-testability-lint
-  title: "Requirements Ambiguity & Testability Lint"
+  title: "Requirements ambiguity & testability lint"
   domain: "Business / Functional Analysis"
   roles: ["Business Analyst"]
   description: "Scan a requirements doc for vague terms, passive voice, and missing acceptance criteria, then suggest testable rewrites."
@@ -9874,7 +9874,7 @@
   trigger: "lint this requirements spec for ambiguity and testability"
 
 - id: rtm-traceability-gap-check
-  title: "Requirements Traceability Matrix Gap Check"
+  title: "Requirements traceability matrix gap check"
   domain: "Business / Functional Analysis"
   roles: ["Business Analyst", "QA Lead"]
   description: "Cross-reference requirements against linked test cases and design items to flag orphaned requirements and uncovered tests before a release gate."
@@ -9887,7 +9887,7 @@
   trigger: "check the traceability matrix for gaps before the release gate"
 
 - id: source-target-field-mapping-reconciliation
-  title: "Source-to-Target Field Mapping Reconciliation"
+  title: "Source-to-Target field mapping reconciliation"
   domain: "Business / Functional Analysis"
   roles: ["Business Analyst", "Data Analyst"]
   description: "Compare source and target data dictionaries to flag unmapped fields, type mismatches, and orphan attributes in a migration."
@@ -9978,7 +9978,7 @@
   trigger: "triage the open questions parking lot"
 
 - id: uat-feedback-triage-digest
-  title: "UAT Feedback Triage & Status Digest"
+  title: "UAT feedback triage & status digest"
   domain: "Business / Functional Analysis"
   roles: ["Business Analyst", "UAT Coordinator"]
   description: "Dedupe and categorize UAT feedback, link each item to a requirement, and draft a stakeholder status digest."
@@ -10212,7 +10212,7 @@
   trigger: "Find stock image options for this brief"
 
 - id: compile-cma-comp-packet
-  title: "Compile Comparative Market Analysis Packet"
+  title: "Compile comparative market analysis packet"
   domain: "Research & Competitive Intel"
   roles: ["Listing Coordinator"]
   description: "Summarize selected comparable sales into a pricing narrative and an adjustment grid for the seller consultation."
@@ -11044,7 +11044,7 @@
   trigger: "show yesterday's turnaround delays vs target"
 
 - id: bi-access-recertification-packet
-  title: "Compile BI Workspace Access Recertification Packet"
+  title: "Compile BI workspace access recertification packet"
   domain: "Data & Reporting (BI)"
   roles: ["Data Governance Lead", "BI Administrator", "Analytics Manager"]
   description: "Pull current access by workspace, cross-check against the active-employee roster, flag departed or stale users and assemble a revocation list for sign-off."
@@ -11317,7 +11317,7 @@
   trigger: "write data dictionary definitions for these columns in our sales table"
 
 - id: data-freshness-sla-breach-notice
-  title: "Draft Data Freshness SLA Breach Notice"
+  title: "Draft data freshness SLA breach notice"
   domain: "Data & Reporting (BI)"
   roles: ["BI Analyst", "Data Operations Analyst", "Reporting Analyst"]
   description: "When a scheduled data load misses its SLA, draft a stakeholder note covering affected reports, business impact and a revised availability ETA."
@@ -11382,7 +11382,7 @@
   trigger: "write the funder progress report using these program numbers"
 
 - id: kpi-variance-commentary-draft
-  title: "Draft Monthly KPI Variance Commentary"
+  title: "Draft monthly KPI variance commentary"
   domain: "Data & Reporting (BI)"
   roles: ["BI Analyst", "Reporting Analyst", "FP&A Analyst"]
   description: "Write the narrative annotations on a monthly dashboard explaining why each KPI moved vs prior period and plan, with likely drivers flagged to verify."
@@ -11642,7 +11642,7 @@
   trigger: "Pull together our outcome numbers for the impact report"
 
 - id: dashboard-recertification-review
-  title: "Quarterly Dashboard Recertification Review"
+  title: "Quarterly dashboard recertification review"
   domain: "Data & Reporting (BI)"
   roles: ["BI Analyst", "Data Governance Lead", "Analytics Manager"]
   description: "Compile active dashboards with owner, last-viewed date and data freshness; flag stale or orphaned ones and draft recertify-or-retire recommendations."
@@ -11694,7 +11694,7 @@
   trigger: "reconcile yesterday's as-run against what was booked"
 
 - id: metric-definition-discrepancy-reconciliation
-  title: "Reconcile Conflicting Metric Definitions Across Reports"
+  title: "Reconcile conflicting metric definitions across reports"
   domain: "Data & Reporting (BI)"
   roles: ["BI Analyst", "Data Steward", "Reporting Analyst"]
   description: "When two reports show different numbers for the same KPI, trace each definition and filter, document the divergence and propose one canonical definition."
@@ -12344,7 +12344,7 @@
   trigger: "Send ITBs to all the electrical subs for this project"
 
 - id: draft-appraisal-order-requests
-  title: "Draft Appraisal Order Requests"
+  title: "Draft appraisal order requests"
   domain: "Procurement & Vendor Mgmt"
   roles: ["Appraisal Coordinator"]
   description: "Generate appraisal assignment requests with property details, scope, and due dates to vetted appraisers."
@@ -13241,7 +13241,7 @@
   trigger: "build my expense report from these receipts and flag anything over policy"
 
 - id: prepare-board-meeting-packet
-  title: "Prepare HOA Board Meeting Packet"
+  title: "Prepare HOA board meeting packet"
   domain: "Executive / Admin Support"
   roles: ["HOA Community Manager"]
   description: "Assemble the agenda, prior-minutes summary, open action items, and financial highlights into a board packet."
@@ -14060,7 +14060,7 @@
   trigger: "update our company boilerplate and fact sheet with the new funding round and headcount"
 
 - id: embargo-compliance-check
-  title: "Verify Embargo Compliance After Press Release Distribution"
+  title: "Verify embargo compliance after press release distribution"
   domain: "Communications & PR"
   roles: ["Media Relations Specialist", "PR Manager"]
   description: "Cross-reference the publish timestamps of coverage against the agreed embargo lift time and flag any outlet that broke embargo."
