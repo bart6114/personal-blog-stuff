@@ -1,7 +1,7 @@
 # Automatable Knowledge-Work Atlas
 # Catalog of small, automatable NON-DEVELOPMENT knowledge-work tasks.
 # Each task is one step a Claude skill could perform, tagged by role and grouped by domain.
-# Tasks: 1086 | Domains: 17 | Roles: 380
+# Tasks: 1184 | Domains: 17 | Roles: 420
 # Schema: id, title, domain, roles[], description, inputs[], outputs[],
 #         automation(low|medium|high), human_in_loop, tools[], frequency, trigger
 # Source of truth. Edit here, then run build.py to refresh index.html + README.md.
@@ -3984,6 +3984,45 @@
   frequency: ad-hoc
   trigger: "create a 30-60-90 onboarding plan for a new marketing manager starting July 15"
 
+- id: build-an-hr-compliance-filing-deadline-calendar
+  title: "Build an HR compliance filing deadline calendar"
+  domain: "HR & People Ops"
+  roles: ["Compliance Specialist", "HR Operations Analyst", "People Ops Specialist"]
+  description: "Compile recurring HR filing and notice deadlines into a dated calendar with owners and lead-time reminders."
+  inputs: ["Applicable filing requirements", "Jurisdiction list", "Prior-year deadlines"]
+  outputs: ["Compliance deadline calendar"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Spreadsheet", "Calendar", "Knowledge base"]
+  frequency: quarterly
+  trigger: "Put together our HR compliance deadline calendar for next year"
+
+- id: calculate-and-draft-a-final-pay-statement-at-termination
+  title: "Calculate and draft a final pay statement at termination"
+  domain: "HR & People Ops"
+  roles: ["Payroll Specialist", "HR Generalist", "People Ops Specialist"]
+  description: "Compute final wages, accrued-leave payout, and deductions per jurisdiction rules and draft the final pay summary."
+  inputs: ["Termination details", "Pay and accrual records", "Jurisdiction final-pay rules"]
+  outputs: ["Final pay statement", "Payout calculation worksheet"]
+  automation: low
+  human_in_loop: approve
+  tools: ["Payroll system", "Spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Calculate the final paycheck for someone terminating Friday in California"
+
+- id: compile-a-quarterly-headcount-and-turnover-report
+  title: "Compile a quarterly headcount and turnover report"
+  domain: "HR & People Ops"
+  roles: ["HR Operations Analyst", "People Analytics Specialist", "HR Business Partner"]
+  description: "Aggregate headcount, hires, exits, and turnover rates by department and tenure into a quarterly metrics report."
+  inputs: ["HRIS headcount data", "Hire and termination records", "Prior-period figures"]
+  outputs: ["Headcount and turnover report"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["HRIS", "Spreadsheet", "Presentation software"]
+  frequency: quarterly
+  trigger: "Build the Q2 headcount and turnover report by department"
+
 - id: crew-block-hour-payroll-summary
   title: "Compile monthly crew block-hour and overtime summary"
   domain: "HR & People Ops"
@@ -4010,6 +4049,84 @@
   frequency: ad-hoc
   trigger: "draft a neutral investigation summary from these interview notes"
 
+- id: draft-a-cobra-continuation-coverage-notice
+  title: "Draft a COBRA continuation coverage notice"
+  domain: "HR & People Ops"
+  roles: ["Benefits Administrator", "HR Generalist", "People Ops Specialist"]
+  description: "Prepare a continuation-of-coverage notice for a departing employee, populating qualifying event, coverage options, and deadlines."
+  inputs: ["Termination or qualifying event details", "Benefits enrollment record", "Notice template"]
+  outputs: ["COBRA continuation notice"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Benefits system", "Document editor"]
+  frequency: ad-hoc
+  trigger: "Generate the COBRA notice for an employee leaving at the end of the month"
+
+- id: draft-a-merit-increase-letter-from-approved-adjustments
+  title: "Draft a merit increase letter from approved adjustments"
+  domain: "HR & People Ops"
+  roles: ["Compensation Analyst", "HR Generalist", "People Ops Specialist"]
+  description: "Generate individualized merit-increase letters with new rate, effective date, and percentage from an approved adjustment sheet."
+  inputs: ["Approved adjustment list", "Employee records", "Letter template"]
+  outputs: ["Merit increase letters"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Spreadsheet", "Document editor", "Mail merge"]
+  frequency: ad-hoc
+  trigger: "Draft merit increase letters from the approved comp cycle spreadsheet"
+
+- id: draft-a-new-hire-it-and-equipment-provisioning-request
+  title: "Draft a new-hire IT and equipment provisioning request"
+  domain: "HR & People Ops"
+  roles: ["HR Coordinator", "People Ops Specialist", "Onboarding Specialist"]
+  description: "Generate an IT and facilities provisioning request listing accounts, hardware, and access by role and start date."
+  inputs: ["New-hire details and role", "Standard access and equipment matrix", "Start date"]
+  outputs: ["Provisioning request ticket or email"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Ticketing system", "Email", "Knowledge base"]
+  frequency: ad-hoc
+  trigger: "Open the IT provisioning request for our new sales hire starting Monday"
+
+- id: draft-a-written-warning-disciplinary-notice
+  title: "Draft a written warning disciplinary notice"
+  domain: "HR & People Ops"
+  roles: ["HR Generalist", "Employee Relations Specialist", "HR Business Partner"]
+  description: "Draft a written warning documenting the issue, prior steps, expectations, and consequences from manager-provided facts."
+  inputs: ["Manager incident notes", "Prior warnings and history", "Disciplinary policy"]
+  outputs: ["Written warning notice draft"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["Document editor", "Knowledge base"]
+  frequency: ad-hoc
+  trigger: "Write up a formal written warning for repeated attendance issues"
+
+- id: draft-an-accommodation-interactive-process-response
+  title: "Draft an accommodation interactive-process response"
+  domain: "HR & People Ops"
+  roles: ["HR Generalist", "Employee Relations Specialist", "Leave Specialist"]
+  description: "Draft a response acknowledging an accommodation request and outlining interactive-process next steps and documentation needs."
+  inputs: ["Accommodation request details", "Job duties and essential functions", "Policy guidance"]
+  outputs: ["Interactive-process response letter"]
+  automation: low
+  human_in_loop: sign-off
+  tools: ["Document editor", "Knowledge base"]
+  frequency: ad-hoc
+  trigger: "Help me respond to this employee's request for a workplace accommodation"
+
+- id: draft-an-adverse-action-notice-for-a-background-check
+  title: "Draft an adverse action notice for a background check"
+  domain: "HR & People Ops"
+  roles: ["HR Generalist", "Compliance Specialist", "Recruiting Coordinator"]
+  description: "Draft pre- and final-adverse-action notices when a background check result may affect a hiring decision, with required disclosures."
+  inputs: ["Background check summary", "Candidate details", "Applicable regulatory requirements"]
+  outputs: ["Adverse action notice draft"]
+  automation: low
+  human_in_loop: sign-off
+  tools: ["Document editor", "Knowledge base"]
+  frequency: ad-hoc
+  trigger: "Draft the pre-adverse action letter for this candidate's background check"
+
 - id: draft-handbook-policy
   title: "Draft an employee handbook policy section"
   domain: "HR & People Ops"
@@ -4022,6 +4139,19 @@
   tools: ["docs", "knowledge base"]
   frequency: quarterly
   trigger: "draft a remote work policy section for the handbook based on these bullet points"
+
+- id: draft-an-employment-verification-letter
+  title: "Draft an employment verification letter"
+  domain: "HR & People Ops"
+  roles: ["HR Coordinator", "HR Generalist", "People Ops Specialist"]
+  description: "Generate a verification-of-employment letter confirming title, dates, and status for a third party from HRIS data."
+  inputs: ["Employee record from HRIS", "Verification request details", "Letter template"]
+  outputs: ["Employment verification letter"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["HRIS", "Document editor", "Email"]
+  frequency: ad-hoc
+  trigger: "Write a verification of employment letter for Jordan Lee for their mortgage application"
 
 - id: draft-offer-letter
   title: "Draft an offer letter from approved terms"
@@ -4231,6 +4361,19 @@
   frequency: weekly
   trigger: "create an onboarding plan for our new marketing hire"
 
+- id: generate-personalized-total-compensation-statements
+  title: "Generate personalized total compensation statements"
+  domain: "HR & People Ops"
+  roles: ["Compensation Analyst", "Benefits Administrator", "People Ops Specialist"]
+  description: "Merge salary, bonus, equity, and benefits values into a per-employee total-rewards statement from a data file."
+  inputs: ["Per-employee compensation data", "Benefits valuation", "Statement template"]
+  outputs: ["Total compensation statements"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Spreadsheet", "Document editor", "Mail merge"]
+  frequency: ad-hoc
+  trigger: "Create total rewards statements for everyone from this comp data file"
+
 - id: work-authorization-expiry-monitoring
   title: "Monitor Work Authorization Expiry and Draft Reverification Notices"
   domain: "HR & People Ops"
@@ -4243,6 +4386,19 @@
   tools: ["HRIS", "spreadsheet", "email"]
   frequency: monthly
   trigger: "Flag any work permits expiring in the next 90 days and draft the reminders"
+
+- id: reconcile-401k-contributions-against-the-payroll-register
+  title: "Reconcile 401(k) contributions against the payroll register"
+  domain: "HR & People Ops"
+  roles: ["Payroll Specialist", "Benefits Administrator", "HR Operations Analyst"]
+  description: "Match employee and employer retirement contributions in the provider file to the payroll register and flag variances."
+  inputs: ["Retirement provider contribution file", "Payroll register", "Deferral elections"]
+  outputs: ["Reconciliation report", "Variance list"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["Spreadsheet", "Payroll system", "Benefits system"]
+  frequency: monthly
+  trigger: "Reconcile this period's 401k contributions to the payroll register"
 
 - id: benefits-carrier-invoice-reconciliation
   title: "Reconcile Benefits Carrier Invoice Against Enrollment Records"
@@ -4257,6 +4413,19 @@
   frequency: monthly
   trigger: "Reconcile this month's medical carrier invoice against our enrollment list"
 
+- id: reconcile-pto-accrual-balances-against-leave-policy
+  title: "Reconcile PTO accrual balances against leave policy"
+  domain: "HR & People Ops"
+  roles: ["HR Operations Analyst", "Payroll Specialist", "People Ops Specialist"]
+  description: "Recalculate accrued and used PTO per policy rules and flag balances that don't match the HRIS for correction."
+  inputs: ["PTO policy rules", "HRIS accrual balances", "Leave usage records"]
+  outputs: ["PTO reconciliation report", "Discrepancy list"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["HRIS", "Spreadsheet"]
+  frequency: monthly
+  trigger: "Check everyone's PTO balances against our accrual policy and flag mismatches"
+
 - id: reconcile-timesheets-to-payroll
   title: "Reconcile timesheets to payroll register"
   domain: "HR & People Ops"
@@ -4269,6 +4438,19 @@
   tools: ["spreadsheet", "ERP", "HRIS"]
   frequency: monthly
   trigger: "check these timesheets against the payroll register and flag any discrepancies"
+
+- id: review-a-job-description-for-biased-or-non-inclusive-language
+  title: "Review a job description for biased or non-inclusive language"
+  domain: "HR & People Ops"
+  roles: ["HR Generalist", "Talent Acquisition Partner", "DEI Specialist"]
+  description: "Scan a job description for gendered, ageist, or exclusionary wording and suggest neutral replacements."
+  inputs: ["Draft job description", "Inclusive-language guidelines"]
+  outputs: ["Flagged language list", "Revised job description"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Document editor", "Knowledge base"]
+  frequency: ad-hoc
+  trigger: "Check this job description for biased language and suggest fixes"
 
 - id: probation-period-review-handoff
   title: "Route End-of-Probation Reviews to Managers"
@@ -4452,6 +4634,19 @@
   frequency: monthly
   trigger: "Check this month's rejected candidates for missing or vague disposition reasons"
 
+- id: assemble-new-hire-onboarding-checklist
+  title: "Assemble new-hire onboarding checklist and welcome packet"
+  domain: "Recruiting & Talent"
+  roles: ["Recruiting coordinator", "Onboarding specialist"]
+  description: "Build a role-specific pre-boarding checklist and welcome packet from the signed offer and start-date details."
+  inputs: ["Signed offer details", "Role and team info", "Start date"]
+  outputs: ["Onboarding checklist", "Welcome packet"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Document editor", "Email"]
+  frequency: ad-hoc
+  trigger: "Put together the onboarding packet for our new hire"
+
 - id: background-check-vendor-handoff-packet
   title: "Background Check Vendor Handoff Packet"
   domain: "Recruiting & Talent"
@@ -4556,6 +4751,32 @@
   frequency: ad-hoc
   trigger: "build a salary range recommendation for a mid-level backend engineer in Berlin"
 
+- id: compile-time-to-fill-aging-report
+  title: "Compile time-to-fill aging report for stalled requisitions"
+  domain: "Recruiting & Talent"
+  roles: ["Recruiting operations analyst", "Recruiting manager"]
+  description: "Rank open reqs by days-open against target SLA and flag stalled pipelines needing attention."
+  inputs: ["Open requisition data", "Time-to-fill targets"]
+  outputs: ["Aging report", "Stalled-req flags"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Applicant tracking system", "Spreadsheet"]
+  frequency: weekly
+  trigger: "Show me which reqs are aging past target"
+
+- id: compile-weekly-requisition-status-update
+  title: "Compile weekly requisition status update for hiring managers"
+  domain: "Recruiting & Talent"
+  roles: ["Recruiter", "Recruiting coordinator"]
+  description: "Summarize each open req's pipeline stage, recent activity, and next steps into a per-manager status note."
+  inputs: ["Pipeline data", "Open requisition list"]
+  outputs: ["Per-manager status update"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Applicant tracking system", "Email", "Spreadsheet"]
+  frequency: weekly
+  trigger: "Send hiring managers their weekly req updates"
+
 - id: coordinate-interview-scheduling
   title: "Coordinate interview loop scheduling"
   domain: "Recruiting & Talent"
@@ -4569,6 +4790,19 @@
   frequency: daily
   trigger: "find times for a 4-person onsite next week and draft the candidate's agenda"
 
+- id: deduplicate-and-standardize-candidate-records
+  title: "Deduplicate and standardize candidate records"
+  domain: "Recruiting & Talent"
+  roles: ["Recruiting operations analyst", "Sourcer"]
+  description: "Find duplicate candidate profiles and normalize tags, titles, and contact fields in the tracking system."
+  inputs: ["Candidate record export", "Tagging conventions"]
+  outputs: ["Merge candidate list", "Cleaned records"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["Applicant tracking system", "Spreadsheet"]
+  frequency: monthly
+  trigger: "Clean up duplicate candidate records in the ATS"
+
 - id: diverse-interview-slate-audit
   title: "Diverse Interview Slate Audit"
   domain: "Recruiting & Talent"
@@ -4581,6 +4815,19 @@
   tools: ["ATS", "spreadsheet"]
   frequency: weekly
   trigger: "Check whether our final-round slates meet the diverse-slate guideline"
+
+- id: draft-interview-confirmation-logistics-email
+  title: "Draft candidate interview confirmation and logistics email"
+  domain: "Recruiting & Talent"
+  roles: ["Recruiting coordinator"]
+  description: "Generate a pre-interview confirmation with agenda, interviewer names, location or link, and prep details."
+  inputs: ["Interview schedule", "Interviewer details", "Location or meeting link"]
+  outputs: ["Confirmation email"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Calendar", "Email"]
+  frequency: ad-hoc
+  trigger: "Send the candidate their interview confirmation details"
 
 - id: draft-candidate-profile-summary
   title: "Draft client-ready candidate profile"
@@ -4660,6 +4907,32 @@
   frequency: daily
   trigger: "draft kind rejection emails for the three candidates we passed on after onsite"
 
+- id: draft-phone-screen-question-set
+  title: "Draft phone screen question set from job spec"
+  domain: "Recruiting & Talent"
+  roles: ["Recruiter", "Sourcer"]
+  description: "Generate tailored phone-screen and pre-qualification questions from a role's spec and must-have criteria."
+  inputs: ["Job specification", "Must-have criteria", "Screening competencies"]
+  outputs: ["Phone screen question set"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Document editor", "Applicant tracking system"]
+  frequency: ad-hoc
+  trigger: "Create phone screen questions for the analyst role"
+
+- id: draft-responses-to-employer-review-feedback
+  title: "Draft responses to employer review-site feedback"
+  domain: "Recruiting & Talent"
+  roles: ["Employer brand specialist", "Recruiting manager"]
+  description: "Draft on-brand replies to public candidate and employee reviews, flagging items that need escalation."
+  inputs: ["Employer review posts", "Response guidelines"]
+  outputs: ["Draft responses", "Escalation flags"]
+  automation: low
+  human_in_loop: approve
+  tools: ["Document editor"]
+  frequency: weekly
+  trigger: "Draft replies to the new reviews on our employer page"
+
 - id: reengage-silver-medalist-candidates
   title: "Draft talent pool re-engagement campaign"
   domain: "Recruiting & Talent"
@@ -4699,6 +4972,19 @@
   frequency: weekly
   trigger: "Audit our open postings for pay range disclosure compliance"
 
+- id: nudge-interviewers-for-overdue-scorecards
+  title: "Nudge interviewers for overdue interview scorecards"
+  domain: "Recruiting & Talent"
+  roles: ["Recruiting coordinator", "Recruiter"]
+  description: "Detect interviews with no submitted feedback past SLA and send reminder nudges to the panelists."
+  inputs: ["Interview schedule", "Scorecard submission status"]
+  outputs: ["Reminder messages", "Outstanding-feedback list"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Applicant tracking system", "Email"]
+  frequency: daily
+  trigger: "Chase the interviewers who haven't filled in scorecards"
+
 - id: offer-comp-band-exception-flag
   title: "Offer Comp vs. Band Exception Flagging"
   domain: "Recruiting & Talent"
@@ -4725,6 +5011,45 @@
   frequency: ad-hoc
   trigger: "summarize these two reference calls into a short reference writeup"
 
+- id: reconcile-requisitions-against-headcount-plan
+  title: "Reconcile open requisitions against approved headcount plan"
+  domain: "Recruiting & Talent"
+  roles: ["Recruiting operations analyst", "HR business partner"]
+  description: "Compare open and draft reqs to the approved headcount plan and flag unbudgeted or over-plan openings."
+  inputs: ["Open requisition list", "Approved headcount plan"]
+  outputs: ["Reconciliation report", "Exception flags"]
+  automation: low
+  human_in_loop: approve
+  tools: ["Spreadsheet", "Applicant tracking system"]
+  frequency: monthly
+  trigger: "Check our open reqs against the approved headcount plan"
+
+- id: route-and-acknowledge-referral-submissions
+  title: "Route and acknowledge employee referral submissions"
+  domain: "Recruiting & Talent"
+  roles: ["Recruiting coordinator", "Recruiter"]
+  description: "Log incoming employee referrals, match them to open reqs, route to the recruiter, and thank the referrer."
+  inputs: ["Referral submissions", "Open requisition list"]
+  outputs: ["Routed referrals", "Referrer acknowledgements"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Applicant tracking system", "Email"]
+  frequency: daily
+  trigger: "Process the new employee referrals that came in"
+
+- id: scan-job-description-for-biased-language
+  title: "Scan job description for biased or non-inclusive language"
+  domain: "Recruiting & Talent"
+  roles: ["Recruiter", "Talent acquisition specialist", "DEI partner"]
+  description: "Flag gendered, age-coded, or exclusionary wording in a draft job description and suggest neutral replacements."
+  inputs: ["Draft job description", "Inclusive language guidelines"]
+  outputs: ["Flagged language report", "Suggested rewrites"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Document editor"]
+  frequency: ad-hoc
+  trigger: "Check this job description for biased wording"
+
 - id: screen-and-rank-resumes
   title: "Screen and rank resumes against role criteria"
   domain: "Recruiting & Talent"
@@ -4750,6 +5075,32 @@
   tools: ["ATS", "docs", "spreadsheet"]
   frequency: weekly
   trigger: "summarize and score these applications against our admission rubric"
+
+- id: segment-talent-crm-into-outreach-pools
+  title: "Segment talent CRM into targeted outreach pools"
+  domain: "Recruiting & Talent"
+  roles: ["Sourcer", "Talent acquisition specialist"]
+  description: "Group passive candidates into outreach pools by skills, seniority, location, and engagement for campaigns."
+  inputs: ["Talent CRM export", "Segmentation criteria"]
+  outputs: ["Segmented talent pools", "Pool definitions"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["CRM", "Spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Segment our talent CRM for an outreach campaign"
+
+- id: send-and-summarize-candidate-experience-survey
+  title: "Send and summarize candidate experience survey results"
+  domain: "Recruiting & Talent"
+  roles: ["Recruiting operations analyst", "Recruiting coordinator"]
+  description: "Trigger post-process candidate experience surveys and summarize scores and verbatim themes into a digest."
+  inputs: ["Candidate contact list", "Survey responses"]
+  outputs: ["Survey digest", "Theme summary"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Survey tool", "Email", "Spreadsheet"]
+  frequency: monthly
+  trigger: "Send the candidate experience survey and summarize the results"
 
 - id: staffing-agency-invoice-reconciliation
   title: "Staffing Agency Invoice Reconciliation"
@@ -4802,6 +5153,19 @@
   tools: ["email", "ATS", "spreadsheet"]
   frequency: ad-hoc
   trigger: "shortlist the submissions for this booking brief"
+
+- id: verify-work-authorization-document-checklist
+  title: "Verify new-hire work-authorization document checklist"
+  domain: "Recruiting & Talent"
+  roles: ["Recruiting coordinator", "HR operations specialist"]
+  description: "Build the required right-to-work document checklist for a hire and flag missing or expiring items."
+  inputs: ["New-hire profile", "Work-authorization requirements", "Submitted documents"]
+  outputs: ["Document checklist", "Missing-item flags"]
+  automation: low
+  human_in_loop: sign-off
+  tools: ["Document editor", "HRIS"]
+  frequency: ad-hoc
+  trigger: "Check the right-to-work documents for our new hire"
 
 - id: write-position-specification
   title: "Write position specification from intake"
@@ -8391,6 +8755,45 @@
   frequency: ad-hoc
   trigger: "write an SOP from these rough steps for onboarding a new vendor"
 
+- id: audit-backlog-against-definition-of-ready
+  title: "Audit backlog items against a definition-of-ready checklist"
+  domain: "Product Management"
+  roles: ["Product Owner", "Product Manager"]
+  description: "Check each upcoming backlog item for acceptance criteria, designs, and dependencies, flagging what is not ready."
+  inputs: ["backlog items", "definition-of-ready checklist"]
+  outputs: ["readiness audit", "list of incomplete items"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["project tracker", "spreadsheet"]
+  frequency: weekly
+  trigger: "check which backlog items aren't ready for the next sprint"
+
+- id: build-competitor-pricing-and-packaging-comparison-matrix
+  title: "Build a competitor pricing and packaging comparison matrix"
+  domain: "Product Management"
+  roles: ["Product Manager", "Product Marketing Manager"]
+  description: "Collect competitor tiers, prices, and packaged features into a side-by-side matrix highlighting gaps and parity."
+  inputs: ["competitor pricing pages", "our pricing tiers"]
+  outputs: ["pricing comparison matrix", "gap callouts"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["web research", "spreadsheet"]
+  frequency: quarterly
+  trigger: "build a pricing comparison matrix against our top three competitors"
+
+- id: build-feature-adoption-funnel-report
+  title: "Build a feature adoption funnel report and flag drop-off points"
+  domain: "Product Management"
+  roles: ["Product Manager", "Product Analyst"]
+  description: "Assemble a usage funnel for a feature, calculate step conversion, and call out where users drop off."
+  inputs: ["usage event data", "funnel definition"]
+  outputs: ["adoption funnel report", "drop-off callouts"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["analytics tool", "spreadsheet", "document editor"]
+  frequency: monthly
+  trigger: "build an adoption funnel for the new onboarding flow"
+
 - id: compare-bom-versions
   title: "Compare two BOM versions and summarize changes"
   domain: "Product Management"
@@ -8417,6 +8820,19 @@
   frequency: quarterly
   trigger: "build a feature comparison between us and this competitor"
 
+- id: compile-sprint-review-demo-agenda
+  title: "Compile a sprint review demo agenda and talking points"
+  domain: "Product Management"
+  roles: ["Product Manager", "Product Owner", "Scrum Master"]
+  description: "Turn completed sprint items into an ordered demo agenda with talking points and presenter assignments."
+  inputs: ["completed sprint items", "sprint goal", "presenter list"]
+  outputs: ["demo agenda", "talking points"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["project tracker", "document editor"]
+  frequency: weekly
+  trigger: "build the demo agenda for this sprint review"
+
 - id: release-dependency-reconciliation
   title: "Cross-team release dependency reconciliation"
   domain: "Product Management"
@@ -8442,6 +8858,71 @@
   tools: ["docs", "spreadsheet"]
   frequency: ad-hoc
   trigger: "draft a feature validation survey for this research goal"
+
+- id: draft-beta-program-recruitment-and-onboarding-sequence
+  title: "Draft a beta program recruitment and onboarding email sequence"
+  domain: "Product Management"
+  roles: ["Product Manager", "Product Operations"]
+  description: "Write the invite, screening, welcome, and check-in emails that move beta candidates through onboarding."
+  inputs: ["beta program goals", "eligibility criteria", "feature overview"]
+  outputs: ["email sequence drafts", "beta onboarding checklist"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["document editor", "email client"]
+  frequency: ad-hoc
+  trigger: "write the email sequence for recruiting and onboarding beta users"
+
+- id: draft-customer-migration-guide-for-deprecated-feature
+  title: "Draft a customer-facing migration guide for a deprecated feature"
+  domain: "Product Management"
+  roles: ["Product Manager", "Technical Writer"]
+  description: "Write step-by-step instructions, timelines, and FAQs that move customers from a sunset feature to its replacement."
+  inputs: ["deprecation details", "replacement feature docs", "timeline"]
+  outputs: ["migration guide", "migration FAQ"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document editor", "knowledge base"]
+  frequency: ad-hoc
+  trigger: "write a migration guide for customers moving off the old API"
+
+- id: draft-discovery-research-participant-screener
+  title: "Draft a discovery research participant screener"
+  domain: "Product Management"
+  roles: ["Product Manager", "UX Researcher"]
+  description: "Write screening questions and qualification logic to recruit the right participants for discovery research."
+  inputs: ["target participant profile", "research goals"]
+  outputs: ["participant screener", "qualification criteria"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["survey tool", "document editor"]
+  frequency: ad-hoc
+  trigger: "write a screener to recruit participants for our discovery study"
+
+- id: draft-phased-feature-rollout-plan-with-guardrails
+  title: "Draft a phased feature rollout plan with guardrails"
+  domain: "Product Management"
+  roles: ["Product Manager", "Product Operations"]
+  description: "Lay out staged rollout percentages, target cohorts, success metrics, and kill criteria for a new feature."
+  inputs: ["feature scope", "target segments", "risk notes"]
+  outputs: ["rollout plan", "guardrail metric thresholds"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document editor", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "draft a staged rollout plan for the new checkout flow"
+
+- id: draft-privacy-data-handling-review-questionnaire
+  title: "Draft a privacy and data-handling review questionnaire for a feature"
+  domain: "Product Management"
+  roles: ["Product Manager", "Privacy Analyst"]
+  description: "Generate the data-collection, retention, and consent questions a feature must answer before privacy review."
+  inputs: ["feature spec", "data fields collected", "applicable policy"]
+  outputs: ["privacy review questionnaire", "flagged data risks"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document editor", "knowledge base"]
+  frequency: ad-hoc
+  trigger: "draft the privacy review questionnaire for this feature"
 
 - id: draft-ab-test-plan
   title: "Draft A/B test plan with hypotheses"
@@ -8507,6 +8988,19 @@
   tools: ["docs", "email", "knowledge base"]
   frequency: ad-hoc
   trigger: "draft a deprecation announcement for the legacy export feature"
+
+- id: draft-in-app-announcement-and-tooltip-copy
+  title: "Draft in-app announcement and tooltip copy for a new feature"
+  domain: "Product Management"
+  roles: ["Product Manager", "Product Marketing Manager", "UX Writer"]
+  description: "Write concise in-product microcopy, tooltips, and banner text that introduce a new feature to users."
+  inputs: ["feature description", "target user action", "tone guidelines"]
+  outputs: ["announcement copy", "tooltip variants"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["document editor"]
+  frequency: ad-hoc
+  trigger: "write the in-app banner and tooltip copy for the new dashboard"
 
 - id: draft-launch-readiness-brief
   title: "Draft launch readiness brief"
@@ -8638,6 +9132,19 @@
   frequency: monthly
   trigger: "Update the public roadmap from the internal one"
 
+- id: interpret-ab-experiment-results-into-readout
+  title: "Interpret A/B experiment results into a recommendation readout"
+  domain: "Product Management"
+  roles: ["Product Manager", "Product Analyst"]
+  description: "Read experiment metrics and significance, summarize what happened, and recommend ship, iterate, or kill."
+  inputs: ["experiment results data", "hypothesis", "guardrail metrics"]
+  outputs: ["results readout", "ship or kill recommendation"]
+  automation: low
+  human_in_loop: review-before-send
+  tools: ["spreadsheet", "analytics tool", "document editor"]
+  frequency: ad-hoc
+  trigger: "interpret these A/B test results and tell me if we should ship"
+
 - id: go-no-go-readiness-packet
   title: "Launch Go/No-Go readiness packet compilation"
   domain: "Product Management"
@@ -8690,6 +9197,19 @@
   frequency: ad-hoc
   trigger: "Check if this PRD is ready to hand off to engineering"
 
+- id: reconcile-roadmap-dates-against-capacity-and-velocity
+  title: "Reconcile roadmap dates against team capacity and velocity"
+  domain: "Product Management"
+  roles: ["Product Manager", "Product Operations", "Group PM"]
+  description: "Compare roadmap commitments to historical velocity and available capacity, then flag at-risk dates and overcommitment."
+  inputs: ["roadmap with dates", "team velocity data", "capacity and PTO calendar"]
+  outputs: ["at-risk item list", "capacity reconciliation notes"]
+  automation: low
+  human_in_loop: review-before-send
+  tools: ["spreadsheet", "project tracker", "calendar"]
+  frequency: monthly
+  trigger: "check which roadmap dates are at risk given our velocity"
+
 - id: score-prioritize-backlog-rice
   title: "Score and prioritize backlog with RICE"
   domain: "Product Management"
@@ -8702,6 +9222,19 @@
   tools: ["spreadsheet", "ticketing", "docs"]
   frequency: monthly
   trigger: "score these backlog items with RICE and rank them"
+
+- id: summarize-app-store-reviews-into-ratings-trend-report
+  title: "Summarize app store reviews into a ratings trend report"
+  domain: "Product Management"
+  roles: ["Product Manager", "Product Operations"]
+  description: "Mine store and marketplace reviews over time, cluster complaints and praise, and chart how ratings shift across releases."
+  inputs: ["app store review export", "release dates", "prior trend report"]
+  outputs: ["ratings trend report", "top review themes"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "text analysis", "document editor"]
+  frequency: monthly
+  trigger: "summarize this month's app store reviews and how our rating is trending"
 
 - id: summarize-user-interviews
   title: "Summarize user interviews into insights"
@@ -8755,6 +9288,19 @@
   frequency: daily
   trigger: "triage and tag these new feature requests against our backlog"
 
+- id: write-weekly-stakeholder-status-update
+  title: "Write a weekly stakeholder status update from project signals"
+  domain: "Product Management"
+  roles: ["Product Manager", "Product Operations"]
+  description: "Pull progress, blockers, and upcoming milestones from trackers into a concise stakeholder update."
+  inputs: ["project tracker export", "prior week's update", "milestone list"]
+  outputs: ["stakeholder status update"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["project tracker", "document editor"]
+  frequency: weekly
+  trigger: "write this week's product status update for stakeholders"
+
 - id: write-feature-enablement-faq
   title: "Write feature enablement FAQ for sales and support"
   domain: "Product Management"
@@ -8794,6 +9340,19 @@
   frequency: weekly
   trigger: "break this feature into user stories with acceptance criteria"
 
+- id: annotate-wireframe-field-behavior
+  title: "Annotate wireframes with field-level behavior notes"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Analyst", "Functional Analyst"]
+  description: "Review a wireframe or mockup and draft annotations describing each field's behavior, validation, and visibility rules."
+  inputs: ["Wireframe/mockup image", "Requirements notes"]
+  outputs: ["Annotated field-behavior notes"]
+  automation: low
+  human_in_loop: review-before-send
+  tools: ["document editor", "diagramming tool"]
+  frequency: ad-hoc
+  trigger: "annotate this wireframe with field behavior notes"
+
 - id: audit-degree-requirements
   title: "Audit student degree requirements"
   domain: "Business / Functional Analysis"
@@ -8807,6 +9366,19 @@
   frequency: quarterly
   trigger: "check these transcripts against degree requirements and flag what's missing for graduation"
 
+- id: author-business-glossary
+  title: "Author a standardized business glossary"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Analyst", "Data Analyst"]
+  description: "Collect business terms used across documents, draft plain-language definitions, and flag conflicting or duplicate usages."
+  inputs: ["Requirements documents", "Existing glossary", "Stakeholder term lists"]
+  outputs: ["Business glossary", "List of conflicting term definitions"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document editor", "spreadsheet"]
+  frequency: quarterly
+  trigger: "build a glossary of business terms from these docs"
+
 - id: beneficiary-survey-theming
   title: "Beneficiary survey open-text theming"
   domain: "Business / Functional Analysis"
@@ -8819,6 +9391,19 @@
   tools: ["spreadsheet", "BI tool"]
   frequency: quarterly
   trigger: "Theme the open-text answers from the participant survey"
+
+- id: build-process-entity-crud-matrix
+  title: "Build a process-to-entity CRUD matrix"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Analyst", "Data Analyst"]
+  description: "Cross-map business processes against data entities, marking create/read/update/delete and flagging entities with no creator."
+  inputs: ["Process list", "Data entity list", "Requirements documents"]
+  outputs: ["CRUD matrix", "List of orphaned entities"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "document editor"]
+  frequency: ad-hoc
+  trigger: "build a CRUD matrix for these processes and entities"
 
 - id: build-requirements-traceability-matrix
   title: "Build requirements traceability matrix"
@@ -8858,6 +9443,19 @@
   tools: ["knowledge base", "document editor", "spreadsheet"]
   frequency: quarterly
   trigger: "check our documented business rules against the updated policy"
+
+- id: maintain-requirements-decision-log
+  title: "Capture requirements decisions into a decision log"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Analyst", "Functional Analyst"]
+  description: "Extract decisions, rationale, and owners from workshop notes and threads, and append structured entries to the decision log."
+  inputs: ["Workshop notes", "Email/chat threads", "Existing decision log"]
+  outputs: ["Updated decision log entries"]
+  automation: medium
+  human_in_loop: none
+  tools: ["document editor", "spreadsheet", "email/inbox"]
+  frequency: weekly
+  trigger: "log the decisions we made this week"
 
 - id: catalog-business-rules
   title: "Catalog business rules from policy documents"
@@ -8937,6 +9535,19 @@
   frequency: ad-hoc
   trigger: "create a source-to-target data mapping and dictionary from these field lists"
 
+- id: define-field-validation-rules
+  title: "Define field-level validation and edit rules"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Analyst", "Systems Analyst"]
+  description: "For each data field, draft format, range, required, and cross-field validation rules with error messages."
+  inputs: ["Field list / data dictionary", "Business rules", "Sample data"]
+  outputs: ["Validation rules catalog", "Draft error messages"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "document editor"]
+  frequency: ad-hoc
+  trigger: "define validation rules for these fields"
+
 - id: define-solution-success-metrics
   title: "Define solution success metrics and KPIs"
   domain: "Business / Functional Analysis"
@@ -8949,6 +9560,19 @@
   tools: ["docs", "spreadsheet", "BI tool"]
   frequency: ad-hoc
   trigger: "define success metrics for the self-service portal project"
+
+- id: diff-requirements-document-versions
+  title: "Diff two requirements document versions"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Analyst", "Functional Analyst"]
+  description: "Compare two versions of a requirements document and produce a categorized change summary of added, removed, and altered items."
+  inputs: ["Prior document version", "Current document version"]
+  outputs: ["Change summary", "Redline list"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["document compare tool", "document editor"]
+  frequency: ad-hoc
+  trigger: "what changed between these two versions of the BRD"
 
 - id: document-as-is-to-be-process
   title: "Document as-is and to-be process flows"
@@ -9041,6 +9665,19 @@
   frequency: ad-hoc
   trigger: "draft interview questions to gather requirements for the new onboarding process"
 
+- id: draft-workshop-agenda-prep-pack
+  title: "Draft the requirements workshop agenda and prep pack"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Analyst", "Facilitator"]
+  description: "From the session goal and open items, draft a timed agenda, attendee prep notes, and a list of questions to cover."
+  inputs: ["Session objective", "Open items list", "Attendee list"]
+  outputs: ["Workshop agenda", "Prep pack", "Question list"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document editor", "calendar", "email/inbox"]
+  frequency: ad-hoc
+  trigger: "draft an agenda for the requirements workshop"
+
 - id: draft-uat-business-scenarios
   title: "Draft UAT business test scenarios"
   domain: "Business / Functional Analysis"
@@ -9066,6 +9703,19 @@
   tools: ["docs", "spreadsheet"]
   frequency: daily
   trigger: "summarize this application into a risk brief for the underwriter"
+
+- id: extract-regulatory-requirements
+  title: "Extract regulatory obligations into a requirements list"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Analyst", "Compliance Analyst"]
+  description: "Read a regulation or policy and draft a list of testable obligations the solution must satisfy, with source citations."
+  inputs: ["Regulation/policy text", "Scope notes"]
+  outputs: ["Compliance requirements list", "Source citations"]
+  automation: low
+  human_in_loop: approve
+  tools: ["PDF reader", "document editor", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "pull the requirements out of this regulation"
 
 - id: underwriting-risk-attribute-extraction
   title: "Extract risk attributes into underwriting worksheet"
@@ -9131,6 +9781,32 @@
   tools: ["document editor", "e-signature", "email"]
   frequency: ad-hoc
   trigger: "prep the functional spec for stakeholder sign-off"
+
+- id: maintain-raid-log
+  title: "Maintain the RAID log from project notes"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Analyst", "Project Analyst"]
+  description: "Scan meeting notes and emails to add or update risks, assumptions, issues, and dependencies, flagging stale or overdue items."
+  inputs: ["Meeting notes", "Status emails", "Existing RAID log"]
+  outputs: ["Updated RAID log", "List of stale/overdue items"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "email/inbox", "document editor"]
+  frequency: weekly
+  trigger: "update the RAID log from this week's notes"
+
+- id: map-uat-defects-to-requirements
+  title: "Map UAT defects back to source requirements"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Analyst", "QA Analyst"]
+  description: "Link each reported UAT defect to the requirement or test scenario it affects, and flag defects with no traceable requirement."
+  inputs: ["UAT defect list", "Requirements list", "Test scenarios"]
+  outputs: ["Defect-to-requirement map", "List of untraceable defects"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["issue tracker", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "map these UAT defects to the requirements they hit"
 
 - id: perform-gap-analysis
   title: "Perform current-vs-target gap analysis"
@@ -9223,6 +9899,19 @@
   frequency: ad-hoc
   trigger: "reconcile the source and target field mappings for the migration"
 
+- id: specify-report-and-dashboard-requirements
+  title: "Specify report and dashboard requirements"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Analyst", "BI Analyst"]
+  description: "Translate a reporting request into a spec covering metrics, dimensions, filters, drill paths, and refresh cadence."
+  inputs: ["Reporting request", "Source field list", "Sample report"]
+  outputs: ["Report/dashboard requirements spec"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document editor", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "write the requirements for this dashboard"
+
 - id: emerging-experience-summary
   title: "Summarize emerging experience vs expected"
   domain: "Business / Functional Analysis"
@@ -9275,6 +9964,19 @@
   frequency: ad-hoc
   trigger: "Summarize this site survey and list the risk recommendations."
 
+- id: triage-open-questions-log
+  title: "Triage the requirements open-questions log"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Analyst", "Project Analyst"]
+  description: "Group open questions by topic and owner, draft chase-up notes for unanswered items, and close resolved ones."
+  inputs: ["Open-questions log", "Recent answers/emails"]
+  outputs: ["Updated open-questions log", "Draft follow-up notes"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["spreadsheet", "email/inbox"]
+  frequency: weekly
+  trigger: "triage the open questions parking lot"
+
 - id: uat-feedback-triage-digest
   title: "UAT Feedback Triage & Status Digest"
   domain: "Business / Functional Analysis"
@@ -9301,6 +10003,19 @@
   frequency: weekly
   trigger: "check this BOM for missing or bad data"
 
+- id: write-process-narrative-from-flow
+  title: "Write a process narrative from a flow diagram"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Analyst", "Process Analyst"]
+  description: "Convert a process flow diagram into a step-by-step written procedure with roles, inputs, and handoffs at each step."
+  inputs: ["Process flow diagram", "Step descriptions"]
+  outputs: ["Process narrative / SOP draft"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["diagramming tool", "document editor"]
+  frequency: ad-hoc
+  trigger: "turn this process flow into a written procedure"
+
 - id: write-change-request-impact-analysis
   title: "Write change request impact analysis"
   domain: "Business / Functional Analysis"
@@ -9313,6 +10028,19 @@
   tools: ["docs", "requirements management tool"]
   frequency: ad-hoc
   trigger: "assess the impact of this change request on our current scope and requirements"
+
+- id: write-use-case-specifications
+  title: "Write use case specifications with alternate flows"
+  domain: "Business / Functional Analysis"
+  roles: ["Business Analyst", "Systems Analyst"]
+  description: "Turn a feature description into a use case spec with actors, preconditions, main flow, alternate and exception flows."
+  inputs: ["Feature description", "Requirements notes", "Use case template"]
+  outputs: ["Use case specification document"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document editor"]
+  frequency: ad-hoc
+  trigger: "write a use case spec for this feature"
 
 - id: adverse-media-screening-summary
   title: "Adverse media screening summary"
@@ -12057,6 +12785,19 @@
   frequency: daily
   trigger: "Build an itinerary from these booking confirmations"
 
+- id: audit-calendar-dial-ins-and-locations
+  title: "Audit calendar entries for missing dial-ins and locations"
+  domain: "Executive / Admin Support"
+  roles: ["Executive Assistant", "Team Coordinator"]
+  description: "Scan upcoming events for missing video links, dial-ins, room bookings, or locations and flag or fix the gaps."
+  inputs: ["Calendar for the coming period", "Standard room and dial-in details"]
+  outputs: ["List of flagged events with proposed fixes"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Calendar"]
+  frequency: weekly
+  trigger: "Check next week's meetings for missing video links and rooms"
+
 - id: board-packet-rsvp-and-quorum-tracking
   title: "Board packet RSVP and quorum tracking"
   domain: "Executive / Admin Support"
@@ -12083,6 +12824,19 @@
   frequency: daily
   trigger: "prep a briefing for my 2pm with the new vendor"
 
+- id: build-meeting-time-zone-sheet
+  title: "Build a time-zone reference sheet for a distributed meeting"
+  domain: "Executive / Admin Support"
+  roles: ["Executive Assistant", "Team Coordinator"]
+  description: "Convert a proposed meeting time into local times for every participant and note any out-of-hours conflicts."
+  inputs: ["Proposed meeting time", "Participant locations"]
+  outputs: ["Time-zone conversion sheet with conflict flags"]
+  automation: high
+  human_in_loop: none
+  tools: ["Spreadsheet", "Calendar"]
+  frequency: ad-hoc
+  trigger: "Show what 3pm Tuesday is for everyone on the invite"
+
 - id: build-talent-itinerary
   title: "Build talent travel and appearance itineraries"
   domain: "Executive / Admin Support"
@@ -12108,6 +12862,19 @@
   tools: ["docs", "email"]
   frequency: daily
   trigger: "turn this transcript into minutes with action items and owners"
+
+- id: chase-signatures-on-document
+  title: "Chase signatures and approvals on a document for execution"
+  domain: "Executive / Admin Support"
+  roles: ["Executive Assistant", "Administrative Assistant"]
+  description: "Track who still needs to sign or approve a document and draft reminder nudges in routing order."
+  inputs: ["Document and signer list", "Routing order", "Current signature status"]
+  outputs: ["Status tracker and draft reminder messages"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["E-signature platform", "Email", "Spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Find out who hasn't signed the contract yet and nudge them"
 
 - id: clean-contact-list
   title: "Clean and dedupe contact list"
@@ -12148,6 +12915,32 @@
   frequency: weekly
   trigger: "build a clean itinerary for the Chicago trip from these confirmation emails"
 
+- id: compile-gifting-and-acknowledgment-tracker
+  title: "Compile a gifting and acknowledgment tracker"
+  domain: "Executive / Admin Support"
+  roles: ["Executive Assistant", "Personal Assistant"]
+  description: "Track gifts, thank-you notes, and acknowledgments owed across contacts and flag what is still outstanding."
+  inputs: ["Contact and relationship list", "Occasions and dates", "Past gifting history"]
+  outputs: ["Gifting tracker with outstanding items"]
+  automation: low
+  human_in_loop: review-before-send
+  tools: ["Spreadsheet", "Calendar"]
+  frequency: quarterly
+  trigger: "Who still needs a thank-you note from the holidays?"
+
+- id: compile-travel-option-shortlist
+  title: "Compile a travel option shortlist for approval"
+  domain: "Executive / Admin Support"
+  roles: ["Executive Assistant", "Travel Coordinator"]
+  description: "Compare flight, hotel, and rail options against policy and traveler preferences, then present a ranked shortlist for the executive to choose from."
+  inputs: ["Trip request with dates and destination", "Travel policy", "Traveler preferences", "Live fare and availability data"]
+  outputs: ["Ranked option shortlist with prices and trade-offs"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["Web search", "Travel booking portal", "Spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Pull together a few flight and hotel options for next month's trip"
+
 - id: coordinate-offsite-logistics
   title: "Coordinate event or offsite logistics"
   domain: "Executive / Admin Support"
@@ -12174,6 +12967,32 @@
   frequency: ad-hoc
   trigger: "set up the onboarding checklist and first-week schedule for our new hire"
 
+- id: curate-weekly-reading-digest
+  title: "Curate a weekly reading digest for the executive"
+  domain: "Executive / Admin Support"
+  roles: ["Executive Assistant", "Chief of Staff"]
+  description: "Gather articles and updates relevant to the executive's priorities into a short annotated reading digest."
+  inputs: ["Executive's focus areas", "News and industry sources", "Internal updates"]
+  outputs: ["Annotated reading digest"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Web search", "Document editor", "Email"]
+  frequency: weekly
+  trigger: "Pull together this week's must-read articles for the CEO"
+
+- id: draft-catering-order-for-onsite
+  title: "Draft a catering order and dietary summary for an onsite"
+  domain: "Executive / Admin Support"
+  roles: ["Office Manager", "Administrative Assistant"]
+  description: "Compile headcount and dietary restrictions and draft a catering order matched to budget and menu options."
+  inputs: ["Confirmed headcount", "Dietary restrictions and RSVPs", "Budget", "Vendor menu"]
+  outputs: ["Draft catering order with dietary breakdown"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["Spreadsheet", "Email", "Web search"]
+  frequency: ad-hoc
+  trigger: "Put together the lunch order for Thursday's offsite"
+
 - id: draft-meeting-agenda
   title: "Draft a meeting agenda"
   domain: "Executive / Admin Support"
@@ -12186,6 +13005,32 @@
   tools: ["docs", "calendar", "email"]
   frequency: weekly
   trigger: "draft an agenda for Monday's leadership sync from last week's open items"
+
+- id: draft-post-meeting-recap-email
+  title: "Draft a post-meeting follow-up recap email"
+  domain: "Executive / Admin Support"
+  roles: ["Executive Assistant", "Chief of Staff"]
+  description: "Turn meeting notes into a concise recap email summarizing decisions, owners, and next steps for attendees."
+  inputs: ["Meeting notes or transcript", "Attendee list", "Agreed action items"]
+  outputs: ["Draft recap email"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Email", "Document editor"]
+  frequency: weekly
+  trigger: "Write a follow-up email recapping today's meeting"
+
+- id: draft-ooo-coverage-memo
+  title: "Draft an out-of-office coverage and delegation memo"
+  domain: "Executive / Admin Support"
+  roles: ["Executive Assistant", "Chief of Staff"]
+  description: "Map the executive's responsibilities during an absence to covering colleagues and draft a coverage and delegation memo."
+  inputs: ["Absence dates", "List of responsibilities and approvals", "Team availability"]
+  outputs: ["Draft coverage and delegation memo"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Document editor", "Calendar", "Email"]
+  frequency: ad-hoc
+  trigger: "Write up who covers what while the VP is on leave next week"
 
 - id: draft-executive-correspondence
   title: "Draft correspondence on behalf of the executive"
@@ -12317,6 +13162,19 @@
   frequency: daily
   trigger: "find 30 minutes next week for me and these three people and send the invite"
 
+- id: maintain-travel-profile-sheet
+  title: "Maintain the executive's travel profile and preferences sheet"
+  domain: "Executive / Admin Support"
+  roles: ["Executive Assistant", "Personal Assistant"]
+  description: "Keep loyalty numbers, seat and hotel preferences, and passport and known-traveler details current in one profile sheet."
+  inputs: ["Existing profile sheet", "Updated loyalty and document details", "Stated preferences"]
+  outputs: ["Updated travel profile sheet"]
+  automation: low
+  human_in_loop: spot-check
+  tools: ["Spreadsheet", "File storage"]
+  frequency: quarterly
+  trigger: "Update the boss's travel preferences with the new airline status"
+
 - id: meeting-request-triage-and-decline-drafting
   title: "Meeting request triage and decline drafting"
   domain: "Executive / Admin Support"
@@ -12342,6 +13200,19 @@
   tools: ["docs", "file storage"]
   frequency: weekly
   trigger: "organize and rename the files in this shared drive folder"
+
+- id: prepare-visitor-access-list
+  title: "Prepare a visitor access and guest list for an onsite"
+  domain: "Executive / Admin Support"
+  roles: ["Office Manager", "Executive Assistant"]
+  description: "Assemble visitor names, companies, and arrival times into a reception access list and badge sheet."
+  inputs: ["Visitor names and details", "Meeting schedule", "Security access template"]
+  outputs: ["Visitor access list and badge sheet"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Spreadsheet", "Email"]
+  frequency: ad-hoc
+  trigger: "Make the front-desk guest list for tomorrow's visitors"
 
 - id: prepare-daily-look-ahead-brief
   title: "Prepare daily look-ahead brief"
@@ -12381,6 +13252,32 @@
   tools: ["spreadsheet", "CMS"]
   frequency: monthly
   trigger: "Put together the board packet for next month's meeting"
+
+- id: reconcile-mileage-and-per-diem
+  title: "Reconcile mileage and per diem for a reimbursement claim"
+  domain: "Executive / Admin Support"
+  roles: ["Administrative Assistant", "Executive Assistant"]
+  description: "Calculate mileage and per diem amounts from a trip log against current rate tables and assemble the claim lines."
+  inputs: ["Trip log with routes and dates", "Mileage and per diem rate tables", "Reimbursement form"]
+  outputs: ["Itemized mileage and per diem claim"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Spreadsheet", "Map/distance tool", "Expense system"]
+  frequency: monthly
+  trigger: "Work out the mileage and per diem for last week's road trip"
+
+- id: reconcile-corporate-card-statement
+  title: "Reconcile the corporate card statement against submitted expenses"
+  domain: "Executive / Admin Support"
+  roles: ["Administrative Assistant", "Executive Assistant"]
+  description: "Match each card statement line to a submitted receipt or expense and flag unmatched, missing, or duplicate charges."
+  inputs: ["Corporate card statement", "Submitted receipts and expense reports"]
+  outputs: ["Reconciliation with flagged exceptions"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Spreadsheet", "Expense system"]
+  frequency: monthly
+  trigger: "Match this month's card statement to the receipts we have"
 
 - id: recurring-meeting-decay-audit
   title: "Recurring meeting decay audit"
@@ -12446,6 +13343,19 @@
   tools: ["spreadsheet", "email", "docs"]
   frequency: weekly
   trigger: "what's overdue from my boss's commitments and draft the follow-ups"
+
+- id: track-membership-and-subscription-renewals
+  title: "Track and flag upcoming membership and subscription renewals"
+  domain: "Executive / Admin Support"
+  roles: ["Executive Assistant", "Office Manager"]
+  description: "Scan renewal dates for memberships, subscriptions, and dues and flag those coming due with cost and recommended action."
+  inputs: ["Renewal register", "Contract and invoice dates", "Budget notes"]
+  outputs: ["List of upcoming renewals with recommended action"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["Spreadsheet", "Calendar", "Email"]
+  frequency: monthly
+  trigger: "Which memberships are up for renewal in the next 60 days?"
 
 - id: travel-document-compliance-check
   title: "Travel document and visa compliance check"
@@ -13188,6 +14098,84 @@
   frequency: ad-hoc
   trigger: "score our data capabilities against this 5-level maturity model"
 
+- id: audit-financial-model-assumptions
+  title: "Audit a financial model for assumption and formula errors"
+  domain: "Strategy & Consulting"
+  roles: ["Business Analyst", "Strategy Consultant"]
+  description: "Trace key formulas and flag broken links, hardcoded cells, and inconsistent assumptions in a model."
+  inputs: ["financial model file", "assumption documentation"]
+  outputs: ["model audit notes", "flagged issues list"]
+  automation: low
+  human_in_loop: review-before-send
+  tools: ["spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Check this model for errors before we send it"
+
+- id: build-business-case-cost-benefit
+  title: "Build a business case with cost-benefit quantification"
+  domain: "Strategy & Consulting"
+  roles: ["Strategy Consultant", "Business Analyst", "Engagement Manager"]
+  description: "Quantify costs, benefits, and payback for a proposed initiative and frame the investment recommendation."
+  inputs: ["cost estimates", "benefit assumptions", "discount rate", "initiative scope"]
+  outputs: ["business case model", "cost-benefit summary"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["spreadsheet", "presentation software"]
+  frequency: ad-hoc
+  trigger: "Build the business case for this initiative"
+
+- id: build-five-forces-analysis
+  title: "Build a Porter's five forces analysis"
+  domain: "Strategy & Consulting"
+  roles: ["Strategy Consultant", "Strategy Analyst"]
+  description: "Assess supplier power, buyer power, rivalry, substitutes, and entry barriers for a target industry."
+  inputs: ["industry research", "market data"]
+  outputs: ["five forces assessment", "attractiveness summary"]
+  automation: low
+  human_in_loop: review-before-send
+  tools: ["web search", "document editor"]
+  frequency: ad-hoc
+  trigger: "Run a five forces on this industry"
+
+- id: build-stakeholder-power-interest-map
+  title: "Build a stakeholder power-interest map"
+  domain: "Strategy & Consulting"
+  roles: ["Engagement Manager", "Management Consultant"]
+  description: "Plot key stakeholders on a power-versus-interest grid with tailored engagement tactics per quadrant."
+  inputs: ["stakeholder list", "stakeholder roles and notes"]
+  outputs: ["power-interest grid", "engagement tactics"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["presentation software", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Map these stakeholders by power and interest"
+
+- id: build-value-driver-tree
+  title: "Build a value driver tree from financials"
+  domain: "Strategy & Consulting"
+  roles: ["Strategy Consultant", "Business Analyst"]
+  description: "Decompose a profit or value metric into its operational drivers to locate improvement levers."
+  inputs: ["financial statements", "operational metrics"]
+  outputs: ["value driver tree", "lever shortlist"]
+  automation: low
+  human_in_loop: review-before-send
+  tools: ["spreadsheet", "presentation software"]
+  frequency: ad-hoc
+  trigger: "Break this profit metric into its value drivers"
+
+- id: build-impact-effort-prioritization
+  title: "Build an impact-effort prioritization matrix"
+  domain: "Strategy & Consulting"
+  roles: ["Strategy Consultant", "Business Analyst"]
+  description: "Score a backlog of initiatives on impact and effort and place them on a prioritization 2x2."
+  inputs: ["initiative list", "impact criteria", "effort estimates"]
+  outputs: ["prioritization 2x2", "ranked shortlist"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["spreadsheet", "presentation software"]
+  frequency: ad-hoc
+  trigger: "Prioritize these initiatives by impact and effort"
+
 - id: build-benchmarking-summary
   title: "Build benchmarking summary"
   domain: "Strategy & Consulting"
@@ -13279,6 +14267,19 @@
   frequency: ad-hoc
   trigger: "File the lessons learned from this engagement into our knowledge base"
 
+- id: compile-decisions-actions-log
+  title: "Compile a decisions and actions log from meeting notes"
+  domain: "Strategy & Consulting"
+  roles: ["Project Manager", "Associate", "Engagement Manager"]
+  description: "Extract decisions, owners, and due dates from meeting notes into a running engagement log."
+  inputs: ["meeting notes", "prior actions log"]
+  outputs: ["updated decisions and actions log"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["document editor", "spreadsheet"]
+  frequency: weekly
+  trigger: "Pull the decisions and actions out of these notes"
+
 - id: compile-company-teardown-profile
   title: "Compile company or industry teardown profile"
   domain: "Strategy & Consulting"
@@ -13343,6 +14344,58 @@
   tools: ["docs"]
   frequency: ad-hoc
   trigger: "build an issue tree for why margins are declining in this business unit"
+
+- id: draft-change-communication-plan
+  title: "Draft a change management communication plan"
+  domain: "Strategy & Consulting"
+  roles: ["Management Consultant", "Change Manager"]
+  description: "Map audiences, key messages, channels, and timing for rolling out a strategic change."
+  inputs: ["stakeholder map", "change scope", "rollout timeline"]
+  outputs: ["communication plan", "message matrix"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document editor", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Draft a comms plan for this rollout"
+
+- id: draft-raci-matrix
+  title: "Draft a RACI matrix for the engagement"
+  domain: "Strategy & Consulting"
+  roles: ["Project Manager", "Engagement Manager"]
+  description: "Assign Responsible, Accountable, Consulted, and Informed roles across workstream activities and decisions."
+  inputs: ["activity list", "team roster", "governance structure"]
+  outputs: ["RACI matrix"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Draft a RACI for this workstream"
+
+- id: draft-deck-action-titles
+  title: "Draft action titles for an existing slide deck"
+  domain: "Strategy & Consulting"
+  roles: ["Management Consultant", "Strategy Analyst"]
+  description: "Rewrite descriptive slide headers into 'so what' action titles that carry the argument page to page."
+  inputs: ["draft slide deck", "supporting chart data"]
+  outputs: ["action title set"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["presentation software"]
+  frequency: ad-hoc
+  trigger: "Turn these slide headers into action titles"
+
+- id: draft-engagement-kickoff-charter
+  title: "Draft an engagement kickoff agenda and charter"
+  domain: "Strategy & Consulting"
+  roles: ["Engagement Manager", "Project Manager"]
+  description: "Draft the kickoff agenda, objectives, scope guardrails, and ways-of-working for a new engagement."
+  inputs: ["proposal or SOW", "team roster", "client objectives"]
+  outputs: ["kickoff agenda", "engagement charter"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document editor", "presentation software"]
+  frequency: ad-hoc
+  trigger: "Draft the kickoff charter for this new engagement"
 
 - id: draft-client-case-study-credential
   title: "Draft client case study credential"
@@ -13513,6 +14566,19 @@
   frequency: weekly
   trigger: "Review this steerco deck for numbers that don't match across slides"
 
+- id: reconcile-workstream-data-discrepancies
+  title: "Reconcile data discrepancies across the engagement fact base"
+  domain: "Strategy & Consulting"
+  roles: ["Business Analyst", "Engagement Manager"]
+  description: "Compare numbers cited across workstreams, flag mismatches, and propose a single source of truth."
+  inputs: ["workstream data extracts", "source references"]
+  outputs: ["discrepancy log", "reconciled fact base"]
+  automation: low
+  human_in_loop: review-before-send
+  tools: ["spreadsheet"]
+  frequency: weekly
+  trigger: "Find where our numbers disagree across workstreams"
+
 - id: benchmark-refresh-comparison-matrix
   title: "Refresh industry benchmarks into the engagement comparison matrix"
   domain: "Strategy & Consulting"
@@ -13552,6 +14618,19 @@
   frequency: ad-hoc
   trigger: "Check this new client for conflicts before we accept the engagement"
 
+- id: summarize-secondary-research-sources
+  title: "Summarize secondary research sources into a findings brief"
+  domain: "Strategy & Consulting"
+  roles: ["Strategy Analyst", "Research Analyst"]
+  description: "Distill analyst reports and articles into a cited findings brief with key takeaways."
+  inputs: ["analyst reports", "articles", "research question"]
+  outputs: ["findings brief", "source citations"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["web search", "document editor"]
+  frequency: ad-hoc
+  trigger: "Summarize these reports into a research brief"
+
 - id: pitch-win-loss-debrief-synthesis
   title: "Synthesize a win/loss debrief after a proposal decision"
   domain: "Strategy & Consulting"
@@ -13590,6 +14669,19 @@
   tools: ["docs", "knowledge base"]
   frequency: ad-hoc
   trigger: "synthesize these 12 stakeholder interview notes into key themes"
+
+- id: tag-interview-verbatim-quotes
+  title: "Tag and extract verbatim quotes from interview transcripts"
+  domain: "Strategy & Consulting"
+  roles: ["Strategy Analyst", "Associate"]
+  description: "Pull representative verbatim quotes from transcripts and tag them by theme and sentiment."
+  inputs: ["interview transcripts", "theme codebook"]
+  outputs: ["tagged quote bank"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["transcription tool", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Pull the best quotes out of these transcripts"
 
 - id: analyze-training-feedback-survey
   title: "Analyze post-training feedback survey"
@@ -13669,6 +14761,19 @@
   frequency: ad-hoc
   trigger: "build a competency matrix for our customer success roles with proficiency levels"
 
+- id: build-skills-gap-heatmap-from-assessment-scores
+  title: "Build a skills-gap heatmap from assessment scores"
+  domain: "Learning & Development"
+  roles: ["L&D Analyst", "Program Manager"]
+  description: "Aggregate assessment scores by team and competency into a heatmap that highlights skill gaps."
+  inputs: ["Assessment scores", "Competency framework", "Team roster"]
+  outputs: ["Skills-gap heatmap", "Gap summary"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Spreadsheet", "Data analysis"]
+  frequency: quarterly
+  trigger: "Show me where the biggest skill gaps are by team"
+
 - id: build-webinar-outline
   title: "Build customer training webinar outline"
   domain: "Learning & Development"
@@ -13733,6 +14838,19 @@
   tools: ["spreadsheet", "BI tool", "docs"]
   frequency: quarterly
   trigger: "build a quarterly training impact report from this LMS and performance data"
+
+- id: compile-monthly-ld-activity-dashboard
+  title: "Compile the monthly L&D activity dashboard"
+  domain: "Learning & Development"
+  roles: ["L&D Analyst", "Learning Operations"]
+  description: "Summarize enrollments, completions, training hours, and no-shows into a monthly activity dashboard."
+  inputs: ["LMS activity export", "Session attendance", "Prior month baseline"]
+  outputs: ["Activity dashboard", "Highlights summary"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Spreadsheet", "Data analysis", "Presentation software"]
+  frequency: monthly
+  trigger: "Pull together this month's L&D numbers"
 
 - id: convert-sme-notes-to-howto
   title: "Convert SME notes into a how-to guide"
@@ -13799,6 +14917,32 @@
   frequency: ad-hoc
   trigger: "outline a 4-week onboarding curriculum for new sales reps"
 
+- id: draft-nudge-sequence-for-stalled-learners
+  title: "Draft a nudge sequence for stalled learners"
+  domain: "Learning & Development"
+  roles: ["Learning Operations", "L&D Specialist"]
+  description: "Write a short sequence of nudge messages to re-engage learners who started but stalled mid-course."
+  inputs: ["Progress report", "Course deadlines", "Stalled-learner list"]
+  outputs: ["Nudge message sequence"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Email", "Spreadsheet"]
+  frequency: weekly
+  trigger: "Write reminder nudges for people stuck halfway through the course"
+
+- id: draft-pre-work-reminder-email
+  title: "Draft a pre-work reminder email for an upcoming session"
+  domain: "Learning & Development"
+  roles: ["Training Coordinator", "L&D Specialist"]
+  description: "Draft a reminder email to enrolled participants covering pre-work, logistics, and what to bring before a session."
+  inputs: ["Session details", "Pre-work assignments", "Participant roster"]
+  outputs: ["Reminder email draft"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Email", "Calendar"]
+  frequency: weekly
+  trigger: "Remind everyone about the pre-work for Thursday's workshop"
+
 - id: draft-ai-policy-faq
   title: "Draft AI usage policy FAQ"
   domain: "Learning & Development"
@@ -13811,6 +14955,19 @@
   tools: ["knowledge base"]
   frequency: ad-hoc
   trigger: "turn the AI policy into an employee FAQ"
+
+- id: draft-answer-key-with-feedback-rationale
+  title: "Draft an answer key with feedback rationale for a knowledge check"
+  domain: "Learning & Development"
+  roles: ["Instructional Designer", "Subject Matter Expert"]
+  description: "Produce an answer key with correct responses and remediation feedback explaining why each option is right or wrong."
+  inputs: ["Quiz items", "Source content"]
+  outputs: ["Answer key", "Per-item feedback text"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Document editor"]
+  frequency: ad-hoc
+  trigger: "Write the answer key and explanations for this quiz"
 
 - id: draft-elearning-storyboard
   title: "Draft an e-learning storyboard and script"
@@ -13916,6 +15073,19 @@
   frequency: ad-hoc
   trigger: "generate 15 multiple-choice questions from this module on data privacy"
 
+- id: generate-completion-certificates-from-roster
+  title: "Generate completion certificates from a roster"
+  domain: "Learning & Development"
+  roles: ["Training Coordinator", "Learning Operations"]
+  description: "Populate completion certificates from a roster, merging learner names, course titles, and dates into a template."
+  inputs: ["Completion roster", "Certificate template", "Course metadata"]
+  outputs: ["Completion certificates"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Document editor", "Spreadsheet", "Mail merge"]
+  frequency: monthly
+  trigger: "Make completion certificates for everyone who finished the safety course"
+
 - id: ceu-credit-accrual-statement
   title: "Generate continuing-education credit statements"
   domain: "Learning & Development"
@@ -13955,6 +15125,19 @@
   frequency: quarterly
   trigger: "Map these course outcomes to our program competencies"
 
+- id: match-mentors-to-mentees
+  title: "Match mentors to mentees for the mentorship program"
+  domain: "Learning & Development"
+  roles: ["Program Manager", "HR Business Partner"]
+  description: "Propose mentor-mentee pairings from intake profiles based on goals, skills, and availability, flagging mismatches."
+  inputs: ["Mentor profiles", "Mentee profiles", "Pairing criteria"]
+  outputs: ["Proposed pairings", "Rationale notes"]
+  automation: low
+  human_in_loop: approve
+  tools: ["Spreadsheet"]
+  frequency: quarterly
+  trigger: "Suggest mentor pairings for this cohort"
+
 - id: outline-rep-onboarding-curriculum
   title: "Outline new-rep onboarding curriculum"
   domain: "Learning & Development"
@@ -13980,6 +15163,32 @@
   tools: ["HRIS", "spreadsheet", "e-signature", "ticketing"]
   frequency: ad-hoc
   trigger: "Does this tuition reimbursement request meet our policy?"
+
+- id: qa-review-quiz-items-for-balance-and-bias
+  title: "Qa-review quiz items for answer balance and bias"
+  domain: "Learning & Development"
+  roles: ["Instructional Designer", "Assessment Specialist"]
+  description: "Check quiz items for answer-position balance, clueing, ambiguous wording, and biased or non-inclusive language."
+  inputs: ["Quiz item bank", "Item-writing guidelines"]
+  outputs: ["QA findings", "Revision suggestions"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Document editor", "Spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Review this quiz for bias and balanced answer choices"
+
+- id: reconcile-facilitator-assignments-to-session-calendar
+  title: "Reconcile facilitator assignments to the session calendar"
+  domain: "Learning & Development"
+  roles: ["Training Coordinator", "Learning Operations", "Program Manager"]
+  description: "Match available facilitators to scheduled sessions and flag gaps, double-bookings, and unstaffed slots."
+  inputs: ["Session schedule", "Facilitator availability", "Facilitator skills list"]
+  outputs: ["Facilitator assignment plan", "Conflict list"]
+  automation: low
+  human_in_loop: approve
+  tools: ["Calendar", "Spreadsheet"]
+  frequency: monthly
+  trigger: "Figure out who can teach which sessions next month"
 
 - id: lms-curriculum-reconciliation-after-reorg
   title: "Reconcile learning-path assignments after an org change"
@@ -14033,6 +15242,32 @@
   frequency: ad-hoc
   trigger: "audit these course materials for accessibility issues and objective alignment"
 
+- id: send-certification-renewal-reminders
+  title: "Send certification renewal reminders before credentials expire"
+  domain: "Learning & Development"
+  roles: ["Learning Operations", "Compliance Coordinator"]
+  description: "Identify professional certifications nearing expiry and draft renewal reminders to credential holders."
+  inputs: ["Certification register", "Expiry dates", "Holder contacts"]
+  outputs: ["Renewal reminder emails", "Expiring-soon list"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Spreadsheet", "Email"]
+  frequency: monthly
+  trigger: "Who has certifications expiring soon and remind them to renew"
+
+- id: summarize-learner-questions-into-faq-updates
+  title: "Summarize learner support questions into FAQ updates"
+  domain: "Learning & Development"
+  roles: ["L&D Specialist", "Knowledge Manager"]
+  description: "Cluster recurring learner support questions and draft new or updated FAQ entries to close the gaps."
+  inputs: ["Support tickets", "Existing FAQ", "Course content"]
+  outputs: ["FAQ updates", "Theme summary"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Ticketing system", "Knowledge base"]
+  frequency: monthly
+  trigger: "Turn the common learner questions into FAQ updates"
+
 - id: summarize-call-coaching-themes
   title: "Summarize sales calls into coaching themes"
   domain: "Learning & Development"
@@ -14072,6 +15307,19 @@
   frequency: monthly
   trigger: "Summarize last month's training feedback by course and facilitator"
 
+- id: tag-courses-with-skills-taxonomy
+  title: "Tag courses with a skills taxonomy"
+  domain: "Learning & Development"
+  roles: ["Instructional Designer", "LMS Administrator"]
+  description: "Assign skill and competency tags to courses so they map to the org's skills taxonomy for searchability."
+  inputs: ["Course catalog", "Skills taxonomy", "Course descriptions"]
+  outputs: ["Tagged course metadata"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["Spreadsheet", "LMS"]
+  frequency: ad-hoc
+  trigger: "Tag these courses with the right skills from our taxonomy"
+
 - id: track-compliance-training-completion-2
   title: "Track compliance training completion and send reminders"
   domain: "Learning & Development"
@@ -14084,6 +15332,19 @@
   tools: ["LMS", "spreadsheet", "email"]
   frequency: monthly
   trigger: "check who hasn't finished mandatory security training and draft reminders"
+
+- id: triage-incoming-training-requests
+  title: "Triage incoming training requests from the intake queue"
+  domain: "Learning & Development"
+  roles: ["L&D Specialist", "Training Coordinator"]
+  description: "Categorize and route incoming training requests by topic, urgency, and owner, flagging duplicates and existing offerings."
+  inputs: ["Intake form submissions", "Course catalog", "Routing rules"]
+  outputs: ["Triaged request list", "Routing recommendations"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Spreadsheet", "Ticketing system"]
+  frequency: weekly
+  trigger: "Sort through this week's training requests and route them"
 
 - id: update-training-matrix-from-sop
   title: "Update training assignment matrix from SOP changes"
@@ -14110,6 +15371,19 @@
   tools: ["docs"]
   frequency: ad-hoc
   trigger: "turn this workshop outline into a facilitator guide with timings and activities"
+
+- id: write-alt-text-for-course-images
+  title: "Write alt text for course images and diagrams"
+  domain: "Learning & Development"
+  roles: ["Instructional Designer", "Accessibility Specialist"]
+  description: "Generate concise alt text and long descriptions for images, charts, and diagrams in course materials."
+  inputs: ["Course images", "Image context", "Accessibility guidelines"]
+  outputs: ["Alt text", "Long descriptions"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["Document editor", "Image viewer"]
+  frequency: ad-hoc
+  trigger: "Add alt text to all the diagrams in this module"
 
 - id: write-course-catalog-descriptions
   title: "Write course catalog descriptions for the LMS"
