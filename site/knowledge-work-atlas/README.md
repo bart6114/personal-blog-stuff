@@ -28,12 +28,13 @@ task count, a high/medium/low automation mini-bar, and its top roles. From there
   filters scoped to that domain and a facet count on every option.
 - **Search** from the pinned box for cross-domain results, grouped under sticky
   domain headers.
-- Jump straight to the **&#9889; Quick wins** (the 1141 high-automation
-  tasks) or **Browse everything** in one flat, grouped list.
+- Jump straight to the **&#9889; Highly automatable** set (the 595 tasks that are
+  both high-automation **and** run unattended &mdash; no human gate) or **Browse everything**
+  in one flat, grouped list.
 - Click any task for inputs, outputs, tools, human-in-loop, and an example prompt.
 
 Every view is **shareable**: the URL hash captures the domain, filters, search, and the
-open task (e.g. `#d=Recruiting%20%26%20Talent&auto=high`), so **Copy link** and the
+open task (e.g. `#quick&d=Recruiting%20%26%20Talent`), so **Copy link** and the
 browser Back/Forward buttons just work. Drop it on a blog as-is.
 
 ## Tasks by domain

@@ -119,8 +119,15 @@ all_roles = sorted({x for r in records for x in r.get("roles", []) if x != "(uns
 discovered = sorted([r for r in all_roles if r.lower() not in STARTER_ROLES], key=lambda s: (s.casefold(), s))
 domains_sorted = sorted(dom_counts, key=lambda d: dom_order.get(d, 999))
 
+# "Highly automatable" = a high-automation task that also runs unattended (no human gate),
+# i.e. human_in_loop is none/spot-check. This must match isQuick() in the JS exactly.
+QUICK_HIL = {"none", "spot-check"}
+def _is_quick(r):
+    return r.get("automation") == "high" and str(r.get("human_in_loop", "")).lower() in QUICK_HIL
+total_quick = sum(1 for r in records if _is_quick(r))
+
 # Per-domain meta precomputed for the Home overview tiles (count, automation split,
-# top roles) so tiles render without recomputation in JS.
+# quick-win count, top roles) so tiles render without recomputation in JS.
 dom_meta = {}
 for d in domains_sorted:
     drecs = [r for r in records if r.get("domain") == d]
@@ -131,6 +138,7 @@ for d in domains_sorted:
         "high": ac.get("high", 0),
         "medium": ac.get("medium", 0),
         "low": ac.get("low", 0),
+        "quick": sum(1 for r in drecs if _is_quick(r)),
         "topRoles": [name for name, _ in rc.most_common(3)],
     }
 
@@ -161,6 +169,19 @@ HTML = r"""<!doctype html>
   .stats{display:flex;gap:18px;margin-top:16px;flex-wrap:wrap}
   .stats span{font-size:13px;color:var(--muted)}
   .stats b{color:var(--ink)}
+  /* agent CTA callout (above the sticky controls) */
+  .agent-cta{max-width:1120px;margin:14px auto 2px;padding:0 24px}
+  .cta-inner{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);
+             border-radius:12px;padding:18px 20px;box-shadow:var(--shadow)}
+  .cta-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .cta-head h2{margin:0;font-size:17px;letter-spacing:-.01em}
+  .cta-sub{margin:8px 0 0;color:var(--muted);font-size:13.5px;max-width:780px}
+  .cta-yaml{color:var(--accent);text-decoration:none;font-weight:600;white-space:nowrap}
+  .cta-yaml:hover{text-decoration:underline}
+  .cta-copy{font:inherit;font-size:13px;font-weight:600;padding:8px 16px;border-radius:9px;border:1px solid var(--ink);
+            background:var(--ink);color:#fff;cursor:pointer;white-space:nowrap}
+  .cta-copy:hover{filter:brightness(1.12)}
+  .cta-copy.ok{background:var(--a-high);border-color:var(--a-high)}
   .controls{position:sticky;top:0;z-index:5;background:rgba(246,247,249,.92);backdrop-filter:blur(8px);
             border-bottom:1px solid var(--line)}
   .controls .inner{max-width:1120px;margin:0 auto;padding:14px 24px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
@@ -225,6 +246,7 @@ HTML = r"""<!doctype html>
   .minibar{display:flex;height:6px;border-radius:999px;overflow:hidden;margin:12px 0 10px;background:#eef1f5}
   .minibar i{display:block}
   .minibar .mh{background:var(--a-high)} .minibar .mm{background:var(--a-med)} .minibar .ml{background:var(--a-low)}
+  .tquick{display:inline-block;font-size:12.5px;font-weight:600;color:var(--a-high);margin:0 0 8px}
   .troles{font-size:12.5px;color:var(--muted);min-height:1.2em}
   .leg{font-size:12px;color:var(--muted);display:inline-flex;align-items:center;gap:5px}
   .leg i{width:10px;height:10px;border-radius:2px;display:inline-block}
@@ -259,6 +281,51 @@ HTML = r"""<!doctype html>
   <p class="sub">Small, automatable steps of white-collar work &mdash; the kind of admin and knowledge tasks an AI <em>skill</em> could take off your plate. Browse by domain, filter by role, see how automatable each one is today.</p>
   <div class="stats" id="stats"></div>
 </header>
+<section class="agent-cta">
+  <div class="cta-inner">
+    <div class="cta-head">
+      <h2>&#129302; Hand it to your own agent</h2>
+      <button class="cta-copy" id="ctaCopy" type="button">Copy prompt</button>
+    </div>
+    <p class="cta-sub">Scrolling __NTASKS__ tasks to find the one that fits your week is a chore. So don't. Copy the prompt, paste it into Claude Code (or whatever agent you run), and it'll pull this whole catalog, ask you a few questions about your actual work, and come back with one skill worth building. The atlas is the inspiration, not the menu. <a class="cta-yaml" href="tasks.yaml" target="_blank" rel="noopener">the raw tasks.yaml &rarr;</a></p>
+    <pre id="ctaPrompt" hidden>You're going to help me find one concrete task in my work that's worth handing
+to an AI skill, and shape it into a proposal I could actually build.
+
+First, fetch this file. It's a catalog of ~2,800 small, automatable
+knowledge-work tasks, each tagged with domain, roles, inputs/outputs, tools, how
+automatable it is, and how much human oversight it needs:
+
+  https://stuff.barts.space/knowledge-work-atlas/tasks.yaml
+
+It's ~2MB, so download and skim or sample it rather than reading every line. Use
+it as inspiration for the shape of a good automatable task, not as a fixed menu.
+The right answer for me might not be in there at all.
+
+Then interview me. Ask one question at a time, and use each answer to steer the
+next question. Start broad, then get specific. Worth digging into:
+  - My role, and what a normal week actually looks like
+  - Which tasks are repetitive, boring, or eat time I'd rather spend elsewhere
+  - The tools and systems I live in day to day
+  - Where the same kind of work comes back again and again (daily/weekly/monthly)
+  - What I'd happily hand off, and what has to stay under my control
+
+Keep going until you have a clear picture. Don't rush to an answer after one or
+two questions.
+
+When you understand my work well enough, propose ONE skill. Keep it concrete and
+well-scoped (one task, not "automate my job"). Cover:
+  - The task, in one or two plain sentences
+  - Why it fits me specifically (tie it back to what I told you)
+  - The inputs it needs and the outputs it produces
+  - How automatable it really is, and where a human should stay in the loop
+  - Roughly how it'd be triggered (what I'd type, or what kicks it off)
+
+If a task from the atlas fits, borrow from it. If something better came out of
+our conversation, go with that instead.
+
+Then stop and ask if I like the proposal. If I do, offer to draft the skill for me.</pre>
+  </div>
+</section>
 <div class="controls"><div class="inner">
   <input id="q" type="search" placeholder="Search tasks, descriptions, roles, tools&hellip;" autocomplete="off" aria-label="Search tasks">
   <span class="filters" id="filters" hidden>
@@ -305,27 +372,33 @@ const ROLE_DISPLAY=(()=>{
 })();
 const ROLESET=new Set(Object.keys(ROLE_DISPLAY));
 let lastRC={};
-const TOTAL_HIGH=DATA.filter(t=>t.automation==='high').length;
+// "Highly automatable" = high automation AND runs unattended (no human gate). Mirrors the
+// "runs unattended" badge on the cards and _is_quick() in build.py. Keep all three in sync.
+const QUICK_HIL=new Set(['none','spot-check']);
+function isQuick(t){return t.automation==='high' && QUICK_HIL.has((t.human_in_loop||'').toLowerCase());}
+const TOTAL_QUICK=DATA.filter(isQuick).length;
 const TILE_ORDER=META.domains.slice().sort((a,b)=>((DM[b]||{}).count||0)-((DM[a]||{}).count||0));
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 fa.innerHTML='<option value="">All automation</option>'+['high','medium','low'].map(a=>`<option value="${a}">${a[0].toUpperCase()+a.slice(1)}</option>`).join('');
 $('#stats').innerHTML=`<span><b>${DATA.length}</b> tasks</span><span><b>${META.domains.length}</b> domains</span><span><b>${META.roles.length}</b> roles</span>`;
 
 /* ---------------- hash router ---------------- */
-let curD='';
+let curD='', curQuick=false;
 function parseHash(){
-  const o={d:'',role:'',auto:'',q:'',t:'',all:false};
+  const o={d:'',role:'',auto:'',q:'',t:'',all:false,quick:false};
   location.hash.replace(/^#/,'').split('&').forEach(p=>{
     if(!p) return;
     const i=p.indexOf('='), k=i<0?p:p.slice(0,i);
     let v=''; if(i>=0){ const raw=p.slice(i+1).replace(/\+/g,' '); try{ v=decodeURIComponent(raw); }catch(_){ v=raw; } }
     if(k==='d')o.d=v; else if(k==='role')o.role=v; else if(k==='auto')o.auto=v;
     else if(k==='q')o.q=v; else if(k==='t')o.t=v; else if(k==='all')o.all=true;
+    else if(k==='quick'||k==='quickwins')o.quick=true;
   });
   return o;
 }
 function buildHash(){
   const p=[];
+  if(curQuick) p.push('quick');
   if(curD) p.push('d='+encodeURIComponent(curD));
   if(fr.value) p.push('role='+encodeURIComponent(fr.value));
   if(fa.value) p.push('auto='+encodeURIComponent(fa.value));
@@ -345,6 +418,7 @@ function filterTasks(domain){
   const roleKey=fr.value?ROLE_KEY(fr.value):'', roleOk=roleKey&&ROLESET.has(roleKey);
   for(const t of DATA){
     if(domain && t.domain!==domain) continue;
+    if(curQuick && !isQuick(t)) continue;
     if(roleOk && !(t.roles||[]).some(r=>ROLE_KEY(r)===roleKey)) continue;
     if(auto && t.automation!==auto) continue;
     if(q && !searchHay(t).includes(q)) continue;
@@ -403,6 +477,7 @@ function populateFacets(scope){
   const q=fq.value.trim().toLowerCase();
   const base=DATA.filter(t=>{
     if(scope && t.domain!==scope) return false;
+    if(curQuick && !isQuick(t)) return false;
     if(q && !searchHay(t).includes(q)) return false;
     return true;
   });
@@ -431,22 +506,23 @@ function updateRoleHint(){
 
 /* ---------------- views ---------------- */
 function renderHome(){
-  curD='';
+  curD=''; curQuick=false;
   homeEl.hidden=false; crumbEl.hidden=true; filtersEl.hidden=true;
   win.items=[]; win.n=0; grid.innerHTML='';
-  const bar=`<div class="home-bar"><a class="chip-btn qw" href="#auto=high">&#9889; Quick wins (${TOTAL_HIGH})</a>`+
+  const bar=`<div class="home-bar"><a class="chip-btn qw" href="#quick">&#9889; Highly automatable (${TOTAL_QUICK})</a>`+
             `<a class="chip-btn" href="#all">Browse everything &rarr;</a>`+
             `<span class="leg">Automation: <i style="background:var(--a-high)"></i>high `+
             `<i style="background:var(--a-med)"></i>medium <i style="background:var(--a-low)"></i>low</span></div>`;
   const tiles=TILE_ORDER.map(d=>{
-    const m=DM[d]||{count:0,high:0,medium:0,low:0,topRoles:[]};
+    const m=DM[d]||{count:0,high:0,medium:0,low:0,quick:0,topRoles:[]};
     const seg=(cls,n)=> n?`<i class="${cls}" style="flex:${n}"></i>`:'';
     const barTitle=`High ${m.high} · Medium ${m.medium} · Low ${m.low}`;
     const mb=`<div class="minibar" title="${esc(barTitle)}">${seg('mh',m.high)}${seg('mm',m.medium)}${seg('ml',m.low)}</div>`;
     const roles=(m.topRoles||[]).join(' · ');
-    const al=`${d}: ${m.count} tasks. ${barTitle} automation.${roles?' Top roles: '+roles+'.':''}`;
+    const qw=m.quick?`<span class="tquick" title="High automation potential, runs unattended (no human gate)">&#9889; ${m.quick} highly automatable</span>`:'';
+    const al=`${d}: ${m.count} tasks, ${m.quick} highly automatable. ${barTitle} automation.${roles?' Top roles: '+roles+'.':''}`;
     return `<button class="tile" data-d="${esc(d)}" aria-label="${esc(al)}"><div class="tile-top"><span class="tname">${esc(d)}</span>`+
-           `<span class="tcount">${m.count}</span></div>${mb}<div class="troles">${esc(roles)}</div></button>`;
+           `<span class="tcount">${m.count}</span></div>${mb}${qw}<div class="troles">${esc(roles)}</div></button>`;
   }).join('');
   homeEl.innerHTML=bar+`<div class="tiles">${tiles}</div>`;
   homeEl.querySelectorAll('.tile').forEach(b=>b.addEventListener('click',()=>navPush('d='+encodeURIComponent(b.dataset.d))));
@@ -474,6 +550,20 @@ function renderResults(){
     `<div class="crumb-head"><h2>${q?'Results':'Browse everything'}</h2>`+
     `<span class="dc">${items.length} task${items.length===1?'':'s'} across ${ndom} domain${ndom===1?'':'s'}</span>`+
     `<button class="copy" id="copyl">Copy link</button></div>`;
+  $('#copyl').addEventListener('click',copyLink);
+  populateFacets('');
+  setWindow(items,true);
+}
+function renderQuick(){
+  curD='';
+  homeEl.hidden=true; crumbEl.hidden=false; filtersEl.hidden=false;
+  const items=filterTasks('');
+  const ndom=new Set(items.map(t=>t.domain)).size;
+  crumbEl.innerHTML=`<div class="bc"><a href="#">Overview</a> / &#9889; Highly automatable</div>`+
+    `<div class="crumb-head"><h2>&#9889; Highly automatable</h2>`+
+    `<span class="dc">${items.length} task${items.length===1?'':'s'} across ${ndom} domain${ndom===1?'':'s'}</span>`+
+    `<button class="copy" id="copyl">Copy link</button></div>`+
+    `<p class="sub">High automation potential, end-to-end with no human gate.</p>`;
   $('#copyl').addEventListener('click',copyLink);
   populateFacets('');
   setWindow(items,true);
@@ -527,8 +617,10 @@ function copyLink(){
 /* ---------------- main render from hash ---------------- */
 function render(){
   const h=parseHash();
+  curQuick=h.quick;
   setVal(fq,h.q); setVal(fr,h.role); setVal(fa,h.auto);
   if(h.d){ renderDomain(h.d); }
+  else if(h.quick){ renderQuick(); }
   else if(h.all||h.q||h.role||h.auto){ renderResults(); }
   else { renderHome(); }
   if(h.t && byId[h.t]){ lastTaskId=h.t; openModalEl(byId[h.t]); }
@@ -545,7 +637,15 @@ overlay.addEventListener('click',e=>{ if(e.target.id==='overlay') closeModal(); 
 document.addEventListener('keydown',e=>{ if(e.key==='Escape' && !overlay.hidden){ e.preventDefault(); closeModal(); } });
 $('#modal').addEventListener('keydown',trapFocus);
 [fq,fr,fa].forEach(el=>el.addEventListener('input',()=>{ updateRoleHint(); navReplace(buildHash()); }));
-$('#clear').addEventListener('click',()=>{ fq.value='';fr.value='';fa.value=''; navPush(curD?'d='+encodeURIComponent(curD):''); });
+$('#clear').addEventListener('click',()=>{ fq.value='';fr.value='';fa.value='';
+  const p=[]; if(curQuick)p.push('quick'); if(curD)p.push('d='+encodeURIComponent(curD));
+  navPush(p.join('&')); });
+/* agent CTA: copy the meta-prompt to the clipboard */
+(function(){ const btn=$('#ctaCopy'), pre=$('#ctaPrompt'); if(!btn||!pre) return;
+  btn.addEventListener('click',()=>{ const text=pre.textContent.trim();
+    if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(text);
+    const o=btn.textContent; btn.textContent='Copied!'; btn.classList.add('ok');
+    setTimeout(()=>{ btn.textContent=o; btn.classList.remove('ok'); },1200); }); })();
 window.addEventListener('hashchange',render);
 render();
 setCtrlH();
@@ -554,7 +654,9 @@ setCtrlH();
 </html>
 """
 
-html_out = HTML.replace("/*__DATA__*/", DATA_JSON).replace("/*__META__*/", META_JSON)
+html_out = (HTML.replace("/*__DATA__*/", DATA_JSON)
+                .replace("/*__META__*/", META_JSON)
+                .replace("__NTASKS__", f"{len(records):,}"))
 with open(os.path.join(HERE, "index.html"), "w") as fh:
     fh.write(html_out)
 
@@ -590,12 +692,13 @@ task count, a high/medium/low automation mini-bar, and its top roles. From there
   filters scoped to that domain and a facet count on every option.
 - **Search** from the pinned box for cross-domain results, grouped under sticky
   domain headers.
-- Jump straight to the **&#9889; Quick wins** (the {auto_counts.get('high',0)} high-automation
-  tasks) or **Browse everything** in one flat, grouped list.
+- Jump straight to the **&#9889; Highly automatable** set (the {total_quick} tasks that are
+  both high-automation **and** run unattended &mdash; no human gate) or **Browse everything**
+  in one flat, grouped list.
 - Click any task for inputs, outputs, tools, human-in-loop, and an example prompt.
 
 Every view is **shareable**: the URL hash captures the domain, filters, search, and the
-open task (e.g. `#d=Recruiting%20%26%20Talent&auto=high`), so **Copy link** and the
+open task (e.g. `#quick&d=Recruiting%20%26%20Talent`), so **Copy link** and the
 browser Back/Forward buttons just work. Drop it on a blog as-is.
 
 ## Tasks by domain
