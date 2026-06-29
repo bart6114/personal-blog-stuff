@@ -151,7 +151,7 @@ HTML = r"""<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Automatable Knowledge-Work Atlas</title>
+<title>What an AI Skill Could Take Off Your Plate</title>
 <style>
   :root{
     --bg:#f6f7f9; --card:#fff; --ink:#1c2430; --muted:#586473; --line:#e6e9ee;
@@ -163,15 +163,15 @@ HTML = r"""<!doctype html>
        color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
   a{color:inherit}
   :focus-visible{outline:2px solid #4b5563;outline-offset:2px}
-  header{max-width:1120px;margin:0 auto;padding:40px 24px 8px}
-  h1{margin:0 0 6px;font-size:28px;letter-spacing:-.02em}
-  .sub{margin:0;color:var(--muted);max-width:680px}
+  header{max-width:1120px;margin:0 auto;padding:44px 24px 10px}
+  h1{margin:0 0 8px;font-size:27px;line-height:1.2;letter-spacing:-.015em;color:var(--ink)}
+  .sub{margin:0;color:var(--muted);max-width:660px;line-height:1.55;font-size:14.5px}
   .stats{display:flex;gap:18px;margin-top:16px;flex-wrap:wrap}
   .stats span{font-size:13px;color:var(--muted)}
   .stats b{color:var(--ink)}
   /* agent CTA callout (above the sticky controls) */
   .agent-cta{max-width:1120px;margin:14px auto 2px;padding:0 24px}
-  .cta-inner{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);
+  .cta-inner{background:var(--card);border:1px solid var(--line);
              border-radius:12px;padding:18px 20px;box-shadow:var(--shadow)}
   .cta-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
   .cta-head h2{margin:0;font-size:17px;letter-spacing:-.01em}
@@ -194,15 +194,15 @@ HTML = r"""<!doctype html>
   .controls button:hover{color:var(--ink);border-color:#aab4c2}
   .grid{max-width:1120px;margin:12px auto 60px;padding:0 24px;display:grid;
         grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:14px}
-  .card{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--dc,var(--accent));border-radius:12px;
-        padding:16px;cursor:pointer;box-shadow:var(--shadow);transition:transform .08s ease,box-shadow .12s ease}
-  .card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(16,24,40,.10)}
-  .card-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
-  .domain{font-size:11px;font-weight:600;letter-spacing:.02em;color:var(--accent);text-transform:uppercase}
-  h3{margin:0 0 6px;font-size:16px;line-height:1.3}
-  .desc{margin:0 0 12px;color:var(--muted);font-size:13.5px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;
+        padding:18px 18px 16px;cursor:pointer;box-shadow:var(--shadow);transition:border-color .12s ease,box-shadow .12s ease}
+  .card:hover{border-color:#d3d9e1;box-shadow:0 2px 8px rgba(16,24,40,.07)}
+  .card-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+  .domain{font-size:11px;font-weight:600;letter-spacing:.07em;color:var(--muted);text-transform:uppercase}
+  h3{margin:2px 0 7px;font-size:16px;line-height:1.32;letter-spacing:-.005em;color:var(--ink)}
+  .desc{margin:0 0 14px;color:var(--muted);font-size:13.5px;line-height:1.5}
   .chips{display:flex;gap:6px;flex-wrap:wrap}
-  .chip{font-size:11.5px;padding:2px 9px;border-radius:999px;background:#eef1f5;color:#475063;white-space:nowrap}
+  .chip{font-size:11px;padding:3px 9px;border-radius:999px;background:#eef1f4;color:#41495a;white-space:nowrap}
   .chip.more{background:transparent;color:var(--muted)}
   .badge{font-size:11px;font-weight:600;padding:2px 9px;border-radius:999px;text-transform:capitalize}
   .a-high{background:#e7f6ec;color:#1a7f43}
@@ -238,8 +238,8 @@ HTML = r"""<!doctype html>
   .chip-btn.qw{background:#e7f6ec;border-color:#bfe6cd;color:#1a7f43;font-weight:600}
   .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
   .tile{text-align:left;font:inherit;color:inherit;background:var(--card);border:1px solid var(--line);
-        border-radius:12px;padding:16px;cursor:pointer;box-shadow:var(--shadow);transition:transform .08s ease,box-shadow .12s ease}
-  .tile:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(16,24,40,.10)}
+        border-radius:12px;padding:16px;cursor:pointer;box-shadow:var(--shadow);transition:border-color .12s ease,box-shadow .12s ease}
+  .tile:hover{border-color:#d3d9e1;box-shadow:0 2px 8px rgba(16,24,40,.07)}
   .tile-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
   .tname{font-size:15px;font-weight:600;line-height:1.25}
   .tcount{font-size:24px;font-weight:700;letter-spacing:-.02em}
@@ -263,28 +263,28 @@ HTML = r"""<!doctype html>
   .copy{font:inherit;font-size:13px;padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:#fff;cursor:pointer;color:var(--muted)}
   .copy:hover{color:var(--ink);border-color:#aab4c2}
   /* sticky domain group-headers in cross-domain results */
-  .group-h{grid-column:1/-1;position:sticky;top:var(--ctrlh,62px);z-index:3;margin:6px 0 0;padding:10px 0 10px 10px;
-           border-left:3px solid var(--dc,var(--accent));border-bottom:1px solid var(--line);
-           background:rgba(246,247,249,.94);backdrop-filter:blur(8px);font-size:13px;font-weight:600;color:var(--ink)}
+  .group-h{grid-column:1/-1;position:sticky;top:var(--ctrlh,62px);z-index:3;margin:14px 0 2px;padding:8px 0;
+           border-bottom:1px solid var(--line);
+           background:rgba(246,247,249,.94);backdrop-filter:blur(8px);font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
   .group-h span{color:var(--muted);font-weight:500}
   /* per-card human-in-loop badge */
   .badge2{font-size:10.5px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap}
-  .b-auto-on{background:#eef6ff;color:#1d4ed8}
-  .b-human{background:#f4eefb;color:#7c3aed}
+  .b-auto-on{background:#eef2f7;color:#33526f}
+  .b-human{background:#f2f0f5;color:#5f5072}
   .empty{grid-column:1/-1;color:var(--muted);padding:28px 4px;font-size:14px}
   #sentinel{height:1px}
 </style>
 </head>
 <body>
 <header>
-  <h1>Automatable Knowledge-Work Atlas</h1>
+  <h1>What an AI Skill Could Take Off Your Plate</h1>
   <p class="sub">Small, automatable steps of white-collar work &mdash; the kind of admin and knowledge tasks an AI <em>skill</em> could take off your plate. Browse by domain, filter by role, see how automatable each one is today.</p>
   <div class="stats" id="stats"></div>
 </header>
 <section class="agent-cta">
   <div class="cta-inner">
     <div class="cta-head">
-      <h2>&#129302; Hand it to your own agent</h2>
+      <h2>Hand it to your own agent</h2>
       <button class="cta-copy" id="ctaCopy" type="button">Copy prompt</button>
     </div>
     <p class="cta-sub">Scrolling __NTASKS__ tasks to find the one that fits your week is a chore. So don't. Copy the prompt, paste it into Claude Code (or whatever agent you run), and it'll pull this whole catalog, ask you a few questions about your actual work, and come back with one skill worth building. The atlas is the inspiration, not the menu. <a class="cta-yaml" href="tasks.yaml" target="_blank" rel="noopener">the raw tasks.yaml &rarr;</a></p>
@@ -353,8 +353,6 @@ const fq=$('#q'), fr=$('#frole'), fa=$('#fauto');
 const grid=$('#grid'), homeEl=$('#home'), crumbEl=$('#crumb'), controlsEl=$('.controls'),
       filtersEl=$('#filters'), sentinel=$('#sentinel'), dlRole=$('#rolelist'), overlay=$('#overlay'),
       roleHintEl=$('#rolehint');
-const PALETTE=['#3b82f6','#8b5cf6','#ec4899','#f59e0b','#10b981','#06b6d4','#ef4444','#6366f1','#14b8a6','#f97316','#a855f7','#0ea5e9','#84cc16','#e11d48','#22c55e','#eab308','#64748b'];
-const domColor={}; META.domains.forEach((d,i)=>domColor[d]=PALETTE[i%PALETTE.length]);
 const autoClass={high:'a-high',medium:'a-med',low:'a-low'};
 const DM=META.domainMeta||{};
 const byId={}; DATA.forEach(t=>{byId[t.id]=t;});
@@ -430,7 +428,7 @@ function filterTasks(domain){
 /* ---------------- cards ---------------- */
 function cardEl(t){
   const c=document.createElement('article');
-  c.className='card'; c.style.setProperty('--dc',domColor[t.domain]||'#888');
+  c.className='card';
   c.tabIndex=0; c.setAttribute('role','button'); c.dataset.id=t.id;
   c.setAttribute('aria-label',t.title+' — open task details');
   const roles=t.roles||[];
@@ -449,7 +447,6 @@ function cardEl(t){
 const win={items:[],n:0,grouped:false,counts:{},last:null};
 function groupHeader(d,n){
   const e=document.createElement('div'); e.className='group-h';
-  e.style.setProperty('--dc',domColor[d]||'#888');
   e.innerHTML=`${esc(d)} <span>&mdash; ${n}</span>`; return e;
 }
 function appendMore(){
