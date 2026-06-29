@@ -1,10 +1,36 @@
 # Automatable Knowledge-Work Atlas
 # Catalog of small, automatable NON-DEVELOPMENT knowledge-work tasks.
 # Each task is one step a Claude skill could perform, tagged by role and grouped by domain.
-# Tasks: 1537 | Domains: 17 | Roles: 544
+# Tasks: 1734 | Domains: 17 | Roles: 614
 # Schema: id, title, domain, roles[], description, inputs[], outputs[],
 #         automation(low|medium|high), human_in_loop, tools[], frequency, trigger
 # Source of truth. Edit here, then run build.py to refresh index.html + README.md.
+
+- id: pitch-deck-assembly
+  title: "Assemble a tailored pitch deck from credentials boilerplate"
+  domain: "Sales & BizDev"
+  roles: ["New-business pitch coordinator"]
+  description: "Select relevant case studies, credentials and team bios matched to the prospect brief into a draft deck."
+  inputs: ["Prospect brief", "Case study/credentials library"]
+  outputs: ["Draft pitch deck"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["presentation software", "asset library"]
+  frequency: ad-hoc
+  trigger: "when a new pitch is greenlit"
+
+- id: proposal-compliance-matrix
+  title: "Build a proposal compliance matrix from the solicitation"
+  domain: "Sales & BizDev"
+  roles: ["Proposal & SOQ Coordinator"]
+  description: "Parse the RFP for every shall/must requirement, page limit, and required form, then map each to a proposal section and owner."
+  inputs: ["RFP/solicitation document", "proposal outline"]
+  outputs: ["compliance matrix", "requirement-to-section map"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["document parser", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Kicking off a proposal and need the compliance checklist"
 
 - id: build-bid-compliance-checklist
   title: "Build bid submission compliance checklist"
@@ -292,6 +318,19 @@
   frequency: ad-hoc
   trigger: "draft a response outline for this RFP with section owners"
 
+- id: rfp-response-draft
+  title: "Draft RFP response sections from a past-answer library"
+  domain: "Sales & BizDev"
+  roles: ["New-business pitch coordinator"]
+  description: "Map each RFP question to the closest prior answer and draft tailored response sections for review."
+  inputs: ["RFP/RFI question list", "Past-response library"]
+  outputs: ["Drafted response sections"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document editor", "knowledge base"]
+  frequency: ad-hoc
+  trigger: "when an RFP is received"
+
 - id: draft-competitor-battlecard
   title: "Draft sales battlecard from research"
   domain: "Sales & BizDev"
@@ -396,6 +435,32 @@
   frequency: weekly
   trigger: "after orders are confirmed during market week"
 
+- id: sync-quote-generation
+  title: "Generate sync license quotes from a rate card"
+  domain: "Sales & BizDev"
+  roles: ["Sync licensing administrator"]
+  description: "Price a sync request by media type, term, territory, and exclusivity against the rate card and comparable deals."
+  inputs: ["Sync request details", "Rate card", "Comparable license history"]
+  outputs: ["Quote with fee breakdown"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["spreadsheet", "pricing model", "CRM"]
+  frequency: ad-hoc
+  trigger: "when a music supervisor requests a quote"
+
+- id: deal-pipeline-intake
+  title: "Log inbound deals into the pipeline"
+  domain: "Sales & BizDev"
+  roles: ["Deal & Transaction Coordinator"]
+  description: "Extract company, sector, size and terms from inbound teasers and emails and create structured pipeline entries."
+  inputs: ["Inbound teaser / email", "Pipeline tracker"]
+  outputs: ["New pipeline records", "Key-terms summary"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["CRM / pipeline tracker", "Document parser"]
+  frequency: daily
+  trigger: "When a new teaser arrives"
+
 - id: map-account-whitespace
   title: "Map account whitespace for expansion"
   domain: "Sales & BizDev"
@@ -434,6 +499,19 @@
   tools: ["CRM", "knowledge base", "spreadsheet"]
   frequency: ad-hoc
   trigger: "find reference accounts for this prospect"
+
+- id: sf330-form-population
+  title: "Populate SF330 personnel and project sections"
+  domain: "Sales & BizDev"
+  roles: ["Proposal & SOQ Coordinator"]
+  description: "Fill federal A/E qualification forms with key-personnel resumes, roles, and example projects pulled from the firm database."
+  inputs: ["key personnel list", "resume data", "project records", "SF330 template"]
+  outputs: ["drafted SF330 sections"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["form filler", "database query", "document editor"]
+  frequency: ad-hoc
+  trigger: "Federal pursuit needs the SF330 filled out"
 
 - id: commission-statement-pre-reconciliation
   title: "Pre-reconcile rep commission statement against CRM"
@@ -643,6 +721,19 @@
   frequency: ad-hoc
   trigger: "write a past performance writeup for this project"
 
+- id: proposal-project-sheet-tailoring
+  title: "Tailor project experience sheets to an RFQ scope"
+  domain: "Sales & BizDev"
+  roles: ["Proposal & SOQ Coordinator"]
+  description: "Pull matching past-project sheets from the library and rewrite blurbs to mirror the solicitation's scope, services, and evaluation criteria."
+  inputs: ["RFQ/RFP scope of services", "project experience library", "evaluation criteria"]
+  outputs: ["tailored project sheets", "relevance rationale"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document editor", "content library", "search"]
+  frequency: ad-hoc
+  trigger: "A new RFQ just dropped and we need project sheets"
+
 - id: tailor-proposal-boilerplate
   title: "Tailor proposal boilerplate to client"
   domain: "Sales & BizDev"
@@ -837,6 +928,19 @@
   tools: ["docs", "spreadsheet", "CRM"]
   frequency: quarterly
   trigger: "build a buyer persona from these customer interview notes"
+
+- id: campaign-performance-commentary
+  title: "Draft campaign performance commentary against KPI targets"
+  domain: "Marketing & Content"
+  roles: ["Campaign performance reporter"]
+  description: "Compare results to KPI targets and write plain-language insight commentary and optimization recommendations."
+  inputs: ["Unified performance report", "KPI/target sheet"]
+  outputs: ["Insight commentary section", "Recommendation list"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document editor", "BI dashboard"]
+  frequency: weekly
+  trigger: "after the weekly metrics are consolidated"
 
 - id: draft-channel-media-plan
   title: "Draft channel-mix media plan from brief and budget"
@@ -1410,6 +1514,19 @@
   frequency: quarterly
   trigger: "Ahead of a renewal mailing"
 
+- id: player-segment-offer-lists
+  title: "Segment players and draft targeted reinvestment lists"
+  domain: "Marketing & Content"
+  roles: ["Player reinvestment & loyalty analyst"]
+  description: "Group patrons by worth and recency and build targeted offer mailing lists for each segment."
+  inputs: ["Player worth data", "Visitation history"]
+  outputs: ["Segment definitions", "Targeted mailing lists"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["BI tool", "spreadsheet"]
+  frequency: monthly
+  trigger: "A reinvestment campaign is planned"
+
 - id: standardize-content-metadata-tagging
   title: "Standardize content metadata and tags"
   domain: "Marketing & Content"
@@ -1657,6 +1774,19 @@
   frequency: weekly
   trigger: "Find students with missing aid documents and draft reminders"
 
+- id: dc-distribution-eligibility-check
+  title: "Check loan and hardship withdrawal eligibility"
+  domain: "Customer Success & Support"
+  roles: ["401(k)/DC operations specialist"]
+  description: "Compare a participant's distribution request to plan loan/hardship rules and available balance; summarize eligibility and maximum amount."
+  inputs: ["Distribution request", "Plan loan/hardship provisions", "Account balance"]
+  outputs: ["Eligibility summary", "Maximum amount calculation"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["Recordkeeping system export", "Plan rules reference", "Spreadsheet"]
+  frequency: daily
+  trigger: "A participant submits a loan or hardship request"
+
 - id: player-escalation-triage
   title: "Cluster escalated player tickets by root cause"
   domain: "Customer Success & Support"
@@ -1682,6 +1812,19 @@
   tools: ["knowledge base", "docs"]
   frequency: weekly
   trigger: "find housing and food assistance referrals for this client's situation"
+
+- id: missing-document-followup
+  title: "Compile missing-document follow-ups for applicants"
+  domain: "Customer Success & Support"
+  roles: ["Intake & eligibility coordinator"]
+  description: "Compare each applicant's submitted documents to the required checklist and draft a personalized reminder listing what is still outstanding."
+  inputs: ["Applicant file", "Required-document checklist"]
+  outputs: ["Per-applicant outstanding-item list", "Draft reminder message"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["checklist tracker", "messaging tool"]
+  frequency: daily
+  trigger: "when an intake packet is incomplete past the deadline"
 
 - id: vip-guest-preference-profile
   title: "Compile VIP guest preference profiles"
@@ -2190,6 +2333,19 @@
   frequency: daily
   trigger: "reply to this applicant asking why their benefits stopped"
 
+- id: lp-info-request-response
+  title: "Draft responses to LP information requests"
+  domain: "Customer Success & Support"
+  roles: ["LP Reporting Analyst"]
+  description: "Answer ad-hoc LP queries by pulling figures and language from the data room and prior responses."
+  inputs: ["LP request email", "Data room / prior answers"]
+  outputs: ["Draft response", "Source references"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Document search", "Email client"]
+  frequency: ad-hoc
+  trigger: "When an LP sends an information request"
+
 - id: draft-shareholder-inquiry-responses
   title: "Draft responses to shareholder inquiries"
   domain: "Customer Success & Support"
@@ -2202,6 +2358,19 @@
   tools: ["email", "ticketing", "knowledge base"]
   frequency: daily
   trigger: "draft replies to today's shareholder dividend questions"
+
+- id: rg-case-notes-followups
+  title: "Draft responsible-gaming intervention case notes and follow-ups"
+  domain: "Customer Success & Support"
+  roles: ["Responsible-gaming case coordinator"]
+  description: "Turn interaction details into structured case notes and draft follow-up outreach to the patron."
+  inputs: ["Interaction details", "Case template"]
+  outputs: ["Case note", "Follow-up message draft"]
+  automation: low
+  human_in_loop: approve
+  tools: ["case management system", "document editor"]
+  frequency: ad-hoc
+  trigger: "A responsible-gaming interaction is logged"
 
 - id: return-resolution-comms
   title: "Draft return and refund resolution emails"
@@ -2541,6 +2710,32 @@
   frequency: quarterly
   trigger: "Find knowledge base articles that are out of date or need review"
 
+- id: referral-matching-handoff
+  title: "Match client needs to referral partners and draft handoff"
+  domain: "Customer Success & Support"
+  roles: ["Resource & referral coordinator"]
+  description: "Match a client's documented needs to appropriate partner providers and draft a warm-handoff referral with relevant context."
+  inputs: ["Client needs summary", "Resource directory", "Partner intake requirements"]
+  outputs: ["Matched referral options", "Draft warm-handoff message"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["directory database", "messaging tool"]
+  frequency: daily
+  trigger: "when a client needs a service outside the program"
+
+- id: benefit-program-matching
+  title: "Match client profile to eligible benefit programs"
+  domain: "Customer Success & Support"
+  roles: ["Benefits navigation assistant"]
+  description: "Screen a household profile across multiple program criteria and produce a ranked list of likely-eligible benefits with rationale."
+  inputs: ["Household profile", "Program eligibility criteria"]
+  outputs: ["Ranked list of likely-eligible benefits", "Eligibility rationale"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["rules engine", "program criteria database"]
+  frequency: ad-hoc
+  trigger: "when a client asks what benefits they qualify for"
+
 - id: membership-renewal-lapse-outreach
   title: "Membership renewal lapse detection & reminder drafting"
   domain: "Customer Success & Support"
@@ -2579,6 +2774,19 @@
   tools: ["ticketing", "CRM", "email"]
   frequency: ad-hoc
   trigger: "List who was hit by today's outage and draft their notifications"
+
+- id: benefits-application-prefill
+  title: "Pre-fill benefits applications and build doc checklist"
+  domain: "Customer Success & Support"
+  roles: ["Benefits navigation assistant"]
+  description: "Populate common application fields from the client record and assemble the supporting-document checklist for the chosen program."
+  inputs: ["Client record", "Application form", "Program document requirements"]
+  outputs: ["Pre-filled application draft", "Supporting-document checklist"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["form filler", "checklist tracker"]
+  frequency: ad-hoc
+  trigger: "when a client decides to apply for a benefit"
 
 - id: qbr-data-pack-compilation
   title: "QBR data pack compilation"
@@ -3022,6 +3230,19 @@
   frequency: quarterly
   trigger: "after testing exceptions are identified"
 
+- id: distribution-waterfall-calc
+  title: "Allocate distributions through the waterfall"
+  domain: "Finance & Accounting"
+  roles: ["Capital-Call & Distribution Administrator"]
+  description: "Run proceeds through return-of-capital, preferred return, GP catch-up and carry tiers to compute each LP's distribution."
+  inputs: ["Distributable proceeds", "Waterfall terms", "LP capital accounts"]
+  outputs: ["Waterfall allocation schedule", "Per-LP distribution amounts"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["Spreadsheet", "Document parser"]
+  frequency: ad-hoc
+  trigger: "When an exit or income distribution is declared"
+
 - id: production-volume-allocation
   title: "Allocate production volumes to wells and leases"
   domain: "Finance & Accounting"
@@ -3086,6 +3307,19 @@
   tools: ["spreadsheet", "presentation tool", "e-signature"]
   frequency: weekly
   trigger: "build the approval packet for this week's price changes"
+
+- id: claims-assembly-prep
+  title: "Assemble service claims for submission"
+  domain: "Finance & Accounting"
+  roles: ["Service authorization & billing clerk"]
+  description: "Build billing line items from service logs, match each to the correct authorization and service code, and flag likely rejects before submission."
+  inputs: ["Service logs", "Authorization codes", "Payer billing rules"]
+  outputs: ["Draft claim batch", "Pre-submission error flags"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["billing system", "coding reference"]
+  frequency: weekly
+  trigger: "when the billing cycle opens"
 
 - id: assemble-tax-return-filing-package
   title: "Assemble tax return filing package and instructions"
@@ -3164,6 +3398,19 @@
   tools: ["TMS", "spreadsheet", "ERP"]
   frequency: daily
   trigger: "Audit this week's carrier invoices for overcharges"
+
+- id: participation-audit-review
+  title: "Audit participation statements for recoupment discrepancies"
+  domain: "Finance & Accounting"
+  roles: ["Residuals & participations analyst"]
+  description: "Compare reported costs and revenues against contract definitions to flag overstated or misallocated charges."
+  inputs: ["Participation statement", "Contract definitions", "Supporting ledgers"]
+  outputs: ["Discrepancy findings memo"]
+  automation: low
+  human_in_loop: review-before-send
+  tools: ["spreadsheet", "document analysis tool"]
+  frequency: ad-hoc
+  trigger: "when reviewing a studio profit statement"
 
 - id: billing-exception-investigation
   title: "Billing exception triage"
@@ -3308,6 +3555,19 @@
   frequency: daily
   trigger: "Calculate detention owed on these containers"
 
+- id: residuals-calculation
+  title: "Calculate guild residuals from reuse and rerun data"
+  domain: "Finance & Accounting"
+  roles: ["Residuals & participations analyst"]
+  description: "Apply guild formulas to exhibition and reuse data to compute residuals owed per performer and writer."
+  inputs: ["Exhibition and reuse data", "Guild rate schedules", "Cast and crew list"]
+  outputs: ["Residuals calculation worksheet"]
+  automation: medium
+  human_in_loop: sign-off
+  tools: ["spreadsheet", "calculation engine"]
+  frequency: monthly
+  trigger: "when reuse data is reported for a title"
+
 - id: demurrage-laytime-statement
   title: "Calculate laytime used and prepare laytime statement"
   domain: "Finance & Accounting"
@@ -3359,6 +3619,19 @@
   tools: ["Practice management system", "Spreadsheet"]
   frequency: daily
   trigger: "A patient needs a cost estimate"
+
+- id: payee-statement-generation
+  title: "Calculate payee splits and generate royalty statements"
+  domain: "Finance & Accounting"
+  roles: ["Royalty accounting analyst"]
+  description: "Apply contract split percentages to net receipts and produce per-payee statements with recoupment balances carried forward."
+  inputs: ["Matched royalty data", "Split agreements", "Advance and recoupment ledger"]
+  outputs: ["Payee royalty statements", "Payment schedule"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["spreadsheet", "accounting system", "document generator"]
+  frequency: quarterly
+  trigger: "at the close of a royalty period"
 
 - id: permits-calculate-fees-from-valuation
   title: "Calculate permit fees from project valuation"
@@ -3438,6 +3711,19 @@
   frequency: monthly
   trigger: "summarize our vendor spend by category and flag where we're concentrated"
 
+- id: onchain-tx-categorize
+  title: "Categorize treasury transactions for accounting"
+  domain: "Finance & Accounting"
+  roles: ["Treasury reconciliation analyst"]
+  description: "Label raw on-chain transactions (gas, staking rewards, bridge transfers) against the chart of accounts."
+  inputs: ["raw on-chain transactions", "chart of accounts"]
+  outputs: ["labeled transaction set"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["blockchain analytics tool", "accounting system"]
+  frequency: weekly
+  trigger: "before the weekly close"
+
 - id: check-debt-covenant-compliance
   title: "Check debt covenant compliance"
   domain: "Finance & Accounting"
@@ -3476,6 +3762,19 @@
   tools: ["spreadsheet", "knowledge base"]
   frequency: quarterly
   trigger: "Sort these operating expenses into recoverable and non-recoverable"
+
+- id: production-expense-coding
+  title: "Code production expenses to budget cost codes"
+  domain: "Finance & Accounting"
+  roles: ["Production accountant"]
+  description: "Classify invoices and purchase orders to the correct production cost code and department for the budget topsheet."
+  inputs: ["Vendor invoices", "Purchase orders", "Chart of cost codes"]
+  outputs: ["Coded expense entries"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["accounting system", "spreadsheet", "OCR tool"]
+  frequency: daily
+  trigger: "as production invoices come in"
 
 - id: compile-production-wrap-report
   title: "Compile and reconcile production wrap/expense report"
@@ -3528,6 +3827,32 @@
   tools: ["Document repository", "Spreadsheet", "Word processor"]
   frequency: quarterly
   trigger: "When a JV partner issues audit exceptions"
+
+- id: client-media-billing-statement
+  title: "Compile the client media billing reconciliation statement"
+  domain: "Finance & Accounting"
+  roles: ["Media buying reconciliation analyst"]
+  description: "Roll up reconciled vendor costs, agency commission and fees into a client-ready monthly billing statement."
+  inputs: ["Reconciled vendor costs", "Fee/commission schedule"]
+  outputs: ["Client billing statement", "Backup detail appendix"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["spreadsheet", "billing system"]
+  frequency: monthly
+  trigger: "at monthly client billing close"
+
+- id: w2g-jackpot-compilation
+  title: "Compile W-2G data for taxable jackpot payouts"
+  domain: "Finance & Accounting"
+  roles: ["Casino gaming incident & surveillance report analyst"]
+  description: "Assemble large-payout records into W-2G tax form data and flag missing patron tax details."
+  inputs: ["Jackpot payout records", "Patron tax identity data"]
+  outputs: ["W-2G draft data", "Missing-info list"]
+  automation: high
+  human_in_loop: approve
+  tools: ["spreadsheet", "tax form system"]
+  frequency: daily
+  trigger: "A jackpot exceeds the reportable payout threshold"
 
 - id: dr-incentive-settlement
   title: "Demand response incentive settlement"
@@ -3906,6 +4231,19 @@
   frequency: daily
   trigger: "Write an appeal for this denied claim"
 
+- id: earned-value-billing-draft
+  title: "Draft percent-complete client invoices for fee-based projects"
+  domain: "Finance & Accounting"
+  roles: ["Project Accounting Analyst"]
+  description: "Apply each phase's percent-complete to its lump-sum fee, deduct prior billings, and assemble draft invoices with backup."
+  inputs: ["contract fee schedule", "percent-complete by phase", "prior invoices"]
+  outputs: ["draft invoices", "billing backup"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["billing system", "spreadsheet"]
+  frequency: monthly
+  trigger: "It's billing week"
+
 - id: phased-treatment-presentation
   title: "Draft phased treatment plan with payment options"
   domain: "Finance & Accounting"
@@ -3918,6 +4256,19 @@
   tools: ["Document generator", "Practice management system"]
   frequency: ad-hoc
   trigger: "A patient is reviewing a large case"
+
+- id: capital-call-notice-draft
+  title: "Draft pro-rata capital call notices"
+  domain: "Finance & Accounting"
+  roles: ["Capital-Call & Distribution Administrator"]
+  description: "Compute each LP's pro-rata share of a call and populate notice templates with amounts, due dates and wire details."
+  inputs: ["Commitment schedule", "Call amount & purpose", "Notice template"]
+  outputs: ["Per-LP capital call notices", "Call summary schedule"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Spreadsheet", "Document editor", "Mail merge"]
+  frequency: ad-hoc
+  trigger: "When a capital call is approved"
 
 - id: journal-entry-drafting
   title: "Draft recurring and accrual journal entries"
@@ -4075,6 +4426,19 @@
   frequency: monthly
   trigger: "create this month's invoices from the attached customer contracts and billing schedule"
 
+- id: lp-capital-account-statements
+  title: "Generate LP capital account statements"
+  domain: "Finance & Accounting"
+  roles: ["LP Reporting Analyst"]
+  description: "Produce per-LP statements with opening balance, contributions, distributions, allocations and closing NAV."
+  inputs: ["Fund-level NAV pack", "LP allocation schedule", "Statement template"]
+  outputs: ["Per-LP capital account statements"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Spreadsheet", "Template engine"]
+  frequency: quarterly
+  trigger: "After quarter-end NAV is finalized"
+
 - id: generate-member-account-statements
   title: "Generate member input-account statements"
   domain: "Finance & Accounting"
@@ -4126,6 +4490,32 @@
   tools: ["Spreadsheet", "Document editor"]
   frequency: ad-hoc
   trigger: "When a licensee asks for pricing"
+
+- id: dc-rmd-notice-generation
+  title: "Generate required minimum distribution notices"
+  domain: "Finance & Accounting"
+  roles: ["401(k)/DC operations specialist"]
+  description: "Identify participants reaching RMD age, compute the amount from prior year-end balance and life-expectancy factors, and draft notices."
+  inputs: ["Participant ages and balances", "Prior year-end balances", "Life-expectancy factors"]
+  outputs: ["RMD amount schedule", "Draft participant notices"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Spreadsheet", "Recordkeeping system export", "Notice template"]
+  frequency: quarterly
+  trigger: "The annual RMD cycle opens"
+
+- id: project-wip-report
+  title: "Generate the monthly work-in-progress report by project"
+  domain: "Finance & Accounting"
+  roles: ["Project Accounting Analyst"]
+  description: "Compile percent-complete, earned revenue, billed, and unbilled by project; flag over- and under-billing against budget."
+  inputs: ["project budgets", "labor/expense actuals", "percent-complete inputs"]
+  outputs: ["WIP report", "over/under-billing flags"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["spreadsheet", "accounting system export", "reporting tool"]
+  frequency: monthly
+  trigger: "Month-end close, time for the WIP run"
 
 - id: grant-budget-actual-allowable-cost
   title: "Grant budget-to-actual allowable cost review"
@@ -4217,6 +4607,19 @@
   tools: ["CRM", "spreadsheet", "ERP"]
   frequency: monthly
   trigger: "Reconcile member dues against their tier levels"
+
+- id: participation-statement-modeling
+  title: "Model net profit participation waterfalls"
+  domain: "Finance & Accounting"
+  roles: ["Residuals & participations analyst"]
+  description: "Build the revenue and cost waterfall to derive participant shares from a title's contractual profit definition."
+  inputs: ["Revenue and cost data", "Participation agreement terms"]
+  outputs: ["Participation waterfall model", "Participant statement"]
+  automation: low
+  human_in_loop: review-before-send
+  tools: ["spreadsheet", "financial model"]
+  frequency: quarterly
+  trigger: "when a participation statement is due"
 
 - id: monitor-loan-covenants
   title: "Monitor loan portfolio for covenant breaches"
@@ -4374,6 +4777,19 @@
   frequency: daily
   trigger: "post tonight's no-show charges"
 
+- id: pension-benefit-estimate-calc
+  title: "Produce defined-benefit pension estimates"
+  domain: "Finance & Accounting"
+  roles: ["Pension calculations analyst"]
+  description: "Apply the plan formula to a member's service and salary history to compute single-life and joint-and-survivor benefit options."
+  inputs: ["Member service history", "Salary history", "Plan benefit formula"]
+  outputs: ["Benefit estimate statement", "Option comparison table"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["Calculation engine", "Spreadsheet", "Statement template"]
+  frequency: daily
+  trigger: "A member requests a retirement estimate"
+
 - id: rate-change-bill-reconciliation
   title: "Rate-change bill reconciliation"
   domain: "Finance & Accounting"
@@ -4412,6 +4828,19 @@
   tools: ["Spreadsheet", "Interest calculation worksheet"]
   frequency: ad-hoc
   trigger: "When a tract burden or ownership change is recorded"
+
+- id: mgmt-fee-recompute
+  title: "Recompute quarterly management fee"
+  domain: "Finance & Accounting"
+  roles: ["Fund Operations Analyst"]
+  description: "Recalculate the management fee from committed and invested capital per the LPA and reconcile to the administrator's figure."
+  inputs: ["LPA fee terms", "Commitment & invested-capital schedule", "Admin fee calculation"]
+  outputs: ["Independent fee calculation", "Variance note"]
+  automation: high
+  human_in_loop: approve
+  tools: ["Spreadsheet", "Document parser"]
+  frequency: quarterly
+  trigger: "When the admin issues the quarterly fee calc"
 
 - id: rate-plan-tariff-reconciliation
   title: "Reconcile applied rate plans against tariff schedule"
@@ -4491,6 +4920,19 @@
   frequency: monthly
   trigger: "Reconcile the ceded bordereaux against the treaty."
 
+- id: cobra-premium-payment-reconciliation
+  title: "Reconcile COBRA premium payments"
+  domain: "Finance & Accounting"
+  roles: ["COBRA & leave administrator"]
+  description: "Match premium payments received to billed amounts; flag shortfalls and grace-period delinquencies for termination notices."
+  inputs: ["Premium payments received", "Billing schedule", "Grace-period rules"]
+  outputs: ["Payment reconciliation", "Delinquency list"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Spreadsheet", "Payment ledger export", "Billing system export"]
+  frequency: monthly
+  trigger: "Monthly COBRA premiums are due"
+
 - id: reconcile-collateral-positions
   title: "Reconcile collateral positions vs counterparty statements"
   domain: "Finance & Accounting"
@@ -4503,6 +4945,19 @@
   tools: ["spreadsheet", "ERP"]
   frequency: daily
   trigger: "reconcile our collateral balances against the counterparty statements"
+
+- id: comp-liability-reconciliation
+  title: "Reconcile comp and free-play redemptions against budget"
+  domain: "Finance & Accounting"
+  roles: ["Player reinvestment & loyalty analyst"]
+  description: "Match issued versus redeemed comps and free play to the reinvestment budget and flag overruns."
+  inputs: ["Issued offer records", "Redemption records", "Reinvestment budget"]
+  outputs: ["Redemption reconciliation", "Budget variance flags"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "accounting system"]
+  frequency: monthly
+  trigger: "Month-end reinvestment close"
 
 - id: reconcile-ca-entitlements
   title: "Reconcile corporate action entitlements"
@@ -4530,6 +4985,19 @@
   frequency: ad-hoc
   trigger: "The charterer disputed our demurrage figure"
 
+- id: service-units-reconciliation
+  title: "Reconcile delivered service units against authorizations"
+  domain: "Finance & Accounting"
+  roles: ["Service authorization & billing clerk"]
+  description: "Compare logged service hours or units to the prior-authorization caps for each client and flag overages or near-limit cases."
+  inputs: ["Service delivery logs", "Authorization records"]
+  outputs: ["Reconciliation report", "Overage and near-limit flags"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["billing system", "spreadsheet", "authorization tracker"]
+  frequency: weekly
+  trigger: "at the end of each service week before billing"
+
 - id: fema-reconcile-expenses-to-categories
   title: "Reconcile disaster expenses to eligible categories"
   domain: "Finance & Accounting"
@@ -4542,6 +5010,19 @@
   tools: ["spreadsheet", "accounting system"]
   frequency: monthly
   trigger: "Expenses accumulate for a declared disaster"
+
+- id: royalty-statement-reconciliation
+  title: "Reconcile DSP and society royalty statements against expected splits"
+  domain: "Finance & Accounting"
+  roles: ["Royalty accounting analyst"]
+  description: "Match incoming streaming and society line items to catalog works and flag variances against contracted splits and prior periods."
+  inputs: ["DSP royalty statements", "Collecting society statements", "Contract split terms"]
+  outputs: ["Reconciliation report", "Variance flags"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "accounting system", "data reconciliation tool"]
+  frequency: quarterly
+  trigger: "when the quarterly royalty statements land"
 
 - id: missing-charge-reconciliation
   title: "Reconcile encounters against posted charges"
@@ -4621,6 +5102,19 @@
   frequency: weekly
   trigger: "Check this month's fuel card charges for anomalies"
 
+- id: fund-cash-reconciliation
+  title: "Reconcile fund cash against custodian statements"
+  domain: "Finance & Accounting"
+  roles: ["Fund Operations Analyst"]
+  description: "Match daily cash movements in the fund admin ledger to bank and custodian statements and flag unexplained breaks."
+  inputs: ["Fund admin cash ledger", "Custodian/bank statements"]
+  outputs: ["Reconciliation worksheet", "List of flagged breaks"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Spreadsheet", "Bank statement feed", "Reconciliation worksheet"]
+  frequency: daily
+  trigger: "When the daily custodian statements land"
+
 - id: reconcile-futures-broker-statements
   title: "Reconcile futures broker statements to positions"
   domain: "Finance & Accounting"
@@ -4660,6 +5154,19 @@
   frequency: ad-hoc
   trigger: "reconcile the master bill for last week's group"
 
+- id: labor-multiplier-reconciliation
+  title: "Reconcile labor multiplier and overhead rates on cost-plus jobs"
+  domain: "Finance & Accounting"
+  roles: ["Project Accounting Analyst"]
+  description: "Recalculate billed rates against approved provisional overhead and fee multipliers; flag mismatches by employee and project."
+  inputs: ["timesheet/labor data", "approved multiplier/overhead rates", "contract terms"]
+  outputs: ["reconciliation report", "rate exception list"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "accounting system export"]
+  frequency: quarterly
+  trigger: "Auditing cost-plus billing rates at the rate true-up"
+
 - id: loyalty-partner-accrual-reconciliation
   title: "Reconcile loyalty partner accrual transactions"
   domain: "Finance & Accounting"
@@ -4672,6 +5179,19 @@
   tools: ["loyalty platform", "spreadsheet", "BI tool"]
   frequency: monthly
   trigger: "reconcile this month's partner mileage accruals"
+
+- id: media-invoice-plan-reconciliation
+  title: "Reconcile media vendor invoices against the buy"
+  domain: "Finance & Accounting"
+  roles: ["Media buying reconciliation analyst"]
+  description: "Match each vendor invoice line to planned placements and delivered impressions, flagging spend and delivery variances."
+  inputs: ["Media plan / buy sheet", "Vendor invoices", "Delivery/impression logs"]
+  outputs: ["Reconciliation worksheet", "Variance flag list"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "invoice parser", "media planning system"]
+  frequency: monthly
+  trigger: "when vendor invoices arrive for the month"
 
 - id: reconcile-member-patronage-allocations
   title: "Reconcile member patronage and equity allocations"
@@ -4724,6 +5244,19 @@
   tools: ["Spreadsheet", "Reconciliation engine"]
   frequency: monthly
   trigger: "when the OEM warranty statement posts"
+
+- id: treasury-balance-recon
+  title: "Reconcile on-chain balances to ledger"
+  domain: "Finance & Accounting"
+  roles: ["Treasury reconciliation analyst"]
+  description: "Compare on-chain wallet balances against the internal ledger and custody statements; surface breaks."
+  inputs: ["on-chain wallet balances", "internal ledger", "custody statements"]
+  outputs: ["reconciliation report with breaks"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["blockchain explorer", "accounting system", "spreadsheet"]
+  frequency: daily
+  trigger: "each morning before treasury cutoff"
 
 - id: reconcile-payroll-register
   title: "Reconcile payroll register against source data"
@@ -4816,6 +5349,19 @@
   frequency: daily
   trigger: "Delivered loads need settling"
 
+- id: show-settlement-reconciliation
+  title: "Reconcile show settlement sheets against the deal"
+  domain: "Finance & Accounting"
+  roles: ["Talent & booking coordinator"]
+  description: "Check box office, expenses, and splits on the settlement against the deal terms and flag shortfalls."
+  inputs: ["Settlement sheet", "Deal memo", "Box office report"]
+  outputs: ["Reconciled settlement", "Discrepancy notes"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "accounting system"]
+  frequency: ad-hoc
+  trigger: "the morning after a show settles"
+
 - id: store-price-reconciliation
   title: "Reconcile store SKU pricing across regions and currencies"
   domain: "Finance & Accounting"
@@ -4867,6 +5413,32 @@
   tools: ["Spreadsheet", "Booking system"]
   frequency: monthly
   trigger: "At the close of each payroll period"
+
+- id: travel-rule-onchain-reconcile
+  title: "Reconcile travel-rule data to chain records"
+  domain: "Finance & Accounting"
+  roles: ["Travel-rule compliance clerk", "Treasury reconciliation analyst"]
+  description: "Match travel-rule message value and timestamp against the corresponding on-chain transaction; flag breaks."
+  inputs: ["travel-rule messages", "on-chain transaction records"]
+  outputs: ["match and break report"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["blockchain explorer", "spreadsheet"]
+  frequency: daily
+  trigger: "at end of settlement day"
+
+- id: tpa-trust-recon-summary
+  title: "Reconcile trust statement to recordkeeping totals"
+  domain: "Finance & Accounting"
+  roles: ["Third-party pension plan administrator"]
+  description: "Match custodian statement balances and cash flows to recordkeeping totals; flag variances for analyst review."
+  inputs: ["Trust/custodian statement", "Recordkeeping balance report"]
+  outputs: ["Reconciliation worksheet", "Variance list"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["Spreadsheet", "Custodian statement export", "Recordkeeping system export"]
+  frequency: monthly
+  trigger: "Monthly custodian statement arrives"
 
 - id: offering-pledge-reconciliation
   title: "Reconcile weekly offerings against member pledges"
@@ -5011,6 +5583,32 @@
   frequency: monthly
   trigger: "Update the TI budget tracker with these invoices"
 
+- id: claim-denial-triage
+  title: "Triage and categorize claim denials"
+  domain: "Finance & Accounting"
+  roles: ["Service authorization & billing clerk"]
+  description: "Read remittance and denial reason codes, group denials by root cause, and draft resubmission or correction notes for each group."
+  inputs: ["Remittance advice", "Denial reason codes", "Original claims"]
+  outputs: ["Denial categorization summary", "Resubmission notes"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["billing system", "spreadsheet"]
+  frequency: weekly
+  trigger: "when a remittance with denials is received"
+
+- id: portco-valuation-update
+  title: "Update portfolio valuation marks"
+  domain: "Finance & Accounting"
+  roles: ["Portfolio Monitoring Analyst"]
+  description: "Refresh comparable multiples and recompute each holding's valuation mark, flagging large movements."
+  inputs: ["Portfolio financials", "Comparable company data", "Prior marks"]
+  outputs: ["Updated valuation marks", "Variance flags"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Spreadsheet", "Market data feed"]
+  frequency: quarterly
+  trigger: "During the quarterly valuation cycle"
+
 - id: update-production-cost-report
   title: "Update production cost report against budget"
   domain: "Finance & Accounting"
@@ -5036,6 +5634,19 @@
   tools: ["spreadsheet", "ERP", "docs"]
   frequency: monthly
   trigger: "update the rolling forecast with these actuals and tell me what moved"
+
+- id: investor-register-update
+  title: "Update the investor register"
+  domain: "Finance & Accounting"
+  roles: ["LP Onboarding & Subscription Specialist"]
+  description: "Post confirmed commitments and investor details from executed subs into the investor register and cap table."
+  inputs: ["Executed subscription data", "Investor register"]
+  outputs: ["Updated investor register"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Register / database", "Spreadsheet"]
+  frequency: ad-hoc
+  trigger: "After a subscription is accepted"
 
 - id: fni-deal-jacket-completeness-check
   title: "Validate deal jacket completeness before lender submission"
@@ -5075,6 +5686,19 @@
   tools: ["Claims clearinghouse portal", "Spreadsheet"]
   frequency: daily
   trigger: "An estimate needs current benefit balances"
+
+- id: pension-calc-peer-verification
+  title: "Verify retiree benefit calculations"
+  domain: "Finance & Accounting"
+  roles: ["Pension calculations analyst"]
+  description: "Re-check finalized benefit calculations against plan factors such as early-retirement reductions and actuarial equivalence, and flag mismatches."
+  inputs: ["Completed benefit calculation", "Plan factor tables", "Plan document provisions"]
+  outputs: ["Verification report", "Correction flags"]
+  automation: medium
+  human_in_loop: sign-off
+  tools: ["Spreadsheet", "Factor tables", "Calculation engine"]
+  frequency: weekly
+  trigger: "A retirement calculation is queued for final approval"
 
 - id: vouch-sample-transactions
   title: "Vouch sampled transactions to support"
@@ -5583,6 +6207,19 @@
   frequency: ad-hoc
   trigger: "build an offboarding checklist for a sales rep leaving on the 30th"
 
+- id: enrollment-confirmation-statements
+  title: "Generate enrollment confirmation statements"
+  domain: "HR & People Ops"
+  roles: ["Benefits enrollment processor"]
+  description: "Produce per-employee confirmation statements and ID-card request lists from completed elections."
+  inputs: ["Completed elections", "Plan and coverage details", "Statement template"]
+  outputs: ["Confirmation statements", "ID-card request list"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Mail-merge tool", "Benefits enrollment export", "Statement template"]
+  frequency: weekly
+  trigger: "Elections are finalized for a group"
+
 - id: generate-onboarding-checklist
   title: "Generate personalized new-hire onboarding plan"
   domain: "HR & People Ops"
@@ -5621,6 +6258,19 @@
   tools: ["HRIS", "spreadsheet", "email"]
   frequency: monthly
   trigger: "Flag any work permits expiring in the next 90 days and draft the reminders"
+
+- id: dependent-eligibility-audit-prep
+  title: "Prepare dependent eligibility audit requests"
+  domain: "HR & People Ops"
+  roles: ["Benefits enrollment processor"]
+  description: "Identify dependents missing verification documents and draft tailored document-request letters for the eligibility audit."
+  inputs: ["Dependent enrollment records", "Required document list"]
+  outputs: ["Missing-document list", "Draft request letters"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Spreadsheet", "Mail-merge tool", "Benefits enrollment export"]
+  frequency: monthly
+  trigger: "A dependent eligibility audit is launched"
 
 - id: reconcile-401k-contributions-against-the-payroll-register
   title: "Reconcile 401(k) contributions against the payroll register"
@@ -5804,6 +6454,19 @@
   frequency: monthly
   trigger: "who hasn't finished the compliance training, and draft them reminders"
 
+- id: leave-entitlement-tracking
+  title: "Track leave eligibility and entitlement"
+  domain: "HR & People Ops"
+  roles: ["COBRA & leave administrator"]
+  description: "Calculate FMLA/leave eligibility and remaining entitlement; draft designation notices and return-to-work reminders."
+  inputs: ["Leave request", "Employment and hours history", "Leave policy rules"]
+  outputs: ["Eligibility determination", "Draft designation notice"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["Spreadsheet", "HR system export", "Notice template"]
+  frequency: weekly
+  trigger: "An employee requests a leave of absence"
+
 - id: track-review-completion
   title: "Track review submissions and flag missing reviews"
   domain: "HR & People Ops"
@@ -5817,6 +6480,19 @@
   frequency: quarterly
   trigger: "who still hasn't submitted their reviews"
 
+- id: credential-expiration-tracking
+  title: "Track staff credential and clearance expirations"
+  domain: "HR & People Ops"
+  roles: ["Compliance & licensing coordinator"]
+  description: "Monitor the roster of certifications, trainings, and background clearances, flag upcoming expirations, and draft renewal reminders."
+  inputs: ["Staff credential roster", "Expiration dates", "Renewal requirements"]
+  outputs: ["Expiration watchlist", "Draft renewal reminders"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["roster tracker", "calendar", "messaging tool"]
+  frequency: monthly
+  trigger: "on a recurring monthly compliance check"
+
 - id: triage-hr-tickets
   title: "Triage and route HR helpdesk tickets"
   domain: "HR & People Ops"
@@ -5829,6 +6505,19 @@
   tools: ["ticketing", "email"]
   frequency: daily
   trigger: "categorize and route the new tickets in the HR queue and draft acknowledgments"
+
+- id: enrollment-election-validation
+  title: "Validate open-enrollment elections"
+  domain: "HR & People Ops"
+  roles: ["Benefits enrollment processor"]
+  description: "Check submitted benefit elections against eligibility rules and dependent documentation; flag incomplete or invalid forms."
+  inputs: ["Enrollment elections", "Eligibility rules", "Dependent documents"]
+  outputs: ["Validation exception list", "Clean elections batch"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Benefits enrollment export", "Spreadsheet", "Rules reference"]
+  frequency: weekly
+  trigger: "Elections arrive during the open-enrollment window"
 
 - id: volunteer-hours-recognition-report
   title: "Volunteer hours tracking & recognition report"
@@ -6441,6 +7130,19 @@
   frequency: weekly
   trigger: "Abstract the key terms from this lease"
 
+- id: fuzzy-match-adjudicate
+  title: "Adjudicate fuzzy-match false positives"
+  domain: "Legal & Compliance"
+  roles: ["Sanctions screening analyst"]
+  description: "Compare hit identity attributes to list entries and propose a cleared or escalated disposition with rationale."
+  inputs: ["name-match hits", "customer identity attributes", "list entries"]
+  outputs: ["disposition with rationale"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["screening tool", "case management tool"]
+  frequency: daily
+  trigger: "when the screening queue has pending hits"
+
 - id: sanctions-screening-false-positive-memo
   title: "Adjudicate sanctions-screening hits and draft clearance rationale"
   domain: "Legal & Compliance"
@@ -6453,6 +7155,19 @@
   tools: ["GRC platform", "spreadsheet", "knowledge base"]
   frequency: daily
   trigger: "write up the false-positive rationale for this sanctions hit"
+
+- id: permit-package-assembly
+  title: "Assemble a regulatory permit application package"
+  domain: "Legal & Compliance"
+  roles: ["Regulatory Submittal Coordinator"]
+  description: "Collate required forms, exhibits, fees, and signature blocks per the agency checklist into a submittal-ready package; flag gaps."
+  inputs: ["agency application checklist", "project exhibits/forms", "fee schedule"]
+  outputs: ["assembled submittal package", "missing-items list"]
+  automation: medium
+  human_in_loop: sign-off
+  tools: ["document assembler", "PDF tool", "checklist"]
+  frequency: ad-hoc
+  trigger: "Permit application is due to the agency"
 
 - id: ban-wave-evidence-packet
   title: "Assemble ban-wave evidence packets from detection logs"
@@ -6479,6 +7194,19 @@
   tools: ["document editor", "file storage"]
   frequency: ad-hoc
   trigger: "A voyage closed with time on demurrage to claim"
+
+- id: form-5500-schedule-prep
+  title: "Assemble Form 5500 supporting schedules"
+  domain: "Legal & Compliance"
+  roles: ["Retirement plan compliance analyst"]
+  description: "Aggregate plan financial activity and participant counts into draft Form 5500 schedules and workpapers for review."
+  inputs: ["Plan financial statements", "Participant count data", "Prior-year filing"]
+  outputs: ["Draft 5500 schedules", "Supporting workpapers"]
+  automation: medium
+  human_in_loop: sign-off
+  tools: ["Spreadsheet", "Trust accounting export", "Filing form template"]
+  frequency: quarterly
+  trigger: "The plan's 5500 filing is being prepared"
 
 - id: assess-item-rights-status
   title: "Assess copyright and rights status of archival items"
@@ -6518,6 +7246,19 @@
   tools: ["Accessibility checker", "Document editor"]
   frequency: ad-hoc
   trigger: "when a page is submitted for accessibility review"
+
+- id: case-file-completeness-audit
+  title: "Audit case files for documentation completeness"
+  domain: "Legal & Compliance"
+  roles: ["Case documentation specialist", "Compliance & licensing coordinator"]
+  description: "Scan each case record against the required-element checklist (assessment date, signatures, service plan, review dates) and flag gaps."
+  inputs: ["Case records", "Documentation requirements checklist"]
+  outputs: ["Completeness audit report", "Gap flags by case"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["case management system", "checklist tracker"]
+  frequency: weekly
+  trigger: "before a case review or monthly file audit"
 
 - id: custody-signature-audit
   title: "Audit chain-of-custody records for missing entries"
@@ -6584,6 +7325,19 @@
   frequency: monthly
   trigger: "audit our subcontract files for missing documents"
 
+- id: participant-disclosure-notice-batch
+  title: "Batch annual participant disclosure notices"
+  domain: "Legal & Compliance"
+  roles: ["Retirement plan compliance analyst"]
+  description: "Assemble required annual notices such as safe harbor, fee disclosure, and summary annual report, and verify content and recipients."
+  inputs: ["Plan and fee data", "Participant distribution list", "Notice templates"]
+  outputs: ["Notice packet drafts", "Distribution list"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Mail-merge tool", "Notice templates", "Recordkeeping system export"]
+  frequency: quarterly
+  trigger: "The annual notice distribution deadline approaches"
+
 - id: far-dfars-flowdown-matrix
   title: "Build a FAR/DFARS clause flow-down matrix"
   domain: "Legal & Compliance"
@@ -6609,6 +7363,19 @@
   tools: ["license database", "calendar tool"]
   frequency: quarterly
   trigger: "at the start of each quarter"
+
+- id: permit-obligation-calendar
+  title: "Build obligation calendar from environmental permits"
+  domain: "Legal & Compliance"
+  roles: ["Environmental permit compliance coordinator"]
+  description: "Extract monitoring, sampling, and reporting deadlines from permit documents into a tracked compliance calendar with reminders."
+  inputs: ["Permit documents", "Existing obligation tracker"]
+  outputs: ["Obligation calendar entries", "Deadline reminders"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Document editor", "Calendar", "Spreadsheet"]
+  frequency: quarterly
+  trigger: "When a permit is issued, renewed, or amended"
 
 - id: governance-compliance-calendar
   title: "Build the annual governance compliance calendar"
@@ -6792,6 +7559,32 @@
   frequency: monthly
   trigger: "classify these documents by record type and retention period"
 
+- id: permit-limit-exceedance-check
+  title: "Compare monitoring readings against permit limits"
+  domain: "Legal & Compliance"
+  roles: ["Environmental permit compliance coordinator"]
+  description: "Check monitoring results against permit limit values and flag exceedances or readings trending toward limits."
+  inputs: ["Monitoring data", "Permit limit table"]
+  outputs: ["Exceedance flags", "Near-limit watchlist"]
+  automation: high
+  human_in_loop: approve
+  tools: ["Spreadsheet", "Database"]
+  frequency: weekly
+  trigger: "When new monitoring readings are uploaded"
+
+- id: jurisdiction-requirement-checklist
+  title: "Compile a jurisdiction-specific submittal requirement checklist"
+  domain: "Legal & Compliance"
+  roles: ["Regulatory Submittal Coordinator"]
+  description: "Summarize the filing forms, copy counts, deadlines, and fees a given agency requires into a project-ready checklist."
+  inputs: ["agency regulations/guidelines", "project type"]
+  outputs: ["requirement checklist"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["research tool", "document parser"]
+  frequency: ad-hoc
+  trigger: "Starting permitting in a new jurisdiction"
+
 - id: controlled-substance-log-audit-prep
   title: "Compile controlled-substance log audit pack"
   domain: "Legal & Compliance"
@@ -6804,6 +7597,19 @@
   tools: ["spreadsheet", "practice mgmt"]
   frequency: monthly
   trigger: "Prep the controlled substance reconciliation for audit"
+
+- id: sts-state-traceability-report
+  title: "Compile daily plant-movement report for the state traceability system"
+  domain: "Legal & Compliance"
+  roles: ["Seed-to-sale compliance clerk"]
+  description: "Assemble harvests, transfers, and destructions into the state-required manifest format for submission."
+  inputs: ["Cultivation activity logs", "Transfer manifests"]
+  outputs: ["Formatted state traceability report"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["spreadsheet", "compliance reporting portal"]
+  frequency: daily
+  trigger: "Cultivation logs close for the day"
 
 - id: compile-regulatory-return
   title: "Compile draft of periodic regulatory return"
@@ -6869,6 +7675,19 @@
   tools: ["practice mgmt", "sanctions screening tool", "document management"]
   frequency: daily
   trigger: "Put together the KYC file and risk rating for this new client"
+
+- id: cue-sheet-compilation
+  title: "Compile music cue sheets from production usage logs"
+  domain: "Legal & Compliance"
+  roles: ["Rights & clearances coordinator"]
+  description: "Assemble cue-by-cue music usage with composer, publisher, timing, and usage type for collecting society submission."
+  inputs: ["Edit decision list or music log", "Work metadata"]
+  outputs: ["Completed cue sheet"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "database"]
+  frequency: ad-hoc
+  trigger: "once a film or episode locks picture"
 
 - id: controlled-substance-regulatory-report
   title: "Compile periodic controlled-substance usage report"
@@ -6947,6 +7766,19 @@
   tools: ["spreadsheet", "document management system"]
   frequency: ad-hoc
   trigger: "Verify this legal description matches the tax records"
+
+- id: self-exclusion-cross-check
+  title: "Cross-check patron activity against the self-exclusion list"
+  domain: "Legal & Compliance"
+  roles: ["Responsible-gaming case coordinator"]
+  description: "Match patron entries, enrollments, and offers against the self-exclusion register to flag breaches."
+  inputs: ["Patron activity feed", "Self-exclusion register"]
+  outputs: ["Breach alert list"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["spreadsheet", "case management system"]
+  frequency: daily
+  trigger: "A self-excluded patron is detected in activity data"
 
 - id: crosswalk-evidence-to-accreditation-standards
   title: "Crosswalk evidence to accreditation standards"
@@ -7182,6 +8014,19 @@
   frequency: ad-hoc
   trigger: "Draft a reservation of rights letter for this claim."
 
+- id: gaming-ctr-drafting
+  title: "Draft currency transaction reports from flagged cash activity"
+  domain: "Legal & Compliance"
+  roles: ["Gaming AML/compliance analyst"]
+  description: "Assemble patron cash-in and cash-out activity crossing reporting thresholds into draft CTR filings with required fields."
+  inputs: ["Cage transaction logs", "Patron identity records"]
+  outputs: ["Draft CTR filings"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["spreadsheet", "compliance filing system"]
+  frequency: daily
+  trigger: "Patron cash activity crosses the reporting threshold"
+
 - id: draft-breach-notification
   title: "Draft data breach notification"
   domain: "Legal & Compliance"
@@ -7247,6 +8092,32 @@
   frequency: ad-hoc
   trigger: "draft a recordability determination for this injury report"
 
+- id: incident-report-summary
+  title: "Draft incident report summaries for reporting"
+  domain: "Legal & Compliance"
+  roles: ["Compliance & licensing coordinator", "Case documentation specialist"]
+  description: "Compile incident details into the required regulatory reporting format with all mandated fields and a factual narrative."
+  inputs: ["Incident details", "Reporting format requirements"]
+  outputs: ["Draft incident report"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["document generator", "template library"]
+  frequency: ad-hoc
+  trigger: "when a reportable incident occurs"
+
+- id: influencer-contract-draft
+  title: "Draft influencer and talent contracts from templates"
+  domain: "Legal & Compliance"
+  roles: ["Influencer & talent contract administrator"]
+  description: "Populate contract templates with negotiated deliverables, fees, usage rights and exclusivity terms."
+  inputs: ["Deal terms summary", "Contract template"]
+  outputs: ["Draft contract"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["document editor", "contract template library"]
+  frequency: ad-hoc
+  trigger: "when talent terms are agreed"
+
 - id: draft-internal-policy-update
   title: "Draft internal policy update"
   domain: "Legal & Compliance"
@@ -7285,6 +8156,19 @@
   tools: ["docs", "e-signature"]
   frequency: ad-hoc
   trigger: "draft a mutual NDA for Acme, 2-year term, Delaware law"
+
+- id: permit-renewal-narrative-draft
+  title: "Draft permit renewal narrative from prior submissions"
+  domain: "Legal & Compliance"
+  roles: ["Environmental permit compliance coordinator"]
+  description: "Draft the renewal application narrative by updating prior submissions with current operations and monitoring history."
+  inputs: ["Prior permit application", "Current operations data", "Monitoring history"]
+  outputs: ["Draft renewal narrative"]
+  automation: low
+  human_in_loop: sign-off
+  tools: ["Document editor"]
+  frequency: ad-hoc
+  trigger: "When a permit renewal window opens"
 
 - id: draft-policy-document
   title: "Draft policy document from source notes"
@@ -7403,6 +8287,32 @@
   frequency: monthly
   trigger: "When a periodic agency report is due"
 
+- id: emissions-report-narrative-draft
+  title: "Draft regulatory emissions report narrative and threshold check"
+  domain: "Legal & Compliance"
+  roles: ["Emissions reporting specialist"]
+  description: "Draft the emissions report narrative from calculated totals and cross-check those totals against reporting thresholds."
+  inputs: ["Emission totals", "Reporting threshold reference", "Prior report"]
+  outputs: ["Draft emissions report narrative", "Threshold check notes"]
+  automation: low
+  human_in_loop: sign-off
+  tools: ["Document editor", "Spreadsheet"]
+  frequency: quarterly
+  trigger: "When emission estimates are ready for the regulatory filing"
+
+- id: clearance-request-drafting
+  title: "Draft rights clearance request letters to rights holders"
+  domain: "Legal & Compliance"
+  roles: ["Rights & clearances coordinator"]
+  description: "Generate clearance requests with usage, term, and territory details pulled from a production's music usage log."
+  inputs: ["Music usage details", "Rights holder contacts", "Request template"]
+  outputs: ["Drafted clearance request letters"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document generator", "email client", "template library"]
+  frequency: ad-hoc
+  trigger: "when a new track needs clearing for a production"
+
 - id: records-draft-statutory-acknowledgment
   title: "Draft statutory acknowledgment letter"
   domain: "Legal & Compliance"
@@ -7429,6 +8339,19 @@
   frequency: ad-hoc
   trigger: "Draft the scope exhibit for the drywall subcontract"
 
+- id: sar-narrative-draft
+  title: "Draft suspicious activity report narratives"
+  domain: "Legal & Compliance"
+  roles: ["Crypto transaction monitoring analyst"]
+  description: "Assemble a SAR narrative from alert evidence, wallet trace, and customer profile in the standard format."
+  inputs: ["alert evidence", "wallet trace", "customer profile"]
+  outputs: ["SAR narrative draft"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["case management tool", "word processor"]
+  frequency: weekly
+  trigger: "when an alert is escalated for filing"
+
 - id: ia-findings-summary-draft
   title: "Draft the audit findings summary"
   domain: "Legal & Compliance"
@@ -7441,6 +8364,19 @@
   tools: ["Document editor", "Audit workpaper tool"]
   frequency: ad-hoc
   trigger: "when fieldwork wraps up"
+
+- id: export-classification-draft
+  title: "Draft USML/ECCN classification rationales for parts and data"
+  domain: "Legal & Compliance"
+  roles: ["ITAR/Export-Control Compliance Specialist"]
+  description: "Match part descriptions and technical data to export control list entries and draft a USML/ECCN classification with supporting rationale."
+  inputs: ["Part/technical-data descriptions", "Control lists (USML/CCL)"]
+  outputs: ["Draft classification with rationale", "Open-question list for engineering"]
+  automation: low
+  human_in_loop: sign-off
+  tools: ["Control-list reference", "Document management system"]
+  frequency: ad-hoc
+  trigger: "a new part or document needs export classification"
 
 - id: dual-control-log-exception-review
   title: "Dual-control and vault access log exception review"
@@ -7533,6 +8469,19 @@
   frequency: ad-hoc
   trigger: "flag what needs redacting in these FOIA documents"
 
+- id: discharge-exceedance-notice
+  title: "Flag discharge limit exceedances and draft notification"
+  domain: "Legal & Compliance"
+  roles: ["Wastewater discharge compliance specialist"]
+  description: "Compare discharge results to permit limits and draft the required exceedance notification with values and timing."
+  inputs: ["Discharge results", "Permit limit table", "Notification template"]
+  outputs: ["Exceedance flags", "Draft notification letter"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["Spreadsheet", "Document editor"]
+  frequency: monthly
+  trigger: "When a result exceeds a permitted discharge limit"
+
 - id: refill-safety-flagging
   title: "Flag early-refill and duplicate-therapy requests"
   domain: "Legal & Compliance"
@@ -7558,6 +8507,19 @@
   tools: ["document management system", "PDF redaction tool"]
   frequency: weekly
   trigger: "Responsive records are gathered for release"
+
+- id: incident-recordability-flagging
+  title: "Flag incidents against recordability criteria"
+  domain: "Legal & Compliance"
+  roles: ["EHS reporting analyst"]
+  description: "Screen logged incidents against regulatory recordability criteria and flag borderline cases needing a determination."
+  inputs: ["Incident descriptions", "Medical treatment notes", "Recordability criteria reference"]
+  outputs: ["Flagged case list with rationale"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Spreadsheet", "Document editor"]
+  frequency: weekly
+  trigger: "When a new incident report is logged"
 
 - id: controlled-substance-log-completeness
   title: "Flag incomplete controlled-substance log entries"
@@ -7597,6 +8559,19 @@
   tools: ["document management", "knowledge base"]
   frequency: monthly
   trigger: "add the new noise ordinance to the municipal code"
+
+- id: cobra-election-notice-generation
+  title: "Generate COBRA election notices"
+  domain: "Legal & Compliance"
+  roles: ["COBRA & leave administrator"]
+  description: "On a qualifying event, draft the COBRA election notice with premium amounts, coverage options, and statutory deadlines."
+  inputs: ["Qualifying event record", "Coverage and premium tables", "Notice template"]
+  outputs: ["Draft COBRA election notice", "Deadline tracking entry"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Notice template", "Benefits system export", "Spreadsheet"]
+  frequency: weekly
+  trigger: "A COBRA qualifying event is recorded"
 
 - id: sox-sample-selection
   title: "Generate control test sample selections"
@@ -7663,6 +8638,19 @@
   frequency: daily
   trigger: "Check this onboarding pack for missing or mismatched KYC docs"
 
+- id: agency-comment-response-tracker
+  title: "Log and track agency review comments and response status"
+  domain: "Legal & Compliance"
+  roles: ["Regulatory Submittal Coordinator"]
+  description: "Extract each agency comment into a response matrix with owner, due date, and resolution status; chase open items."
+  inputs: ["agency comment letter", "project team roster"]
+  outputs: ["comment-response matrix", "open-item reminders"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["document parser", "spreadsheet", "reminder tool"]
+  frequency: ad-hoc
+  trigger: "Agency just sent back review comments"
+
 - id: maintain-rights-expiration-tracker
   title: "Maintain rights-expiration tracker and flag expiring licenses"
   domain: "Legal & Compliance"
@@ -7689,6 +8677,32 @@
   frequency: ad-hoc
   trigger: "which policies does this new regulation affect and notify the owners"
 
+- id: prime-flowdown-clause-mapping
+  title: "Map prime-contract flow-down clauses into the sub agreement"
+  domain: "Legal & Compliance"
+  roles: ["Subconsultant Agreement Administrator"]
+  description: "Identify clauses the prime requires flowed down and draft matching provisions in the sub agreement; flag conflicts."
+  inputs: ["prime contract", "standard sub agreement template"]
+  outputs: ["flow-down clause list", "redlined sub agreement"]
+  automation: low
+  human_in_loop: approve
+  tools: ["contract analyzer", "document editor"]
+  frequency: ad-hoc
+  trigger: "Setting up a new subconsultant on a prime job"
+
+- id: airworthiness-ad-fleet-effectivity-match
+  title: "Match new airworthiness directives to affected tail numbers"
+  domain: "Legal & Compliance"
+  roles: ["Airworthiness Records Administrator"]
+  description: "Monitor newly published ADs and service bulletins and match each to affected aircraft by part number and serial effectivity, drafting an applicability list."
+  inputs: ["AD/SB publications", "Fleet configuration records", "Part/serial effectivity data"]
+  outputs: ["Applicability list per tail number", "Compliance-due summary"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Regulatory publication feed", "Maintenance tracking system", "Spreadsheet"]
+  frequency: weekly
+  trigger: "a new airworthiness directive is published"
+
 - id: sam-reps-certs-expiry-monitor
   title: "Monitor SAM registration and reps & certs for expiry"
   domain: "Legal & Compliance"
@@ -7702,6 +8716,45 @@
   frequency: monthly
   trigger: "flag any reps and certs about to expire"
 
+- id: info-request-response
+  title: "Package evidence for regulator and law-enforcement requests"
+  domain: "Legal & Compliance"
+  roles: ["Blockchain forensics investigations associate"]
+  description: "Assemble trace evidence and case findings into a drafted response packet scoped to the request."
+  inputs: ["case evidence", "trace summaries", "request scope"]
+  outputs: ["information-request response packet"]
+  automation: low
+  human_in_loop: sign-off
+  tools: ["case management tool", "word processor"]
+  frequency: ad-hoc
+  trigger: "when a subpoena or information request arrives"
+
+- id: sync-agreement-drafting
+  title: "Populate sync license agreements from deal terms"
+  domain: "Legal & Compliance"
+  roles: ["Sync licensing administrator"]
+  description: "Fill a license template with negotiated fee, term, media, and territory and check the terms back against the quote."
+  inputs: ["Agreed deal memo", "License template"]
+  outputs: ["Draft sync license agreement"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document generator", "contract template", "e-signature tool"]
+  frequency: ad-hoc
+  trigger: "once a sync deal is verbally agreed"
+
+- id: licensing-preaudit-gap-report
+  title: "Pre-audit records against licensing standards"
+  domain: "Legal & Compliance"
+  roles: ["Compliance & licensing coordinator"]
+  description: "Compare facility and program documentation to the licensing standards checklist and produce a prioritized gap report ahead of inspection."
+  inputs: ["Facility records", "Licensing standards checklist"]
+  outputs: ["Pre-audit gap report", "Remediation priority list"]
+  automation: medium
+  human_in_loop: sign-off
+  tools: ["document repository", "checklist tracker"]
+  frequency: quarterly
+  trigger: "ahead of a scheduled licensing inspection"
+
 - id: license-application-prefill
   title: "Pre-fill license renewal application forms"
   domain: "Legal & Compliance"
@@ -7714,6 +8767,19 @@
   tools: ["license database", "form/document editor"]
   frequency: ad-hoc
   trigger: "when a license renewal window opens"
+
+- id: license-application-prefill-2
+  title: "Pre-fill multi-jurisdiction license renewal applications"
+  domain: "Legal & Compliance"
+  roles: ["Cannabis licensing & permit administrator"]
+  description: "Populate jurisdiction-specific renewal forms from a master entity data file and flag missing fields."
+  inputs: ["Master entity data", "Blank jurisdiction forms"]
+  outputs: ["Pre-filled application drafts", "Missing-data list"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["document editor", "form filler"]
+  frequency: monthly
+  trigger: "A renewal application is due"
 
 - id: annual-return-prefill
   title: "Pre-fill registry annual return forms"
@@ -7767,6 +8833,19 @@
   frequency: quarterly
   trigger: "A release needs a rating before submission"
 
+- id: nondiscrimination-test-data-prep
+  title: "Prepare nondiscrimination test data"
+  domain: "Legal & Compliance"
+  roles: ["Retirement plan compliance analyst"]
+  description: "Classify participants as HCE/NHCE from compensation and ownership data and assemble ADP/ACP and coverage test inputs."
+  inputs: ["Compensation data", "Ownership and officer data", "Deferral and match records"]
+  outputs: ["HCE/NHCE classification", "Test-ready dataset"]
+  automation: medium
+  human_in_loop: sign-off
+  tools: ["Spreadsheet", "Recordkeeping system export", "Compliance rules reference"]
+  frequency: quarterly
+  trigger: "Annual compliance testing season starts"
+
 - id: process-image-license-request
   title: "Process incoming image licensing requests"
   domain: "Legal & Compliance"
@@ -7818,6 +8897,19 @@
   tools: ["Case tracking system", "Spreadsheet"]
   frequency: quarterly
   trigger: "When compiling the legal-demands section of the report"
+
+- id: case-record-pii-redaction
+  title: "Redact PII from case records for release"
+  domain: "Legal & Compliance"
+  roles: ["Case documentation specialist"]
+  description: "Identify and mask personally identifiable and protected information in case records being shared with partners or in response to a records request."
+  inputs: ["Case record to release", "Redaction policy"]
+  outputs: ["Redacted record", "Redaction log"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["document redaction tool", "PII detector"]
+  frequency: ad-hoc
+  trigger: "when a records release or sharing request comes in"
 
 - id: tariff-redline-change-summary
   title: "Redline tariff versions and summarize changes"
@@ -7962,6 +9054,32 @@
   frequency: monthly
   trigger: "check this law firm invoice against our billing guidelines and flag overcharges"
 
+- id: label-rules-compliance-review
+  title: "Review product labels against state labeling rules"
+  domain: "Legal & Compliance"
+  roles: ["Cannabis label & packaging compliance specialist"]
+  description: "Check labels for required potency, warnings, serving size, and symbols per jurisdiction and flag gaps."
+  inputs: ["Product label artwork", "Jurisdiction labeling rules"]
+  outputs: ["Compliance findings", "Required-fix list"]
+  automation: medium
+  human_in_loop: sign-off
+  tools: ["document parser", "checklist tool"]
+  frequency: ad-hoc
+  trigger: "New label artwork is submitted for approval"
+
+- id: subscription-doc-review
+  title: "Review subscription documents for completeness"
+  domain: "Legal & Compliance"
+  roles: ["LP Onboarding & Subscription Specialist"]
+  description: "Check executed subscription packs for missing signatures, fields and required attachments and extract investor data."
+  inputs: ["Executed subscription documents", "Subscription checklist"]
+  outputs: ["Completeness report", "Extracted investor data"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Document parser", "Checklist"]
+  frequency: ad-hoc
+  trigger: "When a signed subscription pack is received"
+
 - id: review-vendor-dpa
   title: "Review vendor DPAs against checklist"
   domain: "Legal & Compliance"
@@ -8105,6 +9223,32 @@
   frequency: daily
   trigger: "before onboarding a new trading partner"
 
+- id: kyc-aml-screening
+  title: "Screen investors for KYC/AML"
+  domain: "Legal & Compliance"
+  roles: ["LP Onboarding & Subscription Specialist"]
+  description: "Run new investors against sanctions and PEP watchlists and summarize hits with supporting evidence."
+  inputs: ["Investor identity details", "Sanctions/PEP watchlists"]
+  outputs: ["Screening result summary", "Flagged-match evidence"]
+  automation: medium
+  human_in_loop: sign-off
+  tools: ["Screening database", "Document editor"]
+  frequency: ad-hoc
+  trigger: "When onboarding a new investor"
+
+- id: gaming-watchlist-screening
+  title: "Screen patrons against sanctions and PEP watchlists"
+  domain: "Legal & Compliance"
+  roles: ["Gaming AML/compliance analyst"]
+  description: "Run new and high-volume patron names against watchlists and triage potential matches for review."
+  inputs: ["Patron roster", "Watchlist data"]
+  outputs: ["Potential-match queue", "Cleared list"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["screening tool", "spreadsheet"]
+  frequency: daily
+  trigger: "A new patron account is opened"
+
 - id: controlled-substance-order-screen
   title: "Screen reagent orders against controlled/hazardous lists"
   domain: "Legal & Compliance"
@@ -8130,6 +9274,32 @@
   tools: ["screening database", "spreadsheet"]
   frequency: daily
   trigger: "A new booking with unfamiliar counterparties came in"
+
+- id: export-denied-party-screening
+  title: "Screen transaction parties against restricted-party lists"
+  domain: "Legal & Compliance"
+  roles: ["ITAR/Export-Control Compliance Specialist"]
+  description: "Screen customers, vendors, and freight forwarders on each transaction against denied/restricted-party lists and flag potential matches for review."
+  inputs: ["Transaction party details", "Denied/restricted-party lists"]
+  outputs: ["Screening results with match flags", "Cleared/hold disposition list"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Restricted-party screening database", "Inventory/ERP system"]
+  frequency: daily
+  trigger: "a new order or vendor is set up"
+
+- id: sanctions-screen-batch
+  title: "Screen wallets and customers against lists"
+  domain: "Legal & Compliance"
+  roles: ["Sanctions screening analyst"]
+  description: "Run customer and wallet records against sanctions, PEP, and watchlists; cluster name-match hits."
+  inputs: ["customer and wallet records", "sanctions, PEP, and watchlists"]
+  outputs: ["clustered hit list"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["screening tool", "spreadsheet"]
+  frequency: daily
+  trigger: "when new onboarding records or list updates land"
 
 - id: maintain-clause-library
   title: "Standardize and maintain clause library"
@@ -8195,6 +9365,19 @@
   tools: ["document management"]
   frequency: weekly
   trigger: "Tell me what the client changed in this engagement letter"
+
+- id: qdro-benefit-split-summary
+  title: "Summarize QDRO award and model the split"
+  domain: "Legal & Compliance"
+  roles: ["Pension calculations analyst"]
+  description: "Extract award terms from a domestic relations order and model the alternate payee's share against plan QDRO procedures for analyst review."
+  inputs: ["Domestic relations order", "Participant benefit record", "Plan QDRO procedures"]
+  outputs: ["Award summary", "Draft split calculation"]
+  automation: low
+  human_in_loop: sign-off
+  tools: ["Document parser", "Spreadsheet", "Calculation engine"]
+  frequency: ad-hoc
+  trigger: "A draft QDRO is received for review"
 
 - id: map-regulatory-change-impact
   title: "Summarize regulatory change notice and map impact"
@@ -8299,6 +9482,32 @@
   tools: ["Document parser", "Calendar tool", "Tracking spreadsheet"]
   frequency: weekly
   trigger: "During the weekly compliance deadline sweep"
+
+- id: export-license-usage-tracking
+  title: "Track export license and TAA usage against limits"
+  domain: "Legal & Compliance"
+  roles: ["ITAR/Export-Control Compliance Specialist"]
+  description: "Monitor export licenses and Technical Assistance Agreements for expiry and value/quantity drawdown, alerting before limits or dates are hit."
+  inputs: ["License/TAA register", "Shipment and value ledger"]
+  outputs: ["Expiry/limit alert list", "Updated drawdown register"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Compliance register", "Spreadsheet", "Email"]
+  frequency: monthly
+  trigger: "the monthly license review"
+
+- id: license-expiry-tracking
+  title: "Track license expirations and draft renewal reminder packets"
+  domain: "Legal & Compliance"
+  roles: ["Cannabis licensing & permit administrator"]
+  description: "Monitor facility and employee credential expiry dates and prepare renewal reminders and document checklists."
+  inputs: ["License register", "Credential expiry dates"]
+  outputs: ["Renewal reminder notices", "Document checklist"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["spreadsheet", "calendar", "email client"]
+  frequency: weekly
+  trigger: "A license enters its renewal window"
 
 - id: track-content-clearance-status
   title: "Track music and footage clearance status"
@@ -8430,6 +9639,32 @@
   frequency: daily
   trigger: "Triage today's adverse event intake and flag the serious cases"
 
+- id: tm-alert-triage
+  title: "Triage on-chain monitoring alerts"
+  domain: "Legal & Compliance"
+  roles: ["Crypto transaction monitoring analyst"]
+  description: "Cluster, dedupe, and rank overnight monitoring alerts against typology rules and wallet risk scores."
+  inputs: ["alert queue", "typology rule set", "wallet risk scores"]
+  outputs: ["ranked alert queue", "deduplicated alert clusters"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["transaction monitoring system", "case management tool", "spreadsheet"]
+  frequency: daily
+  trigger: "when overnight monitoring alerts pile up"
+
+- id: cdrl-did-format-check
+  title: "Validate a deliverable against its Data Item Description"
+  domain: "Legal & Compliance"
+  roles: ["CDRL (Contract Data Requirements) Coordinator"]
+  description: "Check a data deliverable against its Data Item Description (DID) format and content requirements and produce a pre-submission compliance checklist."
+  inputs: ["Draft deliverable", "Applicable DID", "Contract clauses"]
+  outputs: ["DID compliance checklist", "Discrepancy list"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Document management system", "PDF reader", "Spreadsheet"]
+  frequency: ad-hoc
+  trigger: "a CDRL item is ready for submission"
+
 - id: fleet-tax-exemption-validation
   title: "Validate fleet tax-exemption certificates"
   domain: "Legal & Compliance"
@@ -8442,6 +9677,19 @@
   tools: ["Document parser", "Rules engine"]
   frequency: ad-hoc
   trigger: "when a fleet order claims tax exemption"
+
+- id: kyc-doc-validate
+  title: "Validate KYC document fields"
+  domain: "Legal & Compliance"
+  roles: ["Crypto KYC and onboarding analyst"]
+  description: "Extract and cross-check ID and proof-of-address fields against application data; flag mismatches."
+  inputs: ["ID documents", "proof of address", "application data"]
+  outputs: ["field-validation report with mismatches"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["document verification tool", "spreadsheet"]
+  frequency: daily
+  trigger: "when a new applicant submits documents"
 
 - id: validate-records-release-authorization
   title: "Validate medical records release authorizations"
@@ -8469,6 +9717,19 @@
   frequency: ad-hoc
   trigger: "validate the manifest for our next port call"
 
+- id: travel-rule-field-check
+  title: "Validate travel-rule message fields"
+  domain: "Legal & Compliance"
+  roles: ["Travel-rule compliance clerk"]
+  description: "Check inbound VASP transfer messages against the required-field schema and counterparty directory; list exceptions."
+  inputs: ["VASP transfer messages", "required-field schema", "counterparty VASP directory"]
+  outputs: ["exception list of missing or invalid fields"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["messaging protocol portal", "spreadsheet"]
+  frequency: daily
+  trigger: "when a batch of VASP transfer messages arrives"
+
 - id: athlete-intake-completeness-check
   title: "Verify completeness of athlete intake and consent paperwork"
   domain: "Legal & Compliance"
@@ -8494,6 +9755,32 @@
   tools: ["Document repository", "Checklist"]
   frequency: ad-hoc
   trigger: "A new SOP version is ready to be released"
+
+- id: dg-packaging-requirement-check
+  title: "Verify packaging and labeling rules for a UN number"
+  domain: "Legal & Compliance"
+  roles: ["Hazardous materials transport documentation coordinator"]
+  description: "Look up packaging, marking, and labeling requirements for a given UN number and check the planned shipment against them."
+  inputs: ["UN number and class", "Planned packaging details", "Transport regulation tables"]
+  outputs: ["Requirement checklist", "Non-conformance flags"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["Document editor", "Spreadsheet"]
+  frequency: ad-hoc
+  trigger: "When preparing packaging for a dangerous-goods consignment"
+
+- id: sponsored-disclosure-check
+  title: "Verify sponsored-post disclosure compliance"
+  domain: "Legal & Compliance"
+  roles: ["Influencer & talent contract administrator"]
+  description: "Check delivered posts for required ad disclosures and contracted tags, flagging non-compliant content."
+  inputs: ["Delivered content links", "Disclosure/tagging requirements"]
+  outputs: ["Compliance check report", "Non-compliance flags"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["content review tool", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "when contracted posts go live"
 
 - id: analyze-schedule-variance-milestones
   title: "Analyze schedule variance and flag slipping milestones"
@@ -8533,6 +9820,19 @@
   tools: ["Document editor", "Trade management system"]
   frequency: weekly
   trigger: "when a shipment is booked"
+
+- id: airworthiness-back-to-birth-dossier
+  title: "Assemble back-to-birth traceability dossiers for life-limited parts"
+  domain: "Operations & Project Mgmt"
+  roles: ["Airworthiness Records Administrator"]
+  description: "Compile the full life history of a life-limited part (install/removal events, cycles, release certificates) into one traceability dossier."
+  inputs: ["Component history records", "Authorized release certificates", "Cycle/hour logs"]
+  outputs: ["Back-to-birth traceability package", "Missing-document checklist"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Records database", "Document management system", "PDF reader"]
+  frequency: ad-hoc
+  trigger: "a customer requests a part traceability package"
 
 - id: assemble-council-meeting-agenda-packet
   title: "Assemble council meeting agenda packet"
@@ -8716,6 +10016,19 @@
   frequency: weekly
   trigger: "When the weekly QA sample is pulled"
 
+- id: file-naming-convention-audit
+  title: "Audit project files against the naming and versioning convention"
+  domain: "Operations & Project Mgmt"
+  roles: ["Document Control Specialist"]
+  description: "Scan the project folder for files breaking the naming standard or holding duplicate/superseded revisions; list fixes."
+  inputs: ["project file directory", "naming convention standard"]
+  outputs: ["nonconforming-file list", "rename suggestions"]
+  automation: high
+  human_in_loop: none
+  tools: ["file scanner", "spreadsheet"]
+  frequency: weekly
+  trigger: "Routine document-control housekeeping"
+
 - id: sop-superseded-reference-audit
   title: "Audit protocols for references to retired SOP versions"
   domain: "Operations & Project Mgmt"
@@ -8741,6 +10054,19 @@
   tools: ["document management system", "spreadsheet"]
   frequency: ad-hoc
   trigger: "Check if this closing file is complete"
+
+- id: workorder-package-completeness-audit
+  title: "Audit work-order packages for required signatures and tags"
+  domain: "Operations & Project Mgmt"
+  roles: ["MRO Quality & Maintenance Records Auditor"]
+  description: "Verify each completed work-order package has required signatures, inspection stamps, and part release tags before closeout."
+  inputs: ["Completed work-order packages", "Closeout checklist"]
+  outputs: ["Completeness audit result", "Deficiency list"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["Document management system", "Maintenance tracking system"]
+  frequency: daily
+  trigger: "a work order is submitted for closeout"
 
 - id: hazard-standards-benchmarking
   title: "Benchmark site hazards against safety standards"
@@ -8937,6 +10263,19 @@
   frequency: ad-hoc
   trigger: "When a policy change ships to the moderation team"
 
+- id: tpa-sponsor-onboarding-checklist
+  title: "Build new plan sponsor onboarding checklist"
+  domain: "Operations & Project Mgmt"
+  roles: ["Third-party pension plan administrator"]
+  description: "Read a new plan's adoption agreement and generate the document request list, setup tasks, and conversion timeline for onboarding."
+  inputs: ["Adoption agreement", "Plan document", "Onboarding template"]
+  outputs: ["Document request list", "Onboarding task plan"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Document parser", "Checklist template", "Project tracker"]
+  frequency: ad-hoc
+  trigger: "A new plan sponsor signs on"
+
 - id: cancellation-backfill-list
   title: "Build prioritized waitlist to backfill cancellations"
   domain: "Operations & Project Mgmt"
@@ -9066,6 +10405,19 @@
   tools: ["case management", "document management"]
   frequency: daily
   trigger: "Draft the representment package for this chargeback"
+
+- id: drawing-set-titleblock-check
+  title: "Check a drawing set for title block and sheet-index consistency"
+  domain: "Operations & Project Mgmt"
+  roles: ["Deliverable QA/QC Reviewer"]
+  description: "Verify sheet numbers, revisions, dates, discipline codes, and titles match the sheet index and run continuous across the set."
+  inputs: ["drawing set PDF", "sheet index", "title block standard"]
+  outputs: ["discrepancy list", "annotated checklist"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["PDF reader", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "Drawing set is ready for QC before issue"
 
 - id: crew-pairing-legality-check
   title: "Check crew pairings against flight and duty time limits"
@@ -9366,6 +10718,32 @@
   frequency: ad-hoc
   trigger: "Turn this PDF into an editable doc"
 
+- id: case-note-structuring
+  title: "Convert raw visit notes into structured case notes"
+  domain: "Operations & Project Mgmt"
+  roles: ["Case documentation specialist"]
+  description: "Reformat a caseworker's raw visit or contact notes into the standardized progress-note template with all required fields populated."
+  inputs: ["Raw visit notes", "Case-note template", "Client identifiers"]
+  outputs: ["Structured progress note"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["transcription/notes tool", "template library", "case management system"]
+  frequency: daily
+  trigger: "after a client visit or contact is logged"
+
+- id: report-internal-consistency-check
+  title: "Cross-check a technical report for reference and unit consistency"
+  domain: "Operations & Project Mgmt"
+  roles: ["Deliverable QA/QC Reviewer"]
+  description: "Validate figure, table, and appendix cross-references, defined acronyms, and unit consistency; flag broken links."
+  inputs: ["draft technical report"]
+  outputs: ["consistency findings", "broken-reference list"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["document parser", "text analyzer"]
+  frequency: ad-hoc
+  trigger: "Engineering report is in QC review"
+
 - id: audit-listing-data-across-channels
   title: "Cross-Check Listing Data Across MLS and Portals"
   domain: "Operations & Project Mgmt"
@@ -9548,6 +10926,19 @@
   frequency: daily
   trigger: "Shipper submitted booking and shipping instructions"
 
+- id: booking-confirmation-drafting
+  title: "Draft booking confirmations and deal memos from terms"
+  domain: "Operations & Project Mgmt"
+  roles: ["Talent & booking coordinator"]
+  description: "Generate the confirmation and deal memo from agreed fee, date, venue, and rider requirements."
+  inputs: ["Agreed booking terms", "Venue details", "Artist rider"]
+  outputs: ["Booking confirmation", "Deal memo draft"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document generator", "email client", "calendar"]
+  frequency: ad-hoc
+  trigger: "once a show date is confirmed"
+
 - id: draft-call-sheet
   title: "Draft call sheet and shoot schedule from production brief"
   domain: "Operations & Project Mgmt"
@@ -9704,6 +11095,45 @@
   frequency: ad-hoc
   trigger: "build a run-of-show for our 2-hour customer meetup"
 
+- id: aog-shipping-docs-draft
+  title: "Draft export and customs paperwork for AOG part shipments"
+  domain: "Operations & Project Mgmt"
+  roles: ["AOG & Parts Logistics Coordinator"]
+  description: "Generate draft commercial invoice, packing list, and dangerous-goods declaration for an outbound AOG shipment from order and part data."
+  inputs: ["Shipment order", "Part master data", "Hazmat classification data"]
+  outputs: ["Draft commercial invoice", "Packing list", "Dangerous-goods declaration draft"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["Inventory/ERP system", "Document template tool", "Shipping portal"]
+  frequency: daily
+  trigger: "an AOG part is ready to ship"
+
+- id: gaming-incident-report-drafting
+  title: "Draft gaming incident reports from surveillance logs"
+  domain: "Operations & Project Mgmt"
+  roles: ["Casino gaming incident & surveillance report analyst"]
+  description: "Convert surveillance log entries and notes into standardized incident reports for commission submission."
+  inputs: ["Surveillance logs", "Incident notes"]
+  outputs: ["Standardized incident report draft"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document editor", "incident log system"]
+  frequency: daily
+  trigger: "A gaming floor incident is logged"
+
+- id: service-plan-drafting
+  title: "Draft individualized service plans from assessments"
+  domain: "Operations & Project Mgmt"
+  roles: ["Care plan & scheduling coordinator", "Case documentation specialist"]
+  description: "Assemble a draft individualized service plan from assessment data using the standardized template, leaving clinical goals for review."
+  inputs: ["Assessment results", "Service plan template", "Available services"]
+  outputs: ["Draft individualized service plan"]
+  automation: low
+  human_in_loop: sign-off
+  tools: ["document generator", "template library"]
+  frequency: ad-hoc
+  trigger: "after a client assessment is completed"
+
 - id: league-fixture-draft-generation
   title: "Draft league fixture schedule from team availability and venue slots"
   domain: "Operations & Project Mgmt"
@@ -9755,6 +11185,19 @@
   tools: ["spreadsheet", "CMS"]
   frequency: ad-hoc
   trigger: "build the cue sheet for this episode"
+
+- id: ncr-draft-from-findings
+  title: "Draft non-conformance reports from audit findings"
+  domain: "Operations & Project Mgmt"
+  roles: ["MRO Quality & Maintenance Records Auditor"]
+  description: "Turn audit findings into draft non-conformance reports, categorizing probable root cause and citing the applicable procedure or regulation."
+  inputs: ["Audit findings", "Procedure/regulation references"]
+  outputs: ["Draft NCR/CAR", "Root-cause category tag"]
+  automation: low
+  human_in_loop: review-before-send
+  tools: ["Quality management system", "Document template tool"]
+  frequency: weekly
+  trigger: "an audit finding is logged"
 
 - id: draft-object-condition-report
   title: "Draft object condition report from inspection notes"
@@ -10042,6 +11485,19 @@
   frequency: quarterly
   trigger: "Draft next term's course schedule"
 
+- id: ccb-agenda-packet
+  title: "Draft the change control board agenda packet"
+  domain: "Operations & Project Mgmt"
+  roles: ["Configuration & Change Administrator"]
+  description: "Summarize pending engineering change proposals (impacts, affected baselines, recommended dispositions) into a CCB agenda packet."
+  inputs: ["Open ECP/change requests", "Impact assessments"]
+  outputs: ["CCB agenda packet", "Pending-change summary"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Change management system", "Document template tool"]
+  frequency: weekly
+  trigger: "the change control board meeting is scheduled"
+
 - id: draft-prepared-by-client-request-list
   title: "Draft the prepared-by-client (PBC) request list"
   domain: "Operations & Project Mgmt"
@@ -10080,6 +11536,19 @@
   tools: ["Text generator", "Code lookup table"]
   frequency: daily
   trigger: "before submitting a warranty claim"
+
+- id: sts-waste-destruction-log
+  title: "Draft waste and destruction logs with hold-period checks"
+  domain: "Operations & Project Mgmt"
+  roles: ["Seed-to-sale compliance clerk"]
+  description: "Generate destruction records from disposal entries and verify each met the mandated quarantine hold period."
+  inputs: ["Disposal entries", "Quarantine start dates"]
+  outputs: ["Destruction log", "Hold-period exception list"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["document editor", "spreadsheet"]
+  frequency: weekly
+  trigger: "Disposal batch is ready for destruction"
 
 - id: draft-project-status-report
   title: "Draft weekly project status report"
@@ -10145,6 +11614,19 @@
   tools: ["Text parser", "Glossary database", "Spreadsheet"]
   frequency: weekly
   trigger: "When new content is added to the corpus"
+
+- id: sds-hazard-data-extraction
+  title: "Extract GHS hazard data from incoming SDS documents"
+  domain: "Operations & Project Mgmt"
+  roles: ["SDS / chemical inventory administrator"]
+  description: "Parse incoming safety data sheets to extract H-codes, pictograms, and storage class into the chemical inventory record."
+  inputs: ["SDS PDF documents", "Inventory record template"]
+  outputs: ["Structured hazard data entries"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["PDF parser", "Database"]
+  frequency: ad-hoc
+  trigger: "When a new chemical SDS arrives from a supplier"
 
 - id: extract-corporate-action-terms
   title: "Extract key terms from corporate action notices"
@@ -10302,6 +11784,19 @@
   frequency: quarterly
   trigger: "build an inventory index of the documents in this shared drive"
 
+- id: care-visit-scheduling
+  title: "Generate care visit schedules within authorized hours"
+  domain: "Operations & Project Mgmt"
+  roles: ["Care plan & scheduling coordinator"]
+  description: "Build a draft caregiver-to-client visit schedule that respects caregiver availability, client preferences, and authorized service hours."
+  inputs: ["Caregiver availability", "Client needs and preferences", "Authorized hours"]
+  outputs: ["Draft visit schedule", "Conflict and shortfall flags"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["scheduling tool", "calendar", "authorization tracker"]
+  frequency: weekly
+  trigger: "when the next service week needs scheduling"
+
 - id: generate-creative-job-status-report
   title: "Generate daily creative job status and bottleneck report"
   domain: "Operations & Project Mgmt"
@@ -10314,6 +11809,19 @@
   tools: ["project management tool", "spreadsheet", "email"]
   frequency: daily
   trigger: "Give me today's creative traffic status report"
+
+- id: dg-shipping-paper-generation
+  title: "Generate dangerous-goods shipping papers from hazard data"
+  domain: "Operations & Project Mgmt"
+  roles: ["Hazardous materials transport documentation coordinator"]
+  description: "Populate shipping papers with proper shipping name, UN number, class, and packing group from product hazard data."
+  inputs: ["Product hazard data", "Shipment details", "Shipping paper template"]
+  outputs: ["Draft dangerous-goods shipping paper"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Document editor", "Database"]
+  frequency: ad-hoc
+  trigger: "When a hazardous shipment is booked"
 
 - id: generate-transmittal-cover-sheets
   title: "Generate document transmittal cover sheets"
@@ -10445,6 +11953,58 @@
   frequency: ad-hoc
   trigger: "Registration closes for a tournament"
 
+- id: trafficking-link-naming-generation
+  title: "Generate tracking links and creative naming from the media plan"
+  domain: "Operations & Project Mgmt"
+  roles: ["Ad trafficking coordinator"]
+  description: "Build consistent tracking-tagged URLs and creative file names following the campaign naming convention."
+  inputs: ["Media plan", "Naming convention spec"]
+  outputs: ["Tracking link sheet", "Creative naming map"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "URL builder"]
+  frequency: ad-hoc
+  trigger: "when a campaign is being set up to traffic"
+
+- id: transmittal-submittal-log
+  title: "Generate transmittals and update the submittal log"
+  domain: "Operations & Project Mgmt"
+  roles: ["Document Control Specialist"]
+  description: "Create transmittal cover sheets for outgoing deliverables and log document number, revision, recipient, and date."
+  inputs: ["outgoing deliverable list", "distribution matrix"]
+  outputs: ["transmittal documents", "updated submittal log"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["document generator", "log spreadsheet"]
+  frequency: weekly
+  trigger: "Deliverables are going out the door"
+
+- id: data-room-indexing
+  title: "Index and tag diligence data room"
+  domain: "Operations & Project Mgmt"
+  roles: ["Deal & Transaction Coordinator"]
+  description: "Auto-categorize uploaded diligence documents and flag gaps against a standard diligence checklist."
+  inputs: ["Data room documents", "Diligence checklist"]
+  outputs: ["Indexed document map", "Missing-document list"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Document management system", "Document classifier"]
+  frequency: ad-hoc
+  trigger: "As diligence documents are uploaded"
+
+- id: sync-request-triage
+  title: "Log and triage incoming sync licensing requests"
+  domain: "Operations & Project Mgmt"
+  roles: ["Sync licensing administrator"]
+  description: "Capture inbound sync inquiries, classify by usage and budget, and route each to the right catalog owner."
+  inputs: ["Inbound request emails", "Catalog ownership map"]
+  outputs: ["Triaged request queue", "Routing assignments"]
+  automation: high
+  human_in_loop: none
+  tools: ["email client", "intake form", "project tracker"]
+  frequency: daily
+  trigger: "as sync inquiries hit the licensing inbox"
+
 - id: log-project-decision-record
   title: "Log project decision record"
   domain: "Operations & Project Mgmt"
@@ -10483,6 +12043,19 @@
   tools: ["spreadsheet", "document management system"]
   frequency: weekly
   trigger: "Update the submission tracker and flag missing CTD documents"
+
+- id: capital-activity-calendar
+  title: "Maintain fund capital-activity calendar"
+  domain: "Operations & Project Mgmt"
+  roles: ["Fund Operations Analyst"]
+  description: "Build and update a calendar of upcoming capital calls, distributions, fee runs and expense payments from LPA and fund terms."
+  inputs: ["LPA / side letter terms", "Fund cash-flow forecast"]
+  outputs: ["Capital-activity calendar", "Upcoming-deadline alerts"]
+  automation: medium
+  human_in_loop: none
+  tools: ["Calendar", "Spreadsheet"]
+  frequency: monthly
+  trigger: "At the start of each month"
 
 - id: maintain-sample-tracking-log
   title: "Maintain sample tracking log and chase overdue returns"
@@ -10666,6 +12239,19 @@
   frequency: daily
   trigger: "When the moderation queue fills up at the start of a shift"
 
+- id: intake-eligibility-prescreen
+  title: "Pre-screen intake applications against eligibility rules"
+  domain: "Operations & Project Mgmt"
+  roles: ["Intake & eligibility coordinator"]
+  description: "Extract applicant data from intake forms and check income, age, and residency thresholds per program, flagging items that need verification."
+  inputs: ["Submitted intake form", "Program eligibility criteria", "Supporting documents"]
+  outputs: ["Pre-screen eligibility summary", "List of flags to verify"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["form parser", "rules engine", "case management system"]
+  frequency: daily
+  trigger: "when a new intake application is submitted"
+
 - id: prescreen-trial-referrals
   title: "Pre-screen patient referrals against trial eligibility criteria"
   domain: "Operations & Project Mgmt"
@@ -10757,6 +12343,19 @@
   frequency: ad-hoc
   trigger: "A vessel nominated us as agent for the next call"
 
+- id: works-registration-prep
+  title: "Prepare works registrations for collecting societies"
+  domain: "Operations & Project Mgmt"
+  roles: ["Music publishing administrator"]
+  description: "Compile writer and publisher splits, IPI numbers, and work metadata into society registration submissions."
+  inputs: ["Catalog metadata", "Writer and publisher splits", "Society templates"]
+  outputs: ["Registration submission files"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["database", "spreadsheet", "submission portal"]
+  frequency: monthly
+  trigger: "when new works are added to the catalog"
+
 - id: fnol-intake-coverage-check
   title: "Process FNOL and verify coverage"
   domain: "Operations & Project Mgmt"
@@ -10808,6 +12407,19 @@
   tools: ["Subtitle parser", "Spreadsheet"]
   frequency: weekly
   trigger: "When caption files are delivered"
+
+- id: creative-spec-qa
+  title: "QA creative assets against publisher placement specs"
+  domain: "Operations & Project Mgmt"
+  roles: ["Ad trafficking coordinator"]
+  description: "Check each creative's dimensions, file size, duration and format against the placement's required specs."
+  inputs: ["Creative asset list", "Publisher spec sheet"]
+  outputs: ["Spec QA checklist", "Rejected-asset list"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "asset management system"]
+  frequency: ad-hoc
+  trigger: "when creative is received for trafficking"
 
 - id: qa-lms-course-shell-rollover
   title: "QA LMS course shells after term rollover"
@@ -10926,6 +12538,19 @@
   frequency: weekly
   trigger: "Check this wedding block rooming list against the PMS"
 
+- id: dc-contribution-file-reconciliation
+  title: "Reconcile payroll contribution files"
+  domain: "Operations & Project Mgmt"
+  roles: ["401(k)/DC operations specialist"]
+  description: "Match payroll contribution files to participant deferral elections; flag rate mismatches and missing remittances before posting."
+  inputs: ["Payroll contribution file", "Participant deferral elections", "Prior remittance log"]
+  outputs: ["Exception report", "Posting-ready file"]
+  automation: high
+  human_in_loop: approve
+  tools: ["Spreadsheet", "Payroll file import", "Recordkeeping system export"]
+  frequency: weekly
+  trigger: "A payroll contribution file is received"
+
 - id: peering-session-inventory-reconciliation
   title: "Reconcile peering sessions against agreements"
   domain: "Operations & Project Mgmt"
@@ -10952,6 +12577,19 @@
   frequency: daily
   trigger: "Match today's PODs to open loads"
 
+- id: returned-manifest-reconciliation
+  title: "Reconcile returned signed manifests against shipments"
+  domain: "Operations & Project Mgmt"
+  roles: ["Waste manifest & disposal clerk"]
+  description: "Match returned signed manifests to outbound shipments and flag missing returns past the return-deadline window."
+  inputs: ["Shipped manifest log", "Returned manifest records"]
+  outputs: ["Open-manifest list", "Overdue-return alerts"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Spreadsheet", "Database"]
+  frequency: weekly
+  trigger: "When designated-facility copies are received"
+
 - id: sample-manifest-reconciliation
   title: "Reconcile sample receipts against chain-of-custody log"
   domain: "Operations & Project Mgmt"
@@ -10977,6 +12615,32 @@
   tools: ["SIS", "LMS", "spreadsheet"]
   frequency: weekly
   trigger: "Reconcile the SIS and LMS rosters for active sections"
+
+- id: chemical-register-reconciliation
+  title: "Reconcile site chemical list against approved register"
+  domain: "Operations & Project Mgmt"
+  roles: ["SDS / chemical inventory administrator"]
+  description: "Match the physical chemical inventory list to the approved-substance register and flag unapproved or unlisted items."
+  inputs: ["Inventory count list", "Approved chemical register"]
+  outputs: ["Discrepancy report", "Unapproved-substance flags"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["Spreadsheet", "Database"]
+  frequency: monthly
+  trigger: "After the monthly chemical stock count"
+
+- id: airworthiness-records-ad-gap-reconcile
+  title: "Reconcile work orders against required AD/SB compliance"
+  domain: "Operations & Project Mgmt"
+  roles: ["Airworthiness Records Administrator"]
+  description: "Cross-check completed work-order records against required AD and service-bulletin compliance to flag missing or unrecorded compliance entries."
+  inputs: ["Completed work orders", "AD/SB compliance matrix"]
+  outputs: ["Gap/exception list", "Records-correction worklist"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["Maintenance tracking system", "Records database", "Spreadsheet"]
+  frequency: weekly
+  trigger: "a records reconciliation is due"
 
 - id: research-and-compare-travel-options
   title: "Research and compare travel options"
@@ -11381,6 +13045,32 @@
   frequency: weekly
   trigger: "Who's sitting on overdue submittals and nudge them"
 
+- id: cdrl-due-date-tracking
+  title: "Track CDRL deliverable due dates and submission status"
+  domain: "Operations & Project Mgmt"
+  roles: ["CDRL (Contract Data Requirements) Coordinator"]
+  description: "Maintain CDRL due dates from the DD Form 1423 schedule and generate upcoming-deliverable reminders with current submission status."
+  inputs: ["CDRL/DD Form 1423 list", "Submission status log"]
+  outputs: ["Upcoming-deliverable reminders", "Status rollup"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Contract data register", "Spreadsheet", "Email"]
+  frequency: weekly
+  trigger: "the weekly deliverables review"
+
+- id: closing-checklist-tracker
+  title: "Track closing checklist and signature pages"
+  domain: "Operations & Project Mgmt"
+  roles: ["Deal & Transaction Coordinator"]
+  description: "Maintain the transaction closing checklist, flag outstanding items and chase missing signatures."
+  inputs: ["Closing checklist", "Signature/document status"]
+  outputs: ["Updated checklist", "Outstanding-items chase list"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Spreadsheet", "E-signature tracker", "Email client"]
+  frequency: ad-hoc
+  trigger: "In the run-up to a deal close"
+
 - id: track-credential-expirations
   title: "Track credential expirations and draft renewal reminders"
   domain: "Operations & Project Mgmt"
@@ -11433,6 +13123,19 @@
   frequency: weekly
   trigger: "when registrations approach expiry"
 
+- id: grant-milestone-tracker
+  title: "Track grant milestones against funding tranches"
+  domain: "Operations & Project Mgmt"
+  roles: ["Token grants and governance coordinator"]
+  description: "Map grantee deliverables to the funding schedule and flag overdue or unmet milestones."
+  inputs: ["grant agreements", "milestone deliverables", "funding schedule"]
+  outputs: ["milestone status report with overdue flags"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["project tracker", "spreadsheet"]
+  frequency: monthly
+  trigger: "at the monthly grants review"
+
 - id: group-block-cutoff-tracking
   title: "Track group block pickup and cutoff dates"
   domain: "Operations & Project Mgmt"
@@ -11445,6 +13148,19 @@
   tools: ["PMS", "CRM", "email"]
   frequency: weekly
   trigger: "Which group blocks are approaching cutoff?"
+
+- id: lp-funding-status-tracker
+  title: "Track LP funding and chase late payments"
+  domain: "Operations & Project Mgmt"
+  roles: ["Capital-Call & Distribution Administrator"]
+  description: "Match received wires to expected call amounts per LP and draft reminders for outstanding or short payments."
+  inputs: ["Capital call schedule", "Incoming wire confirmations"]
+  outputs: ["Funding status tracker", "Draft reminder emails"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Spreadsheet", "Email client"]
+  frequency: weekly
+  trigger: "After a call due date passes"
 
 - id: track-onboarding-task-completion
   title: "Track new-hire onboarding task completion"
@@ -11511,6 +13227,19 @@
   frequency: monthly
   trigger: "at month-end"
 
+- id: clearance-status-tracking
+  title: "Track rights clearance status and flag expiring licenses"
+  domain: "Operations & Project Mgmt"
+  roles: ["Rights & clearances coordinator"]
+  description: "Maintain a clearance log across master, sync, and sample rights and surface items pending approval or nearing expiry."
+  inputs: ["License agreements", "Clearance request log", "Usage list"]
+  outputs: ["Clearance status dashboard", "Expiry alerts"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "project tracker", "calendar"]
+  frequency: weekly
+  trigger: "every week as clearances move through approval"
+
 - id: track-sponsorship-deliverables
   title: "Track sponsorship deliverable fulfillment"
   domain: "Operations & Project Mgmt"
@@ -11536,6 +13265,19 @@
   tools: ["Spreadsheet", "Project tracker"]
   frequency: monthly
   trigger: "During the monthly sponsor account review"
+
+- id: talent-deliverable-tracking
+  title: "Track talent deliverable milestones and send reminders"
+  domain: "Operations & Project Mgmt"
+  roles: ["Influencer & talent contract administrator"]
+  description: "Monitor post-due dates, usage windows and exclusivity periods and send reminders before each lapses."
+  inputs: ["Contract deliverable schedule", "Campaign calendar"]
+  outputs: ["Milestone tracker", "Reminder notifications"]
+  automation: high
+  human_in_loop: none
+  tools: ["spreadsheet", "calendar", "notification system"]
+  frequency: weekly
+  trigger: "as deliverable due dates approach"
 
 - id: triage-incoming-referrals
   title: "Triage and route incoming referrals"
@@ -11680,6 +13422,19 @@
   frequency: weekly
   trigger: "update the dependency tracker and draft nudges for the blocking items"
 
+- id: config-revision-index-update
+  title: "Update drawing and tech-pub revision indexes on change approval"
+  domain: "Operations & Project Mgmt"
+  roles: ["Configuration & Change Administrator"]
+  description: "When a change is approved, update the drawing/technical-publication revision index and draft the revision notice with effectivity."
+  inputs: ["Approved change record", "Revision index", "Effectivity data"]
+  outputs: ["Updated revision index", "Draft revision notice"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["Configuration management system", "Document management system"]
+  frequency: ad-hoc
+  trigger: "an engineering change is approved"
+
 - id: maintain-raid-risk-register
   title: "Update RAID / risk register"
   domain: "Operations & Project Mgmt"
@@ -11692,6 +13447,19 @@
   tools: ["spreadsheet", "docs", "project management tool"]
   frequency: weekly
   trigger: "update the risk register from these meeting notes and flag anything overdue"
+
+- id: schedule-baseline-variance
+  title: "Update schedule progress and flag critical-path slippage"
+  domain: "Operations & Project Mgmt"
+  roles: ["Project Controls Analyst"]
+  description: "Roll actual progress into the schedule, compare to baseline, and surface tasks slipping on the critical path."
+  inputs: ["baseline schedule", "progress updates"]
+  outputs: ["updated schedule", "variance/slippage report"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["scheduling tool", "spreadsheet"]
+  frequency: weekly
+  trigger: "Weekly progress update is due"
 
 - id: update-user-manual-section
   title: "Update user manual section for a change"
@@ -11744,6 +13512,19 @@
   tools: ["property mgmt system", "spreadsheet"]
   frequency: ad-hoc
   trigger: "validate this group's rooming list"
+
+- id: waste-manifest-validation
+  title: "Validate hazardous waste manifest fields before submission"
+  domain: "Operations & Project Mgmt"
+  roles: ["Waste manifest & disposal clerk"]
+  description: "Check waste codes, generator ID, container counts, and quantities on a manifest for completeness and internal consistency."
+  inputs: ["Draft waste manifest", "Waste profile records"]
+  outputs: ["Validated manifest", "Error flag list"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Document editor", "Database"]
+  frequency: weekly
+  trigger: "Before a waste shipment leaves the site"
 
 - id: validate-incoming-purchase-orders
   title: "Validate incoming purchase orders against price and terms"
@@ -11809,6 +13590,32 @@
   tools: ["Spreadsheet", "Form responses export"]
   frequency: ad-hoc
   trigger: "A new batch of sign-ups arrives"
+
+- id: deliverable-cad-standards-check
+  title: "Verify a deliverable against client CAD and formatting standards"
+  domain: "Operations & Project Mgmt"
+  roles: ["Deliverable QA/QC Reviewer"]
+  description: "Compare layer names, fonts, file naming, and submittal format to the client's standards manual; list nonconformances."
+  inputs: ["deliverable files", "client standards manual"]
+  outputs: ["nonconformance list"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["file inspector", "checklist tool"]
+  frequency: ad-hoc
+  trigger: "Before sending the package to the client"
+
+- id: resource-directory-verification
+  title: "Verify and refresh the community resource directory"
+  domain: "Operations & Project Mgmt"
+  roles: ["Resource & referral coordinator"]
+  description: "Check provider listings for changes in hours, contact, and intake status, and flag stale or unreachable entries for review."
+  inputs: ["Current resource directory", "Provider contact data"]
+  outputs: ["Updated listings", "Stale-entry flags"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["directory database", "web research tool"]
+  frequency: monthly
+  trigger: "on a recurring directory maintenance cycle"
 
 - id: locale-format-verify
   title: "Verify locale-specific formatting in translated strings"
@@ -12759,6 +14566,19 @@
   frequency: ad-hoc
   trigger: "create a source-to-target data mapping and dictionary from these field lists"
 
+- id: coa-label-claim-crosscheck
+  title: "Cross-check lab COA results against label claims and limits"
+  domain: "Business / Functional Analysis"
+  roles: ["Cannabis label & packaging compliance specialist"]
+  description: "Compare certificate-of-analysis potency and contaminant results to label claims and regulatory limits."
+  inputs: ["Certificate of analysis", "Label claims", "Regulatory limit table"]
+  outputs: ["Match and exception report"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document parser", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "A batch COA is received from the lab"
+
 - id: define-field-validation-rules
   title: "Define field-level validation and edit rules"
   domain: "Business / Functional Analysis"
@@ -13110,6 +14930,19 @@
   frequency: ad-hoc
   trigger: "review these requirements for vague or untestable wording"
 
+- id: config-baseline-reconcile
+  title: "Reconcile as-designed vs as-built configuration baselines"
+  domain: "Business / Functional Analysis"
+  roles: ["Configuration & Change Administrator"]
+  description: "Compare as-designed against as-built/as-maintained baselines and flag discrepancies in part effectivity and revision level."
+  inputs: ["As-designed baseline", "As-built/as-maintained records"]
+  outputs: ["Discrepancy list", "Configuration reconciliation report"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["Configuration management system", "Spreadsheet"]
+  frequency: monthly
+  trigger: "a configuration audit is due"
+
 - id: requirements-ambiguity-testability-lint
   title: "Requirements ambiguity & testability lint"
   domain: "Business / Functional Analysis"
@@ -13370,6 +15203,19 @@
   frequency: ad-hoc
   trigger: "build me a one-page profile on this company"
 
+- id: ic-comps-benchmarking
+  title: "Build comparable-transactions benchmarking"
+  domain: "Research & Competitive Intel"
+  roles: ["Investment Committee Memo Preparer"]
+  description: "Compile comparable deals and trading multiples and summarize benchmarking for the memo."
+  inputs: ["Target financials", "Market/comps data"]
+  outputs: ["Comps benchmarking table", "Benchmarking commentary"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["Spreadsheet", "Market data feed"]
+  frequency: ad-hoc
+  trigger: "While preparing an IC memo"
+
 - id: build-competitor-battlecard
   title: "Build competitor battlecard"
   domain: "Research & Competitive Intel"
@@ -13526,6 +15372,19 @@
   frequency: quarterly
   trigger: "Summarize our competitors' share of voice for last quarter"
 
+- id: edd-profile-compile
+  title: "Compile enhanced due diligence profile"
+  domain: "Research & Competitive Intel"
+  roles: ["Crypto KYC and onboarding analyst"]
+  description: "Gather public records and adverse-media findings on a high-risk applicant into an EDD profile."
+  inputs: ["applicant identity", "public records", "adverse-media sources"]
+  outputs: ["enhanced due diligence profile"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["web research tools", "knowledge base"]
+  frequency: ad-hoc
+  trigger: "when an applicant is flagged high-risk"
+
 - id: compile-offlabel-evidence-summary
   title: "Compile evidence summary for off-label inquiry"
   domain: "Research & Competitive Intel"
@@ -13591,6 +15450,19 @@
   frequency: ad-hoc
   trigger: "When a new object is proposed for acquisition"
 
+- id: pitch-category-research-brief
+  title: "Compile the category and competitor research brief for a pitch"
+  domain: "Research & Competitive Intel"
+  roles: ["New-business pitch coordinator"]
+  description: "Gather category trends, competitor activity and audience data into a briefing pack for the pitch team."
+  inputs: ["Prospect/category name", "Research sources"]
+  outputs: ["Category research brief"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["web research", "document editor"]
+  frequency: ad-hoc
+  trigger: "at the start of a new-business pitch"
+
 - id: curate-annotated-reading-list
   title: "Curate annotated reading list"
   domain: "Research & Competitive Intel"
@@ -13643,6 +15515,19 @@
   frequency: ad-hoc
   trigger: "draft a TAM/SAM/SOM memo for this market with sources and assumptions"
 
+- id: portco-redflag-alerts
+  title: "Draft portfolio red-flag alerts"
+  domain: "Research & Competitive Intel"
+  roles: ["Portfolio Monitoring Analyst"]
+  description: "Scan KPI and covenant data for breaches or negative variances and draft alert notes for the deal team."
+  inputs: ["KPI dataset", "Covenant thresholds"]
+  outputs: ["Red-flag alert notes"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Spreadsheet", "Document editor"]
+  frequency: monthly
+  trigger: "When updated portfolio data is available"
+
 - id: draft-research-project-brief
   title: "Draft research project brief"
   domain: "Research & Competitive Intel"
@@ -13694,6 +15579,32 @@
   tools: ["mapping tool", "spreadsheet", "document editor"]
   frequency: ad-hoc
   trigger: "When a qualified prospect names a target market"
+
+- id: respondent-screener-draft
+  title: "Draft the respondent screener and recruitment invite"
+  domain: "Research & Competitive Intel"
+  roles: ["Research panel & fieldwork coordinator"]
+  description: "Turn target audience criteria into a screener questionnaire and panel recruitment invitation copy."
+  inputs: ["Target audience spec", "Quota requirements"]
+  outputs: ["Screener questionnaire draft", "Recruitment invite copy"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document editor", "survey platform"]
+  frequency: ad-hoc
+  trigger: "when a new study is being set up"
+
+- id: wallet-attribution-enrich
+  title: "Enrich flagged wallet attribution"
+  domain: "Research & Competitive Intel"
+  roles: ["Crypto transaction monitoring analyst", "Blockchain forensics investigations associate"]
+  description: "Look up flagged addresses against known-entity lists and on-chain analytics, then annotate likely owners."
+  inputs: ["wallet addresses", "known-entity lists", "on-chain analytics"]
+  outputs: ["attribution annotations"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["blockchain analytics tool", "knowledge base"]
+  frequency: ad-hoc
+  trigger: "when a flagged address has no known owner"
 
 - id: expand-party-names-for-conflicts
   title: "Expand party names into aliases and corporate family"
@@ -13877,6 +15788,19 @@
   frequency: weekly
   trigger: "Screen this week's literature hits for reportable adverse events"
 
+- id: survey-response-quality-screen
+  title: "Screen survey responses for quality and fraud"
+  domain: "Research & Competitive Intel"
+  roles: ["Research panel & fieldwork coordinator"]
+  description: "Flag speeders, straight-liners, duplicates and out-of-quota responses against screening rules for removal."
+  inputs: ["Raw survey response data", "Screening/quota rules"]
+  outputs: ["Flagged response list", "Clean dataset"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "survey platform"]
+  frequency: ad-hoc
+  trigger: "while a survey is in field"
+
 - id: chartering-tonnage-shortlist
   title: "Shortlist suitable tonnage from position lists for a cargo"
   domain: "Research & Competitive Intel"
@@ -13954,6 +15878,19 @@
   tools: ["docs", "knowledge base"]
   frequency: ad-hoc
   trigger: "read these data room files and give me a red-flag summary"
+
+- id: diligence-risk-matrix
+  title: "Summarize diligence into a risk matrix"
+  domain: "Research & Competitive Intel"
+  roles: ["Investment Committee Memo Preparer"]
+  description: "Condense legal, financial and commercial diligence findings into a structured risk-and-mitigant matrix."
+  inputs: ["Diligence reports", "Risk matrix template"]
+  outputs: ["Risk-and-mitigant matrix"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Document parser", "Document editor"]
+  frequency: ad-hoc
+  trigger: "Once diligence reports are received"
 
 - id: earnings-annual-report-summary
   title: "Summarize earnings call and annual report"
@@ -14085,6 +16022,19 @@
   frequency: ad-hoc
   trigger: "theme these public comments into a summary of positions"
 
+- id: regulatory-bulletin-impact-summary
+  title: "Summarize regulatory bulletins affecting held permits"
+  domain: "Research & Competitive Intel"
+  roles: ["Cannabis licensing & permit administrator"]
+  description: "Scan state agency bulletins for rule changes touching current license types and summarize the operational impact."
+  inputs: ["Regulatory bulletin feeds", "Held permit list"]
+  outputs: ["Impact summary", "Action-item list"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["web research tool", "document editor"]
+  frequency: weekly
+  trigger: "A new regulatory bulletin is published"
+
 - id: summarize-survey-open-ends
   title: "Summarize survey open-ends into themes"
   domain: "Research & Competitive Intel"
@@ -14150,6 +16100,19 @@
   frequency: ad-hoc
   trigger: "summarize these survey responses into topline findings and crosstabs"
 
+- id: fund-flow-trace
+  title: "Trace fund flows across hops and bridges"
+  domain: "Research & Competitive Intel"
+  roles: ["Blockchain forensics investigations associate"]
+  description: "Follow funds across hops, bridges, and mixers and produce an annotated transaction-graph summary."
+  inputs: ["starting address", "transaction graph", "bridge and mixer heuristics"]
+  outputs: ["annotated trace summary"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["blockchain analytics tool", "graphing tool"]
+  frequency: ad-hoc
+  trigger: "when an investigation is opened on a wallet"
+
 - id: track-competitor-messaging-changes
   title: "Track competitor messaging and website changes"
   domain: "Research & Competitive Intel"
@@ -14162,6 +16125,19 @@
   tools: ["docs", "spreadsheet", "knowledge base"]
   frequency: monthly
   trigger: "diff these two versions of the competitor homepage and tell me what changed"
+
+- id: fieldwork-quota-status-update
+  title: "Track fieldwork quotas and draft the daily field status update"
+  domain: "Research & Competitive Intel"
+  roles: ["Research panel & fieldwork coordinator"]
+  description: "Tally completes against quota cells and draft a status update flagging cells at risk of under-filling."
+  inputs: ["Live completes data", "Quota plan"]
+  outputs: ["Quota status summary", "At-risk cell flags"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "email client"]
+  frequency: daily
+  trigger: "each day a study is in field"
 
 - id: regional-compliance-change-tracker
   title: "Track regional rating and monetization rule changes"
@@ -14228,6 +16204,19 @@
   frequency: quarterly
   trigger: "At the start of each transparency reporting cycle"
 
+- id: ghg-inventory-rollup
+  title: "Aggregate fuel and energy data into a GHG inventory"
+  domain: "Data & Reporting (BI)"
+  roles: ["Emissions reporting specialist"]
+  description: "Convert fuel, energy, and process data into CO2e by scope to assemble the periodic greenhouse-gas inventory."
+  inputs: ["Fuel and energy records", "Process data", "Conversion factors"]
+  outputs: ["GHG inventory by scope", "CO2e totals"]
+  automation: medium
+  human_in_loop: sign-off
+  tools: ["Spreadsheet", "Database"]
+  frequency: quarterly
+  trigger: "At the close of the GHG reporting period"
+
 - id: rollup-assessment-data-for-program-review
   title: "Aggregate program assessment data for review"
   domain: "Data & Reporting (BI)"
@@ -14279,6 +16268,19 @@
   tools: ["BI tool", "spreadsheet"]
   frequency: monthly
   trigger: "break down churn by cohort for last month"
+
+- id: emission-factor-calculation
+  title: "Apply emission factors to activity data for estimates"
+  domain: "Data & Reporting (BI)"
+  roles: ["Emissions reporting specialist"]
+  description: "Multiply throughput, fuel, and usage data by published emission factors to produce pollutant emission estimates."
+  inputs: ["Activity/throughput data", "Emission factor tables"]
+  outputs: ["Emission estimate table by pollutant"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Spreadsheet"]
+  frequency: quarterly
+  trigger: "When activity data for the reporting period is finalized"
 
 - id: assemble-management-reporting-pack
   title: "Assemble monthly management reporting pack"
@@ -14344,6 +16346,19 @@
   tools: ["CRM", "spreadsheet"]
   frequency: weekly
   trigger: "find the deals with missing or stale data this week"
+
+- id: budget-burn-eac-forecast
+  title: "Build a budget burn and estimate-at-completion forecast"
+  domain: "Data & Reporting (BI)"
+  roles: ["Project Controls Analyst"]
+  description: "Trend labor and expense spend against budget and project estimate-at-completion and projected overrun per task."
+  inputs: ["project budget", "actual costs to date", "percent-complete"]
+  outputs: ["burn chart", "EAC forecast"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["spreadsheet", "BI/reporting tool"]
+  frequency: monthly
+  trigger: "PM wants the latest cost-to-complete"
 
 - id: build-kpi-metrics-tree
   title: "Build a KPI framework / metrics tree"
@@ -14488,6 +16503,19 @@
   frequency: monthly
   trigger: "at month-end campaign reporting"
 
+- id: vendor-tat-scorecard
+  title: "Build repair vendor turn-time scorecards against SLA"
+  domain: "Data & Reporting (BI)"
+  roles: ["Component Repair & Warranty Administrator"]
+  description: "Reconcile repair vendor turnaround times against SLA targets and compile a periodic vendor performance scorecard."
+  inputs: ["Repair-order history", "SLA targets"]
+  outputs: ["Vendor TAT scorecard", "Out-of-SLA exception list"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Inventory/ERP system", "Spreadsheet", "Dashboard tool"]
+  frequency: monthly
+  trigger: "the monthly vendor review"
+
 - id: same-store-sales-comparison
   title: "Build same-store sales comparison across units"
   domain: "Data & Reporting (BI)"
@@ -14514,6 +16542,19 @@
   frequency: weekly
   trigger: "build this week's store scorecards and flag the underperformers"
 
+- id: reinvestment-theo-calculation
+  title: "Calculate player reinvestment offers from theoretical loss"
+  domain: "Data & Reporting (BI)"
+  roles: ["Player reinvestment & loyalty analyst"]
+  description: "Compute comp and free-play offers per patron from theoretical loss and tier reinvestment rules."
+  inputs: ["Player tracked-play data", "Reinvestment rule table"]
+  outputs: ["Offer value per patron"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["spreadsheet", "BI tool"]
+  frequency: weekly
+  trigger: "Weekly reinvestment cycle begins"
+
 - id: chapter-performance-scorecard
   title: "Chapter performance scorecard compilation"
   domain: "Data & Reporting (BI)"
@@ -14526,6 +16567,19 @@
   tools: ["BI tool", "spreadsheet"]
   frequency: quarterly
   trigger: "Build the quarterly chapter performance scorecard"
+
+- id: actuarial-data-extract-cleanup
+  title: "Clean participant data for actuarial valuation"
+  domain: "Data & Reporting (BI)"
+  roles: ["Actuarial valuation support analyst"]
+  description: "Prepare the valuation data extract: apply decrements, reconcile beginning and ending headcounts, and resolve data anomalies."
+  inputs: ["Participant data extract", "Prior valuation data", "Decrement assumptions"]
+  outputs: ["Validated valuation dataset", "Reconciliation log"]
+  automation: medium
+  human_in_loop: sign-off
+  tools: ["Spreadsheet", "Recordkeeping system export", "Data validation tool"]
+  frequency: quarterly
+  trigger: "The annual valuation data cycle begins"
 
 - id: denial-root-cause-clustering
   title: "Cluster denials by root cause and recoverable value"
@@ -14565,6 +16619,19 @@
   tools: ["spreadsheet", "CRM", "BI tool"]
   frequency: daily
   trigger: "assign failure-mode codes to this week's warranty claims"
+
+- id: portco-kpi-collection
+  title: "Collect and load portfolio company KPIs"
+  domain: "Data & Reporting (BI)"
+  roles: ["Portfolio Monitoring Analyst"]
+  description: "Pull quarterly financials and KPIs from portfolio reporting packs and populate the monitoring template."
+  inputs: ["Portfolio company reporting packs", "Monitoring template"]
+  outputs: ["Updated KPI dataset", "Data-gap list"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["Spreadsheet", "Document parser"]
+  frequency: quarterly
+  trigger: "When portfolio companies submit quarterly numbers"
 
 - id: spectrum-holdings-inventory-report
   title: "Compile a spectrum-holdings inventory report"
@@ -14656,6 +16723,19 @@
   tools: ["email", "spreadsheet", "document editor"]
   frequency: daily
   trigger: "Time for the morning fleet position update"
+
+- id: dmr-compilation
+  title: "Compile discharge monitoring report from lab results"
+  domain: "Data & Reporting (BI)"
+  roles: ["Wastewater discharge compliance specialist"]
+  description: "Aggregate lab sample results into the required discharge-monitoring parameters, units, and statistical bases for the DMR."
+  inputs: ["Lab analytical results", "DMR parameter template", "Flow data"]
+  outputs: ["Completed DMR data set"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Spreadsheet", "Database"]
+  frequency: monthly
+  trigger: "When the monthly lab results arrive for the outfall"
 
 - id: compile-regulatory-hr-report
   title: "Compile HR compliance data into a regulatory report"
@@ -14761,6 +16841,19 @@
   frequency: monthly
   trigger: "turn these enrollment and evaluation exports into our annual program review draft"
 
+- id: proof-of-reserves-snapshot
+  title: "Compile proof-of-reserves snapshot"
+  domain: "Data & Reporting (BI)"
+  roles: ["Treasury reconciliation analyst"]
+  description: "Aggregate multi-chain asset balances against the liabilities ledger into a daily reserves summary."
+  inputs: ["multi-chain balances", "liabilities ledger"]
+  outputs: ["assets-vs-liabilities snapshot summary"]
+  automation: medium
+  human_in_loop: sign-off
+  tools: ["blockchain explorer", "BI tool"]
+  frequency: daily
+  trigger: "when the daily reserves report is due"
+
 - id: compile-recurring-kpi-digest-email
   title: "Compile recurring KPI digest email"
   domain: "Data & Reporting (BI)"
@@ -14774,6 +16867,32 @@
   frequency: weekly
   trigger: "draft this week's metrics email from the latest dashboard numbers"
 
+- id: rg-program-metrics-report
+  title: "Compile responsible-gaming program metrics for the regulator"
+  domain: "Data & Reporting (BI)"
+  roles: ["Responsible-gaming case coordinator"]
+  description: "Aggregate self-exclusion, intervention, and training figures into the regulator's reporting template."
+  inputs: ["Case logs", "Self-exclusion stats", "Training records"]
+  outputs: ["Regulator metrics report"]
+  automation: medium
+  human_in_loop: sign-off
+  tools: ["BI tool", "document editor"]
+  frequency: quarterly
+  trigger: "Quarterly regulator report is due"
+
+- id: service-utilization-funder-report
+  title: "Compile service utilization reports for funders"
+  domain: "Data & Reporting (BI)"
+  roles: ["Care plan & scheduling coordinator", "Service authorization & billing clerk"]
+  description: "Aggregate service delivery and outcome data into the funder's required reporting format with summary metrics and narrative."
+  inputs: ["Service delivery data", "Outcome data", "Funder report format"]
+  outputs: ["Draft utilization report", "Summary metrics"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["spreadsheet", "reporting tool", "case management system"]
+  frequency: quarterly
+  trigger: "when a funder reporting period closes"
+
 - id: supplier-quality-scorecard-brief
   title: "Compile supplier quality scorecard brief"
   domain: "Data & Reporting (BI)"
@@ -14786,6 +16905,19 @@
   tools: ["ERP", "spreadsheet", "BI tool"]
   frequency: quarterly
   trigger: "build the quarterly supplier quality scorecard"
+
+- id: aog-daily-status-report
+  title: "Compile the daily AOG status report"
+  domain: "Data & Reporting (BI)"
+  roles: ["AOG & Parts Logistics Coordinator"]
+  description: "Aggregate open AOG events with part ETAs and event aging into a daily stakeholder status summary with escalation flags."
+  inputs: ["Open AOG event log", "Purchase order / shipment tracking"]
+  outputs: ["Daily AOG status report", "Aging/escalation list"]
+  automation: high
+  human_in_loop: none
+  tools: ["Inventory/ERP system", "Spreadsheet", "Dashboard tool"]
+  frequency: daily
+  trigger: "the start-of-day AOG standup"
 
 - id: volunteer-hours-log
   title: "Compile volunteer hours for recognition and grants"
@@ -14852,6 +16984,19 @@
   frequency: quarterly
   trigger: "Quarterly chapter reports are in"
 
+- id: cross-platform-campaign-report
+  title: "Consolidate cross-platform metrics into the weekly campaign report"
+  domain: "Data & Reporting (BI)"
+  roles: ["Campaign performance reporter"]
+  description: "Pull spend, impressions, clicks and conversions from each ad platform into a unified, normalized weekly report."
+  inputs: ["Platform metric exports", "Campaign taxonomy/naming map"]
+  outputs: ["Unified weekly performance report"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "BI dashboard", "data connector"]
+  frequency: weekly
+  trigger: "every Monday for the prior week"
+
 - id: verify-linesheet-prices-deliveries
   title: "Cross-check line-sheet prices and delivery windows"
   domain: "Data & Reporting (BI)"
@@ -14916,6 +17061,32 @@
   tools: ["spreadsheet", "BI tool"]
   frequency: ad-hoc
   trigger: "Summarize how yesterday's DR event performed"
+
+- id: split-conflict-detection
+  title: "Detect missing or conflicting writer split data"
+  domain: "Data & Reporting (BI)"
+  roles: ["Music publishing administrator"]
+  description: "Scan catalog entries for splits that fail to total 100 percent, missing IPIs, or conflicting claims before registration."
+  inputs: ["Catalog split data"]
+  outputs: ["Exception list of split conflicts"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["database", "data validation tool"]
+  frequency: weekly
+  trigger: "before submitting a registration batch"
+
+- id: gaming-structuring-detection
+  title: "Detect structuring patterns across the gaming day"
+  domain: "Data & Reporting (BI)"
+  roles: ["Gaming AML/compliance analyst"]
+  description: "Aggregate multiple sub-threshold transactions by patron to surface possible structuring for SAR review."
+  inputs: ["Transaction logs"]
+  outputs: ["Structuring alert list"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["BI tool", "spreadsheet"]
+  frequency: daily
+  trigger: "Gaming day closes"
 
 - id: term-consistency-check
   title: "Detect terminology inconsistencies across a doc set"
@@ -15047,6 +17218,19 @@
   frequency: weekly
   trigger: "Generate query letters for the open data discrepancies"
 
+- id: ehs-indicator-review-deck
+  title: "Draft EHS management review deck from leading/lagging indicators"
+  domain: "Data & Reporting (BI)"
+  roles: ["EHS reporting analyst"]
+  description: "Assemble a management-review deck pulling leading (audits, training) and lagging (incidents) indicators into commentary and slides."
+  inputs: ["Indicator data sets", "Audit completion records", "Training records"]
+  outputs: ["Management review slide deck", "Indicator commentary"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Presentation tool", "Spreadsheet"]
+  frequency: quarterly
+  trigger: "Ahead of the quarterly EHS management review"
+
 - id: draft-kpi-dashboard-narrative
   title: "Draft executive narrative for KPI dashboard"
   domain: "Data & Reporting (BI)"
@@ -15124,6 +17308,19 @@
   tools: ["spreadsheet", "presentation tool", "charting tool"]
   frequency: quarterly
   trigger: "ahead of an audit committee meeting"
+
+- id: valuation-data-narrative-draft
+  title: "Draft valuation report data section"
+  domain: "Data & Reporting (BI)"
+  roles: ["Actuarial valuation support analyst"]
+  description: "Summarize membership movements and average age, service, and salary statistics into the report's data narrative and exhibits."
+  inputs: ["Validated valuation dataset", "Prior-year report", "Report template"]
+  outputs: ["Data section draft", "Summary exhibits"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Spreadsheet", "Document editor", "Report template"]
+  frequency: quarterly
+  trigger: "Valuation data is finalized"
 
 - id: draft-weekly-revenue-narrative
   title: "Draft weekly revenue dashboard narrative"
@@ -15372,6 +17569,19 @@
   frequency: weekly
   trigger: "when a new delivery is booked into the warehouse"
 
+- id: campaign-pacing-alerts
+  title: "Generate the campaign budget pacing alert report"
+  domain: "Data & Reporting (BI)"
+  roles: ["Campaign performance reporter"]
+  description: "Compute pace-to-budget for each live campaign and flag those over- or under-pacing beyond threshold."
+  inputs: ["Live spend data", "Flight dates and budgets"]
+  outputs: ["Pacing report", "Over/under-pacing alert list"]
+  automation: high
+  human_in_loop: none
+  tools: ["spreadsheet", "BI dashboard"]
+  frequency: daily
+  trigger: "each morning during active flights"
+
 - id: load-forecast-variance-narrative
   title: "Load forecast variance narrative"
   domain: "Data & Reporting (BI)"
@@ -15398,6 +17608,32 @@
   frequency: quarterly
   trigger: "Pull a LYBUNT report for this fiscal year"
 
+- id: cdrl-submission-register
+  title: "Maintain the CDRL submission and disposition register"
+  domain: "Data & Reporting (BI)"
+  roles: ["CDRL (Contract Data Requirements) Coordinator"]
+  description: "Log each CDRL submittal with government acceptance/rejection disposition and resubmission deadlines, keeping the register current."
+  inputs: ["Submission correspondence", "Government disposition letters"]
+  outputs: ["Updated submission register", "Resubmission deadline list"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Contract data register", "Email", "Spreadsheet"]
+  frequency: weekly
+  trigger: "a deliverable is submitted or dispositioned"
+
+- id: catalog-metadata-matching
+  title: "Normalize and match track metadata to catalog identifiers"
+  domain: "Data & Reporting (BI)"
+  roles: ["Royalty accounting analyst", "Music publishing administrator"]
+  description: "Map varied statement titles and artists to internal works using ISRC/ISWC and fuzzy matching, isolating unmatched lines."
+  inputs: ["Raw royalty line items", "Internal catalog database"]
+  outputs: ["Matched metadata table", "Unmatched exceptions list"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "database", "data matching tool"]
+  frequency: monthly
+  trigger: "before posting royalties to payee accounts"
+
 - id: data-restatement-downstream-notice
   title: "Notify Downstream Consumers of a Data Restatement"
   domain: "Data & Reporting (BI)"
@@ -15410,6 +17646,19 @@
   tools: ["BI tool", "email", "knowledge base"]
   frequency: ad-hoc
   trigger: "We restated Q1 margins, notify the downstream report owners"
+
+- id: ilpa-quarterly-report
+  title: "Populate ILPA-template quarterly report"
+  domain: "Data & Reporting (BI)"
+  roles: ["LP Reporting Analyst"]
+  description: "Map fund fee, expense and carried-interest data into the standardized LP reporting template."
+  inputs: ["Fund fee & expense detail", "Carried interest schedule", "Reporting template"]
+  outputs: ["Completed quarterly reporting template"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Spreadsheet", "Template engine"]
+  frequency: quarterly
+  trigger: "During the quarterly LP reporting cycle"
 
 - id: reconcile-circulation-audit
   title: "Prepare circulation figures for audit filing"
@@ -15450,6 +17699,19 @@
   frequency: weekly
   trigger: "rank these open data requests by impact and effort"
 
+- id: cost-report-generation
+  title: "Produce actual-vs-budget cost reports per production"
+  domain: "Data & Reporting (BI)"
+  roles: ["Production accountant"]
+  description: "Aggregate coded costs by category and build a report showing spend against budget and estimate to complete."
+  inputs: ["Coded expense ledger", "Production budget"]
+  outputs: ["Cost report", "Variance summary"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["spreadsheet", "accounting system", "BI tool"]
+  frequency: weekly
+  trigger: "ahead of the weekly production finance meeting"
+
 - id: program-impact-metrics-aggregation
   title: "Program outcome metrics aggregation"
   domain: "Data & Reporting (BI)"
@@ -15476,6 +17738,19 @@
   frequency: quarterly
   trigger: "Run the quarterly dashboard recertification review"
 
+- id: list-update-rescreen-delta
+  title: "Re-screen base on watchlist updates"
+  domain: "Data & Reporting (BI)"
+  roles: ["Sanctions screening analyst"]
+  description: "Re-run the customer base against refreshed lists and produce a delta report of new or changed hits."
+  inputs: ["prior screening results", "updated lists", "customer base"]
+  outputs: ["delta report of new or changed hits"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["screening tool", "BI tool"]
+  frequency: weekly
+  trigger: "when watchlist publishers release updates"
+
 - id: slow-mover-markdown-reco
   title: "Recommend markdowns and delists for slow movers"
   domain: "Data & Reporting (BI)"
@@ -15501,6 +17776,19 @@
   tools: ["policy administration system", "spreadsheet", "BI tool"]
   frequency: weekly
   trigger: "Reconcile our policy records against the bordereau."
+
+- id: tpa-census-data-reconciliation
+  title: "Reconcile annual plan census data"
+  domain: "Data & Reporting (BI)"
+  roles: ["Third-party pension plan administrator"]
+  description: "Compare a sponsor's year-end census file to prior-year records; flag missing SSNs, hire/term date gaps, and compensation outliers before compliance testing."
+  inputs: ["Current-year census file", "Prior-year participant records", "Plan eligibility rules"]
+  outputs: ["Exception report", "Cleaned census file"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["Spreadsheet", "Recordkeeping system export", "Data validation tool"]
+  frequency: ad-hoc
+  trigger: "Sponsor submits the year-end census file"
 
 - id: reconcile-as-run-logs
   title: "Reconcile as-run logs and flag make-goods"
@@ -15593,6 +17881,19 @@
   frequency: monthly
   trigger: "After a batch of objects is relocated in storage"
 
+- id: sts-inventory-reconciliation
+  title: "Reconcile physical inventory against track-and-trace records"
+  domain: "Data & Reporting (BI)"
+  roles: ["Seed-to-sale compliance clerk"]
+  description: "Compare physical plant and package counts and weights to the state traceability ledger, flagging missing tags and weight variances."
+  inputs: ["Physical count sheets", "Track-and-trace inventory export"]
+  outputs: ["Discrepancy report", "Flagged tag list"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "inventory database"]
+  frequency: daily
+  trigger: "End-of-day inventory count is uploaded"
+
 - id: recall-nonresponder-reconcile
   title: "Reconcile recall list against booked appointments"
   domain: "Data & Reporting (BI)"
@@ -15644,6 +17945,19 @@
   tools: ["data pipeline", "BI dashboard"]
   frequency: daily
   trigger: "After end-of-day close at each location"
+
+- id: ehs-recordable-rate-rollup
+  title: "Roll up incident logs into monthly recordable-rate summary"
+  domain: "Data & Reporting (BI)"
+  roles: ["EHS reporting analyst"]
+  description: "Aggregate injury/illness and near-miss logs into TRIR/DART and lost-time rates by site for the monthly safety report."
+  inputs: ["Incident log export", "Hours-worked data", "Prior-period baselines"]
+  outputs: ["Monthly recordable-rate summary table", "Trend chart"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["Spreadsheet", "BI dashboard"]
+  frequency: monthly
+  trigger: "When the month closes and the safety scorecard is due"
 
 - id: scope-emissions-calculation
   title: "Scope 1/2/3 emissions calculation"
@@ -15944,6 +18258,19 @@
   frequency: weekly
   trigger: "Which ingredients spiked in price this month?"
 
+- id: waste-generation-threshold-tracking
+  title: "Track monthly waste generation against generator thresholds"
+  domain: "Data & Reporting (BI)"
+  roles: ["Waste manifest & disposal clerk"]
+  description: "Total waste generated by stream and compare cumulative quantities to generator-status thresholds, flagging approaching limits."
+  inputs: ["Manifest quantities", "Waste stream codes", "Threshold reference"]
+  outputs: ["Generation-by-stream summary", "Threshold proximity flags"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["Spreadsheet", "BI dashboard"]
+  frequency: monthly
+  trigger: "At month end when shipments are tallied"
+
 - id: translate-business-question-to-report-spec
   title: "Translate a business question into a report spec"
   domain: "Data & Reporting (BI)"
@@ -16177,6 +18504,19 @@
   tools: ["spreadsheet", "ERP", "email"]
   frequency: monthly
   trigger: "which vendor insurance certificates are expiring and chase the renewals"
+
+- id: repair-quote-rate-check
+  title: "Check repair vendor quotes against contracted rates"
+  domain: "Procurement & Vendor Mgmt"
+  roles: ["Component Repair & Warranty Administrator"]
+  description: "Compare repair-order quotes against contracted catalog and labor rates and flag overcharges or out-of-scope line items."
+  inputs: ["Repair-order quote", "Contract rate catalog"]
+  outputs: ["Quote variance flags", "Approve/negotiate recommendation"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["Inventory/ERP system", "Spreadsheet"]
+  frequency: weekly
+  trigger: "a repair vendor returns a quote"
 
 - id: trade-hs-classification
   title: "Classify products to tariff codes"
@@ -16425,6 +18765,19 @@
   frequency: monthly
   trigger: "when an interconnection agreement nears expiry"
 
+- id: media-makegood-request-draft
+  title: "Draft make-good requests for under-delivered placements"
+  domain: "Procurement & Vendor Mgmt"
+  roles: ["Media buying reconciliation analyst"]
+  description: "Compare delivered vs guaranteed impressions and draft credit or make-good requests to under-delivering vendors."
+  inputs: ["Delivery report", "Insertion order terms"]
+  outputs: ["Make-good request emails", "Credit tracking log"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["spreadsheet", "email client"]
+  frequency: monthly
+  trigger: "when a placement delivers below its guarantee"
+
 - id: negotiation-prep-brief
   title: "Draft negotiation prep brief"
   domain: "Procurement & Vendor Mgmt"
@@ -16607,6 +18960,19 @@
   frequency: weekly
   trigger: "An expiry sweep of stock is due"
 
+- id: sds-expiry-refresh-requests
+  title: "Flag stale SDS and draft supplier refresh requests"
+  domain: "Procurement & Vendor Mgmt"
+  roles: ["SDS / chemical inventory administrator"]
+  description: "Identify SDS older than the review threshold and draft requests to suppliers for the current revision."
+  inputs: ["SDS register with revision dates", "Supplier contact list"]
+  outputs: ["Stale-SDS list", "Draft supplier request emails"]
+  automation: high
+  human_in_loop: review-before-send
+  tools: ["Spreadsheet", "Email client"]
+  frequency: quarterly
+  trigger: "On the quarterly SDS currency review"
+
 - id: supply-reorder-list
   title: "Generate clinical supply reorder list from usage"
   domain: "Procurement & Vendor Mgmt"
@@ -16711,6 +19077,19 @@
   frequency: weekly
   trigger: "Review this week's lab supply requisitions"
 
+- id: warranty-entitlement-claim-draft
+  title: "Match unserviceable parts to warranty and draft claim packages"
+  domain: "Procurement & Vendor Mgmt"
+  roles: ["Component Repair & Warranty Administrator"]
+  description: "Check removed components' serial and install/removal dates against warranty terms and draft entitlement claim packages for eligible units."
+  inputs: ["Removal records", "Warranty terms", "Component history"]
+  outputs: ["Warranty eligibility determination", "Draft claim package"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Inventory/ERP system", "Warranty register", "Document template tool"]
+  frequency: weekly
+  trigger: "an unserviceable component is removed"
+
 - id: vendor-onboarding-packet
   title: "Prepare vendor onboarding packet"
   domain: "Procurement & Vendor Mgmt"
@@ -16814,6 +19193,19 @@
   tools: ["Inventory management system", "OCR/document parser"]
   frequency: ad-hoc
   trigger: "A supplier shipment arrives"
+
+- id: sub-invoice-verification
+  title: "Reconcile subconsultant invoices against agreement and budget"
+  domain: "Procurement & Vendor Mgmt"
+  roles: ["Subconsultant Agreement Administrator"]
+  description: "Check sub invoice amounts, rates, and remaining budget against the executed agreement and not-to-exceed limit; flag overages."
+  inputs: ["subconsultant invoice", "executed sub agreement", "budget remaining"]
+  outputs: ["verification note", "exception flags"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["spreadsheet", "accounting system export"]
+  frequency: monthly
+  trigger: "Sub invoice came in for approval"
 
 - id: ppap-submission-checklist-review
   title: "Review PPAP submission for completeness"
@@ -16958,6 +19350,19 @@
   frequency: weekly
   trigger: "Certificate nearing expiry"
 
+- id: aog-parts-sourcing-triage
+  title: "Triage AOG requests and draft a parts-sourcing summary"
+  domain: "Procurement & Vendor Mgmt"
+  roles: ["AOG & Parts Logistics Coordinator"]
+  description: "On an AOG alert, identify the part number, approved alternates/interchangeables, and candidate suppliers, drafting a prioritized sourcing summary."
+  inputs: ["AOG request", "Illustrated parts catalog / interchangeability data", "Approved supplier list"]
+  outputs: ["Prioritized sourcing summary", "Supplier shortlist with lead times"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Inventory/ERP system", "Parts catalog", "Email"]
+  frequency: daily
+  trigger: "an AOG alert comes in"
+
 - id: vendor-delivery-validation
   title: "Validate vendor delivery completeness against the PO"
   domain: "Procurement & Vendor Mgmt"
@@ -16983,6 +19388,32 @@
   tools: ["ticketing", "ERP", "email"]
   frequency: ad-hoc
   trigger: "we're ending the contract with this vendor, run the offboarding steps"
+
+- id: sub-insurance-cert-tracking
+  title: "Verify and track subconsultant insurance certificates"
+  domain: "Procurement & Vendor Mgmt"
+  roles: ["Subconsultant Agreement Administrator"]
+  description: "Check each sub's COI for required limits, additional-insured status, and expiry; flag deficiencies and upcoming lapses."
+  inputs: ["certificates of insurance", "contract insurance requirements"]
+  outputs: ["compliance status by sub", "expiry reminders"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["document parser", "tracking spreadsheet", "reminder tool"]
+  frequency: monthly
+  trigger: "Time to refresh sub insurance compliance"
+
+- id: part-cert-traceability-verify
+  title: "Verify part release certificates against received parts"
+  domain: "Procurement & Vendor Mgmt"
+  roles: ["MRO Quality & Maintenance Records Auditor"]
+  description: "Match incoming parts to their authorized release certificates (8130-3/EASA Form 1) and flag missing or mismatched traceability."
+  inputs: ["Receiving records", "Release certificates", "Purchase orders"]
+  outputs: ["Certificate verification result", "Quarantine/hold list"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["Inventory/ERP system", "Document management system"]
+  frequency: daily
+  trigger: "a parts shipment is received"
 
 - id: verify-subcontractor-compliance-docs
   title: "Verify subcontractor compliance documents"
@@ -17074,6 +19505,19 @@
   tools: ["Spreadsheet", "Calendar"]
   frequency: ad-hoc
   trigger: "Show what 3pm Tuesday is for everyone on the invite"
+
+- id: tour-itinerary-build
+  title: "Build artist itineraries and advance sheets for a run"
+  domain: "Executive / Admin Support"
+  roles: ["Talent & booking coordinator"]
+  description: "Assemble travel, hotel, venue, and timing details into a day-by-day itinerary and show advance sheet."
+  inputs: ["Confirmed dates", "Travel and hotel bookings", "Venue contacts"]
+  outputs: ["Tour itinerary", "Advance sheet"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document generator", "calendar", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "as a tour routing is locked"
 
 - id: build-showroom-appointment-schedule
   title: "Build showroom appointment schedule for market week"
@@ -17712,6 +20156,19 @@
   frequency: monthly
   trigger: "analyze sentiment and share of voice across this month's coverage versus our two main competitors"
 
+- id: media-list-build
+  title: "Build a targeted media list from a beat or topic"
+  domain: "Communications & PR"
+  roles: ["Earned media & coverage analyst"]
+  description: "Compile relevant journalists and outlets by beat with contact details and recent relevant articles."
+  inputs: ["Topic/beat brief", "Journalist database"]
+  outputs: ["Targeted media list"]
+  automation: medium
+  human_in_loop: spot-check
+  tools: ["media database", "spreadsheet"]
+  frequency: ad-hoc
+  trigger: "when planning outreach for an announcement"
+
 - id: internal-comms-cascade-pack
   title: "Build Manager Cascade Pack from an Executive Announcement"
   domain: "Communications & PR"
@@ -17750,6 +20207,19 @@
   tools: ["spreadsheet", "BI tool", "knowledge base"]
   frequency: ad-hoc
   trigger: "build a media list of reporters covering enterprise AI in North America"
+
+- id: share-of-voice-analysis
+  title: "Calculate share of voice against competitors"
+  domain: "Communications & PR"
+  roles: ["Earned media & coverage analyst"]
+  description: "Tally coverage volume and key-message mentions for the brand vs competitors into a share-of-voice view."
+  inputs: ["Coverage data set", "Competitor list"]
+  outputs: ["Share-of-voice report"]
+  automation: high
+  human_in_loop: spot-check
+  tools: ["spreadsheet", "media monitoring tool"]
+  frequency: quarterly
+  trigger: "ahead of the quarterly business review"
 
 - id: community-sentiment-digest
   title: "Compile community sentiment digest from forums and chat"
@@ -17829,6 +20299,19 @@
   frequency: ad-hoc
   trigger: "after service is restored"
 
+- id: media-coverage-clip-report
+  title: "Compile the media coverage clip report"
+  domain: "Communications & PR"
+  roles: ["Earned media & coverage analyst"]
+  description: "Aggregate coverage hits with outlet, reach, sentiment and message pull-through into a client clip report."
+  inputs: ["Coverage hit list", "Outlet reach data"]
+  outputs: ["Coverage clip report", "Coverage summary metrics"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["spreadsheet", "media monitoring tool"]
+  frequency: weekly
+  trigger: "at the weekly coverage round-up"
+
 - id: corporate-action-client-notice
   title: "Corporate action client notification drafting"
   domain: "Communications & PR"
@@ -17880,6 +20363,19 @@
   tools: ["mass notification system"]
   frequency: ad-hoc
   trigger: "An incident is downgraded or resolved"
+
+- id: vote-result-announcement
+  title: "Draft and distribute vote-result announcements"
+  domain: "Communications & PR"
+  roles: ["Token grants and governance coordinator"]
+  description: "Turn a closed vote tally and proposal summary into a community announcement draft."
+  inputs: ["vote tally", "proposal summary"]
+  outputs: ["announcement draft"]
+  automation: medium
+  human_in_loop: approve
+  tools: ["community messaging platform", "template library"]
+  frequency: ad-hoc
+  trigger: "when a governance vote closes"
 
 - id: draft-admissions-decision-letters
   title: "Draft applicant decision letters"
@@ -17959,6 +20455,19 @@
   frequency: ad-hoc
   trigger: "Write a notice about the elevator maintenance this weekend"
 
+- id: vasp-data-request-email
+  title: "Draft counterparty data-request emails"
+  domain: "Communications & PR"
+  roles: ["Travel-rule compliance clerk"]
+  description: "Generate outreach emails to counterparty VASPs requesting missing originator or beneficiary details."
+  inputs: ["field exception list", "counterparty contacts"]
+  outputs: ["outreach email drafts"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["email client", "template library"]
+  frequency: ad-hoc
+  trigger: "when a transfer is missing originator or beneficiary data"
+
 - id: crew-roster-change-notifications
   title: "Draft crew roster change notifications"
   domain: "Communications & PR"
@@ -17997,6 +20506,19 @@
   tools: ["CRM", "docs", "email"]
   frequency: weekly
   trigger: "write thank-you letters for this week's donations"
+
+- id: eligibility-determination-notice-draft
+  title: "Draft eligibility determination notices"
+  domain: "Communications & PR"
+  roles: ["Intake & eligibility coordinator", "Benefits navigation assistant"]
+  description: "Generate the standard approval, denial, or request-for-information notice populated from the determination record and program-specific language."
+  inputs: ["Determination decision", "Applicant record", "Notice templates"]
+  outputs: ["Draft determination notice"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document generator", "template library"]
+  frequency: daily
+  trigger: "when an eligibility decision is finalized"
 
 - id: draft-employee-move-communications-and-faq
   title: "Draft employee move communications and FAQ"
@@ -18179,6 +20701,19 @@
   tools: ["Appeals case system", "Message template library"]
   frequency: daily
   trigger: "After an appeal outcome is finalized"
+
+- id: benefit-determination-plainlanguage
+  title: "Draft plain-language benefit and appeal explanations"
+  domain: "Communications & PR"
+  roles: ["Benefits navigation assistant"]
+  description: "Translate a benefit determination or denial into a plain-language explanation with clear next steps and appeal deadlines."
+  inputs: ["Determination letter", "Appeal procedure"]
+  outputs: ["Plain-language explanation", "Next-steps checklist"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["document generator", "translation tool"]
+  frequency: ad-hoc
+  trigger: "when a client receives a confusing determination"
 
 - id: draft-community-guidelines-update
   title: "Draft plain-language community guidelines update"
@@ -18634,6 +21169,19 @@
   tools: ["document editor", "knowledge base"]
   frequency: ad-hoc
   trigger: "Turn this project into a sanitized case study for our creds deck"
+
+- id: ic-memo-first-draft
+  title: "Assemble IC memo first draft"
+  domain: "Strategy & Consulting"
+  roles: ["Investment Committee Memo Preparer"]
+  description: "Pull deal model outputs, diligence notes and market data into the firm's IC memo template as a first draft."
+  inputs: ["Deal model", "Diligence notes", "IC memo template"]
+  outputs: ["First-draft IC memo"]
+  automation: low
+  human_in_loop: review-before-send
+  tools: ["Document editor", "Spreadsheet"]
+  frequency: ad-hoc
+  trigger: "When a deal is readied for IC"
 
 - id: assess-capability-maturity
   title: "Assess capability maturity against model"
@@ -19180,6 +21728,19 @@
   tools: ["CRM", "knowledge base", "spreadsheet"]
   frequency: ad-hoc
   trigger: "Check this new client for conflicts before we accept the engagement"
+
+- id: governance-proposal-brief
+  title: "Summarize governance proposals into a voting brief"
+  domain: "Strategy & Consulting"
+  roles: ["Token grants and governance coordinator"]
+  description: "Condense proposal text and forum discussion into a brief with pros, cons, and prior-vote context."
+  inputs: ["proposal text", "forum discussion", "prior vote history"]
+  outputs: ["voting brief with pros and cons"]
+  automation: medium
+  human_in_loop: review-before-send
+  tools: ["governance forum", "word processor"]
+  frequency: weekly
+  trigger: "when a new proposal goes on-chain"
 
 - id: summarize-secondary-research-sources
   title: "Summarize secondary research sources into a findings brief"
