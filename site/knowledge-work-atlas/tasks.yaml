@@ -1,7 +1,7 @@
 # Automatable Knowledge-Work Atlas
 # Catalog of small, automatable NON-DEVELOPMENT knowledge-work tasks.
 # Each task is one step a Claude skill could perform, tagged by role and grouped by domain.
-# Tasks: 1734 | Domains: 17 | Roles: 614
+# Tasks: 1734 | Domains: 17 | Roles: 607 (distinct after build.py role-casing merge)
 # Schema: id, title, domain, roles[], description, inputs[], outputs[],
 #         automation(low|medium|high), human_in_loop, tools[], frequency, trigger
 # Source of truth. Edit here, then run build.py to refresh index.html + README.md.

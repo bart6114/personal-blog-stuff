@@ -80,15 +80,63 @@ records = parse_yaml(YAML_PATH)
 dom_order = {d: i for i, d in enumerate(CANON_DOMAINS)}
 records.sort(key=lambda r: (dom_order.get(r.get("domain", ""), 999), r.get("domain", ""), r.get("title", "").lower()))
 
+# Normalize tools in place: lowercase + strip to a single canonical label, written
+# back onto each record so search matching (and any future facet) agrees. Collapses
+# the casing-dupe groups (e.g. "Spreadsheet" -> "spreadsheet") without touching counts.
+for r in records:
+    if "tools" in r:
+        seen, norm = set(), []
+        for t in r["tools"]:
+            c = " ".join(str(t).strip().lower().split())
+            if c and c not in seen:
+                seen.add(c)
+                norm.append(c)
+        r["tools"] = norm
+
+# Canonicalize role spelling: merge casing-dupe variants (e.g. "Hr Business Partner"
+# -> "HR Business Partner") to one display form -- the most frequently used spelling
+# wins -- written back onto each record so the role facet, filter, datalist, card chips,
+# and the headline count all agree (collapses 614 raw -> 607 distinct, no task lost).
+_role_freq = collections.Counter(
+    x for r in records for x in r.get("roles", []) if x != "(unspecified)"
+)
+_role_canon = {}
+for name, _ in _role_freq.most_common():  # most common spelling per casefold key wins
+    _role_canon.setdefault(name.casefold(), name)
+for r in records:
+    if "roles" in r:
+        seen, norm = set(), []
+        for x in r["roles"]:
+            disp = x if x == "(unspecified)" else _role_canon.get(x.casefold(), x)
+            if disp not in seen:
+                seen.add(disp)
+                norm.append(disp)
+        r["roles"] = norm
+
 dom_counts = collections.Counter(r.get("domain", "?") for r in records)
 auto_counts = collections.Counter(r.get("automation", "?") for r in records)
-all_roles = sorted({x for r in records for x in r.get("roles", []) if x != "(unspecified)"}, key=str.lower)
-discovered = sorted([r for r in all_roles if r.lower() not in STARTER_ROLES], key=str.lower)
+all_roles = sorted({x for r in records for x in r.get("roles", []) if x != "(unspecified)"}, key=lambda s: (s.casefold(), s))
+discovered = sorted([r for r in all_roles if r.lower() not in STARTER_ROLES], key=lambda s: (s.casefold(), s))
 domains_sorted = sorted(dom_counts, key=lambda d: dom_order.get(d, 999))
+
+# Per-domain meta precomputed for the Home overview tiles (count, automation split,
+# top roles) so tiles render without recomputation in JS.
+dom_meta = {}
+for d in domains_sorted:
+    drecs = [r for r in records if r.get("domain") == d]
+    ac = collections.Counter(r.get("automation", "?") for r in drecs)
+    rc = collections.Counter(x for r in drecs for x in r.get("roles", []) if x != "(unspecified)")
+    dom_meta[d] = {
+        "count": len(drecs),
+        "high": ac.get("high", 0),
+        "medium": ac.get("medium", 0),
+        "low": ac.get("low", 0),
+        "topRoles": [name for name, _ in rc.most_common(3)],
+    }
 
 # ---------------- index.html ----------------
 DATA_JSON = json.dumps(records, ensure_ascii=False).replace("</", "<\\/")
-META_JSON = json.dumps({"domains": domains_sorted, "roles": all_roles}, ensure_ascii=False).replace("</", "<\\/")
+META_JSON = json.dumps({"domains": domains_sorted, "roles": all_roles, "domainMeta": dom_meta}, ensure_ascii=False).replace("</", "<\\/")
 
 HTML = r"""<!doctype html>
 <html lang="en">
@@ -98,13 +146,15 @@ HTML = r"""<!doctype html>
 <title>Automatable Knowledge-Work Atlas</title>
 <style>
   :root{
-    --bg:#f6f7f9; --card:#fff; --ink:#1c2430; --muted:#6b7682; --line:#e6e9ee;
+    --bg:#f6f7f9; --card:#fff; --ink:#1c2430; --muted:#586473; --line:#e6e9ee;
     --accent:#4b5563; --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.04);
+    --a-high:#1a7f43; --a-med:#875400; --a-low:#5b6573;
   }
   *{box-sizing:border-box}
   body{margin:0;font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
        color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
   a{color:inherit}
+  :focus-visible{outline:2px solid #4b5563;outline-offset:2px}
   header{max-width:1120px;margin:0 auto;padding:40px 24px 8px}
   h1{margin:0 0 6px;font-size:28px;letter-spacing:-.02em}
   .sub{margin:0;color:var(--muted);max-width:680px}
@@ -118,12 +168,12 @@ HTML = r"""<!doctype html>
             background:#fff;color:var(--ink);outline:none}
   .controls input{flex:1;min-width:220px}
   .controls input:focus,.controls select:focus{border-color:#aab4c2}
+  .controls input:focus-visible,.controls select:focus-visible{outline:2px solid #4b5563;outline-offset:2px}
   .controls button{font:inherit;padding:9px 14px;border:1px solid var(--line);border-radius:9px;background:#fff;cursor:pointer;color:var(--muted)}
   .controls button:hover{color:var(--ink);border-color:#aab4c2}
-  .count{max-width:1120px;margin:18px auto 0;padding:0 24px;color:var(--muted);font-size:13px}
   .grid{max-width:1120px;margin:12px auto 60px;padding:0 24px;display:grid;
-        grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
-  .card{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:12px;
+        grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:14px}
+  .card{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--dc,var(--accent));border-radius:12px;
         padding:16px;cursor:pointer;box-shadow:var(--shadow);transition:transform .08s ease,box-shadow .12s ease}
   .card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(16,24,40,.10)}
   .card-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
@@ -135,12 +185,14 @@ HTML = r"""<!doctype html>
   .chip.more{background:transparent;color:var(--muted)}
   .badge{font-size:11px;font-weight:600;padding:2px 9px;border-radius:999px;text-transform:capitalize}
   .a-high{background:#e7f6ec;color:#1a7f43}
-  .a-med{background:#fdf3e2;color:#a76a16}
+  .a-med{background:#fdf3e2;color:#875400}
   .a-low{background:#eef1f5;color:#5b6573}
   .overlay{position:fixed;inset:0;background:rgba(16,24,40,.45);display:flex;align-items:center;justify-content:center;padding:24px;z-index:20}
   .overlay[hidden]{display:none}
   .modal{background:#fff;border-radius:16px;max-width:560px;width:100%;max-height:86vh;overflow:auto;padding:26px 28px;position:relative;box-shadow:0 20px 60px rgba(16,24,40,.3)}
-  .modal .close{position:absolute;top:14px;right:16px;border:none;background:none;font-size:26px;line-height:1;color:var(--muted);cursor:pointer}
+  .modal .close{position:absolute;top:8px;right:10px;border:none;background:none;font-size:26px;line-height:1;
+                color:var(--muted);cursor:pointer;padding:6px;min-width:44px;min-height:44px;border-radius:8px}
+  .modal .close:hover{color:var(--ink)}
   .modal h2{margin:12px 0 8px;font-size:21px;letter-spacing:-.01em}
   .modal .desc{font-size:14.5px;margin-bottom:18px}
   .modal .domain{margin-right:10px}
@@ -151,6 +203,54 @@ HTML = r"""<!doctype html>
   .trigger .k{display:block;color:var(--muted);font-size:13px;margin-bottom:6px}
   .trigger code{display:block;background:#0f1722;color:#d7e0ec;padding:12px 14px;border-radius:10px;font-size:13px;line-height:1.5;white-space:pre-wrap}
   footer{max-width:1120px;margin:0 auto;padding:24px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line)}
+  /* filters group (shown only in domain / results views) */
+  .filters{display:flex;gap:10px;align-items:center}
+  .filters[hidden]{display:none}
+  .controls #frole{flex:0 1 220px;min-width:160px}
+  /* Home overview */
+  .home{max-width:1120px;margin:18px auto 60px;padding:0 24px}
+  .home[hidden]{display:none}
+  .home-bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:18px}
+  .chip-btn{font:inherit;font-size:13px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);
+            background:#fff;color:var(--ink);cursor:pointer;text-decoration:none;display:inline-flex;gap:6px;align-items:center}
+  .chip-btn:hover{border-color:#aab4c2}
+  .chip-btn.qw{background:#e7f6ec;border-color:#bfe6cd;color:#1a7f43;font-weight:600}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+  .tile{text-align:left;font:inherit;color:inherit;background:var(--card);border:1px solid var(--line);
+        border-radius:12px;padding:16px;cursor:pointer;box-shadow:var(--shadow);transition:transform .08s ease,box-shadow .12s ease}
+  .tile:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(16,24,40,.10)}
+  .tile-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .tname{font-size:15px;font-weight:600;line-height:1.25}
+  .tcount{font-size:24px;font-weight:700;letter-spacing:-.02em}
+  .minibar{display:flex;height:6px;border-radius:999px;overflow:hidden;margin:12px 0 10px;background:#eef1f5}
+  .minibar i{display:block}
+  .minibar .mh{background:var(--a-high)} .minibar .mm{background:var(--a-med)} .minibar .ml{background:var(--a-low)}
+  .troles{font-size:12.5px;color:var(--muted);min-height:1.2em}
+  .leg{font-size:12px;color:var(--muted);display:inline-flex;align-items:center;gap:5px}
+  .leg i{width:10px;height:10px;border-radius:2px;display:inline-block}
+  .rolehint{font-size:12px;color:var(--muted);white-space:nowrap}
+  /* breadcrumb + domain/results header */
+  .crumb{max-width:1120px;margin:18px auto 0;padding:0 24px}
+  .crumb[hidden]{display:none}
+  .bc{font-size:13px;color:var(--muted)}
+  .bc a{color:var(--accent);text-decoration:none}
+  .bc a:hover{text-decoration:underline}
+  .crumb-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:8px}
+  .crumb-head h2{margin:0;font-size:22px;letter-spacing:-.01em}
+  .crumb-head .dc{color:var(--muted);font-size:14px}
+  .copy{font:inherit;font-size:13px;padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:#fff;cursor:pointer;color:var(--muted)}
+  .copy:hover{color:var(--ink);border-color:#aab4c2}
+  /* sticky domain group-headers in cross-domain results */
+  .group-h{grid-column:1/-1;position:sticky;top:var(--ctrlh,62px);z-index:3;margin:6px 0 0;padding:10px 0 10px 10px;
+           border-left:3px solid var(--dc,var(--accent));border-bottom:1px solid var(--line);
+           background:rgba(246,247,249,.94);backdrop-filter:blur(8px);font-size:13px;font-weight:600;color:var(--ink)}
+  .group-h span{color:var(--muted);font-weight:500}
+  /* per-card human-in-loop badge */
+  .badge2{font-size:10.5px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap}
+  .b-auto-on{background:#eef6ff;color:#1d4ed8}
+  .b-human{background:#f4eefb;color:#7c3aed}
+  .empty{grid-column:1/-1;color:var(--muted);padding:28px 4px;font-size:14px}
+  #sentinel{height:1px}
 </style>
 </head>
 <body>
@@ -160,14 +260,19 @@ HTML = r"""<!doctype html>
   <div class="stats" id="stats"></div>
 </header>
 <div class="controls"><div class="inner">
-  <input id="q" type="search" placeholder="Search tasks, descriptions, roles, tools&hellip;" autocomplete="off">
-  <select id="fdomain"></select>
-  <select id="frole"></select>
-  <select id="fauto"></select>
+  <input id="q" type="search" placeholder="Search tasks, descriptions, roles, tools&hellip;" autocomplete="off" aria-label="Search tasks">
+  <span class="filters" id="filters" hidden>
+    <input id="frole" list="rolelist" placeholder="Any role&hellip;" autocomplete="off" aria-label="Filter by role">
+    <datalist id="rolelist"></datalist>
+    <span class="rolehint" id="rolehint" aria-live="polite"></span>
+    <select id="fauto" aria-label="Filter by automation level"></select>
+  </span>
   <button id="clear">Reset</button>
 </div></div>
-<div class="count" id="count"></div>
-<main class="grid" id="grid"></main>
+<section class="home" id="home" hidden></section>
+<div class="crumb" id="crumb" hidden></div>
+<main class="grid" id="grid" aria-live="polite"></main>
+<div id="sentinel"></div>
 <div class="overlay" id="overlay" hidden><div class="modal" id="modal"></div></div>
 <footer>
   A living catalog. Source of truth is <code>tasks.yaml</code>; this page is generated by <code>build.py</code>.
@@ -177,59 +282,273 @@ HTML = r"""<!doctype html>
 const DATA = /*__DATA__*/;
 const META = /*__META__*/;
 const $ = s => document.querySelector(s);
-const fq=$('#q'), fd=$('#fdomain'), fr=$('#frole'), fa=$('#fauto');
-const grid=$('#grid'), countEl=$('#count');
+const fq=$('#q'), fr=$('#frole'), fa=$('#fauto');
+const grid=$('#grid'), homeEl=$('#home'), crumbEl=$('#crumb'), controlsEl=$('.controls'),
+      filtersEl=$('#filters'), sentinel=$('#sentinel'), dlRole=$('#rolelist'), overlay=$('#overlay'),
+      roleHintEl=$('#rolehint');
 const PALETTE=['#3b82f6','#8b5cf6','#ec4899','#f59e0b','#10b981','#06b6d4','#ef4444','#6366f1','#14b8a6','#f97316','#a855f7','#0ea5e9','#84cc16','#e11d48','#22c55e','#eab308','#64748b'];
 const domColor={}; META.domains.forEach((d,i)=>domColor[d]=PALETTE[i%PALETTE.length]);
 const autoClass={high:'a-high',medium:'a-med',low:'a-low'};
+const DM=META.domainMeta||{};
+const byId={}; DATA.forEach(t=>{byId[t.id]=t;});
+/* Role canonicalization: collapse casing-duplicate role tags (e.g. "HR Business Partner"
+   vs "HR business partner") for the facet + filter, picking the most-common casing as the
+   display label, without mutating the embedded data or the headline role count. */
+const ROLE_KEY=r=>String(r).toLowerCase();
+const ROLE_DISPLAY=(()=>{
+  const cnt={},disp={};
+  DATA.forEach(t=>(t.roles||[]).forEach(r=>{ if(r==='(unspecified)')return;
+    const k=ROLE_KEY(r); (cnt[k]=cnt[k]||{})[r]=(cnt[k][r]||0)+1; }));
+  Object.keys(cnt).forEach(k=>{ let best=null,bn=-1;
+    for(const v in cnt[k]){ if(cnt[k][v]>bn){bn=cnt[k][v];best=v;} } disp[k]=best; });
+  return disp;
+})();
+const ROLESET=new Set(Object.keys(ROLE_DISPLAY));
+let lastRC={};
+const TOTAL_HIGH=DATA.filter(t=>t.automation==='high').length;
+const TILE_ORDER=META.domains.slice().sort((a,b)=>((DM[b]||{}).count||0)-((DM[a]||{}).count||0));
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-function opt(v,l){const o=document.createElement('option');o.value=v;o.textContent=l;return o;}
-fd.appendChild(opt('','All domains')); META.domains.forEach(d=>fd.appendChild(opt(d,d)));
-fr.appendChild(opt('','All roles')); META.roles.forEach(r=>fr.appendChild(opt(r,r)));
-fa.appendChild(opt('','All automation')); ['high','medium','low'].forEach(a=>fa.appendChild(opt(a,a[0].toUpperCase()+a.slice(1))));
+fa.innerHTML='<option value="">All automation</option>'+['high','medium','low'].map(a=>`<option value="${a}">${a[0].toUpperCase()+a.slice(1)}</option>`).join('');
 $('#stats').innerHTML=`<span><b>${DATA.length}</b> tasks</span><span><b>${META.domains.length}</b> domains</span><span><b>${META.roles.length}</b> roles</span>`;
-function matches(t){
-  const q=fq.value.trim().toLowerCase();
-  if(fd.value && t.domain!==fd.value) return false;
-  if(fr.value && !(t.roles||[]).includes(fr.value)) return false;
-  if(fa.value && t.automation!==fa.value) return false;
-  if(q){const hay=(t.title+' '+t.description+' '+t.trigger+' '+(t.roles||[]).join(' ')+' '+(t.tools||[]).join(' ')).toLowerCase(); if(!hay.includes(q)) return false;}
-  return true;
-}
-function render(){
-  const items=DATA.filter(matches);
-  countEl.textContent=`Showing ${items.length} of ${DATA.length} tasks`;
-  const frag=document.createDocumentFragment();
-  items.forEach(t=>{
-    const c=document.createElement('article');
-    c.className='card'; c.style.setProperty('--accent',domColor[t.domain]||'#888');
-    const roles=t.roles||[];
-    c.innerHTML=`<div class="card-top"><span class="domain">${esc(t.domain)}</span><span class="badge ${autoClass[t.automation]||''}">${esc(t.automation)}</span></div>`+
-      `<h3>${esc(t.title)}</h3><p class="desc">${esc(t.description)}</p>`+
-      `<div class="chips">${roles.slice(0,4).map(r=>`<span class="chip">${esc(r)}</span>`).join('')}${roles.length>4?`<span class="chip more">+${roles.length-4}</span>`:''}</div>`;
-    c.addEventListener('click',()=>openModal(t));
-    frag.appendChild(c);
+
+/* ---------------- hash router ---------------- */
+let curD='';
+function parseHash(){
+  const o={d:'',role:'',auto:'',q:'',t:'',all:false};
+  location.hash.replace(/^#/,'').split('&').forEach(p=>{
+    if(!p) return;
+    const i=p.indexOf('='), k=i<0?p:p.slice(0,i);
+    let v=''; if(i>=0){ const raw=p.slice(i+1).replace(/\+/g,' '); try{ v=decodeURIComponent(raw); }catch(_){ v=raw; } }
+    if(k==='d')o.d=v; else if(k==='role')o.role=v; else if(k==='auto')o.auto=v;
+    else if(k==='q')o.q=v; else if(k==='t')o.t=v; else if(k==='all')o.all=true;
   });
-  grid.innerHTML=''; grid.appendChild(frag);
+  return o;
 }
+function buildHash(){
+  const p=[];
+  if(curD) p.push('d='+encodeURIComponent(curD));
+  if(fr.value) p.push('role='+encodeURIComponent(fr.value));
+  if(fa.value) p.push('auto='+encodeURIComponent(fa.value));
+  const q=fq.value.trim(); if(q) p.push('q='+encodeURIComponent(q));
+  return p.join('&');
+}
+function navPush(h){ if(location.hash===('#'+h)||(h===''&&(location.hash===''||location.hash==='#'))){ render(); } else { location.hash=h; } }
+function navReplace(h){ history.replaceState(null,'','#'+(h||'')); render(); }
+function setVal(el,v){ v=v||''; if(el.value!==v && document.activeElement!==el) el.value=v; }
+
+/* ---------------- filtering ---------------- */
+function searchHay(t){return (t.title+' '+t.description+' '+(t.trigger||'')+' '+(t.roles||[]).join(' ')+' '+(t.tools||[]).join(' ')).toLowerCase();}
+function filterTasks(domain){
+  const q=fq.value.trim().toLowerCase(), auto=fa.value, out=[];
+  // The role filter only engages once the typed text resolves to a known role, so
+  // partial typing ("Recru") never blanks the grid. Matching is casing-insensitive.
+  const roleKey=fr.value?ROLE_KEY(fr.value):'', roleOk=roleKey&&ROLESET.has(roleKey);
+  for(const t of DATA){
+    if(domain && t.domain!==domain) continue;
+    if(roleOk && !(t.roles||[]).some(r=>ROLE_KEY(r)===roleKey)) continue;
+    if(auto && t.automation!==auto) continue;
+    if(q && !searchHay(t).includes(q)) continue;
+    out.push(t);
+  }
+  return out;
+}
+
+/* ---------------- cards ---------------- */
+function cardEl(t){
+  const c=document.createElement('article');
+  c.className='card'; c.style.setProperty('--dc',domColor[t.domain]||'#888');
+  c.tabIndex=0; c.setAttribute('role','button'); c.dataset.id=t.id;
+  c.setAttribute('aria-label',t.title+' — open task details');
+  const roles=t.roles||[];
+  const hil=(t.human_in_loop||'').toLowerCase();
+  const unattended=(hil==='none'||hil==='spot-check');
+  const hb=unattended?'<span class="badge2 b-auto-on">runs unattended</span>':'<span class="badge2 b-human">keep a human</span>';
+  c.innerHTML=`<div class="card-top"><span class="domain">${esc(t.domain)}</span><span class="badge ${autoClass[t.automation]||''}">${esc(t.automation)}</span></div>`+
+    `<h3>${esc(t.title)}</h3><p class="desc">${esc(t.description)}</p>`+
+    `<div class="chips">${roles.slice(0,4).map(r=>`<span class="chip">${esc(r)}</span>`).join('')}${roles.length>4?`<span class="chip more">+${roles.length-4}</span>`:''}${hb}</div>`;
+  c.addEventListener('click',()=>openTask(t.id));
+  c.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openTask(t.id); } });
+  return c;
+}
+
+/* ---------------- windowed rendering ---------------- */
+const win={items:[],n:0,grouped:false,counts:{},last:null};
+function groupHeader(d,n){
+  const e=document.createElement('div'); e.className='group-h';
+  e.style.setProperty('--dc',domColor[d]||'#888');
+  e.innerHTML=`${esc(d)} <span>&mdash; ${n}</span>`; return e;
+}
+function appendMore(){
+  if(win.n>=win.items.length) return;
+  const end=Math.min(win.n+60, win.items.length), frag=document.createDocumentFragment();
+  for(let i=win.n;i<end;i++){
+    const t=win.items[i];
+    if(win.grouped && t.domain!==win.last){ frag.appendChild(groupHeader(t.domain,win.counts[t.domain]||0)); win.last=t.domain; }
+    frag.appendChild(cardEl(t));
+  }
+  win.n=end; grid.appendChild(frag);
+}
+function setWindow(items,grouped){
+  win.items=items; win.n=0; win.grouped=grouped; win.last=null; win.counts={};
+  if(grouped){ items.forEach(t=>{ win.counts[t.domain]=(win.counts[t.domain]||0)+1; }); }
+  grid.innerHTML='';
+  if(!items.length){ grid.innerHTML='<p class="empty">No tasks match these filters. Try clearing the role or automation filter.</p>'; return; }
+  appendMore();
+}
+const io=new IntersectionObserver(es=>{ es.forEach(e=>{ if(e.isIntersecting) appendMore(); }); },{rootMargin:'600px'});
+io.observe(sentinel);
+
+/* ---------------- facets (scoped) ---------------- */
+function populateFacets(scope){
+  const q=fq.value.trim().toLowerCase();
+  const base=DATA.filter(t=>{
+    if(scope && t.domain!==scope) return false;
+    if(q && !searchHay(t).includes(q)) return false;
+    return true;
+  });
+  // Count roles by normalized key so casing-duplicate tags collapse into one option.
+  const rc={}; base.forEach(t=>(t.roles||[]).forEach(r=>{ if(r==='(unspecified)')return;
+    const k=ROLE_KEY(r); rc[k]=(rc[k]||0)+1; }));
+  lastRC=rc;
+  // Don't rebuild the datalist while the user is typing into it (the suggestion list
+  // depends only on scope+search, never on the role value, and rebuilding flickers it).
+  if(document.activeElement!==fr){
+    const keys=Object.keys(rc).sort((a,b)=>rc[b]-rc[a]||a.localeCompare(b));
+    dlRole.innerHTML=keys.map(k=>{const d=ROLE_DISPLAY[k]||k; return `<option value="${esc(d)}" label="${esc(d)} (${rc[k]})"></option>`;}).join('');
+  }
+  const ac={high:0,medium:0,low:0}; base.forEach(t=>{ if(ac[t.automation]!=null) ac[t.automation]++; });
+  const cur=fa.value;
+  fa.innerHTML='<option value="">All automation</option>'+['high','medium','low'].map(a=>`<option value="${a}">${a[0].toUpperCase()+a.slice(1)} (${ac[a]})</option>`).join('');
+  fa.value=cur;
+  updateRoleHint();
+}
+function updateRoleHint(){
+  if(!roleHintEl) return;
+  const k=fr.value?ROLE_KEY(fr.value):'';
+  if(k && lastRC[k]!=null){ const n=lastRC[k]; roleHintEl.textContent=n+' task'+(n===1?'':'s'); }
+  else { const n=Object.keys(lastRC).length; roleHintEl.textContent=n+' role'+(n===1?'':'s'); }
+}
+
+/* ---------------- views ---------------- */
+function renderHome(){
+  curD='';
+  homeEl.hidden=false; crumbEl.hidden=true; filtersEl.hidden=true;
+  win.items=[]; win.n=0; grid.innerHTML='';
+  const bar=`<div class="home-bar"><a class="chip-btn qw" href="#auto=high">&#9889; Quick wins (${TOTAL_HIGH})</a>`+
+            `<a class="chip-btn" href="#all">Browse everything &rarr;</a>`+
+            `<span class="leg">Automation: <i style="background:var(--a-high)"></i>high `+
+            `<i style="background:var(--a-med)"></i>medium <i style="background:var(--a-low)"></i>low</span></div>`;
+  const tiles=TILE_ORDER.map(d=>{
+    const m=DM[d]||{count:0,high:0,medium:0,low:0,topRoles:[]};
+    const seg=(cls,n)=> n?`<i class="${cls}" style="flex:${n}"></i>`:'';
+    const barTitle=`High ${m.high} · Medium ${m.medium} · Low ${m.low}`;
+    const mb=`<div class="minibar" title="${esc(barTitle)}">${seg('mh',m.high)}${seg('mm',m.medium)}${seg('ml',m.low)}</div>`;
+    const roles=(m.topRoles||[]).join(' · ');
+    const al=`${d}: ${m.count} tasks. ${barTitle} automation.${roles?' Top roles: '+roles+'.':''}`;
+    return `<button class="tile" data-d="${esc(d)}" aria-label="${esc(al)}"><div class="tile-top"><span class="tname">${esc(d)}</span>`+
+           `<span class="tcount">${m.count}</span></div>${mb}<div class="troles">${esc(roles)}</div></button>`;
+  }).join('');
+  homeEl.innerHTML=bar+`<div class="tiles">${tiles}</div>`;
+  homeEl.querySelectorAll('.tile').forEach(b=>b.addEventListener('click',()=>navPush('d='+encodeURIComponent(b.dataset.d))));
+}
+function renderDomain(d){
+  curD=d;
+  homeEl.hidden=true; crumbEl.hidden=false; filtersEl.hidden=false;
+  const items=filterTasks(d);
+  crumbEl.innerHTML=`<div class="bc"><a href="#">Overview</a> / ${esc(d)}</div>`+
+    `<div class="crumb-head"><h2>${esc(d)}</h2>`+
+    `<span class="dc">${items.length} task${items.length===1?'':'s'}</span>`+
+    `<button class="copy" id="copyl">Copy link</button></div>`;
+  $('#copyl').addEventListener('click',copyLink);
+  populateFacets(d);
+  setWindow(items,false);
+}
+function renderResults(){
+  curD='';
+  homeEl.hidden=true; crumbEl.hidden=false; filtersEl.hidden=false;
+  const items=filterTasks('');
+  const q=fq.value.trim();
+  const ndom=new Set(items.map(t=>t.domain)).size;
+  const crumbLabel=q?`Search: &ldquo;${esc(q)}&rdquo;`:'Browse everything';
+  crumbEl.innerHTML=`<div class="bc"><a href="#">Overview</a> / ${crumbLabel}</div>`+
+    `<div class="crumb-head"><h2>${q?'Results':'Browse everything'}</h2>`+
+    `<span class="dc">${items.length} task${items.length===1?'':'s'} across ${ndom} domain${ndom===1?'':'s'}</span>`+
+    `<button class="copy" id="copyl">Copy link</button></div>`;
+  $('#copyl').addEventListener('click',copyLink);
+  populateFacets('');
+  setWindow(items,true);
+}
+
+/* ---------------- task modal ---------------- */
 function rowList(label,arr){if(!arr||!arr.length)return ''; return `<div class="row"><span class="k">${label}</span><span class="v">${arr.map(x=>`<span class="chip">${esc(x)}</span>`).join('')}</span></div>`;}
 function rowText(label,val){if(!val)return ''; return `<div class="row"><span class="k">${label}</span><span class="v">${esc(val)}</span></div>`;}
-function openModal(t){
-  $('#modal').innerHTML=`<button class="close" id="close">&times;</button>`+
-    `<span class="domain" style="color:${domColor[t.domain]||'#888'}">${esc(t.domain)}</span>`+
+let lastTaskId='';
+function openTask(id){ const base=buildHash(); navPush(base?base+'&t='+encodeURIComponent(id):'t='+encodeURIComponent(id)); }
+function openModalEl(t){
+  const modal=$('#modal');
+  modal.setAttribute('role','dialog'); modal.setAttribute('aria-modal','true');
+  modal.setAttribute('aria-labelledby','modalTitle'); modal.tabIndex=-1;
+  modal.innerHTML=`<button class="close" id="close" type="button" aria-label="Close">&times;</button>`+
+    `<span class="domain">${esc(t.domain)}</span>`+
     `<span class="badge ${autoClass[t.automation]||''}">${esc(t.automation)} automation</span>`+
-    `<h2>${esc(t.title)}</h2><p class="desc">${esc(t.description)}</p>`+
+    `<h2 id="modalTitle">${esc(t.title)}</h2><p class="desc">${esc(t.description)}</p>`+
     rowList('Roles',t.roles)+rowList('Inputs',t.inputs)+rowList('Outputs',t.outputs)+rowList('Tools',t.tools)+
     rowText('Human in loop',t.human_in_loop)+rowText('Frequency',t.frequency)+
     `<div class="trigger"><span class="k">Example prompt</span><code>${esc(t.trigger)}</code></div>`;
-  $('#overlay').hidden=false; $('#close').addEventListener('click',closeModal);
+  const wasOpen=!overlay.hidden;
+  overlay.hidden=false; document.body.style.overflow='hidden';
+  $('#close').addEventListener('click',closeModal);
+  if(!wasOpen) modal.focus();
 }
-function closeModal(){$('#overlay').hidden=true;}
-$('#overlay').addEventListener('click',e=>{if(e.target.id==='overlay')closeModal();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
-[fq,fd,fr,fa].forEach(el=>el.addEventListener('input',render));
-$('#clear').addEventListener('click',()=>{fq.value='';fd.value='';fr.value='';fa.value='';render();});
+function trapFocus(e){
+  if(e.key!=='Tab' || overlay.hidden) return;
+  const f=$('#modal').querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])');
+  if(!f.length) return;
+  const first=f[0], last=f[f.length-1];
+  if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+  else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+}
+function closeModal(){
+  document.body.style.overflow='';
+  // Replace (not push) the current #...&t= entry so closing doesn't leave a duplicate
+  // history step that Back would re-open. render() runs synchronously here.
+  navReplace(buildHash());
+  const id=lastTaskId; lastTaskId='';
+  let target=null;
+  if(id){ try{ target=grid.querySelector('[data-id="'+(window.CSS&&CSS.escape?CSS.escape(id):id)+'"]'); }catch(_){} }
+  (target||fq).focus();
+}
+function copyLink(){
+  const u=location.href;
+  if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(u);
+  const b=$('#copyl'); if(b){ const o=b.textContent; b.textContent='Copied!'; setTimeout(()=>{b.textContent=o;},1200); }
+}
+
+/* ---------------- main render from hash ---------------- */
+function render(){
+  const h=parseHash();
+  setVal(fq,h.q); setVal(fr,h.role); setVal(fa,h.auto);
+  if(h.d){ renderDomain(h.d); }
+  else if(h.all||h.q||h.role||h.auto){ renderResults(); }
+  else { renderHome(); }
+  if(h.t && byId[h.t]){ lastTaskId=h.t; openModalEl(byId[h.t]); }
+  else { overlay.hidden=true; document.body.style.overflow=''; }
+  setCtrlH();
+}
+
+/* Track the real controls-bar height so sticky group headers offset correctly even when
+   the bar wraps to 2-3 rows on narrow screens. */
+function setCtrlH(){ document.documentElement.style.setProperty('--ctrlh', controlsEl.offsetHeight+'px'); }
+window.addEventListener('resize',setCtrlH);
+
+overlay.addEventListener('click',e=>{ if(e.target.id==='overlay') closeModal(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape' && !overlay.hidden){ e.preventDefault(); closeModal(); } });
+$('#modal').addEventListener('keydown',trapFocus);
+[fq,fr,fa].forEach(el=>el.addEventListener('input',()=>{ updateRoleHint(); navReplace(buildHash()); }));
+$('#clear').addEventListener('click',()=>{ fq.value='';fr.value='';fa.value=''; navPush(curD?'d='+encodeURIComponent(curD):''); });
+window.addEventListener('hashchange',render);
 render();
+setCtrlH();
 </script>
 </body>
 </html>
@@ -262,8 +581,22 @@ roles, so the task &mdash; not the role &mdash; is the atomic unit.
 ## Explore
 
 Open **`index.html`** in a browser &mdash; it is a single self-contained file (data
-embedded, no server needed). Search, filter by domain / role / automation level, and
-click any task for inputs, outputs, tools, and an example prompt. Drop it on a blog as-is.
+embedded, no server needed, opens straight from `file://`).
+
+It lands on an **overview**: a grid of the {len(dom_counts)} domains, each tile showing its
+task count, a high/medium/low automation mini-bar, and its top roles. From there:
+
+- **Drill into a domain** to see its tasks, with role (type-ahead) and automation
+  filters scoped to that domain and a facet count on every option.
+- **Search** from the pinned box for cross-domain results, grouped under sticky
+  domain headers.
+- Jump straight to the **&#9889; Quick wins** (the {auto_counts.get('high',0)} high-automation
+  tasks) or **Browse everything** in one flat, grouped list.
+- Click any task for inputs, outputs, tools, human-in-loop, and an example prompt.
+
+Every view is **shareable**: the URL hash captures the domain, filters, search, and the
+open task (e.g. `#d=Recruiting%20%26%20Talent&auto=high`), so **Copy link** and the
+browser Back/Forward buttons just work. Drop it on a blog as-is.
 
 ## Tasks by domain
 
