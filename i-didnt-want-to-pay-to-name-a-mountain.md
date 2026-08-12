@@ -14,6 +14,6 @@ Not perfectly, obviously. Phone compasses are noisy and lining up the digital ho
 
 Kinda a wtf moment.
 
-The result is [NameThatPeak](https://namethatpeak.com/). You can just open it, or install it as a PWA if you want it on your home screen.
+The result is [NameThatPeak](https://namethatpeak.com/). It's best opened on a phone. You can use it directly in the browser, or install it as a PWA if you want it on your home screen.
 
 It does need internet access to fetch elevation and peak data. PeakVisor definitely handles the offline and polished-app side better. Mine is a static React site built to scratch my own tiny itch.
