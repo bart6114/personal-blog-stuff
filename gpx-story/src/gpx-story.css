@@ -1,0 +1,148 @@
+/* gpx-story component styles */
+
+.gpxs {
+  --gpxs-accent: #e8590c;
+  --gpxs-ink: #343a40;
+  --gpxs-muted: #868e96;
+  font-family: inherit;
+  color: var(--gpxs-ink);
+}
+
+.gpxs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  margin-bottom: 0.5rem;
+}
+.gpxs-title { font-weight: 700; font-size: 1.05rem; }
+.gpxs-stats { color: var(--gpxs-muted); font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+
+.gpxs-map {
+  height: 420px;
+  border-radius: 8px;
+  z-index: 0; /* keep Leaflet panes under the lightbox */
+}
+@media (max-width: 640px) {
+  .gpxs-map { height: min(420px, 62vh); }
+}
+
+.gpxs-chart { margin-top: 4px; }
+/* pan-y: vertical page scroll still works, horizontal touch drags drive the crosshair */
+.gpxs-chart-svg { display: block; touch-action: pan-y; }
+
+.gpxs-toggles a.gpxs-toggle {
+  font-size: 15px;
+  line-height: 30px;
+  width: 30px;
+  text-align: center;
+  filter: grayscale(1);
+  opacity: 0.45;
+}
+.gpxs-toggles a.gpxs-toggle-on { filter: none; opacity: 1; }
+
+.gpxs-grid { stroke: #e9ecef; stroke-width: 1; }
+.gpxs-tick { fill: var(--gpxs-muted); font-size: 10px; }
+.gpxs-tick-y { text-anchor: end; }
+.gpxs-tick-x { text-anchor: middle; }
+
+.gpxs-area { fill: color-mix(in srgb, var(--gpxs-accent, #e8590c) 16%, transparent); stroke: none; }
+.gpxs-line { fill: none; stroke: var(--gpxs-accent); stroke-width: 2; }
+
+.gpxs-cross-line { stroke: #adb5bd; stroke-width: 1; stroke-dasharray: 3 3; }
+.gpxs-cross-dot { fill: var(--gpxs-accent); stroke: #fff; stroke-width: 1.5; }
+.gpxs-cross-label { fill: var(--gpxs-ink); font-size: 11px; font-weight: 600; }
+
+.gpxs-chart-marker { cursor: pointer; }
+.gpxs-chart-marker circle { stroke: #fff; stroke-width: 1.5; }
+.gpxs-chart-marker-photo circle { fill: #1971c2; }
+.gpxs-chart-marker-note circle { fill: #f08c00; }
+.gpxs-marker-stem { stroke: #adb5bd; stroke-width: 1; }
+.gpxs-chart-marker:hover circle { r: 6; }
+
+/* photo markers on the map */
+.gpxs-photo-icon { background: none; border: none; }
+.gpxs-photo-thumb {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  border: 2.5px solid #fff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  /* force WebKit to clip children to the rounded corners */
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.12s ease;
+}
+.gpxs-photo-thumb:hover { transform: scale(1.15); }
+/* !important: Leaflet's .leaflet-marker-pane img rule sets width auto/max-width none */
+.gpxs-photo-thumb img {
+  width: 52px !important;
+  height: 52px !important;
+  max-width: none !important;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
+}
+/* badge is a sibling of the thumb (not a child) so the circle's
+   overflow clipping can't cut it off */
+.gpxs-photo-count {
+  position: absolute; top: -3px; right: -3px;
+  z-index: 1;
+  border: 1.5px solid #fff;
+  background: #1971c2; color: #fff;
+  font-size: 10px; font-weight: 700;
+  min-width: 16px; height: 16px; line-height: 16px;
+  text-align: center; border-radius: 8px;
+  padding: 0 3px;
+}
+
+/* text notes on the map */
+.gpxs-note-icon { background: none; border: none; }
+.gpxs-note {
+  transform: translate(-50%, calc(-100% - 8px));
+  display: inline-block;
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-left: 3px solid #f08c00;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  padding: 4px 8px;
+  font-size: 12px;
+  line-height: 1.35;
+  max-width: 180px;
+  width: max-content;
+  white-space: normal;
+}
+.gpxs-note strong { display: block; font-size: 12px; }
+.gpxs-note span { color: #495057; }
+
+/* lightbox */
+.gpxs-lightbox {
+  position: fixed; inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  display: none;
+  align-items: center; justify-content: center;
+  z-index: 10000;
+}
+.gpxs-lightbox.gpxs-open { display: flex; }
+.gpxs-lightbox figure {
+  margin: 0; max-width: 88vw; max-height: 92vh;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.gpxs-lightbox img {
+  max-width: 88vw; max-height: 84vh;
+  object-fit: contain; border-radius: 4px;
+}
+.gpxs-lightbox figcaption { color: #dee2e6; font-size: 0.9rem; text-align: center; }
+.gpxs-lightbox button {
+  position: absolute;
+  background: none; border: none; color: #fff;
+  font-size: 2.4rem; cursor: pointer; padding: 0.5rem 1rem;
+  opacity: 0.75;
+}
+.gpxs-lightbox button:hover { opacity: 1; }
+.gpxs-lb-close { top: 8px; right: 12px; }
+.gpxs-lb-prev { left: 6px; top: 50%; transform: translateY(-50%); }
+.gpxs-lb-next { right: 6px; top: 50%; transform: translateY(-50%); }

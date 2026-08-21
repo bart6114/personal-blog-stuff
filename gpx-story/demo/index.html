@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mont Chouffe — gpx-story demo</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="../src/gpx-story.css?v=4">
+<style>
+  body {
+    font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 4rem;
+    color: #343a40;
+  }
+  h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+  .sub { color: #868e96; margin-top: 0; }
+</style>
+</head>
+<body>
+
+<h1>Mont Chouffe</h1>
+<p class="sub">16 August 2026 · gpx-story proof of concept</p>
+
+<div id="story"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="../src/gpx-story.js?v=4"></script>
+<script>
+GpxStory.create({
+  target: '#story',
+  gpx: 'Mont-Chouffe.gpx',
+  photos: 'photos.json?v=5',
+  timeZone: 'Europe/Zurich',
+  trailOverlay: true,
+  // placeholder notes — edit freely; lat/lon anchors them to the map,
+  // they get snapped to the nearest track point for the elevation chart
+  notes: [
+    { lat: 46.29925, lon: 6.727863, title: 'Westernmost point', text: 'Turnaround — placeholder note, just text, no photo.' },
+    { lat: 46.306652, lon: 6.770555, title: 'High point', text: 'Another placeholder annotation.' },
+  ],
+}).catch(err => {
+  document.getElementById('story').textContent = String(err);
+  console.error(err);
+});
+</script>
+
+</body>
+</html>
