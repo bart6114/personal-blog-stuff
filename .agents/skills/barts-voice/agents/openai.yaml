@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bart's Voice"
+  short_description: "Write direct, practical prose in Bart's voice"
+  default_prompt: "Use $barts-voice to draft this in Bart's direct, practical voice without inventing personal details."
