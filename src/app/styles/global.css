@@ -46,7 +46,7 @@ body {
   color: var(--text);
   background: var(--background);
   font-family: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: clamp(0.93rem, 0.89rem + 0.18vw, 1rem);
+  font-size: clamp(0.875rem, 0.85rem + 0.1vw, 0.9rem);
   line-height: 1.5;
 }
 
@@ -172,7 +172,7 @@ td {
 
 .site-title {
   justify-self: start;
-  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+  font-size: clamp(1.05rem, 1.35vw, 1.25rem);
   font-weight: 700;
   text-decoration-color: var(--link-accent);
 }
@@ -303,7 +303,7 @@ td {
 .home-panel h1,
 .home-panel h2 {
   margin: 0;
-  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+  font-size: clamp(1.1rem, 1.35vw, 1.35rem);
   line-height: 1.25;
 }
 
@@ -330,8 +330,8 @@ td {
   border-top: 1px solid var(--rule);
 }
 
-.home-about__links a:first-child {
-  margin-bottom: 0.5rem;
+.home-about__links-heading {
+  margin: 0 0 0.5rem;
   font-weight: 700;
 }
 
