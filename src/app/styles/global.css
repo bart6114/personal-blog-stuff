@@ -325,13 +325,37 @@ td {
   justify-items: start;
   gap: 0.45rem;
   margin-top: clamp(28px, 4vw, 56px);
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--rule);
 }
 
 .home-about__links-heading {
   margin: 0 0 0.5rem;
   font-weight: 700;
+}
+
+.home-social-links {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.home-social-link {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  place-items: center;
+  text-decoration: none;
+}
+
+.home-social-link img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+  transition: transform 150ms ease;
+}
+
+.home-social-link:hover img {
+  transform: translateY(-2px) rotate(-2deg);
 }
 
 .home-intro {
