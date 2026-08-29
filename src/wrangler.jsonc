@@ -6,8 +6,14 @@
   "workers_dev": true,
   "preview_urls": true,
   "observability": {
-    "enabled": false
+    "enabled": true
   },
+  "routes": [
+    {
+      "pattern": "barts.space",
+      "custom_domain": true
+    }
+  ],
   "assets": {
     "directory": "./dist/",
     "binding": "ASSETS",

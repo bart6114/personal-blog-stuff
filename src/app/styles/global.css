@@ -12,8 +12,7 @@
   --spacecraft-size: 60px;
   --planet-size: 108px;
   --planet-right: clamp(72px, 8vw, 120px);
-  --orbit-x: 130px;
-  --orbit-y: 48px;
+  --orbit-radius: 92px;
   --background: #fff;
   --text: #232333;
   --accent: #c00;
@@ -241,7 +240,7 @@ td {
   left: 0;
   z-index: 0;
   width: var(--spacecraft-size);
-  offset-path: ellipse(var(--orbit-x) var(--orbit-y) at 50% 50%);
+  offset-path: circle(var(--orbit-radius) at 50% 50%);
   offset-anchor: 50% 50%;
   offset-rotate: auto 180deg;
   scale: 0.82;
@@ -459,6 +458,10 @@ td {
 }
 
 @media (max-width: 1180px) {
+  .space-scene {
+    display: none;
+  }
+
   .home-grid {
     grid-template-columns: minmax(230px, 0.72fr) minmax(0, 1.45fr);
   }
@@ -518,14 +521,6 @@ td {
 }
 
 @media (max-width: 520px) {
-  :root {
-    --spacecraft-size: 48px;
-    --planet-size: 86px;
-    --planet-right: 70px;
-    --orbit-x: 96px;
-    --orbit-y: 38px;
-  }
-
   body {
     padding-inline: var(--page-gutter);
   }
@@ -552,10 +547,6 @@ td {
   .post-list--home li {
     grid-template-columns: 1fr;
     gap: 0.1rem;
-  }
-
-  .space-scene {
-    bottom: 24px;
   }
 }
 

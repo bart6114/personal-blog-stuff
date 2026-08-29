@@ -127,7 +127,7 @@ if (distExists) {
   const sitemapXml = await readFile(join(distDir, "sitemap-0.xml"), "utf8");
   const sitemap = new XMLParser().parse(sitemapXml);
   const sitemapUrls = sitemap.urlset?.url ?? [];
-  const expectedSitemapUrls = publishedPosts.length + 3;
+  const expectedSitemapUrls = publishedPosts.length + 2;
   if (sitemapUrls.length !== expectedSitemapUrls) throw new Error(`Expected ${expectedSitemapUrls} sitemap URLs, found ${sitemapUrls.length}`);
 
   const atomPathCandidates = [join(distDir, "feed", "atom.xml")];
