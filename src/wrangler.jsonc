@@ -1,0 +1,18 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "barts-space",
+  "main": "./worker.mjs",
+  "compatibility_date": "2026-08-29",
+  "workers_dev": true,
+  "preview_urls": true,
+  "assets": {
+    "directory": "./dist/",
+    "binding": "ASSETS",
+    "run_worker_first": [
+      "/feed",
+      "/feed/*"
+    ],
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}

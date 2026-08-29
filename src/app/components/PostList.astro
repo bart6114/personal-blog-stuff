@@ -1,0 +1,20 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { formatPostDate } from "../lib/posts";
+
+interface Props {
+  posts: CollectionEntry<"blog">[];
+  variant?: "default" | "home";
+}
+
+const { posts, variant = "default" } = Astro.props;
+---
+
+<ul class:list={["post-list", { "post-list--home": variant === "home" }]}>
+  {posts.map((post) => (
+    <li>
+      <time class="post-date" datetime={post.data.publishedAt.toISOString()}>{formatPostDate(post.data.publishedAt)}</time>
+      <a href={`/${post.data.slug}/`}>{post.data.title}</a>
+    </li>
+  ))}
+</ul>

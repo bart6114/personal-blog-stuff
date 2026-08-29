@@ -1,0 +1,88 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  noindex?: boolean;
+  type?: "website" | "article";
+  image?: string;
+  publishedAt?: Date;
+  updatedAt?: Date;
+  wide?: boolean;
+}
+
+const {
+  title = "barts.space",
+  description = "Scribbles by Bart Smeets about data, code, products, and whatever else is rattling around.",
+  canonicalPath = "/",
+  noindex = false,
+  type = "website",
+  image = "/assets/og-image.png",
+  publishedAt,
+  updatedAt,
+  wide = false
+} = Astro.props;
+
+const siteUrl = new URL(Astro.site ?? "https://barts.space");
+const canonical = new URL(canonicalPath, siteUrl);
+const fullTitle = title === "barts.space" ? title : `${title} – barts.space`;
+const absoluteImage = image ? new URL(image, siteUrl).href : undefined;
+const jsonLd = type === "article"
+  ? {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: title,
+      description,
+      url: canonical.href,
+      datePublished: publishedAt?.toISOString(),
+      dateModified: (updatedAt ?? publishedAt)?.toISOString(),
+      author: { "@type": "Person", name: "Bart Smeets" },
+      ...(absoluteImage ? { image: absoluteImage } : {})
+    }
+  : {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "barts.space",
+      description,
+      url: canonical.href
+    };
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/atom+xml" title="barts.space Atom feed" href="/feed/" />
+    <link rel="alternate" type="application/rss+xml" title="barts.space RSS feed" href="/feed/?type=rss" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    {noindex && <meta name="robots" content="noindex,follow" />}
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="barts.space" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    {absoluteImage && <meta property="og:image" content={absoluteImage} />}
+    <meta name="twitter:card" content={absoluteImage ? "summary_large_image" : "summary"} />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    {absoluteImage && <meta name="twitter:image" content={absoluteImage} />}
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class:list={{ "layout-wide": wide }}>
+    <Header />
+    <main id="main-content" class="site-main">
+      <slot />
+    </main>
+    <Footer />
+    <script is:inline data-goatcounter="https://bartsspace.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+  </body>
+</html>

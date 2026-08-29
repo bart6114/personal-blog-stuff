@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PostList from "../components/PostList.astro";
+import { getPublishedPosts } from "../lib/posts";
+
+const posts = await getPublishedPosts();
+const recentPosts = posts.slice(0, 8);
+---
+
+<BaseLayout image="/assets/og-image.png" wide>
+  <div class="home-grid">
+    <section class="home-panel home-about" aria-labelledby="about-heading">
+      <div class="home-about__intro">
+        <div>
+          <h1 id="about-heading">hi i'm bart</h1>
+          <p>👋 talks data, code &amp; goblins<br />
+            🎙️ behind mic @ <a href="https://brightsignal.fm">The Bright Signal Podcast</a><br />
+            🏔️ trails &amp; mountains</p>
+        </div>
+        <img class="avatar home-avatar" src="/assets/avatar.webp" width="180" height="180" alt="Illustrated portrait of Bart Smeets" />
+      </div>
+      <div class="home-about__links" aria-label="Bart Smeets links">
+        <a href="/about/">more about me →</a>
+        <a href="https://www.linkedin.com/in/bartsmeets">@linkedin</a>
+        <a href="mailto:me@barts.space">@mail</a>
+        <a href="https://github.com/bart6114">@github</a>
+      </div>
+    </section>
+
+    <section class="home-panel home-jottings" aria-labelledby="jottings-heading">
+      <h2 id="jottings-heading">jottings</h2>
+      <p class="home-intro">Scribbles born from superfluous thoughts, probably half-formed fragments of whatever I was tinkering with at the time. Not necessarily meant to be useful, just a snapshot of where my head happened to be.</p>
+      <PostList posts={recentPosts} variant="home" />
+      <div class="home-actions">
+        <a href="/blog/">all {posts.length} jottings →</a>
+        <span aria-hidden="true">·</span>
+        <span>subscribe via <a href="/feed/">Atom</a> or <a href="/feed/?type=rss">RSS</a></span>
+      </div>
+    </section>
+
+    <section class="home-panel home-podcast" aria-labelledby="podcast-heading">
+      <div class="home-podcast__heading">
+        <h2 id="podcast-heading">bright signal</h2>
+        <a href="https://brightsignal.fm">visit the podcast →</a>
+      </div>
+      <iframe
+        src="https://share.transistor.fm/e/the-monkey-patching-podcast/playlist"
+        width="100%"
+        height="390"
+        title="The Bright Signal Podcast playlist"
+        loading="lazy"
+      ></iframe>
+    </section>
+  </div>
+</BaseLayout>

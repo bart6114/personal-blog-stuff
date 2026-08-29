@@ -1,0 +1,1524 @@
+{
+  "source": "https://barts.space/blog/",
+  "sitemapSource": "https://barts.space/sitemap.xml",
+  "fetchedAt": "2026-08-29T08:12:05.307Z",
+  "archiveSha256": "c42a13351d408196adf1b2d947f581565712e936b10fe190f7c6fc0316e45de5",
+  "sitemapSha256": "2d2eb7a997db0e82ec99daee8593489082d099e4a0679c216435959a238c1a6f",
+  "postCount": 39,
+  "posts": [
+    {
+      "sourceUrl": "https://barts.space/loofah-a-vault-free-meeting-transcriber/",
+      "slug": "loofah-a-vault-free-meeting-transcriber",
+      "publishedAt": "2026-08-28T20:07:00.000Z",
+      "updatedAt": "2026-08-28T00:00:00.000Z",
+      "canonical": "https://barts.space/loofah-a-vault-free-meeting-transcriber/",
+      "title": "Loofah = a vault = Free Meeting Transcriber",
+      "sourceHtmlSha256": "913d214833ae0f85742306181bdafb061e97bbb09ab49ed836944102bfe03693",
+      "normalizedBodySha256": "50d2360f1360d047130ad8061e9b57f2395a73f0fee479e43e9dd40877721c8b",
+      "semanticTextSha256": "a7b286e44d89294418b6511f89fa7e46c5c87a73a154dddae65dc6b4b3d6a8c3",
+      "structure": {
+        "headings": [
+          {
+            "level": "h2",
+            "text": "the meeting transcriber became a vault"
+          },
+          {
+            "level": "h2",
+            "text": "what actually got added"
+          },
+          {
+            "level": "h2",
+            "text": "software for one, with a download button"
+          }
+        ],
+        "links": [
+          {
+            "text": "a post about a fork I had called Free Meeting Transcriber",
+            "href": "https://barts.space/me-want-free-meeting-transcriber/"
+          },
+          {
+            "text": "Loofah",
+            "href": "https://loofah.io"
+          },
+          {
+            "text": "loof CLI",
+            "href": "https://loofah.io/agents/cli/"
+          },
+          {
+            "text": "release notes",
+            "href": "https://loofah.io/changelog/"
+          },
+          {
+            "text": "documentation site",
+            "href": "https://loofah.io"
+          },
+          {
+            "text": "anarlog",
+            "href": "https://github.com/fastrepl/anarlog"
+          },
+          {
+            "text": "on GitHub",
+            "href": "https://github.com/bart6114/loofah"
+          }
+        ],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/whats-that-mountain-called-again/",
+      "slug": "whats-that-mountain-called-again",
+      "publishedAt": "2026-08-12T12:22:00.000Z",
+      "updatedAt": "2026-08-12T00:00:00.000Z",
+      "canonical": "https://barts.space/whats-that-mountain-called-again/",
+      "title": "what's that mountain called again?",
+      "sourceHtmlSha256": "283530fca7d6d6b9d1b60fb26bcd58fd9c7f3d1c553bc81153a431d20387cc3f",
+      "normalizedBodySha256": "d51e1ac619fe5bc35e9af12ac8e6b954ec3a35088dfc07e6d06ea825a0e889b6",
+      "semanticTextSha256": "c2dc076ed6979a6a8c9dea9cde4943f76362e0f838985e0d423e84827f42c2a9",
+      "structure": {
+        "headings": [],
+        "links": [
+          {
+            "text": "PeakVisor",
+            "href": "https://peakvisor.com/"
+          },
+          {
+            "text": "NameThatPeak",
+            "href": "https://namethatpeak.com/"
+          }
+        ],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/me-want-free-meeting-transcriber/",
+      "slug": "me-want-free-meeting-transcriber",
+      "publishedAt": "2026-08-08T06:00:00.000Z",
+      "updatedAt": "2026-08-07T00:00:00.000Z",
+      "canonical": "https://barts.space/me-want-free-meeting-transcriber/",
+      "title": "me want free meeting transcriber",
+      "sourceHtmlSha256": "f3bf7b1c11af0f6ba74bdbd8c632762edfa414bc03c5c4e13b3a6b27b7ddcec7",
+      "normalizedBodySha256": "28aadee2edd3a2ff2160a6f9683da490bba28b59d5735aee77757132ae568f13",
+      "semanticTextSha256": "2dda86f93f733790421b079f1b3a5aba70a2a2c1fd1bab13d56f86f22f24e4ab",
+      "structure": {
+        "headings": [
+          {
+            "level": "h2",
+            "text": "I like files"
+          },
+          {
+            "level": "h2",
+            "text": "free meeting transcriber"
+          },
+          {
+            "level": "h2",
+            "text": "software for one"
+          }
+        ],
+        "links": [
+          {
+            "text": "anarlog",
+            "href": "https://github.com/fastrepl/anarlog"
+          },
+          {
+            "text": "Free Meeting Transcriber",
+            "href": "https://github.com/bart6114/free-meeting-transcriber"
+          }
+        ],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 6
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/the-hard-part-of-automation-is-seeing-it/",
+      "slug": "the-hard-part-of-automation-is-seeing-it",
+      "publishedAt": "2026-06-30T05:00:00.000Z",
+      "updatedAt": "2026-06-29T00:00:00.000Z",
+      "canonical": "https://barts.space/the-hard-part-of-automation-is-seeing-it/",
+      "title": "The Hard Part of Automation Is Seeing It",
+      "sourceHtmlSha256": "02aaee8b4fd0d654d62367193726b0651c2646b0bfea04e776c61cd5f352c9dd",
+      "normalizedBodySha256": "54c59bcbbd315622fd9556a1a918f18956280de75451d324fc6a398c0ff29cfe",
+      "semanticTextSha256": "d09be21df562a6ae6b558f475aaca2a1e2f951d4cdc78bd7421a622f00afc4c7",
+      "structure": {
+        "headings": [],
+        "links": [
+          {
+            "text": "stuff.barts.space/skill-atlas",
+            "href": "https://stuff.barts.space/skill-atlas"
+          }
+        ],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/everyone-can-build-so-everyone-is-waiting/",
+      "slug": "everyone-can-build-so-everyone-is-waiting",
+      "publishedAt": "2026-06-01T10:13:00.000Z",
+      "updatedAt": "2026-06-01T00:00:00.000Z",
+      "canonical": "https://barts.space/everyone-can-build-so-everyone-is-waiting/",
+      "title": "Everyone can build, so everyone is waiting",
+      "sourceHtmlSha256": "700eae8b6039b9c88acd3862359bd7e2431f97b9f99cbf33a6d63a1368574211",
+      "normalizedBodySha256": "8713f92e9c6d86c1af79544f5562ce95dd461de4a2462822a8932882c209fa7f",
+      "semanticTextSha256": "11154d0ee623dbc4aa9ea6f2a1af4b10845fbe4cf0dbe1d57f88863469773514",
+      "structure": {
+        "headings": [],
+        "links": [],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/monkey-patching-is-now-bright-signal/",
+      "slug": "monkey-patching-is-now-bright-signal",
+      "publishedAt": "2026-05-20T12:38:00.000Z",
+      "updatedAt": "2026-05-20T00:00:00.000Z",
+      "canonical": "https://barts.space/monkey-patching-is-now-bright-signal/",
+      "title": "monkey patching is now bright signal",
+      "sourceHtmlSha256": "c57d15d4cb008fc21dfbe17d32692364a32f0adfd6fefb71000b15b21bb0d25d",
+      "normalizedBodySha256": "33369ace969cbcc8068a23501959205efe07b145683053f55574715ecabc081d",
+      "semanticTextSha256": "9a6da71849b9bcdbf24f3880979f99db73e9d0c51465b6ed857432bdd284d52a",
+      "structure": {
+        "headings": [],
+        "links": [
+          {
+            "text": "Bright Signal",
+            "href": "https://brightsignal.fm"
+          },
+          {
+            "text": "first new episode",
+            "href": "https://open.spotify.com/show/0pISxImpEXz1eZdSHK5V4w"
+          }
+        ],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/robust-was-what-we-could-afford/",
+      "slug": "robust-was-what-we-could-afford",
+      "publishedAt": "2026-04-17T10:18:00.000Z",
+      "updatedAt": "2026-04-17T00:00:00.000Z",
+      "canonical": "https://barts.space/robust-was-what-we-could-afford/",
+      "title": "Robust was what we could afford",
+      "sourceHtmlSha256": "87dd48fc67ea7d81518123dbef3363938cd5b5ac41a1758f6e3bf5208c821a8e",
+      "normalizedBodySha256": "e943312fc6de6421772df46ae025d89f9bd3295effa57ddc46df9dd1b66ad147",
+      "semanticTextSha256": "dc707d67c051a57782e4adaf1288c8de97cf9fbac53a6536bdbc0d14b4890301",
+      "structure": {
+        "headings": [
+          {
+            "level": "h2",
+            "text": "The old regime"
+          },
+          {
+            "level": "h2",
+            "text": "The constraint moved"
+          },
+          {
+            "level": "h2",
+            "text": "Where this breaks"
+          },
+          {
+            "level": "h2",
+            "text": "What I'm doing differently"
+          }
+        ],
+        "links": [
+          {
+            "text": "Antifragile",
+            "href": "https://www.amazon.com/Antifragile-Things-That-Disorder-Incerto/dp/0812979680"
+          }
+        ],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/will-oss-survive-ai-coding/",
+      "slug": "will-oss-survive-ai-coding",
+      "publishedAt": "2026-04-01T05:07:00.000Z",
+      "updatedAt": "2026-03-31T00:00:00.000Z",
+      "canonical": "https://barts.space/will-oss-survive-ai-coding/",
+      "title": "Will OSS survive AI coding?",
+      "sourceHtmlSha256": "05d56b37781622d6fd3802f52109f55497252997e9e147a0ffcc270a3d0a39d8",
+      "normalizedBodySha256": "f0575235ef8cb7f8dcc567ca3c6ea7b67d831fc9a334e403ae951fdd172b7000",
+      "semanticTextSha256": "8fe5e546e649502e8357a40b5110c194a3271d3b639cb05c88b8548db1ebbf45",
+      "structure": {
+        "headings": [],
+        "links": [
+          {
+            "text": "economics paper",
+            "href": "https://arxiv.org/abs/2601.15494"
+          },
+          {
+            "text": "93% of applications",
+            "href": "https://www.techtarget.com/searchapparchitecture/tip/Vibe-coding-is-killing-open-source-increasing-software-risk"
+          },
+          {
+            "text": "puts a number on the stakes",
+            "href": "https://www.linuxfoundation.org/press/new-linux-foundation-report-shows-active-open-source-contribution-delivers-2-5x-roi-while-passive-consumption-increases-costly-technical-debt"
+          }
+        ],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/ai-development-is-the-new-online-advertising/",
+      "slug": "ai-development-is-the-new-online-advertising",
+      "publishedAt": "2026-03-10T06:55:00.000Z",
+      "updatedAt": "2026-03-09T00:00:00.000Z",
+      "canonical": "https://barts.space/ai-development-is-the-new-online-advertising/",
+      "title": "AI development is the new online advertising",
+      "sourceHtmlSha256": "82da8c849aa094f2d9defd6034e8aed10cf1a06b526cd37e2eafd7a7a5db9419",
+      "normalizedBodySha256": "a844bd9b914c093a97f88a9c79477f9e13c719dc7d2fcf8f15c7243e841136c2",
+      "semanticTextSha256": "f0b28676b7853ab6be8673582bc81d704eaa9201c2d4b6e6519f5971b1d78763",
+      "structure": {
+        "headings": [
+          {
+            "level": "h2",
+            "text": "the ads parallel"
+          },
+          {
+            "level": "h2",
+            "text": "the same thing is happening to software"
+          },
+          {
+            "level": "h2",
+            "text": "what this actually unlocks"
+          }
+        ],
+        "links": [],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/stop-asking-me-if-saas-is-dead/",
+      "slug": "stop-asking-me-if-saas-is-dead",
+      "publishedAt": "2026-02-26T07:02:00.000Z",
+      "updatedAt": "2026-02-25T00:00:00.000Z",
+      "canonical": "https://barts.space/stop-asking-me-if-saas-is-dead/",
+      "title": "stop asking me if saas is dead",
+      "sourceHtmlSha256": "fcf20a9d5a53c88813b25d2e90299452afbc3b76c82bcefce35079a183053174",
+      "normalizedBodySha256": "f71e4c99a20209e3b03eb3725e6267a8bafc1c2c7ce3cf474f3c5c27414dff59",
+      "semanticTextSha256": "c591366a67a3ccb50988ac8280f905c4648f891422c9eb25deecf1f9b30f4194",
+      "structure": {
+        "headings": [
+          {
+            "level": "h2",
+            "text": "The bar to replace you just dropped"
+          },
+          {
+            "level": "h2",
+            "text": "Building is no longer a moat"
+          },
+          {
+            "level": "h2",
+            "text": "Revisiting is the new default"
+          },
+          {
+            "level": "h2",
+            "text": "Go-to-market becomes everything"
+          },
+          {
+            "level": "h2",
+            "text": "So yeah"
+          }
+        ],
+        "links": [
+          {
+            "text": "Cambryo",
+            "href": "https://cambryo.com"
+          }
+        ],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/getting-started-with-claude-code-the-practical-version/",
+      "slug": "getting-started-with-claude-code-the-practical-version",
+      "publishedAt": "2026-02-19T08:18:00.000Z",
+      "updatedAt": "2026-02-27T00:00:00.000Z",
+      "canonical": "https://barts.space/getting-started-with-claude-code-the-practical-version/",
+      "title": "getting started with claude code (the practical version)",
+      "sourceHtmlSha256": "500d70a7ba8c9c540df9a8bb09821ed6aff7200274475b2a3d15bb6b15c958a5",
+      "normalizedBodySha256": "ff450fa49deb0e34ec43eabd1ca1aecfc38e84b124e80a8193ec7b683fde302a",
+      "semanticTextSha256": "d3ef2c683b7700d00bcb40058e1c6a492cdc83809a468aa029c8798f73291150",
+      "structure": {
+        "headings": [
+          {
+            "level": "h2",
+            "text": "starting a project"
+          },
+          {
+            "level": "h2",
+            "text": "think in user functionality, not technical features"
+          },
+          {
+            "level": "h2",
+            "text": "plugins worth installing"
+          },
+          {
+            "level": "h2",
+            "text": "things people overthink"
+          },
+          {
+            "level": "h2",
+            "text": "just ask the agent"
+          },
+          {
+            "level": "h2",
+            "text": "workflow habits that help"
+          }
+        ],
+        "links": [
+          {
+            "text": "Superpowers",
+            "href": "https://github.com/obra/superpowers"
+          },
+          {
+            "text": "Ralph Loop",
+            "href": "https://claude.com/plugins/ralph-loop"
+          },
+          {
+            "text": "Code-Simplifier",
+            "href": "https://claude.com/plugins/code-simplifier"
+          },
+          {
+            "text": "handy",
+            "href": "https://handy.computer/"
+          }
+        ],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 14
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/my-tone-of-voice-is-changing/",
+      "slug": "my-tone-of-voice-is-changing",
+      "publishedAt": "2026-02-16T07:00:00.000Z",
+      "updatedAt": "2026-02-13T00:00:00.000Z",
+      "canonical": "https://barts.space/my-tone-of-voice-is-changing/",
+      "title": "my tone of voice is changing",
+      "sourceHtmlSha256": "ee4dc08edd778ddb82a5d19a62ee83b5d9a13b729bd1a5031586c45d0d500cc5",
+      "normalizedBodySha256": "080b83aa30e44755fca45342b6cc72efdd81044dee1d3462db84726af1ad5e64",
+      "semanticTextSha256": "f32d936cd2db33ff993bb07b21708c6fca7d9ac19b089e086dca9114cb3f1af4",
+      "structure": {
+        "headings": [],
+        "links": [
+          {
+            "text": "skills",
+            "href": "https://www.anthropic.com/news/skills"
+          }
+        ],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/you-cant-break-an-egg-without-making-an-omelette/",
+      "slug": "you-cant-break-an-egg-without-making-an-omelette",
+      "publishedAt": "2026-02-12T09:12:00.000Z",
+      "updatedAt": "2026-02-12T00:00:00.000Z",
+      "canonical": "https://barts.space/you-cant-break-an-egg-without-making-an-omelette/",
+      "title": "You Can't Break an Egg Without Making an Omelette",
+      "sourceHtmlSha256": "bc42b063b1a4e15fbc5eecd1de15d30d845d604bc5dc8ae28ca7638fbb06fffc",
+      "normalizedBodySha256": "7a06e8e7509a3d99cb4dd29029911021d0b14b957b5d7b1be8098b4eae3d5849",
+      "semanticTextSha256": "2f5bae570fdff9f15a53f4133f9371380270818ea0187e0a4b8190bcbc2b0825",
+      "structure": {
+        "headings": [],
+        "links": [
+          {
+            "text": "Dataroots",
+            "href": "https://dataroots.io"
+          },
+          {
+            "text": "Dave Farber",
+            "href": "https://en.wikipedia.org/wiki/David_J._Farber"
+          }
+        ],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/i-launched-on-producthunt-and-all-i-got-was-spam/",
+      "slug": "i-launched-on-producthunt-and-all-i-got-was-spam",
+      "publishedAt": "2026-01-21T15:47:00.000Z",
+      "updatedAt": "2026-01-21T00:00:00.000Z",
+      "canonical": "https://barts.space/i-launched-on-producthunt-and-all-i-got-was-spam/",
+      "title": "i launched on producthunt and all i got was spam",
+      "sourceHtmlSha256": "f6d2eec5e6b5e9bc9ca4efa64d76858bc372c672af6f9880463b94e8d1d67e76",
+      "normalizedBodySha256": "740a7d1ed9a1d07a7570290d2a5aa34b0164c1dad94f7699a878f3022702e881",
+      "semanticTextSha256": "fcc5ce70f2adf3d27c4512c76b5be9b0acb92c9b3341aa933d0c69f642614e7d",
+      "structure": {
+        "headings": [
+          {
+            "level": "h2",
+            "text": "the inbox thing"
+          },
+          {
+            "level": "h2",
+            "text": "traffic"
+          },
+          {
+            "level": "h2",
+            "text": "is producthunt even a thing anymore"
+          },
+          {
+            "level": "h2",
+            "text": "what actually worked"
+          },
+          {
+            "level": "h2",
+            "text": "anyway"
+          }
+        ],
+        "links": [
+          {
+            "text": "that ProductHunt launch",
+            "href": "https://www.producthunt.com/posts/videditor-ai"
+          },
+          {
+            "text": "VidEditor.ai",
+            "href": "https://videditor.ai"
+          },
+          {
+            "text": "The Monkey Patching Podcast",
+            "href": "https://www.youtube.com/channel/UCjo6_VYotBwfjox1qdJD3lg"
+          }
+        ],
+        "images": [
+          {
+            "alt": "ph_launches_visualization",
+            "src": "/media/i-launched-on-producthunt-and-all-i-got-was-spam/ph_launches_visualization-1.webp"
+          }
+        ],
+        "blockquotes": 1,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": [
+        {
+          "sourceUrl": "https://bear-images.sfo2.cdn.digitaloceanspaces.com/bart6114/ph_launches_visualization-1.webp",
+          "localPath": "/media/i-launched-on-producthunt-and-all-i-got-was-spam/ph_launches_visualization-1.webp",
+          "sha256": "fa318213a5f891657433216e2459f4259c69b16a5d7b08cf443ddb3b5abed4cc",
+          "bytes": 52394,
+          "contentType": "image/webp"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://barts.space/so-i-guess-its-on-producthunt/",
+      "slug": "so-i-guess-its-on-producthunt",
+      "publishedAt": "2025-12-18T08:05:00.000Z",
+      "updatedAt": "2026-01-20T00:00:00.000Z",
+      "canonical": "https://barts.space/so-i-guess-its-on-producthunt/",
+      "title": "So I guess it's on ProductHunt",
+      "sourceHtmlSha256": "518ce79f2875d6df804e2e38d1f3f87a7ea2036f8019378433b8bd29f16944cb",
+      "normalizedBodySha256": "fc7e29ba8e27cd25ae25fc24c72e5409ab8fdb1fae28835df688237e8b1fb5ae",
+      "semanticTextSha256": "175b97fc105f829393fadc6aa39bf92d31f988edcee8ccd0609967c0cd0333a7",
+      "structure": {
+        "headings": [
+          {
+            "level": "h2",
+            "text": "What it does"
+          },
+          {
+            "level": "h2",
+            "text": "Why I built this"
+          },
+          {
+            "level": "h2",
+            "text": "What's next"
+          },
+          {
+            "level": "h2",
+            "text": "Want to check it out?"
+          }
+        ],
+        "links": [
+          {
+            "text": "Product Hunt",
+            "href": "https://www.producthunt.com/products/videditor-ai"
+          },
+          {
+            "text": "VidEditor.ai",
+            "href": "https://videditor.ai"
+          },
+          {
+            "text": "The Monkey Patching Podcast",
+            "href": "https://www.youtube.com/@monkeypatching"
+          },
+          {
+            "text": "Monkey Patching Podcast",
+            "href": "https://www.youtube.com/@monkeypatching"
+          },
+          {
+            "text": "VidEditor.ai",
+            "href": "https://videditor.ai"
+          }
+        ],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/splitting-the-pie/",
+      "slug": "splitting-the-pie",
+      "publishedAt": "2025-12-09T10:31:00.000Z",
+      "updatedAt": "2025-12-09T00:00:00.000Z",
+      "canonical": "https://barts.space/splitting-the-pie/",
+      "title": "splitting the pie 🥧 🍰",
+      "sourceHtmlSha256": "01fdabedf9b368956242de0d02376de9a52743eeff6efe96c359b43adc49437c",
+      "normalizedBodySha256": "b0160062506c8b53fd073d0f2b075152891762d18ccea395a25c50d33184349a",
+      "semanticTextSha256": "6cbe4be18bd8def01ebb777c167d1760f5401843d2423f0cd61bb31400cc27b2",
+      "structure": {
+        "headings": [],
+        "links": [
+          {
+            "text": "this post",
+            "href": "https://www.reddit.com/r/SaaS/s/0NnXe6gVLB"
+          },
+          {
+            "text": "forks your repo at 2am",
+            "href": "https://www.reddit.com/r/SaaS/s/0NnXe6gVLB"
+          },
+          {
+            "text": "Founders' Pie Calculator",
+            "href": "https://www.andrew.cmu.edu/user/fd0n/35%20Founders%27%20Pie%20Calculator.htm"
+          }
+        ],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/theres-so-much-ai-crap/",
+      "slug": "theres-so-much-ai-crap",
+      "publishedAt": "2025-12-05T10:05:00.000Z",
+      "updatedAt": "2025-12-05T00:00:00.000Z",
+      "canonical": "https://barts.space/theres-so-much-ai-crap/",
+      "title": "There’s So Much AI Crap",
+      "sourceHtmlSha256": "5c6e808276a7cb5c22d9fd1c614dec3df0b58d89c45f459e6bf30b4de1da6147",
+      "normalizedBodySha256": "57fe323c4d1ae4662c2045b5b20d995f5a50b40e4936c35bcfd74754ebaedf65",
+      "semanticTextSha256": "1ce2c4d5fd8114afe9a5735345c5759228a9135529f5ae3cb0efcfc0efe96fb7",
+      "structure": {
+        "headings": [],
+        "links": [
+          {
+            "text": "The Monkey Patching Podcast",
+            "href": "https://monkeypatching.io"
+          }
+        ],
+        "images": [
+          {
+            "alt": "Screenshot 2025-12-05 at 10",
+            "src": "/media/theres-so-much-ai-crap/161.webp"
+          }
+        ],
+        "blockquotes": 1,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": [
+        {
+          "sourceUrl": "https://bear-images.sfo2.cdn.digitaloceanspaces.com/bart6114/161.webp",
+          "localPath": "/media/theres-so-much-ai-crap/161.webp",
+          "sha256": "78750e8dd7fd63252792362cc2ce87976084436c959d815ba2e598ef1e365537",
+          "bytes": 161056,
+          "contentType": "image/webp"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://barts.space/there-are-too-many-apis/",
+      "slug": "there-are-too-many-apis",
+      "publishedAt": "2025-11-13T11:51:00.000Z",
+      "updatedAt": "2025-11-13T00:00:00.000Z",
+      "canonical": "https://barts.space/there-are-too-many-apis/",
+      "title": "there are too many apis",
+      "sourceHtmlSha256": "3e3f28aac950c4cb1f0495fd5ea7a06508232dc0c5b346d081e220f113e4a97d",
+      "normalizedBodySha256": "2cbd79bdd315d96aa20c0c1d8a82da5d21b03764a5563b682d0c009f5ae17bd2",
+      "semanticTextSha256": "4abc30b19d85f2d42acb21a5690a68506f5f1654e11c843dc01715bae82728c9",
+      "structure": {
+        "headings": [],
+        "links": [],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/customer-acquisition-trumps-perfect-product/",
+      "slug": "customer-acquisition-trumps-perfect-product",
+      "publishedAt": "2025-10-31T07:30:00.000Z",
+      "updatedAt": "2025-11-01T00:00:00.000Z",
+      "canonical": "https://barts.space/customer-acquisition-trumps-perfect-product/",
+      "title": "customer acquisition > perfect code",
+      "sourceHtmlSha256": "369e9a7c4bed014da30f5cf0f9d760e66b519a53df01bc65c8b6b7d1cab2d216",
+      "normalizedBodySha256": "2f405850bedc7122a415656b79031a7cbc819b8153ab125165ed4963a38e1144",
+      "semanticTextSha256": "0b59df8172c6ec7aa05f1517e2f76805ecf2869ca8cd50787d0d725f98de866d",
+      "structure": {
+        "headings": [],
+        "links": [],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/monkey-patching-podcast-sixmonth-checkin/",
+      "slug": "monkey-patching-podcast-sixmonth-checkin",
+      "publishedAt": "2025-10-13T08:01:00.000Z",
+      "updatedAt": "2025-10-13T00:00:00.000Z",
+      "canonical": "https://barts.space/monkey-patching-podcast-sixmonth-checkin/",
+      "title": "The Monkey Patching Podcast: six‑month check‑in",
+      "sourceHtmlSha256": "3837f6ee90e02b1f02d89bbc5a031c4f3922ef4add68f2943701a5e7ddcbbcb5",
+      "normalizedBodySha256": "c545bd9dc799a1fd9baaf48acfd2c1e86af6b7603272201fab9243bd86dfc834",
+      "semanticTextSha256": "bab82f54faf6cc512562345ce15c9c03eab829c37a1291ea0c01626b7f021879",
+      "structure": {
+        "headings": [
+          {
+            "level": "h2",
+            "text": "What we actually do"
+          },
+          {
+            "level": "h2",
+            "text": "Where to find us"
+          },
+          {
+            "level": "h2",
+            "text": "On monetization (eventually)"
+          },
+          {
+            "level": "h2",
+            "text": "Growth so far"
+          },
+          {
+            "level": "h2",
+            "text": "What we could do next"
+          },
+          {
+            "level": "h2",
+            "text": "How you can help"
+          }
+        ],
+        "links": [
+          {
+            "text": "Murilo",
+            "href": "https://www.linkedin.com/in/murilo-cunha/"
+          },
+          {
+            "text": "The Monkey Patching Pocast",
+            "href": "https://monkeypatching.io"
+          },
+          {
+            "text": "the name",
+            "href": "https://stackoverflow.com/questions/5626193/what-is-monkey-patching"
+          },
+          {
+            "text": "Transistor.fm",
+            "href": "https://monkeypatching.io"
+          },
+          {
+            "text": "video version",
+            "href": "https://www.youtube.com/@monkeypatching"
+          },
+          {
+            "text": "clips",
+            "href": "https://www.youtube.com/@monkeypatching"
+          },
+          {
+            "text": "TikTok",
+            "href": "https://www.tiktok.com/@monkeypatching.io"
+          },
+          {
+            "text": "here",
+            "href": "https://newsletter.monkeypatching.io/"
+          },
+          {
+            "text": "our mailing list",
+            "href": "https://newsletter.monkeypatching.io/"
+          },
+          {
+            "text": "on LinkedIn",
+            "href": "https://www.linkedin.com/company/monkey-patching-podcast/"
+          },
+          {
+            "text": "Send",
+            "href": "mailto:info@monkeypatching.io"
+          }
+        ],
+        "images": [
+          {
+            "alt": "Copy of Copy of Copy of Copy of Copy of ep9 (2)",
+            "src": "/media/monkey-patching-podcast-sixmonth-checkin/copy-of-copy-of-copy-of-copy-of-copy-of-ep9-2.webp"
+          }
+        ],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 22
+      },
+      "media": [
+        {
+          "sourceUrl": "https://bear-images.sfo2.cdn.digitaloceanspaces.com/bart6114/copy-of-copy-of-copy-of-copy-of-copy-of-ep9-2.webp",
+          "localPath": "/media/monkey-patching-podcast-sixmonth-checkin/copy-of-copy-of-copy-of-copy-of-copy-of-ep9-2.webp",
+          "sha256": "e8e3a8c3d8c6c5caf8a32cfbf7aaed2e56277cdcc24700516f040d12303e1ba7",
+          "bytes": 65434,
+          "contentType": "image/webp"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://barts.space/wacc-explained-like-im-not-a-finance-person-cause-im-not/",
+      "slug": "wacc-explained-like-im-not-a-finance-person-cause-im-not",
+      "publishedAt": "2025-10-06T07:33:00.000Z",
+      "updatedAt": "2025-10-06T00:00:00.000Z",
+      "canonical": "https://barts.space/wacc-explained-like-im-not-a-finance-person-cause-im-not/",
+      "title": "WACC, explained like I’m not a finance person ('cause I'm not)",
+      "sourceHtmlSha256": "e1e557955c266f16f5cc54113eb128378e16e10a108d7052c5eb7fd37dee8955",
+      "normalizedBodySha256": "38e4b2017be15e33164809b4d19f227741d1bd6598c38c566a397307bbe690dc",
+      "semanticTextSha256": "5ea78b7c1a2492914032538392173a665903ed21cc6af9c72eb5df3fee4f1c02",
+      "structure": {
+        "headings": [],
+        "links": [],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/2025-the-year/",
+      "slug": "2025-the-year",
+      "publishedAt": "2025-10-01T06:44:00.000Z",
+      "updatedAt": "2025-10-01T00:00:00.000Z",
+      "canonical": "https://barts.space/2025-the-year/",
+      "title": "🎨 2025: The Year Of The AI Browser",
+      "sourceHtmlSha256": "f8c114834a03e87cfb89ef7367a8f15ba783b0adc48e57e65f9eb6fe269c74f2",
+      "normalizedBodySha256": "8ab85035be254142263b4960aa33d01ce2a8e2d119d429256f35fef1631e87da",
+      "semanticTextSha256": "6809048ade7ccdaf3c177152a7f33c049df23ce7c93d46d1665d5ad63efc6032",
+      "structure": {
+        "headings": [],
+        "links": [
+          {
+            "text": "this",
+            "href": "https://techcrunch.com/2025/09/18/google-brings-gemini-in-chrome-to-us-users-unveils-agentic-browsing-capabilities-and-more/"
+          }
+        ],
+        "images": [
+          {
+            "alt": "Code Clucks at Midnight (3)",
+            "src": "/media/2025-the-year/code-clucks-at-midnight-3-1.webp"
+          }
+        ],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": [
+        {
+          "sourceUrl": "https://bear-images.sfo2.cdn.digitaloceanspaces.com/bart6114/code-clucks-at-midnight-3-1.webp",
+          "localPath": "/media/2025-the-year/code-clucks-at-midnight-3-1.webp",
+          "sha256": "3e0849babb4d413c42ee81b57daf99d3053235b41f256f8b78853d6b7f2e943b",
+          "bytes": 73946,
+          "contentType": "image/webp"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://barts.space/brick-and-mortar-isnt-the-enemy-fixed-capacity-is/",
+      "slug": "brick-and-mortar-isnt-the-enemy-fixed-capacity-is",
+      "publishedAt": "2025-09-24T05:52:00.000Z",
+      "updatedAt": "2025-09-23T00:00:00.000Z",
+      "canonical": "https://barts.space/brick-and-mortar-isnt-the-enemy-fixed-capacity-is/",
+      "title": "Brick and mortar isn’t the enemy. Fixed capacity is.",
+      "sourceHtmlSha256": "8f79a0a02dc49c1bf4ccd6ea5990a047e34bb47b81145a6ba06264fc2a24c4ec",
+      "normalizedBodySha256": "1ebe5c9794771957c704870f4fb860df9db0c207545fc328c4655a534efa85a6",
+      "semanticTextSha256": "01cb7d9acf4d8dc144f8e1b4ba1de051035b0bf53d743662638eeba091377be6",
+      "structure": {
+        "headings": [
+          {
+            "level": "h2",
+            "text": "Fixed-capacity brick and mortar"
+          },
+          {
+            "level": "h2",
+            "text": "Flexible-capacity brick and mortar"
+          },
+          {
+            "level": "h2",
+            "text": "It’s a gradient, not a binary"
+          }
+        ],
+        "links": [],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 7
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/lets-apply-to-a-new-job/",
+      "slug": "lets-apply-to-a-new-job",
+      "publishedAt": "2025-09-15T07:01:00.000Z",
+      "updatedAt": "2025-09-09T00:00:00.000Z",
+      "canonical": "https://barts.space/lets-apply-to-a-new-job/",
+      "title": "🎨 Let's apply to a new job",
+      "sourceHtmlSha256": "a90892a8c3eb0fe0be60a52d604c55616b0587791bcf064a5be67aaa81a9186b",
+      "normalizedBodySha256": "32da34e82d4811a51235e710c497d5d56f8347e1105ccad6d73c2204c68f5343",
+      "semanticTextSha256": "38a573927ec3222f37fe70024474813affff600279e41c6c7d1d31f2c86e239f",
+      "structure": {
+        "headings": [],
+        "links": [
+          {
+            "text": "https://www.theatlantic.com/ideas/archive/2025/09/job-market-hell/684133/?gift=Vowm9zXD_VpjYJtYApIfy6iqYdFY6568omVJ07mz1tc",
+            "href": "https://www.theatlantic.com/ideas/archive/2025/09/job-market-hell/684133/?gift=Vowm9zXD_VpjYJtYApIfy6iqYdFY6568omVJ07mz1tc"
+          },
+          {
+            "text": "https://www.reddit.com/r/technology/comments/1nbrilo/the_job_market_is_hell_young_people_are_using/",
+            "href": "https://www.reddit.com/r/technology/comments/1nbrilo/the_job_market_is_hell_young_people_are_using/"
+          }
+        ],
+        "images": [
+          {
+            "alt": "Code Clucks at Midnight (1)",
+            "src": "/media/lets-apply-to-a-new-job/code-clucks-at-midnight-1-1.webp"
+          }
+        ],
+        "blockquotes": 1,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": [
+        {
+          "sourceUrl": "https://bear-images.sfo2.cdn.digitaloceanspaces.com/bart6114/code-clucks-at-midnight-1-1.webp",
+          "localPath": "/media/lets-apply-to-a-new-job/code-clucks-at-midnight-1-1.webp",
+          "sha256": "46e517603afc9e123b98556f44cbeab5810533d8765461121882a7d316ae5776",
+          "bytes": 74020,
+          "contentType": "image/webp"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://barts.space/ccm-clankers-be-crawling-code/",
+      "slug": "ccm-clankers-be-crawling-code",
+      "publishedAt": "2025-09-10T07:18:00.000Z",
+      "updatedAt": "2025-09-10T00:00:00.000Z",
+      "canonical": "https://barts.space/ccm-clankers-be-crawling-code/",
+      "title": "🎨 Clankers Be Crawling",
+      "sourceHtmlSha256": "9282a05cfd6c58cdf3720a1158326d88b289ef8f93bff3b22e481743e7cc2252",
+      "normalizedBodySha256": "eef2d8fa21eafdba659394c3dd47d294d1dbc4218833091fd62d00b8e4267889",
+      "semanticTextSha256": "afb18b268b11e9590ddbad5f2c967348a024d970ebecc175b0e60dd689560e2c",
+      "structure": {
+        "headings": [],
+        "links": [
+          {
+            "text": "https://blog.cloudflare.com/crawlers-click-ai-bots-training/",
+            "href": "https://blog.cloudflare.com/crawlers-click-ai-bots-training/"
+          }
+        ],
+        "images": [
+          {
+            "alt": "Code Clucks at Midnight (2)",
+            "src": "/media/ccm-clankers-be-crawling-code/code-clucks-at-midnight-2.gif"
+          }
+        ],
+        "blockquotes": 1,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": [
+        {
+          "sourceUrl": "https://bear-images.sfo2.cdn.digitaloceanspaces.com/bart6114/code-clucks-at-midnight-2.gif",
+          "localPath": "/media/ccm-clankers-be-crawling-code/code-clucks-at-midnight-2.gif",
+          "sha256": "cd68dea5f369f66b50ed8f04055e9024b8e3882dcdea3471812a04eb4ba4b960",
+          "bytes": 240295,
+          "contentType": "image/gif"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://barts.space/the-mit-pay-me-or-get-the-fork-out-license/",
+      "slug": "the-mit-pay-me-or-get-the-fork-out-license",
+      "publishedAt": "2025-09-09T06:11:00.000Z",
+      "updatedAt": "2025-09-09T00:00:00.000Z",
+      "canonical": "https://barts.space/the-mit-pay-me-or-get-the-fork-out-license/",
+      "title": "The MIT-Pay Me Or Get The Fork Out License",
+      "sourceHtmlSha256": "d8eea56a48996fd0409357249a768f7cae3c169a3ae461fa11210c4ccf04a347",
+      "normalizedBodySha256": "57506c702a3097bec018304f536d956cc5bef77f49357b1d1e6366c7c37c94cc",
+      "semanticTextSha256": "9b104a7d789bbe30325fbfd626eae1645acdc9a9fe2d2f2f840361b50673ba91",
+      "structure": {
+        "headings": [],
+        "links": [],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/why-oss-funding-cannot-be-treated-like-public-infrastructure/",
+      "slug": "why-oss-funding-cannot-be-treated-like-public-infrastructure",
+      "publishedAt": "2025-08-18T11:47:00.000Z",
+      "updatedAt": "2025-08-18T00:00:00.000Z",
+      "canonical": "https://barts.space/why-oss-funding-cannot-be-treated-like-public-infrastructure/",
+      "title": "Why OSS funding cannot be treated like public infrastructure",
+      "sourceHtmlSha256": "1443b4219cd3dfb8cce24a8cbd2faa7a4fbf0c73040d542674347a7362f9dc7e",
+      "normalizedBodySha256": "84283c1352f853b7bf00fb5fa97b7a7da3e27518faa86e05fee4f87282268336",
+      "semanticTextSha256": "e6f9317fc0990b6a12f20b78449f69c8371b7c60c254ff49b108797afa52edb1",
+      "structure": {
+        "headings": [],
+        "links": [
+          {
+            "text": "Dries’ article on funding open source like public infrastructure",
+            "href": "https://dri.es/funding-open-source-like-public-infrastructure"
+          }
+        ],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/meet-text2workout-a-tiny-ai-teammate-for-structured-workouts/",
+      "slug": "meet-text2workout-a-tiny-ai-teammate-for-structured-workouts",
+      "publishedAt": "2025-07-08T11:03:00.000Z",
+      "updatedAt": "2025-07-09T00:00:00.000Z",
+      "canonical": "https://barts.space/meet-text2workout-a-tiny-ai-teammate-for-structured-workouts/",
+      "title": "Meet text2workout – a tiny AI teammate for structured workouts 🚴‍♂️💨",
+      "sourceHtmlSha256": "9adde37eb343d2aa0c57727f9372ae106b808baa477ba84a39322019073f948b",
+      "normalizedBodySha256": "34550d84d7c58b81d977b313d9d7b9e8d34c1ad7504a6284bef7013b474aa0ae",
+      "semanticTextSha256": "c66150d044237baf872010abe121d01c5ef85a74cc9378036589d23082c60c45",
+      "structure": {
+        "headings": [
+          {
+            "level": "h3",
+            "text": "Current scope"
+          }
+        ],
+        "links": [
+          {
+            "text": "text2workout.barts.space",
+            "href": "https://text2workout.barts.space"
+          },
+          {
+            "text": "",
+            "href": "https://text2workout.barts.space"
+          }
+        ],
+        "images": [
+          {
+            "alt": "Screenshot 2025-07-08 at 12",
+            "src": "/media/meet-text2workout-a-tiny-ai-teammate-for-structured-workouts/59.webp"
+          }
+        ],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": [
+        {
+          "sourceUrl": "https://bear-images.sfo2.cdn.digitaloceanspaces.com/bart6114/59.webp",
+          "localPath": "/media/meet-text2workout-a-tiny-ai-teammate-for-structured-workouts/59.webp",
+          "sha256": "aa1c03f2bcd2433242794874c88d4904b30691f8f6a0a0958d3bcba9098bf9b2",
+          "bytes": 45192,
+          "contentType": "image/webp"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://barts.space/i-think-growth-matters/",
+      "slug": "i-think-growth-matters",
+      "publishedAt": "2025-06-26T08:56:00.000Z",
+      "updatedAt": "2025-06-26T00:00:00.000Z",
+      "canonical": "https://barts.space/i-think-growth-matters/",
+      "title": "I think growth matters",
+      "sourceHtmlSha256": "2c9cfe583a6c8b1ddde12052069cacfcfe11785eab27b3301e9b86bdf884aec7",
+      "normalizedBodySha256": "ac6db9bcb36815f07add72ad9c27f1359004edf3cbec8f408cc1658f59606259",
+      "semanticTextSha256": "27c9e3e2a3ccf1d6a66ebb7e88fcf07e0bf50b2befe0b562562cb71158d522f9",
+      "structure": {
+        "headings": [
+          {
+            "level": "h3",
+            "text": "1. It keeps a team honest"
+          },
+          {
+            "level": "h3",
+            "text": "2. It funds the good stuff"
+          },
+          {
+            "level": "h3",
+            "text": "3. It creates breathing room"
+          },
+          {
+            "level": "h3",
+            "text": "4. It creates opportunities"
+          }
+        ],
+        "links": [],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/cheek-moves/",
+      "slug": "cheek-moves",
+      "publishedAt": "2025-06-11T12:52:00.000Z",
+      "updatedAt": "2025-06-11T00:00:00.000Z",
+      "canonical": "https://barts.space/cheek-moves/",
+      "title": "cheek moves",
+      "sourceHtmlSha256": "0d52a85a34a40aae2a50b78cc9d3a6406a44395d1969e4d8ef96dc040cdfd066",
+      "normalizedBodySha256": "4d3a5b072c0da66df8b472a3982a8a41e602a879ec1a13ac9a5adbcea1b2fd19",
+      "semanticTextSha256": "63004aa74a3f31d080c6d552e0f0162a6aa112c9a1a7ab82a8e52055552bf237",
+      "structure": {
+        "headings": [],
+        "links": [
+          {
+            "text": "cheek.barts.space",
+            "href": "https://cheek.barts.space"
+          }
+        ],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/bgremoverxyz/",
+      "slug": "bgremoverxyz",
+      "publishedAt": "2025-06-09T09:51:00.000Z",
+      "updatedAt": "2025-06-09T00:00:00.000Z",
+      "canonical": "https://barts.space/bgremoverxyz/",
+      "title": "bgremover.xyz",
+      "sourceHtmlSha256": "75a754d4caa11d47ab01b6ac38b95a476b8618bf5051d1b0a3b99165b70c4eda",
+      "normalizedBodySha256": "6bb5d8c364e2236506acdbc958bb16cff64299728adb051fde311df0c902a111",
+      "semanticTextSha256": "509464db287529e3f71d17bc81857fb53d3588838ab291efab8d0b994d58b779",
+      "structure": {
+        "headings": [],
+        "links": [
+          {
+            "text": "bgremover.xyz",
+            "href": "https://bgremover.xyz"
+          },
+          {
+            "text": "img.ly",
+            "href": "https://img.ly/"
+          },
+          {
+            "text": "background-removal-js",
+            "href": "https://github.com/imgly/background-removal-js"
+          },
+          {
+            "text": "img.ly",
+            "href": "https://img.ly/"
+          }
+        ],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/were-back-introducing-the-monkey-patching-podcast/",
+      "slug": "were-back-introducing-the-monkey-patching-podcast",
+      "publishedAt": "2025-05-07T16:22:00.000Z",
+      "updatedAt": "2025-05-07T00:00:00.000Z",
+      "canonical": "https://barts.space/were-back-introducing-the-monkey-patching-podcast/",
+      "title": "We're Back! Introducing The Monkey Patching Podcast 🐒🖖",
+      "sourceHtmlSha256": "268fb96b5eeb4b90cbc6ed2945648ca75b2bbce17f30d305fa665cef3f3fe596",
+      "normalizedBodySha256": "c05898c287c06c270edfe00d79388106686a736435016110285b847a5fd086a4",
+      "semanticTextSha256": "71c6a14e1e095bc864a5d5009b958381db6e31517d8e20aa036c1f011ca80f84",
+      "structure": {
+        "headings": [],
+        "links": [
+          {
+            "text": "Murilo Kuniyoshi Suzart Cunha",
+            "href": "https://be.linkedin.com/in/murilo-cunha"
+          },
+          {
+            "text": "monkeypatching.io",
+            "href": "https://monkeypatching.io"
+          }
+        ],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/bringing-jules-verne-to-a-new-generation-in-dutch/",
+      "slug": "bringing-jules-verne-to-a-new-generation-in-dutch",
+      "publishedAt": "2025-05-06T07:11:00.000Z",
+      "updatedAt": "2025-05-06T00:00:00.000Z",
+      "canonical": "https://barts.space/bringing-jules-verne-to-a-new-generation-in-dutch/",
+      "title": "Bringing Jules Verne to a New Generation (in Dutch)",
+      "sourceHtmlSha256": "24aa7d1ee3b81740696a9f4b70b9f4445eae399cd81886759892c6e0270665f0",
+      "normalizedBodySha256": "34ba60017969279253a360c7eb3d266f704ceb2f635d0c740f355b19cf0f79d6",
+      "semanticTextSha256": "01d50bd83039ab0c155d0324f349ff210eefba2dd5ba18d229b42accabd163d0",
+      "structure": {
+        "headings": [],
+        "links": [
+          {
+            "text": "epub | Jules Verne - Journey to the Center of the Earth",
+            "href": "https://pub-0257eb8d3168405191aefbaf79082ef9.r2.dev/Naar%20het%20middelpunt%20der%20Aarde%20-%20moderne%20vertaling%20-%20Jules%20Verne.epub"
+          },
+          {
+            "text": "Journey to the Center of the Earth",
+            "href": "https://www.gutenberg.org/ebooks/10349"
+          },
+          {
+            "text": "epub | Jules Verne - Naar het middelpunt der aarde",
+            "href": "https://pub-0257eb8d3168405191aefbaf79082ef9.r2.dev/Naar%20het%20middelpunt%20der%20Aarde%20-%20moderne%20vertaling%20-%20Jules%20Verne.epub"
+          },
+          {
+            "text": "Naar het middelpunt der aarde",
+            "href": "https://www.gutenberg.org/ebooks/10349"
+          }
+        ],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/from-forum-rabbit-hole-to-running-resource/",
+      "slug": "from-forum-rabbit-hole-to-running-resource",
+      "publishedAt": "2025-04-22T10:24:00.000Z",
+      "updatedAt": "2025-04-22T00:00:00.000Z",
+      "canonical": "https://barts.space/from-forum-rabbit-hole-to-running-resource/",
+      "title": "From Forum Rabbit Hole to Running Resource",
+      "sourceHtmlSha256": "556ff06865f41b23ba64c1df6496c682698d4e16b2cde7692ffc7914bf9a76e7",
+      "normalizedBodySha256": "01abf83ad4e73b970570d38d8ae07dff823338fd695932ed7b086ade53e43c52",
+      "semanticTextSha256": "06ca8cb33b8fa2c51381c1c6548cf1acc6f676a79c7d898802c9aa42271d6b7c",
+      "structure": {
+        "headings": [],
+        "links": [
+          {
+            "text": "Letsrun thread",
+            "href": "https://www.letsrun.com/forum/flat_read.php?thread=12130781"
+          },
+          {
+            "text": "norwegiansingles.run",
+            "href": "https://norwegiansingles.run/"
+          },
+          {
+            "text": "Quarto",
+            "href": "https://quarto.org/"
+          }
+        ],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/looking-back-an-8-year-journey-building-dataroots/",
+      "slug": "looking-back-an-8-year-journey-building-dataroots",
+      "publishedAt": "2025-04-04T11:54:00.000Z",
+      "updatedAt": "2025-04-04T00:00:00.000Z",
+      "canonical": "https://barts.space/looking-back-an-8-year-journey-building-dataroots/",
+      "title": "So Long, Dataroots!",
+      "sourceHtmlSha256": "6b2c95ab6c18d1d0293d827105186311e786a429234af902bcef63ff81d5dfc5",
+      "normalizedBodySha256": "3ec3a83cc685e9d02866a3a7ec1216d47e9363c31fa8fe2f40964d42ad8553dc",
+      "semanticTextSha256": "e0d780317c9a012c091cb70eb7a585ac20083738813bbbd6fa38665281b358d6",
+      "structure": {
+        "headings": [
+          {
+            "level": "h2",
+            "text": "Stuff I've figured out along the way"
+          },
+          {
+            "level": "h3",
+            "text": "People are your only true asset"
+          },
+          {
+            "level": "h3",
+            "text": "Happy team + happy customers = money in the bank"
+          },
+          {
+            "level": "h3",
+            "text": "There's always something on fire - and that's actually fine"
+          },
+          {
+            "level": "h3",
+            "text": "Most people hate change (I'm weird and like it)"
+          },
+          {
+            "level": "h3",
+            "text": "Being acquired taught me a ton"
+          },
+          {
+            "level": "h3",
+            "text": "Take time to celebrate wins (we definitely didn't do this enough)"
+          },
+          {
+            "level": "h2",
+            "text": "What's next for me?"
+          }
+        ],
+        "links": [
+          {
+            "text": "Jonas",
+            "href": "https://www.linkedin.com/in/jonas-tundo-9b54a843/"
+          },
+          {
+            "text": "Pablo",
+            "href": "https://www.linkedin.com/in/pablocogis/"
+          },
+          {
+            "text": "Murilo",
+            "href": "https://www.linkedin.com/in/murilo-cunha/"
+          }
+        ],
+        "images": [
+          {
+            "alt": "WhatsApp Image 2025-04-04 at 13",
+            "src": "/media/looking-back-an-8-year-journey-building-dataroots/03.webp"
+          }
+        ],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 3
+      },
+      "media": [
+        {
+          "sourceUrl": "https://bear-images.sfo2.cdn.digitaloceanspaces.com/bart6114/03.webp",
+          "localPath": "/media/looking-back-an-8-year-journey-building-dataroots/03.webp",
+          "sha256": "0fbaeec970f1fcd997eba8e3870322c429091c9034bfb695124f175b28585fb7",
+          "bytes": 171084,
+          "contentType": "image/webp"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://barts.space/upnote-to-bear-a-migration-script/",
+      "slug": "upnote-to-bear-a-migration-script",
+      "publishedAt": "2025-03-11T06:45:00.000Z",
+      "updatedAt": "2025-03-11T00:00:00.000Z",
+      "canonical": "https://barts.space/upnote-to-bear-a-migration-script/",
+      "title": "Upnote to Bear: A Migration Script",
+      "sourceHtmlSha256": "1be18378f541113a8340c804b77a1b17ffa9abe05d81cf3e4e5b8ed705f5a82d",
+      "normalizedBodySha256": "b4457540fc2104f49f4f0e4e6c40c47b1eb1efabbd49b8db26d7aa1f033f549b",
+      "semanticTextSha256": "c1cfa39d6bb42b35794540f42c04344e5af0db92d168cf0ce6bae1bcc45c6cd1",
+      "structure": {
+        "headings": [],
+        "links": [
+          {
+            "text": "github.com/bart6114/upnote2bear",
+            "href": "https://github.com/bart6114/upnote2bear/"
+          },
+          {
+            "text": "TextBundles",
+            "href": "https://textbundle.org/"
+          }
+        ],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/why-im-shutting-down-my-sustainable-fashion-brand-for-now/",
+      "slug": "why-im-shutting-down-my-sustainable-fashion-brand-for-now",
+      "publishedAt": "2025-01-14T07:00:00.000Z",
+      "updatedAt": "2025-01-10T00:00:00.000Z",
+      "canonical": "https://barts.space/why-im-shutting-down-my-sustainable-fashion-brand-for-now/",
+      "title": "Why I'm shutting down my sustainable fashion brand (for now)",
+      "sourceHtmlSha256": "f5cb9a24b9d4a049f821ff03533c8426328b4268bcbdb802d5a64839577b0940",
+      "normalizedBodySha256": "60d2cb6a95a17ca4dbdfe8906db7f36b6ec4027e71796ee16821e4a9795fcffe",
+      "semanticTextSha256": "a129c26dc51298bbd6cb6e32638cd799dd119648bffc90935e2852a5372132a9",
+      "structure": {
+        "headings": [
+          {
+            "level": "h2",
+            "text": "A Creative Side Hustle with Purpose"
+          },
+          {
+            "level": "h2",
+            "text": "The Reality of Sustainable Fashion Economics"
+          },
+          {
+            "level": "h2",
+            "text": "Making a Choice"
+          },
+          {
+            "level": "h2",
+            "text": "Lessons Learned"
+          },
+          {
+            "level": "h2",
+            "text": "A Heartfelt Thank You"
+          },
+          {
+            "level": "h2",
+            "text": "What's Next?"
+          }
+        ],
+        "links": [
+          {
+            "text": "mymuta.com",
+            "href": "http://mymuta.com"
+          }
+        ],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 6
+      },
+      "media": []
+    },
+    {
+      "sourceUrl": "https://barts.space/down-the-lactate-threshold-rabbit-hole-a-python-package-for-endurance-athletes/",
+      "slug": "down-the-lactate-threshold-rabbit-hole-a-python-package-for-endurance-athletes",
+      "publishedAt": "2025-01-10T08:41:00.000Z",
+      "updatedAt": "2025-01-10T00:00:00.000Z",
+      "canonical": "https://barts.space/down-the-lactate-threshold-rabbit-hole-a-python-package-for-endurance-athletes/",
+      "title": "Down the Lactate Threshold Rabbit Hole: A Python Package for Endurance Athletes",
+      "sourceHtmlSha256": "262eab38e08cf8ce2a47d8be174f4cde0bef00f4cbf33f1093d5f7db537ee97d",
+      "normalizedBodySha256": "36ce2ecfae2546060a5b63edc1aa8a270faf7739789778fde32839a836a006fe",
+      "semanticTextSha256": "8690a9c2f667c3433e6592693843c3c8e623f807f756b3c7047177dbb82b0eed",
+      "structure": {
+        "headings": [
+          {
+            "level": "h2",
+            "text": "What's in There?"
+          },
+          {
+            "level": "h2",
+            "text": "Making Sense of It All"
+          },
+          {
+            "level": "h2",
+            "text": "Give It a Shot"
+          },
+          {
+            "level": "h2",
+            "text": "What's the Deal?"
+          }
+        ],
+        "links": [
+          {
+            "text": "lactate.barts.space",
+            "href": "https://lactate.barts.space"
+          },
+          {
+            "text": "github.com/bart6114/lactate-thresholds",
+            "href": "https://github.com/bart6114/lactate-thresholds"
+          }
+        ],
+        "images": [
+          {
+            "alt": "li_viz",
+            "src": "/media/down-the-lactate-threshold-rabbit-hole-a-python-package-for-endurance-athletes/li_viz.webp"
+          }
+        ],
+        "blockquotes": 0,
+        "codeBlocks": 1,
+        "listItems": 8
+      },
+      "media": [
+        {
+          "sourceUrl": "https://bear-images.sfo2.cdn.digitaloceanspaces.com/bart6114/li_viz.webp",
+          "localPath": "/media/down-the-lactate-threshold-rabbit-hole-a-python-package-for-endurance-athletes/li_viz.webp",
+          "sha256": "3cb49b4cff0f4d53d2e938b28627b765bbce3125922dbc511090880ceae5c368",
+          "bytes": 17188,
+          "contentType": "image/webp"
+        }
+      ]
+    },
+    {
+      "sourceUrl": "https://barts.space/this-is-a-post/",
+      "slug": "this-is-a-post",
+      "publishedAt": "2024-12-22T19:43:00.000Z",
+      "updatedAt": "2024-12-22T00:00:00.000Z",
+      "canonical": "https://barts.space/this-is-a-post/",
+      "title": "this is a post",
+      "sourceHtmlSha256": "9187c638286a1c361c02c3ed94f632857c0f4c2d5dae02d5a4572ef9dfd8e174",
+      "normalizedBodySha256": "4671280a44b591aa369256321c4838de9db84f95682e600578d71f709c946384",
+      "semanticTextSha256": "fb1f161605a51c91e4f333f1abf6d26d955d2007e2d23b5ccd39a71ca3b85184",
+      "structure": {
+        "headings": [],
+        "links": [],
+        "images": [],
+        "blockquotes": 0,
+        "codeBlocks": 0,
+        "listItems": 0
+      },
+      "media": []
+    }
+  ]
+}

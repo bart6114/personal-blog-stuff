@@ -1,0 +1,9 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+Astro.response.status = 404;
+---
+
+<BaseLayout title="not found" canonicalPath="/404.html" noindex>
+  <h1>nothing here</h1>
+  <p>Whatever you were looking for wandered off. Try the <a href="/">jottings</a>.</p>
+</BaseLayout>

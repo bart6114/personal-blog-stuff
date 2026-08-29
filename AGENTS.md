@@ -1,6 +1,15 @@
 # Personal Blog
 
-This repository contains blog post drafts for [barts.space](https://barts.space), Bart's main content site. Drafts live as Markdown files in the repository root; the publishing site lives in `site/`.
+This repository contains the content and Astro implementation for [barts.space](https://barts.space), Bart's main content site. The Astro project lives in `src/`. Published and publication-track Markdown lives in `content/blog/`; loose unpublished drafts live in `content/scratchpad/`. The unrelated static host for stuff.barts.space remains in `site/`.
+
+## Site development
+
+- Run Astro commands from `src/` with Node 24.
+- Treat `content/blog/` as the only content collection used by the public site. Posts with `draft: true` must not appear in routes, lists, feeds, or the sitemap.
+- Treat `content/scratchpad/` as private working material that must never be included in the Astro build.
+- Preserve explicit published slugs and trailing-slash URLs. Do not derive canonical URLs from filenames when frontmatter provides a slug.
+- The live Bear version was authoritative during the initial migration. After the production cutover, the repository is authoritative.
+- Do not repurpose or deploy `site/` when working on barts.space; it serves a different domain and Cloudflare Pages project.
 
 ## Writing guidance
 

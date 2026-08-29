@@ -1,0 +1,38 @@
+{
+  "name": "barts-space",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "check": "astro check",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "worker:dev": "wrangler dev",
+    "worker:preview": "wrangler versions upload --preview-alias precutover",
+    "worker:promote": "wrangler versions deploy",
+    "deploy": "wrangler deploy",
+    "import:bear": "node scripts/import-bear.mjs",
+    "verify:content": "node scripts/verify-content.mjs"
+  },
+  "dependencies": {
+    "@astrojs/markdown-satteri": "0.3.8",
+    "@astrojs/rss": "4.0.19",
+    "@astrojs/sitemap": "3.7.3",
+    "astro": "7.2.9",
+    "marked": "18.0.11"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "cheerio": "1.2.0",
+    "fast-xml-parser": "5.11.1",
+    "turndown": "7.2.4",
+    "turndown-plugin-gfm": "1.0.2",
+    "typescript": "6.0.3",
+    "wrangler": "4.127.1",
+    "yaml": "2.9.0"
+  }
+}
