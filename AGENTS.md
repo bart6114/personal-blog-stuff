@@ -1,15 +1,31 @@
 # Personal Blog
 
-This repository contains the content and Astro implementation for [barts.space](https://barts.space), Bart's main content site. The Astro project lives in `src/`. Published and publication-track Markdown lives in `content/blog/`; loose unpublished drafts live in `content/scratchpad/`. The unrelated static host for stuff.barts.space remains in `site/`.
+This repository contains two separate websites plus their source content. Keep their build and deployment paths distinct.
 
-## Site development
+## Repository layout
+
+- `src/` is the Astro project for [barts.space](https://barts.space), Bart's main blog. Run its Node, Astro, content verification, feed, and Cloudflare Worker commands from this directory.
+- `content/blog/` contains Markdown consumed by the Astro project. Published posts and publication-track drafts both belong here; frontmatter controls whether a post is public.
+- `content/scratchpad/` contains loose unpublished writing that Astro must never read or publish.
+- `stuff-site/` is the independent static publish root for [stuff.barts.space](https://stuff.barts.space). It is not part of the Astro app and currently deploys to the separate Cloudflare project named `knowledge-work-atlas`.
+- `gpx-story/` is a separate prototype and is not part of either website.
+
+## barts.space development (`src/`)
 
 - Run Astro commands from `src/` with Node 24.
 - Treat `content/blog/` as the only content collection used by the public site. Posts with `draft: true` must not appear in routes, lists, feeds, or the sitemap.
 - Treat `content/scratchpad/` as private working material that must never be included in the Astro build.
 - Preserve explicit published slugs and trailing-slash URLs. Do not derive canonical URLs from filenames when frontmatter provides a slug.
 - The live Bear version was authoritative during the initial migration. After the production cutover, the repository is authoritative.
-- Do not repurpose or deploy `site/` when working on barts.space; it serves a different domain and Cloudflare Pages project.
+- Do not include or deploy `stuff-site/` when working on barts.space.
+
+## stuff.barts.space development (`stuff-site/`)
+
+- Treat `stuff-site/` as the complete static publish root; its subdirectories map directly to public URL paths.
+- Follow `stuff-site/DEPLOY.md` for its build and deployment procedure.
+- Deploy the entire `stuff-site/` directory, not an individual sub-project.
+- Do not include `src/`, `content/`, or `gpx-story/` when deploying stuff.barts.space.
+- Keep the external Cloudflare project name `knowledge-work-atlas` unless a separate migration explicitly changes it; the repository directory name does not rename that project.
 
 ## Writing guidance
 

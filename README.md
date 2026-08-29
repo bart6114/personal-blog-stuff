@@ -1,12 +1,14 @@
 # barts.space
 
-This repository contains three separate things:
+This repository contains two websites plus their source content:
 
 - `content/blog/` — Markdown used by the Astro blog. A post can remain unpublished with `draft: true`.
 - `content/scratchpad/` — loose drafts that Astro never reads.
-- `src/` — the Astro project for barts.space.
+- `src/` — the Astro and Cloudflare Worker project for barts.space.
+- `stuff-site/` — the independent static publish root for stuff.barts.space.
+- `gpx-story/` — a separate prototype.
 
-The existing `site/` directory still serves stuff.barts.space and `gpx-story/` remains a separate prototype.
+The `src/` and `stuff-site/` deployment paths are unrelated. See `src/DEPLOY.md` and `stuff-site/DEPLOY.md` respectively.
 
 ## Local development
 

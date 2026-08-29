@@ -9,10 +9,16 @@
 :root {
   --reading-width: 720px;
   --page-gutter: clamp(16px, 2.5vw, 44px);
+  --spacecraft-size: 60px;
+  --planet-size: 108px;
+  --planet-right: clamp(72px, 8vw, 120px);
+  --orbit-x: 130px;
+  --orbit-y: 48px;
   --background: #fff;
   --text: #232333;
   --accent: #c00;
   --link-accent: #a6b488;
+  --article-link: #70717c;
   --muted: rgb(35 35 51 / 70%);
   --rule: rgb(35 35 51 / 24%);
   --surface: #f7f7f8;
@@ -208,13 +214,39 @@ td {
   text-align: center;
 }
 
-.spacecraft {
+.space-scene {
   position: fixed;
+  right: var(--planet-right);
+  bottom: 30px;
   z-index: -1;
-  right: -80px;
-  bottom: 40px;
-  width: 60px;
-  animation: fly 15s linear infinite, wobble 1s ease-in-out infinite alternate;
+  width: var(--planet-size);
+  height: var(--planet-size);
+  pointer-events: none;
+  user-select: none;
+}
+
+.pixel-planet {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  animation: planet-hover 6s ease-in-out infinite;
+  transform-origin: 50% 65%;
+  will-change: transform;
+}
+
+.spacecraft {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: var(--spacecraft-size);
+  offset-path: ellipse(var(--orbit-x) var(--orbit-y) at 50% 50%);
+  offset-anchor: 50% 50%;
+  offset-rotate: auto 180deg;
+  scale: 0.82;
+  animation: spacecraft-orbit 12s linear infinite;
+  will-change: offset-distance;
 }
 
 .skip-link {
@@ -380,14 +412,37 @@ td {
   margin-top: 0;
 }
 
-@keyframes fly {
-  from { right: -80px; }
-  to { right: calc(100vw + 80px); }
+.article-body a,
+.article-body a:visited {
+  color: var(--article-link);
 }
 
-@keyframes wobble {
-  from { transform: translateY(-4px); }
-  to { transform: translateY(4px); }
+@keyframes planet-hover {
+  0%, 100% { transform: translateY(1px) rotate(-0.25deg); }
+  50% { transform: translateY(-4px) rotate(0.35deg); }
+}
+
+@keyframes spacecraft-orbit {
+  0% {
+    z-index: 2;
+    offset-distance: 0%;
+  }
+  49.9% {
+    z-index: 2;
+    offset-distance: 49.9%;
+  }
+  50% {
+    z-index: 0;
+    offset-distance: 50%;
+  }
+  99.9% {
+    z-index: 0;
+    offset-distance: 99.9%;
+  }
+  100% {
+    z-index: 2;
+    offset-distance: 100%;
+  }
 }
 
 @media (max-width: 1180px) {
@@ -450,6 +505,14 @@ td {
 }
 
 @media (max-width: 520px) {
+  :root {
+    --spacecraft-size: 48px;
+    --planet-size: 86px;
+    --planet-right: 70px;
+    --orbit-x: 96px;
+    --orbit-y: 38px;
+  }
+
   body {
     padding-inline: var(--page-gutter);
   }
@@ -477,6 +540,10 @@ td {
     grid-template-columns: 1fr;
     gap: 0.1rem;
   }
+
+  .space-scene {
+    bottom: 24px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -488,7 +555,13 @@ td {
     animation-iteration-count: 1 !important;
   }
 
+  .pixel-planet,
   .spacecraft {
-    display: none;
+    animation: none;
+  }
+
+  .spacecraft {
+    z-index: 2;
+    offset-distance: 25%;
   }
 }

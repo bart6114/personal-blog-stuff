@@ -1,7 +1,7 @@
 # Atlas Explorer — Overview-First Redesign (Direction ①)
 
 **Date:** 2026-06-29
-**Artifact:** `site/knowledge-work-atlas/` (1,734 tasks · 17 domains · 614 roles)
+**Artifact:** `stuff-site/skill-atlas/` (1,734 tasks · 17 domains · 614 roles)
 **Status:** Design approved; ready for implementation plan.
 
 ## Goal
