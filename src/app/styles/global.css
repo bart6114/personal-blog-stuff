@@ -18,7 +18,7 @@
   --text: #232333;
   --accent: #c00;
   --link-accent: #a6b488;
-  --article-link: #70717c;
+  --article-link: #484953;
   --muted: rgb(35 35 51 / 70%);
   --rule: rgb(35 35 51 / 24%);
   --surface: #f7f7f8;
@@ -415,6 +415,19 @@ td {
 .article-body a,
 .article-body a:visited {
   color: var(--article-link);
+  padding-inline: 0.08em;
+  background: linear-gradient(
+    to top,
+    rgb(166 180 136 / 38%) 0 42%,
+    transparent 42% 100%
+  );
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  transition: background-color 140ms ease;
+}
+
+.article-body a:hover {
+  background-color: rgb(166 180 136 / 22%);
 }
 
 @keyframes planet-hover {
