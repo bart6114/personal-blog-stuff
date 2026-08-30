@@ -1,10 +1,10 @@
 ---
 title: "my AI/agents setup, August 2026"
 description: "A snapshot of the providers, coding tools, Hermes agents, Telegram bots and Loofah vault that make up my current AI setup."
-publishedAt: "2026-08-30T00:00:00.000Z"
+publishedAt: "2026-08-31T04:00:00.000Z"
 updatedAt: "2026-08-30T00:00:00.000Z"
 slug: "my-ai-agents-setup-august-2026"
-draft: true
+draft: false
 tags: []
 ---
 
