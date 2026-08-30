@@ -43,11 +43,13 @@ if (!manifest.posts.length || manifest.postCount !== manifest.posts.length) thro
 const slugs = new Set();
 const publishedPosts = [];
 const draftPosts = [];
+const scheduledPosts = [];
+const verificationTime = Date.now();
 for (const filename of blogFiles) {
   const source = await readFile(join(blogDir, filename), "utf8");
   const post = parseMarkdown(source, filename);
   const expectedSlug = filename.replace(/\.md$/, "");
-  for (const key of ["title", "description", "publishedAt", "slug", "draft", "tags"]) {
+  for (const key of ["title", "description", "slug", "draft", "tags"]) {
     if (!(key in post.data)) throw new Error(`${filename}: missing ${key}`);
   }
   if (post.data.slug !== expectedSlug) throw new Error(`${filename}: slug does not match filename`);
@@ -56,7 +58,13 @@ for (const filename of blogFiles) {
   if (!post.body.trim()) throw new Error(`${filename}: empty body`);
   if (/bear-images\.sfo2\.cdn\.digitaloceanspaces\.com/.test(source)) throw new Error(`${filename}: Bear CDN reference remains`);
   slugs.add(post.data.slug);
-  (post.data.draft ? draftPosts : publishedPosts).push(post);
+  if (post.data.draft) {
+    draftPosts.push(post);
+  } else if (post.data.publishedAt && new Date(post.data.publishedAt).valueOf() > verificationTime) {
+    scheduledPosts.push(post);
+  } else {
+    publishedPosts.push(post);
+  }
 }
 
 for (const imported of manifest.posts) {
@@ -82,10 +90,10 @@ if (distExists) {
   for (const post of publishedPosts) {
     await stat(join(distDir, post.data.slug, "index.html"));
   }
-  for (const post of draftPosts) {
+  for (const post of [...draftPosts, ...scheduledPosts]) {
     try {
       await stat(join(distDir, post.data.slug));
-      throw new Error(`Draft route leaked into dist: ${post.data.slug}`);
+      throw new Error(`Unpublished route leaked into dist: ${post.data.slug}`);
     } catch (error) {
       if (error?.code !== "ENOENT") throw error;
     }
@@ -159,4 +167,4 @@ if (distExists) {
   }
 }
 
-process.stdout.write(`Verified ${publishedPosts.length} published posts, ${draftPosts.length} blog drafts, ${scratchpadFiles.length} scratchpads${distExists ? ", built routes, sitemap and feeds" : ""}.\n`);
+process.stdout.write(`Verified ${publishedPosts.length} published posts, ${scheduledPosts.length} scheduled posts, ${draftPosts.length} blog drafts, ${scratchpadFiles.length} scratchpads${distExists ? ", built routes, sitemap and feeds" : ""}.\n`);

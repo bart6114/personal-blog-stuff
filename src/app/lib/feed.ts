@@ -20,12 +20,15 @@ export async function atomFeed(posts: BlogPost[]) {
   const entries = await Promise.all(posts.map(async (post) => {
     const url = `https://barts.space/${post.data.slug}/`;
     const content = await postHtml(post);
+    const updatedAt = post.data.updatedAt ?? post.data.publishedAt ?? new Date(0);
+    const published = post.data.publishedAt
+      ? `\n    <published>${post.data.publishedAt.toISOString()}</published>`
+      : "";
     return `  <entry>
     <id>${xmlEscape(url)}</id>
     <title>${xmlEscape(post.data.title)}</title>
-    <link href="${xmlEscape(url)}" rel="alternate" />
-    <published>${post.data.publishedAt.toISOString()}</published>
-    <updated>${(post.data.updatedAt ?? post.data.publishedAt).toISOString()}</updated>
+    <link href="${xmlEscape(url)}" rel="alternate" />${published}
+    <updated>${updatedAt.toISOString()}</updated>
     <author><name>Bart Smeets</name></author>
     <summary>${xmlEscape(post.data.description)}</summary>
     <content type="html"><![CDATA[${content.replaceAll("]]>", "]]]]><![CDATA[>")}]]></content>

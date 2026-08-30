@@ -83,6 +83,45 @@ const jsonLd = type === "article"
       <slot />
     </main>
     <Footer />
+    <script is:inline>
+      const copyCode = async (text) => {
+        if (!navigator.clipboard?.writeText) throw new Error("Clipboard unavailable");
+        await navigator.clipboard.writeText(text);
+      };
+
+      document.querySelectorAll("pre > code").forEach((code) => {
+        const pre = code.parentElement;
+        if (!pre || pre.querySelector(":scope > .code-copy-button")) return;
+
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "code-copy-button";
+        button.textContent = "copy";
+        button.setAttribute("aria-label", "Copy code block");
+
+        button.addEventListener("click", async () => {
+          try {
+            await copyCode(code.textContent ?? "");
+            button.textContent = "copied";
+            button.dataset.state = "copied";
+            button.setAttribute("aria-label", "Code copied");
+          } catch {
+            button.textContent = "failed";
+            button.dataset.state = "failed";
+            button.setAttribute("aria-label", "Copy failed");
+          }
+
+          window.setTimeout(() => {
+            button.textContent = "copy";
+            delete button.dataset.state;
+            button.setAttribute("aria-label", "Copy code block");
+          }, 1800);
+        });
+
+        pre.classList.add("has-copy-button");
+        pre.append(button);
+      });
+    </script>
     <script is:inline data-goatcounter="https://bartsspace.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
   </body>
 </html>
