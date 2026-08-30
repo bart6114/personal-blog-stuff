@@ -120,11 +120,16 @@ iframe {
 }
 
 pre {
+  position: relative;
   max-width: 100%;
   padding: 1rem;
   overflow-x: auto;
   background: var(--code-background);
   border-radius: 3px;
+}
+
+pre.has-copy-button {
+  padding-top: 2.8rem;
 }
 
 code {
@@ -135,7 +140,47 @@ code {
 }
 
 pre code {
+  display: block;
   padding: 0;
+  color: inherit;
+  background: transparent;
+  border-radius: 0;
+}
+
+.code-copy-button {
+  position: absolute;
+  top: 0.72rem;
+  right: 0.8rem;
+  z-index: 1;
+  padding: 0.35rem 0.6rem;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.72em;
+  line-height: 1;
+  background: var(--background);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.code-copy-button:hover {
+  color: var(--text);
+  border-color: var(--link-accent);
+}
+
+.code-copy-button:focus-visible {
+  outline: 3px solid var(--link-accent);
+  outline-offset: 2px;
+}
+
+.code-copy-button[data-state="copied"] {
+  color: var(--text);
+  border-color: var(--link-accent);
+}
+
+.code-copy-button[data-state="failed"] {
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 blockquote {

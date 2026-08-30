@@ -28,7 +28,9 @@ const { Content } = await render(post);
   <article>
     <header class="article-header">
       <h1>{post.data.title}</h1>
-      <p class="article-date"><time datetime={post.data.publishedAt.toISOString()}>{formatPostDate(post.data.publishedAt)}</time></p>
+      {post.data.publishedAt && (
+        <p class="article-date"><time datetime={post.data.publishedAt.toISOString()}>{formatPostDate(post.data.publishedAt)}</time></p>
+      )}
     </header>
     <div class="article-body">
       <Content />

@@ -13,7 +13,9 @@ const { posts, variant = "default" } = Astro.props;
 <ul class:list={["post-list", { "post-list--home": variant === "home" }]}>
   {posts.map((post) => (
     <li>
-      <time class="post-date" datetime={post.data.publishedAt.toISOString()}>{formatPostDate(post.data.publishedAt)}</time>
+      {post.data.publishedAt
+        ? <time class="post-date" datetime={post.data.publishedAt.toISOString()}>{formatPostDate(post.data.publishedAt)}</time>
+        : <span class="post-date" aria-hidden="true"></span>}
       <a href={`/${post.data.slug}/`}>{post.data.title}</a>
     </li>
   ))}

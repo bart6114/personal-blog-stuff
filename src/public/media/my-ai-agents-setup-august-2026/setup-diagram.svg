@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 900" role="img" aria-labelledby="title desc">
+  <title id="title">Bart's AI and agents setup, August 2026</title>
+  <desc id="desc">Bart uses Telegram for two always-on Hermes agents, desktop assistants for read-only access to a central Loofah knowledge vault, and local coding clients for repositories. The general-purpose Hermes agent currently handles podcasting and advisory work; those may later split into their own agents. Remote subscription models are the default. A small Google Gemma model running locally handles specific jobs such as large note imports and automatic tagging.</desc>
+
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#232333" flood-opacity="0.07" />
+    </filter>
+    <marker id="arrow-dark" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0 0 L8 4 L0 8 z" fill="#555662" />
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0 0 L8 4 L0 8 z" fill="#87966a" />
+    </marker>
+    <style>
+      .eyebrow { font: 700 11px "Roboto Mono", ui-monospace, monospace; letter-spacing: 1.6px; fill: #777881; }
+      .title { font: 700 20px "Roboto Mono", ui-monospace, monospace; fill: #232333; }
+      .body { font: 500 14px "Roboto Mono", ui-monospace, monospace; fill: #555662; }
+      .small { font: 500 12px "Roboto Mono", ui-monospace, monospace; fill: #666772; }
+      .tiny { font: 500 10px "Roboto Mono", ui-monospace, monospace; fill: #777881; }
+      .card { fill: #fff; stroke: #d8d9d4; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+      .channel { fill: #fff; stroke: #cfd0cc; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+      .hermes { fill: #fff7f5; stroke: #d98273; stroke-width: 2; vector-effect: non-scaling-stroke; }
+      .vault { fill: #f3f6eb; stroke: #9aaa78; stroke-width: 2.5; vector-effect: non-scaling-stroke; }
+      .inner { fill: #fff; stroke: #e2d8d5; stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+      .planned { fill: none; stroke: #aaa9a5; stroke-width: 1.5; stroke-dasharray: 6 5; vector-effect: non-scaling-stroke; }
+      .flow { fill: none; stroke: #555662; stroke-width: 1.8; marker-end: url(#arrow-dark); vector-effect: non-scaling-stroke; }
+      .access { fill: none; stroke: #87966a; stroke-width: 2.2; marker-end: url(#arrow-green); vector-effect: non-scaling-stroke; }
+      .read { stroke-dasharray: 6 5; }
+      .rule { stroke: #dedfda; stroke-width: 1; vector-effect: non-scaling-stroke; }
+    </style>
+  </defs>
+
+  <rect width="720" height="900" fill="#fbfbf9" />
+
+  <!-- Person and channels -->
+  <rect x="292" y="20" width="136" height="52" rx="26" fill="#232333" />
+  <text x="360" y="53" text-anchor="middle" style="font: 700 18px 'Roboto Mono', ui-monospace, monospace; fill: #fff;">Bart</text>
+
+  <path d="M360 72 V94 H120 M360 94 H600" fill="none" stroke="#555662" stroke-width="1.8" vector-effect="non-scaling-stroke" />
+  <path class="flow" d="M120 94 V120" />
+  <path class="flow" d="M360 94 V120" />
+  <path class="flow" d="M600 94 V120" />
+
+  <text class="eyebrow" x="24" y="111">WAYS IN</text>
+
+  <rect class="channel" x="24" y="120" width="192" height="80" rx="10" />
+  <text class="title" x="120" y="154" text-anchor="middle">Telegram</text>
+  <text class="body" x="120" y="180" text-anchor="middle">text + voice</text>
+
+  <rect class="channel" x="264" y="120" width="192" height="80" rx="10" />
+  <text class="title" x="360" y="154" text-anchor="middle">desktop</text>
+  <text class="body" x="360" y="180" text-anchor="middle">ChatGPT / Claude</text>
+
+  <rect class="channel" x="504" y="120" width="192" height="80" rx="10" />
+  <text class="title" x="600" y="154" text-anchor="middle">coding CLIs</text>
+  <text class="body" x="600" y="180" text-anchor="middle">Codex / Pi</text>
+
+  <!-- Primary work paths -->
+  <path class="flow" d="M120 200 V285" />
+  <path class="access read" d="M360 200 V320" />
+  <path class="flow" d="M600 200 V320" />
+
+  <text class="eyebrow" x="24" y="272">WORKSPACES</text>
+
+  <!-- Always-on agents -->
+  <rect class="hermes" x="24" y="285" width="240" height="400" rx="14" filter="url(#shadow)" />
+  <text class="eyebrow" x="48" y="316" style="fill: #ad574b;">REMOTE VM</text>
+  <text class="title" x="48" y="346">Hermes agents</text>
+  <text class="body" x="48" y="369">scheduled + background</text>
+
+  <rect class="inner" x="48" y="390" width="192" height="98" rx="9" />
+  <text class="body" x="64" y="414" style="font-weight: 700; fill: #232333;">general-purpose</text>
+  <text class="small" x="64" y="438">briefs · research</text>
+  <text class="small" x="64" y="456">podcasting</text>
+  <text class="small" x="64" y="474">advisory services</text>
+
+  <rect class="inner" x="48" y="500" width="192" height="67" rx="9" />
+  <text class="body" x="64" y="523" style="font-weight: 700; fill: #232333;">open-source</text>
+  <text class="small" x="64" y="545">mentions · outreach</text>
+  <text class="small" x="64" y="561">listings</text>
+
+  <rect class="planned" x="42" y="575" width="204" height="68" rx="9" />
+  <text class="tiny" x="144" y="595" text-anchor="middle" style="font-weight: 700; letter-spacing: 1px;">SHOULD PROBABLY ADD</text>
+  <text class="small" x="144" y="617" text-anchor="middle">podcasting agent</text>
+  <text class="small" x="144" y="636" text-anchor="middle">advisory agent</text>
+
+  <text class="small" x="48" y="672">Google Workspace · web</text>
+
+  <!-- Central durable context -->
+  <rect class="vault" x="284" y="320" width="192" height="260" rx="14" filter="url(#shadow)" />
+  <text class="eyebrow" x="308" y="351" style="fill: #68764f;">DURABLE CONTEXT</text>
+  <text class="title" x="308" y="385">Loofah vault</text>
+  <line class="rule" x1="308" y1="407" x2="452" y2="407" />
+  <text class="body" x="308" y="439">notes · meetings</text>
+  <text class="body" x="308" y="466">selected AI output</text>
+
+  <rect x="308" y="492" width="144" height="28" rx="14" fill="#e5ead8" />
+  <text class="small" x="380" y="511" text-anchor="middle" style="fill: #586344;">MCP · read-only</text>
+  <rect x="308" y="530" width="144" height="28" rx="14" fill="#e5ead8" />
+  <text class="small" x="380" y="549" text-anchor="middle" style="fill: #586344;">CLI · read/write</text>
+
+  <!-- Local repository access; inference is described separately below -->
+  <rect class="card" x="496" y="320" width="200" height="260" rx="14" filter="url(#shadow)" />
+  <text class="eyebrow" x="520" y="351">LOCAL CLIENTS</text>
+  <text class="title" x="520" y="385">repositories</text>
+  <line class="rule" x1="520" y1="407" x2="672" y2="407" />
+  <text class="body" x="520" y="439">code + tests</text>
+  <text class="body" x="520" y="466">AGENTS.md</text>
+  <text class="body" x="520" y="493">repo tools</text>
+  <rect x="520" y="530" width="152" height="28" rx="14" fill="#f0f1f2" />
+  <text class="small" x="596" y="549" text-anchor="middle">repository-scoped</text>
+
+  <!-- Hermes and coding clients have narrow write access to the vault -->
+  <path class="access" d="M264 478 H284" />
+  <path class="access" d="M496 478 H476" />
+
+  <!-- Inference location is separate from client location -->
+  <text class="eyebrow" x="24" y="709">MODEL EXECUTION</text>
+  <line class="rule" x1="145" y1="705" x2="696" y2="705" />
+
+  <rect x="24" y="728" width="432" height="140" rx="12" fill="#f1f2f5" stroke="#c8cad1" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+  <text class="eyebrow" x="48" y="758">DEFAULT</text>
+  <text class="title" x="48" y="788">remote models</text>
+  <text class="body" x="48" y="816">OpenAI Pro subscription</text>
+  <text class="small" x="48" y="839">ChatGPT · Codex · Pi · Hermes</text>
+  <text class="small" x="48" y="858">OpenRouter · ad hoc overflow</text>
+
+  <rect class="card" x="480" y="728" width="216" height="140" rx="12" />
+  <text class="eyebrow" x="504" y="758">SPECIFIC JOBS</text>
+  <text class="title" x="504" y="788">local models</text>
+  <text class="body" x="504" y="812">small Google Gemma</text>
+  <text class="body" x="504" y="831">model</text>
+  <text class="small" x="504" y="848">knowledge-base imports</text>
+  <text class="small" x="504" y="863">automatic tagging</text>
+</svg>
