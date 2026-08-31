@@ -34,7 +34,7 @@ Keep Bear intact until the apex and www routes, HTTPS, all canonical pages, feed
 
 Posts are included in a production build when `draft` is `false` and `publishedAt` is either omitted or no later than the build time. Future-dated posts remain absent from routes, lists, feeds, and the sitemap until a later build.
 
-The `Scheduled publish` GitHub Actions workflow builds, verifies, and deploys the `main` branch every day at 07:00 Europe/Brussels. It can also be run manually. Configure these GitHub Actions repository secrets before enabling it:
+The `Scheduled publish` GitHub Actions workflow builds, verifies, and deploys the `main` branch every day at 07:07 Europe/Brussels. It can also be run manually. Configure these GitHub Actions repository secrets before enabling it:
 
 - `CLOUDFLARE_ACCOUNT_ID`
 - `CLOUDFLARE_API_TOKEN`, scoped to deploy the `barts-space` Worker
