@@ -138,6 +138,29 @@ if (distExists) {
   const expectedSitemapUrls = publishedPosts.length + 2;
   if (sitemapUrls.length !== expectedSitemapUrls) throw new Error(`Expected ${expectedSitemapUrls} sitemap URLs, found ${sitemapUrls.length}`);
 
+  const llmsIndex = await readFile(join(distDir, "llms.txt"), "utf8");
+  const llmsFull = await readFile(join(distDir, "llms-full.txt"), "utf8");
+  const expectedLlmsUrls = new Set([
+    "https://barts.space/",
+    "https://barts.space/tiny-investments/",
+    ...publishedPosts.map((post) => `https://barts.space/${post.data.slug}/`)
+  ]);
+  const llmsUrls = new Set([...llmsIndex.matchAll(/^- \[[^\n]+\]\((https:\/\/barts\.space\/[^)\n]*)\):/gm)].map((match) => match[1]));
+  if (llmsUrls.size !== expectedLlmsUrls.size) throw new Error(`Expected ${expectedLlmsUrls.size} llms.txt URLs, found ${llmsUrls.size}`);
+  for (const url of expectedLlmsUrls) {
+    if (!llmsUrls.has(url)) throw new Error(`Published URL missing from llms.txt: ${url}`);
+    if (!llmsFull.includes(`](${url})`)) throw new Error(`Published URL missing from llms-full.txt: ${url}`);
+  }
+  for (const post of [...draftPosts, ...scheduledPosts]) {
+    const url = `https://barts.space/${post.data.slug}/`;
+    if (llmsIndex.includes(url) || llmsFull.includes(url)) throw new Error(`Unpublished post leaked into LLM output: ${post.data.slug}`);
+  }
+  for (const filename of scratchpadFiles) {
+    const slug = filename.replace(/\.md$/, "");
+    const url = `https://barts.space/${slug}/`;
+    if (llmsIndex.includes(url) || llmsFull.includes(url)) throw new Error(`Scratchpad leaked into LLM output: ${slug}`);
+  }
+
   const atomPathCandidates = [join(distDir, "feed", "atom.xml")];
   let atomSource;
   for (const path of atomPathCandidates) {
@@ -167,4 +190,4 @@ if (distExists) {
   }
 }
 
-process.stdout.write(`Verified ${publishedPosts.length} published posts, ${scheduledPosts.length} scheduled posts, ${draftPosts.length} blog drafts, ${scratchpadFiles.length} scratchpads${distExists ? ", built routes, sitemap and feeds" : ""}.\n`);
+process.stdout.write(`Verified ${publishedPosts.length} published posts, ${scheduledPosts.length} scheduled posts, ${draftPosts.length} blog drafts, ${scratchpadFiles.length} scratchpads${distExists ? ", built routes, sitemap, feeds and LLM files" : ""}.\n`);
