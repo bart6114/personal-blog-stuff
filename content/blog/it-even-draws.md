@@ -1,7 +1,7 @@
 ---
 title: "It even draws"
 description: "Two iterations with GPT-6 Astra got me a working, 3D-printed drawing machine. I'm still surprised by how little effort that took."
-publishedAt: "2026-09-07T05:00:00.000Z"
+publishedAt: "2026-09-07T04:30:00.000Z"
 slug: "it-even-draws"
 draft: false
 tags: []
