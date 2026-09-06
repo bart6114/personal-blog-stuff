@@ -1,9 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PostList from "../components/PostList.astro";
-import { getPublishedPosts } from "../lib/posts";
+import { getVisiblePosts } from "../lib/posts";
 
-const posts = await getPublishedPosts();
+const posts = await getVisiblePosts();
 const recentPosts = posts.slice(0, 8);
 ---
 

@@ -21,6 +21,10 @@ npm run build
 npm run verify:content
 ```
 
+To preview drafts in routes and post lists, run `npm run dev:drafts` (equivalent to `SHOW_DRAFTS=true npm run dev`). Drafts appear first and are labelled. For a specific port, use `npm run dev:drafts -- --host 127.0.0.1 --port 4322`.
+
+The flag only applies during development. Production builds and feeds always exclude drafts, and scratchpad content is never loaded.
+
 The public site is statically generated and deployed through Cloudflare Workers Static Assets. Published articles keep explicit root-level slugs such as `/loofah-a-vault-free-meeting-transcriber/`.
 
 ## Bear import

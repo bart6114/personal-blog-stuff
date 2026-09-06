@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "dev:drafts": "SHOW_DRAFTS=true astro dev",
     "check": "astro check",
     "build": "astro check && astro build",
     "preview": "astro preview",
