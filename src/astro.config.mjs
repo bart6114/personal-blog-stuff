@@ -10,6 +10,10 @@ export default defineConfig({
   publicDir: "./public",
   outDir: "./dist",
   trailingSlash: "always",
+  image: {
+    layout: "constrained",
+    breakpoints: [360, 540, 720, 1080, 1440]
+  },
   markdown: {
     processor: satteri({
       features: {

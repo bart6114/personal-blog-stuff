@@ -1,5 +1,6 @@
 import { marked } from "marked";
 import type { CollectionEntry } from "astro:content";
+import { optimizeArticleImages } from "./images";
 
 type BlogPost = CollectionEntry<"blog">;
 
@@ -12,7 +13,7 @@ const xmlEscape = (value: string) => value
 
 export async function postHtml(post: BlogPost) {
   const html = await marked.parse(post.body ?? "", { async: true, gfm: false });
-  return html.replaceAll('src="/', 'src="https://barts.space/').replaceAll("src='/", "src='https://barts.space/");
+  return optimizeArticleImages(html, true);
 }
 
 export async function atomFeed(posts: BlogPost[]) {

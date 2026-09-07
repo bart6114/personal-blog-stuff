@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { socialImage } from "../lib/images";
 import "../styles/global.css";
 
 interface Props {
@@ -30,7 +31,7 @@ const {
 const siteUrl = new URL(Astro.site ?? "https://barts.space");
 const canonical = new URL(canonicalPath, siteUrl);
 const fullTitle = title === "barts.space" ? title : `${title} – barts.space`;
-const absoluteImage = image ? new URL(image, siteUrl).href : undefined;
+const absoluteImage = image ? new URL(await socialImage(image), siteUrl).href : undefined;
 const jsonLd = type === "article"
   ? {
       "@context": "https://schema.org",

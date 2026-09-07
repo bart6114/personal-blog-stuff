@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import * as cheerio from "cheerio";
 import { XMLParser } from "fast-xml-parser";
 import { parse as parseYaml } from "yaml";
+import { imageMetadata } from "astro/assets/utils";
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
 const projectDir = dirname(scriptDir);
@@ -23,7 +24,7 @@ const semanticText = (root) => {
 const structureSnapshot = (root, $) => ({
   headings: root.find("h2,h3,h4,h5,h6").toArray().map((node) => ({ level: node.tagName, text: $(node).text().replace(/\s+/g, " ").trim() })),
   links: root.find("a").toArray().map((node) => ({ text: $(node).text().replace(/\s+/g, " ").trim(), href: $(node).attr("href") ?? "" })),
-  images: root.find("img").toArray().map((node) => ({ alt: $(node).attr("alt") ?? "", src: $(node).attr("src") ?? "" })),
+  images: root.find("img").toArray().map((node) => ({ alt: $(node).attr("alt") ?? "", src: $(node).attr("data-original-src") ?? $(node).attr("src") ?? "" })),
   blockquotes: root.find("blockquote").length,
   codeBlocks: root.find("pre").length,
   listItems: root.find("li").length
@@ -88,7 +89,31 @@ try {
 
 if (distExists) {
   for (const post of publishedPosts) {
-    await stat(join(distDir, post.data.slug, "index.html"));
+    const html = cheerio.load(await readFile(join(distDir, post.data.slug, "index.html"), "utf8"));
+    for (const node of html(".article-body img").toArray()) {
+      const img = html(node);
+      const original = img.attr("data-original-src") ?? img.attr("src") ?? "";
+      if (!/^\/media\/.*\.(jpg|jpeg|png|webp|avif)$/.test(original)) continue;
+      const source = await imageMetadata(await readFile(join(projectDir, "public", original)));
+      const width = Number(img.attr("width"));
+      const height = Number(img.attr("height"));
+      if (width !== Math.min(source.width, 720) || height !== Math.round(width * source.height / source.width)) {
+        throw new Error(`Wrong optimized image dimensions: ${post.data.slug}: ${original}`);
+      }
+      if (img.attr("loading") !== "lazy" || img.attr("decoding") !== "async" || !img.attr("sizes")) {
+        throw new Error(`Missing responsive image attributes: ${post.data.slug}: ${original}`);
+      }
+      const variants = (img.attr("srcset") ?? "").split(",").map((entry) => entry.trim().split(/\s+/));
+      if (!variants.some(([, descriptor]) => descriptor === `${width}w`)) throw new Error(`Missing default image variant: ${original}`);
+      for (const [url, descriptor] of [[img.attr("src"), `${width}w`], ...variants]) {
+        if (!url?.startsWith("/_astro/") || !url.endsWith(".webp")) throw new Error(`Image was not optimized: ${original}`);
+        const metadata = await imageMetadata(await readFile(join(distDir, url)));
+        const variantWidth = Number(descriptor.replace(/w$/, ""));
+        if (metadata.format !== "webp" || metadata.width !== variantWidth || variantWidth > Math.min(1440, source.width)) {
+          throw new Error(`Invalid responsive image variant: ${url}`);
+        }
+      }
+    }
   }
   for (const post of [...draftPosts, ...scheduledPosts]) {
     try {
@@ -180,6 +205,17 @@ if (distExists) {
   const rss = new XMLParser().parse(await readFile(join(distDir, "rss.xml"), "utf8"));
   const rssItems = rss.rss?.channel?.item ?? [];
   if (rssItems.length !== expectedFeedEntries) throw new Error(`Expected ${expectedFeedEntries} RSS entries, found ${rssItems.length}`);
+
+  for (const content of [...atomEntries.map((entry) => entry.content?.["#text"] ?? entry.content), ...rssItems.map((item) => item["content:encoded"])]) {
+    const html = cheerio.load(String(content ?? ""));
+    for (const node of html("img").toArray()) {
+      const source = html(node).attr("src") ?? "";
+      if (!source.startsWith("https://barts.space/")) throw new Error(`Feed image must use an absolute site URL: ${source}`);
+      const path = new URL(source).pathname;
+      await stat(join(distDir, path));
+      if (/^\/media\/.*\.(jpg|jpeg|png|webp|avif)$/.test(path)) throw new Error(`Unoptimized feed image: ${source}`);
+    }
+  }
 
   const distFiles = await readdir(distDir, { recursive: true });
   for (const relative of distFiles.filter((name) => /\.(?:html|xml|js|css)$/.test(name))) {

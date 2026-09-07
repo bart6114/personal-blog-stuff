@@ -1,0 +1,7 @@
+---
+import { optimizeArticleImages } from "../lib/images";
+
+const html = await optimizeArticleImages(await Astro.slots.render("default"));
+---
+
+<div class="article-body" set:html={html} />

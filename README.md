@@ -27,6 +27,12 @@ The flag only applies during development. Production builds and feeds always exc
 
 The public site is statically generated and deployed through Cloudflare Workers Static Assets. Published articles keep explicit root-level slugs such as `/loofah-a-vault-free-meeting-transcriber/`.
 
+## Article images
+
+Put article images in `src/public/media/<post-slug>/` and reference them in Markdown with `![Alt text](/media/<post-slug>/photo.jpeg)`. Article rendering imports local JPEG, PNG, WebP, and AVIF files into Astro's built-in image service, which generates WebP variants at build time, up to 1440 pixels wide for the 720-pixel reading column. Images include responsive sizes, explicit dimensions, lazy loading, and asynchronous decoding. Keep the sizes in `src/app/lib/images.ts` aligned with the reading width and page gutters in the CSS.
+
+Feeds use an optimized image with an absolute URL. Article social previews use an image at most 1200 pixels wide. Original `/media/` URLs remain available for existing links. Animated GIFs and SVG diagrams retain their original formats. No external image service is required.
+
 ## Bear import
 
 The initial migration is reproducible:
