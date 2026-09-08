@@ -2,7 +2,7 @@ name: Scheduled publish
 
 on:
   schedule:
-    - cron: "7 7 * * *"
+    - cron: "30 6 * * *"
       timezone: "Europe/Brussels"
   workflow_dispatch:
 
