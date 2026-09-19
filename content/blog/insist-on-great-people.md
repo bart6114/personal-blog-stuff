@@ -1,19 +1,22 @@
 ---
 title: "Insist on great people"
-description: "Early on, we couldn’t afford to compromise on the people we worked with. I’d want us to keep choosing that as the company grows."
+description: "Working with great people makes almost everything easier. They bring energy, thrive in autonomy, and help each other find a way towards a shared goal."
 slug: "insist-on-great-people"
-draft: true
+publishedAt: "2026-09-20T06:15:00+02:00"
+draft: false
 tags: []
 ---
 
-Looking back on a previous company I helped build, I’d have been more deliberate about keeping our hiring standard high as we grew. Early on, we couldn’t afford to have people who weren’t extremely good at what they did. That made the hiring standard fairly obvious. As we grew, we could get by with people who were a little less driven to do excellent work. We had room to compromise.
+In my career, I’ve had the pleasure of working with a lot of great people. Working with these folks makes almost everything easier. You get energy from being around them. You get excited about what you’re working on together, and you want to do good work yourself.
 
-When customers asked us to take on bigger projects, for example, there was pressure to hire quickly. We wanted to keep them happy and respond to their urgency. In those moments, it’s easy to make filling the role the immediate goal and let the hiring standard slip. Making that standard explicit gives us something to weigh the short-term pressure against.
+There’s often a complementarity to it, too. Someone sees a way forward that you hadn’t considered, or is good at something you struggle with. You can rely on each other’s strengths. That makes a difficult problem more enjoyable to work through, and it gives you a reason to look forward to working together again.
 
-By great people, I mean people who care about doing excellent work and take responsibility for it. They spot opportunities and act without someone spelling out every step. That means less day-to-day supervision. There’s still coordination to do, especially as the company grows: people need shared priorities, clear responsibilities, and a way to make decisions together. I’d want us to keep asking which processes help people do good work and which ones we could remove. As the organization becomes more complex, questioning it gets harder, because changing it becomes a bigger job too.
+I think a large part of what separates someone who is good from someone who is great is how they handle autonomy. Great people thrive when they have room to figure things out. Give them a clearly expressed, shared goal, and they take responsibility for finding a way towards it. They can reflect on their own work and change direction when something isn’t working. They also help others do the same, coaching a colleague or working through a decision together without waiting for someone in charge to step in.
 
-Keeping that standard also means giving people the room and responsibility to do work they can be proud of. Great people want capable colleagues and work that challenges them. That’s one reason I think a company should stay ambitious about growth: it can create new opportunities for the people already there, giving them room to stretch themselves.
+Working with great people typically makes complex situations easier. Take a project where the goal is clear, but you’re still figuring out what will work. A decision in one part of the project affects what’s possible elsewhere, and some of your early assumptions turn out to be wrong. Great people can work through that together. They notice when their approach creates a problem for a colleague and figure out how to adjust. You need fewer rules and less supervision because the people doing the work can make those decisions as they go.
 
-Keeping people challenged takes effort, though. It’s easier to leave someone in a familiar role, with the same group around them. But I think staying in that role too long can make it harder to assess your own performance honestly or question the ways of working you’ve helped establish. A new challenge can mean a different role, but it can also mean tackling a harder problem in the role you already have. Either can give you a reason to examine things you’ve grown used to.
+When people need more direction, finding the best way towards that goal increasingly becomes leadership’s job. Leaders have to work out the approach and then get everyone to follow it. Rules and procedures become a way to do that. I think this is much harder: fewer people are figuring out what should happen, and more effort goes into steering everyone else.
 
-I’d make working with the best people we can find an explicit goal. Early on, our circumstances made that choice for us. I’d want us to keep choosing it as the company grows, especially once we’re comfortable enough to accept less.
+I think both the work and the pleasure of working together suffer. It’s harder to get that feeling of being part of a team you want to show up for when so much of the work depends on being told what to do next.
+
+I honestly believe that, in the end, insisting on great people makes the biggest difference. If I can give any advice, it’s to make sure you surround yourself with great people.
