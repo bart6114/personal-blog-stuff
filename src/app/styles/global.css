@@ -361,8 +361,38 @@ td {
 }
 
 .home-avatar {
+  position: relative;
   width: clamp(112px, 11vw, 168px);
   aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.home-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+}
+
+.home-avatar__wiggle {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  /* Only reveal the edited ear area, keeping the rest of the portrait still. */
+  clip-path: inset(34% 66% 45% 20%);
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .home-avatar:hover .home-avatar__wiggle {
+    animation: avatar-ear-wiggle 1.5s steps(1, end) infinite;
+  }
+}
+
+@keyframes avatar-ear-wiggle {
+  /* Two 0.25s frames, followed by a 1s pause on the original portrait. */
+  0%, 33.3333%, 100% { opacity: 0; }
+  16.6667% { opacity: 1; }
 }
 
 .home-about__links {
