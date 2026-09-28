@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import PageDuck from "../components/PageDuck.astro";
 import { socialImage } from "../lib/images";
 import "../styles/global.css";
 
@@ -14,6 +15,7 @@ interface Props {
   publishedAt?: Date;
   updatedAt?: Date;
   wide?: boolean;
+  duck?: boolean;
 }
 
 const {
@@ -25,7 +27,8 @@ const {
   image = "/assets/og-image.png",
   publishedAt,
   updatedAt,
-  wide = false
+  wide = false,
+  duck = true
 } = Astro.props;
 
 const siteUrl = new URL(Astro.site ?? "https://barts.space");
@@ -84,6 +87,7 @@ const jsonLd = type === "article"
       <slot />
     </main>
     <Footer />
+    {duck && <PageDuck />}
     <script is:inline>
       const copyCode = async (text) => {
         if (!navigator.clipboard?.writeText) throw new Error("Clipboard unavailable");

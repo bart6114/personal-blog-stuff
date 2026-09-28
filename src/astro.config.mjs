@@ -28,10 +28,10 @@ export default defineConfig({
   integrations: [
     llmsTxt({
       name: "barts.space",
-      excludedPaths: ["404", "blog", "subscribe"]
+      excludedPaths: ["404", "blog", "subscribe", "quackalicious"]
     }),
     sitemap({
-      filter: (page) => !page.endsWith("/blog/") && !page.endsWith("/subscribe/")
+      filter: (page) => !page.endsWith("/blog/") && !page.endsWith("/subscribe/") && !page.endsWith("/quackalicious/")
     })
   ]
 });

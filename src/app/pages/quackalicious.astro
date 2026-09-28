@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageDuck from "../components/PageDuck.astro";
+import type { Action } from "../lib/page-duck";
+
+const previews: { action: Action; title: string; detail: string }[] = [
+  { action: "walk", title: "Wandering", detail: "Eight-pose walk. Picks another destination on arrival." },
+  { action: "sleep", title: "Sleeping", detail: "18 seconds. Click the duck to wake it." },
+  { action: "flap", title: "Flying", detail: "Six wing poses, tucked feet, takeoff and landing." },
+  { action: "fish", title: "Fishing", detail: "Cast, wait 5–11 seconds, catch a fish. Replay for a new wait." },
+  { action: "spritz", title: "Aperol spritz", detail: "7 seconds. Raises the glass for a sip." },
+  { action: "smoke", title: "Smoke break", detail: "7 seconds. A drag, then drifting smoke." },
+  { action: "read", title: "The daily quack", detail: "7 seconds. Reads and turns the page." },
+  { action: "music", title: "Listening to music", detail: "7 seconds. Headphones, head bob and a tapping foot." },
+  { action: "shoot", title: "Target practice", detail: "1.8 seconds. Leaves a temporary pixel hole." },
+  { action: "poop", title: "Nature calls", detail: "2.6 seconds. Leaves a temporary mess." },
+  { action: "peck", title: "Pecking breadcrumbs", detail: "5.4 seconds. Pecks visible crumbs off the floor." },
+  { action: "love", title: "A little affection", detail: "3.6 seconds. Rosy cheeks and rising hearts." },
+];
+---
+<BaseLayout title="quackalicious" canonicalPath="/quackalicious/" noindex wide duck={false}>
+  <h1>quackalicious</h1>
+  <p>Duck animation playground. Each preview loops independently. Drag to move; double-click to sleep until a single click wakes it. With keyboard focus, use arrow keys to move and S to sleep.</p>
+  <div class="duck-grid">
+    {previews.map(({ action, title, detail }) => (
+      <section class="duck-card" aria-label={title}>
+        <h2>{title}</h2>
+        <p>{detail}</p>
+        <PageDuck preview={action} />
+      </section>
+    ))}
+  </div>
+</BaseLayout>
+<style>
+  .duck-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 20px; margin-top: 28px; }
+  .duck-card { min-width: 0; border: 1px solid var(--rule); background: var(--background); }
+  .duck-card h2 { margin: 18px 18px 8px; font-size: 1rem; }
+  .duck-card p { margin: 0 18px; min-height: 3.2em; color: var(--muted); font-size: 0.75rem; }
+</style>

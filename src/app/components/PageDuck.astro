@@ -1,0 +1,53 @@
+---
+import type { Action } from "../lib/page-duck";
+interface Props { preview?: Action }
+const { preview } = Astro.props;
+---
+<div class:list={["page-duck", { "duck-preview": preview }]} data-preview={preview} hidden>
+  <div class="duck-effects" aria-hidden="true"></div>
+  <canvas class="duck-fishing" width="96" height="56" aria-hidden="true" hidden></canvas>
+  <button class="duck-pet" type="button" aria-label="Move the duck" aria-keyshortcuts="S ArrowLeft ArrowRight ArrowUp ArrowDown" title="Drag to move · double-click to sleep">
+    <span class="duck-bubble" aria-hidden="true"></span>
+    <canvas width="32" height="28" aria-hidden="true"></canvas>
+  </button>
+  <button class="duck-toggle" type="button" aria-pressed="false">pause duck</button>
+  {preview && <button class="duck-replay" type="button">replay</button>}
+</div>
+
+<script>
+  import { initPageDuck } from "../lib/page-duck";
+  const desktop = matchMedia("(min-width: 901px) and (hover: hover) and (pointer: fine)");
+  const initializeDucks = () => {
+    document.querySelectorAll<HTMLElement>(".page-duck").forEach((root) => {
+      if (root.dataset.preview || desktop.matches) initPageDuck(root);
+    });
+  };
+  initializeDucks();
+  desktop.addEventListener("change", initializeDucks);
+</script>
+
+<style is:global>
+  .page-duck { position: absolute; top: 0; left: 0; width: 100%; z-index: 30; pointer-events: none; overflow: hidden; }
+  .page-duck[hidden] { display: none; }
+  .duck-fishing { position: absolute; width: 192px; height: 112px; image-rendering: pixelated; pointer-events: none; }
+  .duck-fishing[hidden] { display: none; }
+  .duck-preview { position: relative; height: 220px; z-index: 0; }
+  .duck-preview .duck-toggle { position: absolute; bottom: 8px; }
+  .duck-replay { position: absolute; bottom: 8px; left: 12px; pointer-events: auto; background: var(--background); color: var(--muted); border: 0; padding: 3px 5px; font: 10px/1.4 "Roboto Mono", monospace; cursor: pointer; }
+  .duck-replay:focus-visible { outline: 2px solid var(--link-accent); }
+  .duck-pet { position: absolute; left: 0; top: 0; width: 64px; height: 56px; padding: 0; border: 0; background: transparent; cursor: grab; pointer-events: auto; touch-action: none; user-select: none; -webkit-tap-highlight-color: transparent; }
+  .duck-pet[data-dragging="true"] { cursor: grabbing; }
+  .duck-pet canvas { display: block; width: 64px; height: 56px; image-rendering: pixelated; }
+  .duck-pet:focus-visible { outline: 2px dashed var(--link-accent); outline-offset: 4px; }
+  .duck-bubble { position: absolute; bottom: 56px; left: 50%; transform: translateX(-50%); padding: 3px 6px; border: 1px solid var(--rule); background: var(--background); color: var(--muted); font: 10px/1.4 "Roboto Mono", monospace; white-space: nowrap; }
+  .duck-bubble:empty { display: none; }
+  .duck-toggle { position: fixed; bottom: max(5px, env(safe-area-inset-bottom)); right: 12px; pointer-events: auto; border: 0; padding: 3px 5px; background: var(--background); color: var(--muted); font: 10px/1.4 "Roboto Mono", monospace; cursor: pointer; }
+  .duck-toggle:hover { color: var(--text); text-decoration: underline; text-decoration-color: var(--link-accent); }
+  .duck-toggle:focus-visible { outline: 2px solid var(--link-accent); }
+  .duck-mark { position: absolute; width: 32px; height: 32px; image-rendering: pixelated; animation: duck-mark-fade 18s linear forwards; }
+  @keyframes duck-mark-fade { 0%, 75% { opacity: 1; } 100% { opacity: 0; } }
+  @media (max-width: 900px), (hover: none), (pointer: coarse) {
+    .page-duck:not(.duck-preview) { display: none; }
+  }
+  @media print { .page-duck { display: none; } }
+</style>
