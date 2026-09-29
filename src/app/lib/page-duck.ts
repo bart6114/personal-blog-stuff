@@ -414,7 +414,7 @@ export function initPageDuck(root: HTMLElement) {
     for (let i = marks.length - 1; i >= 0; i--) {
       if (marks[i].expires <= now) { marks[i].node.remove(); marks.splice(i, 1); }
     }
-    if (!paused && !pointer) {
+    if ((!paused || action === "sleep") && !pointer) {
       elapsed += dt;
       if (action === "walk" && !reduced.matches) {
         const dx = targetX - x;
@@ -458,9 +458,8 @@ export function initPageDuck(root: HTMLElement) {
     toggle.setAttribute("aria-pressed", String(paused));
   }
   toggle.addEventListener("click", () => {
-    paused = !paused; syncToggle();
-    try { if (!preview) localStorage.setItem("page-duck-paused", String(paused)); } catch { /* Optional. */ }
-    draw();
+    if (paused) { resume(); start("flap", false); }
+    else sleep();
   });
   root.querySelector(".duck-replay")?.addEventListener("click", () => {
     paused = false; syncToggle();
@@ -469,6 +468,11 @@ export function initPageDuck(root: HTMLElement) {
   function resume() {
     paused = false; syncToggle();
     try { if (!preview) localStorage.setItem("page-duck-paused", "false"); } catch { /* Optional. */ }
+  }
+  function sleep() {
+    paused = true; syncToggle();
+    try { if (!preview) localStorage.setItem("page-duck-paused", "true"); } catch { /* Optional. */ }
+    start("sleep", false, true);
   }
   pet.addEventListener("pointerdown", (event) => {
     if (!event.isPrimary || event.button !== 0 || pointer) return;
@@ -507,7 +511,7 @@ export function initPageDuck(root: HTMLElement) {
     if (lastTap && now - lastTap.time < 350 && Math.hypot(event.clientX - lastTap.x, event.clientY - lastTap.y) < 20) {
       lastTap = null;
       suppressClick = true;
-      resume(); start("sleep", false, true);
+      sleep();
     } else lastTap = { time: now, x: event.clientX, y: event.clientY };
   }
   pet.addEventListener("pointerup", releasePointer);
@@ -519,7 +523,7 @@ export function initPageDuck(root: HTMLElement) {
   });
   pet.addEventListener("keydown", (event) => {
     if (event.key.toLowerCase() === "s") {
-      event.preventDefault(); resume(); start("sleep", false, true);
+      event.preventDefault(); sleep();
     }
     const move = { ArrowLeft: [-20, 0], ArrowRight: [20, 0], ArrowUp: [0, -20], ArrowDown: [0, 20] }[event.key];
     if (move) {
@@ -542,7 +546,9 @@ export function initPageDuck(root: HTMLElement) {
   }
   window.addEventListener("resize", resizeWorld);
   new ResizeObserver(resizeWorld).observe(preview ? root : document.body);
-  reduced.addEventListener("change", () => { start(preview ?? (reduced.matches ? "sleep" : "walk")); });
+  reduced.addEventListener("change", () => {
+    if (!paused) start(preview ?? (reduced.matches ? "sleep" : "walk"));
+  });
   function syncAnimation() {
     cancelAnimationFrame(raf);
     if (!document.hidden && (preview || desktop.matches)) { last = 0; raf = requestAnimationFrame(tick); }
@@ -551,6 +557,6 @@ export function initPageDuck(root: HTMLElement) {
   desktop.addEventListener("change", syncAnimation);
   root.hidden = false;
   resizeWorld();
-  syncToggle(); start(action);
+  syncToggle(); start(paused ? "sleep" : action, true, paused);
   syncAnimation();
 }
