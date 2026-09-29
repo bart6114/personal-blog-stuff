@@ -207,7 +207,7 @@ td {
 .site-header {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  align-items: end;
+  align-items: center;
   gap: 1.5rem;
   width: 100%;
   margin-bottom: clamp(32px, 4vw, 58px);
