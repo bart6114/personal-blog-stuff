@@ -6,12 +6,12 @@
     "included_sport": "running",
     "distance_field": "session.total_distance",
     "duration_field": "session.total_timer_time",
-    "heatmap": "Sum of running timer minutes per local calendar day",
-    "empty_days": "No recorded running session; other sports are excluded",
+    "heatmap": "Running timer hours in 52 consecutive periods from January 1; periods 1-51 are seven days and period 52 includes the remaining days of the year",
     "deduplication": "Identical start time, distance and timer duration; overlapping sessions require review",
     "input_files": 230,
     "parsed_sessions": 230,
-    "duplicates_removed": 0
+    "duplicates_removed": 0,
+    "empty_weeks": "No recorded running session; other sports are excluded"
   },
   "summary": {
     "runs": 144,
@@ -19,773 +19,526 @@
     "distance_km": 1322.92577,
     "timer_hours": 135.47407444444445
   },
-  "monthly": [
+  "weekly": [
     {
-      "month": "2026-01",
-      "runs": 15,
-      "running_days": 14,
-      "distance_km": 59.739,
-      "timer_hours": 6.142595833333333
+      "week": 1,
+      "start": "2026-01-01",
+      "end": "2026-01-07",
+      "status": "complete",
+      "runs": 1,
+      "running_days": 1,
+      "distance_km": 6.951,
+      "timer_hours": 0.6063652777777778
     },
     {
-      "month": "2026-02",
-      "runs": 13,
-      "running_days": 13,
-      "distance_km": 88.288,
-      "timer_hours": 8.5234475
+      "week": 2,
+      "start": "2026-01-08",
+      "end": "2026-01-14",
+      "status": "complete",
+      "runs": 1,
+      "running_days": 1,
+      "distance_km": 8.208,
+      "timer_hours": 0.7374180555555555
     },
     {
-      "month": "2026-03",
-      "runs": 15,
-      "running_days": 15,
-      "distance_km": 146.41,
-      "timer_hours": 13.096774166666668
+      "week": 3,
+      "start": "2026-01-15",
+      "end": "2026-01-21",
+      "status": "complete",
+      "runs": 3,
+      "running_days": 3,
+      "distance_km": 10.897,
+      "timer_hours": 1.3042058333333335
     },
     {
-      "month": "2026-04",
-      "runs": 14,
-      "running_days": 14,
-      "distance_km": 134.868,
-      "timer_hours": 13.173976666666668
+      "week": 4,
+      "start": "2026-01-22",
+      "end": "2026-01-28",
+      "status": "complete",
+      "runs": 6,
+      "running_days": 6,
+      "distance_km": 21.175,
+      "timer_hours": 2.2624975
     },
     {
-      "month": "2026-05",
-      "runs": 19,
-      "running_days": 18,
-      "distance_km": 216.405,
-      "timer_hours": 24.769015555555555
+      "week": 5,
+      "start": "2026-01-29",
+      "end": "2026-02-04",
+      "status": "complete",
+      "runs": 7,
+      "running_days": 6,
+      "distance_km": 23.111,
+      "timer_hours": 2.2756325
     },
     {
-      "month": "2026-06",
-      "runs": 15,
-      "running_days": 15,
-      "distance_km": 201.94299999999998,
-      "timer_hours": 18.364425
+      "week": 6,
+      "start": "2026-02-05",
+      "end": "2026-02-11",
+      "status": "complete",
+      "runs": 3,
+      "running_days": 3,
+      "distance_km": 16.84,
+      "timer_hours": 1.6266291666666666
     },
     {
-      "month": "2026-07",
-      "runs": 16,
-      "running_days": 14,
-      "distance_km": 121.31400000000001,
-      "timer_hours": 15.318359444444445
+      "week": 7,
+      "start": "2026-02-12",
+      "end": "2026-02-18",
+      "status": "complete",
+      "runs": 1,
+      "running_days": 1,
+      "distance_km": 7.99,
+      "timer_hours": 0.7882083333333334
     },
     {
-      "month": "2026-08",
-      "runs": 11,
-      "running_days": 10,
-      "distance_km": 81.196,
-      "timer_hours": 12.121374444444445
+      "week": 8,
+      "start": "2026-02-19",
+      "end": "2026-02-25",
+      "status": "complete",
+      "runs": 4,
+      "running_days": 4,
+      "distance_km": 32.602000000000004,
+      "timer_hours": 3.087753888888889
     },
     {
-      "month": "2026-09",
-      "runs": 25,
-      "running_days": 25,
-      "distance_km": 262.41236,
-      "timer_hours": 23.066595833333334
+      "week": 9,
+      "start": "2026-02-26",
+      "end": "2026-03-04",
+      "status": "complete",
+      "runs": 3,
+      "running_days": 3,
+      "distance_km": 30.445999999999998,
+      "timer_hours": 3.022561666666667
     },
     {
-      "month": "2026-10",
+      "week": 10,
+      "start": "2026-03-05",
+      "end": "2026-03-11",
+      "status": "complete",
+      "runs": 4,
+      "running_days": 4,
+      "distance_km": 41.876999999999995,
+      "timer_hours": 3.5023377777777775
+    },
+    {
+      "week": 11,
+      "start": "2026-03-12",
+      "end": "2026-03-18",
+      "status": "complete",
+      "runs": 3,
+      "running_days": 3,
+      "distance_km": 31.63,
+      "timer_hours": 2.72944
+    },
+    {
+      "week": 12,
+      "start": "2026-03-19",
+      "end": "2026-03-25",
+      "status": "complete",
+      "runs": 3,
+      "running_days": 3,
+      "distance_km": 24.614,
+      "timer_hours": 2.328328055555555
+    },
+    {
+      "week": 13,
+      "start": "2026-03-26",
+      "end": "2026-04-01",
+      "status": "complete",
+      "runs": 4,
+      "running_days": 4,
+      "distance_km": 38.096000000000004,
+      "timer_hours": 3.4914394444444445
+    },
+    {
+      "week": 14,
+      "start": "2026-04-02",
+      "end": "2026-04-08",
+      "status": "complete",
+      "runs": 4,
+      "running_days": 4,
+      "distance_km": 37.745,
+      "timer_hours": 4.046053055555555
+    },
+    {
+      "week": 15,
+      "start": "2026-04-09",
+      "end": "2026-04-15",
+      "status": "complete",
+      "runs": 4,
+      "running_days": 4,
+      "distance_km": 40.181,
+      "timer_hours": 3.8763525000000003
+    },
+    {
+      "week": 16,
+      "start": "2026-04-16",
+      "end": "2026-04-22",
+      "status": "complete",
+      "runs": 3,
+      "running_days": 3,
+      "distance_km": 34.596000000000004,
+      "timer_hours": 2.8790927777777777
+    },
+    {
+      "week": 17,
+      "start": "2026-04-23",
+      "end": "2026-04-29",
+      "status": "complete",
+      "runs": 3,
+      "running_days": 3,
+      "distance_km": 22.346,
+      "timer_hours": 2.3724783333333335
+    },
+    {
+      "week": 18,
+      "start": "2026-04-30",
+      "end": "2026-05-06",
+      "status": "complete",
+      "runs": 4,
+      "running_days": 4,
+      "distance_km": 40.455,
+      "timer_hours": 5.368836666666667
+    },
+    {
+      "week": 19,
+      "start": "2026-05-07",
+      "end": "2026-05-13",
+      "status": "complete",
+      "runs": 4,
+      "running_days": 4,
+      "distance_km": 46.31,
+      "timer_hours": 4.162004444444444
+    },
+    {
+      "week": 20,
+      "start": "2026-05-14",
+      "end": "2026-05-20",
+      "status": "complete",
+      "runs": 4,
+      "running_days": 4,
+      "distance_km": 56.825,
+      "timer_hours": 5.717938055555555
+    },
+    {
+      "week": 21,
+      "start": "2026-05-21",
+      "end": "2026-05-27",
+      "status": "complete",
+      "runs": 4,
+      "running_days": 4,
+      "distance_km": 52.339,
+      "timer_hours": 7.606308333333334
+    },
+    {
+      "week": 22,
+      "start": "2026-05-28",
+      "end": "2026-06-03",
+      "status": "complete",
+      "runs": 4,
+      "running_days": 3,
+      "distance_km": 36.288,
+      "timer_hours": 3.17183
+    },
+    {
+      "week": 23,
+      "start": "2026-06-04",
+      "end": "2026-06-10",
+      "status": "complete",
+      "runs": 3,
+      "running_days": 3,
+      "distance_km": 39.834,
+      "timer_hours": 3.3396588888888887
+    },
+    {
+      "week": 24,
+      "start": "2026-06-11",
+      "end": "2026-06-17",
+      "status": "complete",
+      "runs": 4,
+      "running_days": 4,
+      "distance_km": 56.297,
+      "timer_hours": 5.579413055555556
+    },
+    {
+      "week": 25,
+      "start": "2026-06-18",
+      "end": "2026-06-24",
+      "status": "complete",
+      "runs": 4,
+      "running_days": 4,
+      "distance_km": 57.259,
+      "timer_hours": 5.237886111111111
+    },
+    {
+      "week": 26,
+      "start": "2026-06-25",
+      "end": "2026-07-01",
+      "status": "complete",
+      "runs": 4,
+      "running_days": 4,
+      "distance_km": 44.403999999999996,
+      "timer_hours": 3.9203369444444442
+    },
+    {
+      "week": 27,
+      "start": "2026-07-02",
+      "end": "2026-07-08",
+      "status": "complete",
+      "runs": 6,
+      "running_days": 6,
+      "distance_km": 54.242000000000004,
+      "timer_hours": 7.571859166666667
+    },
+    {
+      "week": 28,
+      "start": "2026-07-09",
+      "end": "2026-07-15",
+      "status": "complete",
+      "runs": 4,
+      "running_days": 3,
+      "distance_km": 20.165,
+      "timer_hours": 2.8360111111111115
+    },
+    {
+      "week": 29,
+      "start": "2026-07-16",
+      "end": "2026-07-22",
+      "status": "complete",
+      "runs": 3,
+      "running_days": 2,
+      "distance_km": 23.965,
+      "timer_hours": 2.5862791666666665
+    },
+    {
+      "week": 30,
+      "start": "2026-07-23",
+      "end": "2026-07-29",
+      "status": "complete",
+      "runs": 2,
+      "running_days": 2,
+      "distance_km": 11.279,
+      "timer_hours": 1.3534380555555556
+    },
+    {
+      "week": 31,
+      "start": "2026-07-30",
+      "end": "2026-08-05",
+      "status": "complete",
+      "runs": 0,
+      "running_days": 0,
+      "distance_km": 0,
+      "timer_hours": 0.0
+    },
+    {
+      "week": 32,
+      "start": "2026-08-06",
+      "end": "2026-08-12",
+      "status": "complete",
+      "runs": 0,
+      "running_days": 0,
+      "distance_km": 0,
+      "timer_hours": 0.0
+    },
+    {
+      "week": 33,
+      "start": "2026-08-13",
+      "end": "2026-08-19",
+      "status": "complete",
+      "runs": 2,
+      "running_days": 2,
+      "distance_km": 21.967,
+      "timer_hours": 5.0711425
+    },
+    {
+      "week": 34,
+      "start": "2026-08-20",
+      "end": "2026-08-26",
+      "status": "complete",
+      "runs": 6,
+      "running_days": 5,
+      "distance_km": 29.562,
+      "timer_hours": 4.381976111111111
+    },
+    {
+      "week": 35,
+      "start": "2026-08-27",
+      "end": "2026-09-02",
+      "status": "complete",
+      "runs": 5,
+      "running_days": 5,
+      "distance_km": 43.769,
+      "timer_hours": 3.8890225000000003
+    },
+    {
+      "week": 36,
+      "start": "2026-09-03",
+      "end": "2026-09-09",
+      "status": "complete",
+      "runs": 5,
+      "running_days": 5,
+      "distance_km": 53.75506,
+      "timer_hours": 4.6979613888888885
+    },
+    {
+      "week": 37,
+      "start": "2026-09-10",
+      "end": "2026-09-16",
+      "status": "complete",
+      "runs": 4,
+      "running_days": 4,
+      "distance_km": 51.72667,
+      "timer_hours": 4.674261666666666
+    },
+    {
+      "week": 38,
+      "start": "2026-09-17",
+      "end": "2026-09-23",
+      "status": "complete",
+      "runs": 7,
+      "running_days": 7,
+      "distance_km": 64.19055,
+      "timer_hours": 5.7728275
+    },
+    {
+      "week": 39,
+      "start": "2026-09-24",
+      "end": "2026-09-30",
+      "status": "complete",
+      "runs": 7,
+      "running_days": 7,
+      "distance_km": 78.63808,
+      "timer_hours": 6.700778611111111
+    },
+    {
+      "week": 40,
+      "start": "2026-10-01",
+      "end": "2026-10-07",
+      "status": "partial",
       "runs": 1,
       "running_days": 1,
       "distance_km": 10.35041,
       "timer_hours": 0.89751
+    },
+    {
+      "week": 41,
+      "start": "2026-10-08",
+      "end": "2026-10-14",
+      "status": "future",
+      "runs": 0,
+      "running_days": 0,
+      "distance_km": 0,
+      "timer_hours": 0.0
+    },
+    {
+      "week": 42,
+      "start": "2026-10-15",
+      "end": "2026-10-21",
+      "status": "future",
+      "runs": 0,
+      "running_days": 0,
+      "distance_km": 0,
+      "timer_hours": 0.0
+    },
+    {
+      "week": 43,
+      "start": "2026-10-22",
+      "end": "2026-10-28",
+      "status": "future",
+      "runs": 0,
+      "running_days": 0,
+      "distance_km": 0,
+      "timer_hours": 0.0
+    },
+    {
+      "week": 44,
+      "start": "2026-10-29",
+      "end": "2026-11-04",
+      "status": "future",
+      "runs": 0,
+      "running_days": 0,
+      "distance_km": 0,
+      "timer_hours": 0.0
+    },
+    {
+      "week": 45,
+      "start": "2026-11-05",
+      "end": "2026-11-11",
+      "status": "future",
+      "runs": 0,
+      "running_days": 0,
+      "distance_km": 0,
+      "timer_hours": 0.0
+    },
+    {
+      "week": 46,
+      "start": "2026-11-12",
+      "end": "2026-11-18",
+      "status": "future",
+      "runs": 0,
+      "running_days": 0,
+      "distance_km": 0,
+      "timer_hours": 0.0
+    },
+    {
+      "week": 47,
+      "start": "2026-11-19",
+      "end": "2026-11-25",
+      "status": "future",
+      "runs": 0,
+      "running_days": 0,
+      "distance_km": 0,
+      "timer_hours": 0.0
+    },
+    {
+      "week": 48,
+      "start": "2026-11-26",
+      "end": "2026-12-02",
+      "status": "future",
+      "runs": 0,
+      "running_days": 0,
+      "distance_km": 0,
+      "timer_hours": 0.0
+    },
+    {
+      "week": 49,
+      "start": "2026-12-03",
+      "end": "2026-12-09",
+      "status": "future",
+      "runs": 0,
+      "running_days": 0,
+      "distance_km": 0,
+      "timer_hours": 0.0
+    },
+    {
+      "week": 50,
+      "start": "2026-12-10",
+      "end": "2026-12-16",
+      "status": "future",
+      "runs": 0,
+      "running_days": 0,
+      "distance_km": 0,
+      "timer_hours": 0.0
+    },
+    {
+      "week": 51,
+      "start": "2026-12-17",
+      "end": "2026-12-23",
+      "status": "future",
+      "runs": 0,
+      "running_days": 0,
+      "distance_km": 0,
+      "timer_hours": 0.0
+    },
+    {
+      "week": 52,
+      "start": "2026-12-24",
+      "end": "2026-12-31",
+      "status": "future",
+      "runs": 0,
+      "running_days": 0,
+      "distance_km": 0,
+      "timer_hours": 0.0
     }
-  ],
-  "daily": {
-    "2026-01-06": {
-      "runs": 1,
-      "distance_km": 6.951,
-      "timer_minutes": 36.38191666666667
-    },
-    "2026-01-09": {
-      "runs": 1,
-      "distance_km": 8.208,
-      "timer_minutes": 44.24508333333333
-    },
-    "2026-01-16": {
-      "runs": 1,
-      "distance_km": 2.471,
-      "timer_minutes": 21.711183333333334
-    },
-    "2026-01-20": {
-      "runs": 1,
-      "distance_km": 4.102,
-      "timer_minutes": 28.501733333333334
-    },
-    "2026-01-21": {
-      "runs": 1,
-      "distance_km": 4.324,
-      "timer_minutes": 28.03943333333333
-    },
-    "2026-01-22": {
-      "runs": 1,
-      "distance_km": 2.368,
-      "timer_minutes": 16.214983333333333
-    },
-    "2026-01-24": {
-      "runs": 1,
-      "distance_km": 2.104,
-      "timer_minutes": 15.249766666666666
-    },
-    "2026-01-25": {
-      "runs": 1,
-      "distance_km": 6.584,
-      "timer_minutes": 39.58575
-    },
-    "2026-01-26": {
-      "runs": 1,
-      "distance_km": 3.222,
-      "timer_minutes": 19.694866666666666
-    },
-    "2026-01-27": {
-      "runs": 1,
-      "distance_km": 3.157,
-      "timer_minutes": 18.94043333333333
-    },
-    "2026-01-28": {
-      "runs": 1,
-      "distance_km": 3.74,
-      "timer_minutes": 26.06405
-    },
-    "2026-01-29": {
-      "runs": 2,
-      "distance_km": 3.6630000000000003,
-      "timer_minutes": 23.308233333333334
-    },
-    "2026-01-30": {
-      "runs": 1,
-      "distance_km": 5.662,
-      "timer_minutes": 30.664649999999998
-    },
-    "2026-01-31": {
-      "runs": 1,
-      "distance_km": 3.183,
-      "timer_minutes": 19.953666666666667
-    },
-    "2026-02-01": {
-      "runs": 1,
-      "distance_km": 4.302,
-      "timer_minutes": 28.057000000000002
-    },
-    "2026-02-03": {
-      "runs": 1,
-      "distance_km": 3.398,
-      "timer_minutes": 17.91623333333333
-    },
-    "2026-02-04": {
-      "runs": 1,
-      "distance_km": 2.903,
-      "timer_minutes": 16.638166666666667
-    },
-    "2026-02-07": {
-      "runs": 1,
-      "distance_km": 9.684,
-      "timer_minutes": 57.37573333333333
-    },
-    "2026-02-08": {
-      "runs": 1,
-      "distance_km": 3.724,
-      "timer_minutes": 22.171216666666666
-    },
-    "2026-02-10": {
-      "runs": 1,
-      "distance_km": 3.432,
-      "timer_minutes": 18.0508
-    },
-    "2026-02-17": {
-      "runs": 1,
-      "distance_km": 7.99,
-      "timer_minutes": 47.292500000000004
-    },
-    "2026-02-19": {
-      "runs": 1,
-      "distance_km": 8.163,
-      "timer_minutes": 47.46489999999999
-    },
-    "2026-02-21": {
-      "runs": 1,
-      "distance_km": 8.727,
-      "timer_minutes": 49.946416666666664
-    },
-    "2026-02-23": {
-      "runs": 1,
-      "distance_km": 7.548,
-      "timer_minutes": 42.29143333333333
-    },
-    "2026-02-25": {
-      "runs": 1,
-      "distance_km": 8.164,
-      "timer_minutes": 45.56248333333333
-    },
-    "2026-02-26": {
-      "runs": 1,
-      "distance_km": 9.666,
-      "timer_minutes": 48.689816666666665
-    },
-    "2026-02-28": {
-      "runs": 1,
-      "distance_km": 10.587,
-      "timer_minutes": 69.95015
-    },
-    "2026-03-03": {
-      "runs": 1,
-      "distance_km": 10.193,
-      "timer_minutes": 62.71373333333334
-    },
-    "2026-03-05": {
-      "runs": 1,
-      "distance_km": 11.36,
-      "timer_minutes": 61.49543333333334
-    },
-    "2026-03-07": {
-      "runs": 1,
-      "distance_km": 9.991,
-      "timer_minutes": 46.05925
-    },
-    "2026-03-09": {
-      "runs": 1,
-      "distance_km": 10.187,
-      "timer_minutes": 50.99046666666666
-    },
-    "2026-03-11": {
-      "runs": 1,
-      "distance_km": 10.339,
-      "timer_minutes": 51.59511666666666
-    },
-    "2026-03-13": {
-      "runs": 1,
-      "distance_km": 8.732,
-      "timer_minutes": 42.7545
-    },
-    "2026-03-15": {
-      "runs": 1,
-      "distance_km": 15.186,
-      "timer_minutes": 80.0943
-    },
-    "2026-03-17": {
-      "runs": 1,
-      "distance_km": 7.712,
-      "timer_minutes": 40.9176
-    },
-    "2026-03-19": {
-      "runs": 1,
-      "distance_km": 6.549,
-      "timer_minutes": 55.37768333333334
-    },
-    "2026-03-22": {
-      "runs": 1,
-      "distance_km": 5.432,
-      "timer_minutes": 20.955933333333334
-    },
-    "2026-03-24": {
-      "runs": 1,
-      "distance_km": 12.633,
-      "timer_minutes": 63.36606666666667
-    },
-    "2026-03-26": {
-      "runs": 1,
-      "distance_km": 6.203,
-      "timer_minutes": 34.46133333333333
-    },
-    "2026-03-27": {
-      "runs": 1,
-      "distance_km": 6.444,
-      "timer_minutes": 38.137166666666666
-    },
-    "2026-03-29": {
-      "runs": 1,
-      "distance_km": 14.764,
-      "timer_minutes": 74.45521666666667
-    },
-    "2026-03-31": {
-      "runs": 1,
-      "distance_km": 10.685,
-      "timer_minutes": 62.432649999999995
-    },
-    "2026-04-02": {
-      "runs": 1,
-      "distance_km": 12.084,
-      "timer_minutes": 65.26238333333333
-    },
-    "2026-04-03": {
-      "runs": 1,
-      "distance_km": 9.605,
-      "timer_minutes": 58.480533333333334
-    },
-    "2026-04-05": {
-      "runs": 1,
-      "distance_km": 10.424,
-      "timer_minutes": 62.370583333333336
-    },
-    "2026-04-07": {
-      "runs": 1,
-      "distance_km": 5.632,
-      "timer_minutes": 56.649683333333336
-    },
-    "2026-04-09": {
-      "runs": 1,
-      "distance_km": 10.032,
-      "timer_minutes": 66.44916666666667
-    },
-    "2026-04-12": {
-      "runs": 1,
-      "distance_km": 9.721,
-      "timer_minutes": 50.824616666666664
-    },
-    "2026-04-13": {
-      "runs": 1,
-      "distance_km": 8.768,
-      "timer_minutes": 56.186283333333336
-    },
-    "2026-04-15": {
-      "runs": 1,
-      "distance_km": 11.66,
-      "timer_minutes": 59.12108333333333
-    },
-    "2026-04-16": {
-      "runs": 1,
-      "distance_km": 7.141,
-      "timer_minutes": 34.12376666666667
-    },
-    "2026-04-18": {
-      "runs": 1,
-      "distance_km": 17.129,
-      "timer_minutes": 86.6521
-    },
-    "2026-04-21": {
-      "runs": 1,
-      "distance_km": 10.326,
-      "timer_minutes": 51.969699999999996
-    },
-    "2026-04-25": {
-      "runs": 1,
-      "distance_km": 2.611,
-      "timer_minutes": 38.10291666666667
-    },
-    "2026-04-28": {
-      "runs": 1,
-      "distance_km": 13.142,
-      "timer_minutes": 64.73123333333334
-    },
-    "2026-04-29": {
-      "runs": 1,
-      "distance_km": 6.593,
-      "timer_minutes": 39.51455
-    },
-    "2026-05-02": {
-      "runs": 1,
-      "distance_km": 13.886,
-      "timer_minutes": 68.67975
-    },
-    "2026-05-03": {
-      "runs": 1,
-      "distance_km": 6.371,
-      "timer_minutes": 136.76373333333333
-    },
-    "2026-05-04": {
-      "runs": 1,
-      "distance_km": 8.76,
-      "timer_minutes": 52.072766666666666
-    },
-    "2026-05-06": {
-      "runs": 1,
-      "distance_km": 11.438,
-      "timer_minutes": 64.61395
-    },
-    "2026-05-07": {
-      "runs": 1,
-      "distance_km": 6.465,
-      "timer_minutes": 34.973283333333335
-    },
-    "2026-05-08": {
-      "runs": 1,
-      "distance_km": 15.816,
-      "timer_minutes": 98.59613333333333
-    },
-    "2026-05-10": {
-      "runs": 1,
-      "distance_km": 19.033,
-      "timer_minutes": 89.6793
-    },
-    "2026-05-11": {
-      "runs": 1,
-      "distance_km": 4.996,
-      "timer_minutes": 26.471549999999997
-    },
-    "2026-05-14": {
-      "runs": 1,
-      "distance_km": 7.994,
-      "timer_minutes": 46.41056666666667
-    },
-    "2026-05-15": {
-      "runs": 1,
-      "distance_km": 15.813,
-      "timer_minutes": 125.20781666666667
-    },
-    "2026-05-17": {
-      "runs": 1,
-      "distance_km": 22.557,
-      "timer_minutes": 111.52275
-    },
-    "2026-05-19": {
-      "runs": 1,
-      "distance_km": 10.461,
-      "timer_minutes": 59.93515
-    },
-    "2026-05-21": {
-      "runs": 1,
-      "distance_km": 10.302,
-      "timer_minutes": 46.832233333333335
-    },
-    "2026-05-23": {
-      "runs": 1,
-      "distance_km": 13.126,
-      "timer_minutes": 79.55
-    },
-    "2026-05-25": {
-      "runs": 1,
-      "distance_km": 17.063,
-      "timer_minutes": 268.8174666666667
-    },
-    "2026-05-27": {
-      "runs": 1,
-      "distance_km": 11.848,
-      "timer_minutes": 61.1788
-    },
-    "2026-05-28": {
-      "runs": 2,
-      "distance_km": 8.663,
-      "timer_minutes": 54.36533333333333
-    },
-    "2026-05-31": {
-      "runs": 1,
-      "distance_km": 11.813,
-      "timer_minutes": 60.47035
-    },
-    "2026-06-03": {
-      "runs": 1,
-      "distance_km": 15.812,
-      "timer_minutes": 75.47411666666667
-    },
-    "2026-06-04": {
-      "runs": 1,
-      "distance_km": 8.522,
-      "timer_minutes": 41.411449999999995
-    },
-    "2026-06-06": {
-      "runs": 1,
-      "distance_km": 11.314,
-      "timer_minutes": 58.15946666666667
-    },
-    "2026-06-07": {
-      "runs": 1,
-      "distance_km": 19.998,
-      "timer_minutes": 100.80861666666667
-    },
-    "2026-06-11": {
-      "runs": 1,
-      "distance_km": 6.882,
-      "timer_minutes": 42.7649
-    },
-    "2026-06-12": {
-      "runs": 1,
-      "distance_km": 3.345,
-      "timer_minutes": 19.52541666666667
-    },
-    "2026-06-13": {
-      "runs": 1,
-      "distance_km": 34.611,
-      "timer_minutes": 214.37966666666668
-    },
-    "2026-06-16": {
-      "runs": 1,
-      "distance_km": 11.459,
-      "timer_minutes": 58.0948
-    },
-    "2026-06-19": {
-      "runs": 1,
-      "distance_km": 12.505,
-      "timer_minutes": 64.41929999999999
-    },
-    "2026-06-21": {
-      "runs": 1,
-      "distance_km": 25.77,
-      "timer_minutes": 144.59810000000002
-    },
-    "2026-06-23": {
-      "runs": 1,
-      "distance_km": 11.207,
-      "timer_minutes": 59.971183333333336
-    },
-    "2026-06-24": {
-      "runs": 1,
-      "distance_km": 7.777,
-      "timer_minutes": 45.28458333333333
-    },
-    "2026-06-25": {
-      "runs": 1,
-      "distance_km": 7.742,
-      "timer_minutes": 41.430416666666666
-    },
-    "2026-06-27": {
-      "runs": 1,
-      "distance_km": 13.405,
-      "timer_minutes": 72.54446666666666
-    },
-    "2026-06-28": {
-      "runs": 1,
-      "distance_km": 11.594,
-      "timer_minutes": 62.99901666666666
-    },
-    "2026-07-01": {
-      "runs": 1,
-      "distance_km": 11.663,
-      "timer_minutes": 58.246316666666665
-    },
-    "2026-07-02": {
-      "runs": 1,
-      "distance_km": 11.332,
-      "timer_minutes": 61.333483333333334
-    },
-    "2026-07-03": {
-      "runs": 1,
-      "distance_km": 5.665,
-      "timer_minutes": 38.73701666666667
-    },
-    "2026-07-04": {
-      "runs": 1,
-      "distance_km": 12.747,
-      "timer_minutes": 90.02369999999999
-    },
-    "2026-07-05": {
-      "runs": 1,
-      "distance_km": 7.448,
-      "timer_minutes": 63.115766666666666
-    },
-    "2026-07-06": {
-      "runs": 1,
-      "distance_km": 10.836,
-      "timer_minutes": 124.88753333333334
-    },
-    "2026-07-07": {
-      "runs": 1,
-      "distance_km": 6.214,
-      "timer_minutes": 76.21405
-    },
-    "2026-07-11": {
-      "runs": 1,
-      "distance_km": 8.165,
-      "timer_minutes": 61.868950000000005
-    },
-    "2026-07-13": {
-      "runs": 2,
-      "distance_km": 7.664,
-      "timer_minutes": 52.791000000000004
-    },
-    "2026-07-15": {
-      "runs": 1,
-      "distance_km": 4.336,
-      "timer_minutes": 55.50071666666667
-    },
-    "2026-07-17": {
-      "runs": 2,
-      "distance_km": 11.401,
-      "timer_minutes": 91.8613
-    },
-    "2026-07-22": {
-      "runs": 1,
-      "distance_km": 12.564,
-      "timer_minutes": 63.315450000000006
-    },
-    "2026-07-23": {
-      "runs": 1,
-      "distance_km": 3.977,
-      "timer_minutes": 20.59326666666667
-    },
-    "2026-07-26": {
-      "runs": 1,
-      "distance_km": 7.302,
-      "timer_minutes": 60.61301666666667
-    },
-    "2026-08-14": {
-      "runs": 1,
-      "distance_km": 12.128,
-      "timer_minutes": 104.87481666666666
-    },
-    "2026-08-16": {
-      "runs": 1,
-      "distance_km": 9.839,
-      "timer_minutes": 199.39373333333333
-    },
-    "2026-08-20": {
-      "runs": 1,
-      "distance_km": 4.543,
-      "timer_minutes": 58.14528333333333
-    },
-    "2026-08-21": {
-      "runs": 1,
-      "distance_km": 7.437,
-      "timer_minutes": 60.665616666666665
-    },
-    "2026-08-22": {
-      "runs": 2,
-      "distance_km": 4.731,
-      "timer_minutes": 51.51623333333333
-    },
-    "2026-08-23": {
-      "runs": 1,
-      "distance_km": 8.882,
-      "timer_minutes": 74.4191
-    },
-    "2026-08-25": {
-      "runs": 1,
-      "distance_km": 3.969,
-      "timer_minutes": 18.17233333333333
-    },
-    "2026-08-28": {
-      "runs": 1,
-      "distance_km": 11.365,
-      "timer_minutes": 54.883583333333334
-    },
-    "2026-08-29": {
-      "runs": 1,
-      "distance_km": 7.62,
-      "timer_minutes": 44.31463333333333
-    },
-    "2026-08-30": {
-      "runs": 1,
-      "distance_km": 10.682,
-      "timer_minutes": 60.897133333333336
-    },
-    "2026-09-01": {
-      "runs": 1,
-      "distance_km": 9.119,
-      "timer_minutes": 52.70815
-    },
-    "2026-09-02": {
-      "runs": 1,
-      "distance_km": 4.983,
-      "timer_minutes": 20.53785
-    },
-    "2026-09-04": {
-      "runs": 1,
-      "distance_km": 13.501,
-      "timer_minutes": 70.41506666666668
-    },
-    "2026-09-05": {
-      "runs": 1,
-      "distance_km": 5.125,
-      "timer_minutes": 23.89585
-    },
-    "2026-09-07": {
-      "runs": 1,
-      "distance_km": 11.435,
-      "timer_minutes": 62.87461666666666
-    },
-    "2026-09-08": {
-      "runs": 1,
-      "distance_km": 14.966,
-      "timer_minutes": 82.07018333333333
-    },
-    "2026-09-09": {
-      "runs": 1,
-      "distance_km": 8.72806,
-      "timer_minutes": 42.62196666666667
-    },
-    "2026-09-11": {
-      "runs": 1,
-      "distance_km": 9.332870000000002,
-      "timer_minutes": 43.68346666666666
-    },
-    "2026-09-12": {
-      "runs": 1,
-      "distance_km": 23.447,
-      "timer_minutes": 143.0635
-    },
-    "2026-09-15": {
-      "runs": 1,
-      "distance_km": 10.371450000000001,
-      "timer_minutes": 50.222316666666664
-    },
-    "2026-09-16": {
-      "runs": 1,
-      "distance_km": 8.57535,
-      "timer_minutes": 43.48641666666666
-    },
-    "2026-09-17": {
-      "runs": 1,
-      "distance_km": 14.928799999999999,
-      "timer_minutes": 73.63636666666666
-    },
-    "2026-09-18": {
-      "runs": 1,
-      "distance_km": 8.21228,
-      "timer_minutes": 41.7779
-    },
-    "2026-09-19": {
-      "runs": 1,
-      "distance_km": 5.91571,
-      "timer_minutes": 37.161449999999995
-    },
-    "2026-09-20": {
-      "runs": 1,
-      "distance_km": 3.81502,
-      "timer_minutes": 32.54125
-    },
-    "2026-09-21": {
-      "runs": 1,
-      "distance_km": 9.40642,
-      "timer_minutes": 48.98896666666667
-    },
-    "2026-09-22": {
-      "runs": 1,
-      "distance_km": 12.837860000000001,
-      "timer_minutes": 64.03381666666667
-    },
-    "2026-09-23": {
-      "runs": 1,
-      "distance_km": 9.074459999999998,
-      "timer_minutes": 48.2299
-    },
-    "2026-09-24": {
-      "runs": 1,
-      "distance_km": 11.47288,
-      "timer_minutes": 59.779599999999995
-    },
-    "2026-09-25": {
-      "runs": 1,
-      "distance_km": 12.0289,
-      "timer_minutes": 61.47396666666667
-    },
-    "2026-09-26": {
-      "runs": 1,
-      "distance_km": 9.420950000000001,
-      "timer_minutes": 49.46815
-    },
-    "2026-09-27": {
-      "runs": 1,
-      "distance_km": 13.758040000000001,
-      "timer_minutes": 70.31179999999999
-    },
-    "2026-09-28": {
-      "runs": 1,
-      "distance_km": 8.847100000000001,
-      "timer_minutes": 44.2736
-    },
-    "2026-09-29": {
-      "runs": 1,
-      "distance_km": 11.608229999999999,
-      "timer_minutes": 60.36071666666667
-    },
-    "2026-09-30": {
-      "runs": 1,
-      "distance_km": 11.50198,
-      "timer_minutes": 56.378883333333334
-    },
-    "2026-10-01": {
-      "runs": 1,
-      "distance_km": 10.35041,
-      "timer_minutes": 53.8506
-    }
-  }
+  ]
 }

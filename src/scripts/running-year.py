@@ -2,7 +2,7 @@
 # requires-python = ">=3.11"
 # dependencies = ["fitdecode==0.11.0", "matplotlib==3.11.2"]
 # ///
-"""Summarize RunGap FIT sessions and draw a calendar using daily timer duration.
+"""Summarize RunGap FIT sessions and draw 52 weekly blocks for a calendar year.
 
 Run from src/, for example:
 uv run scripts/running-year.py --source /path/to/RunGap/Export \
@@ -12,7 +12,6 @@ Only aggregate dates, distances and durations are written to the public output.
 """
 
 import argparse
-import calendar
 import json
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor
@@ -87,35 +86,52 @@ def aggregate(source, through):
         day["runs"] += 1
         day["distance_km"] += run["distance_m"] / 1000
         day["timer_minutes"] += run["timer_s"] / 60
-    monthly = []
-    for month in range(1, through.month + 1):
-        days = [value for key, value in daily.items() if int(key[5:7]) == month]
-        monthly.append({"month": f"{year}-{month:02}", "runs": sum(d["runs"] for d in days),
-                        "running_days": len(days), "distance_km": sum(d["distance_km"] for d in days),
-                        "timer_hours": sum(d["timer_minutes"] for d in days) / 60})
     return {
         "year": year,
         "through": through.isoformat(),
         "method": {"timezone": "Europe/Brussels", "included_sport": "running",
                    "distance_field": "session.total_distance", "duration_field": "session.total_timer_time",
-                   "heatmap": "Sum of running timer minutes per local calendar day",
-                   "empty_days": "No recorded running session; other sports are excluded",
+                   "heatmap": "Running timer hours in 52 consecutive periods from January 1; periods 1-51 are seven days and period 52 includes the remaining days of the year",
+                   "empty_weeks": "No recorded running session; other sports are excluded",
                    "deduplication": "Identical start time, distance and timer duration; overlapping sessions require review",
                    "input_files": len(files), "parsed_sessions": len(sessions), "duplicates_removed": duplicates},
         "summary": {"runs": len(runs), "running_days": len(daily),
                     "distance_km": sum(r["distance_m"] for r in runs) / 1000,
                     "timer_hours": sum(r["timer_s"] for r in runs) / 3600},
-        "monthly": monthly,
-        "daily": dict(sorted(daily.items())),
+        "weekly": weekly_from_daily(year, through, daily),
     }
 
 
+def weekly_from_daily(year, through, daily):
+    first = date(year, 1, 1)
+    last = date(year, 12, 31)
+    weekly = []
+    for index in range(52):
+        start = first + timedelta(days=7 * index)
+        end = last if index == 51 else start + timedelta(days=6)
+        recorded_end = min(end, through)
+        days = [daily.get((start + timedelta(days=offset)).isoformat(), {})
+                for offset in range(max(0, (recorded_end - start).days + 1))]
+        weekly.append({
+            "week": index + 1,
+            "start": start.isoformat(),
+            "end": end.isoformat(),
+            "status": "future" if start > through else "partial" if end > through else "complete",
+            "runs": sum(day.get("runs", 0) for day in days),
+            "running_days": sum(bool(day) for day in days),
+            "distance_km": sum(day.get("distance_km", 0) for day in days),
+            "timer_hours": sum(day.get("timer_minutes", 0) for day in days) / 60,
+        })
+    return weekly
+
+
 def draw_heatmap(data, output, columns):
-    mobile = columns == 2
+    mobile = columns == 8
     width = 480 if mobile else 720
-    month_width = (width - 48) / columns
-    month_height = 205
-    height = 150 + (12 // columns) * month_height + 95
+    cell = 46 if mobile else 40
+    gap = 8 if mobile else 10
+    rows = (52 + columns - 1) // columns
+    height = 160 + rows * (cell + gap) + 90
     fig = plt.figure(figsize=(width / 100, height / 100), dpi=150, facecolor="white")
     ax = fig.add_axes([0, 0, 1, 1])
     ax.set(xlim=(0, width), ylim=(height, 0))
@@ -131,43 +147,34 @@ def draw_heatmap(data, output, columns):
         x = 24 + index * (width - 48) / 3
         ax.text(x, 94, value, fontsize=17 if mobile else 19, weight="bold", color=INK)
         ax.text(x, 115, label, fontsize=10, color=MUTED)
-    year = data["year"]
-    cell = 21
-    step = 25
-    for month in range(1, 13):
-        x0 = 24 + ((month - 1) % columns) * month_width
-        y0 = 151 + ((month - 1) // columns) * month_height
-        ax.text(x0, y0, calendar.month_abbr[month], fontsize=12, weight="bold", color=INK if month <= through.month else MUTED)
-        for weekday, label in enumerate(["M", "T", "W", "T", "F", "S", "S"]):
-            ax.text(x0 + weekday * step + cell / 2, y0 + 20, label, fontsize=8, ha="center", color=MUTED)
-        first_weekday, days = calendar.monthrange(year, month)
-        for day in range(1, days + 1):
-            current = date(year, month, day)
-            week, weekday = divmod(first_weekday + day - 1, 7)
-            x = x0 + weekday * step
-            y = y0 + 29 + week * step
-            if current > through:
-                ax.add_patch(Rectangle((x, y), cell, cell, facecolor="white", edgecolor=RULE, linewidth=0.5))
-                continue
-            minutes = data["daily"].get(current.isoformat(), {}).get("timer_minutes", 0)
-            level = 0 if minutes == 0 else 1 if minutes < 30 else 2 if minutes < 60 else 3 if minutes < 90 else 4
+    ax.text(24, 146, "Weeks 01–52 · read left to right, top to bottom", fontsize=10, color=MUTED)
+    for index, week in enumerate(data["weekly"]):
+        row, column = divmod(index, columns)
+        row_items = min(columns, 52 - row * columns)
+        row_width = row_items * cell + (row_items - 1) * gap
+        x = (width - row_width) / 2 + column * (cell + gap)
+        y = 160 + row * (cell + gap)
+        if week["status"] == "future":
+            patch = Rectangle((x, y), cell, cell, facecolor="white", edgecolor=RULE, linewidth=0.5)
+            label_color = MUTED
+        else:
+            hours = week["timer_hours"]
+            level = 0 if hours == 0 else 1 if hours < 2 else 2 if hours < 4 else 3 if hours < 6 else 4
             patch = Rectangle((x, y), cell, cell, facecolor=COLORS[level], linewidth=0)
-            patch.set_gid(f"day-{current.isoformat()}-{minutes:.1f}-minutes")
-            ax.add_patch(patch)
-    y0 = height - 65
-    ax.text(24, y0 - 15, "Running minutes per day", fontsize=10, color=INK)
-    for index, label in enumerate(["0", "<30", "30–59", "60–89", "90+"]):
-        x = 24 + index * (width - 48) / 5
-        ax.add_patch(Rectangle((x, y0), 14, 14, facecolor=COLORS[index], linewidth=0))
-        ax.text(x + 20, y0 + 11, label, fontsize=9, color=INK)
-    ax.text(24, height - 16, "Source: RunGap FIT exports · Future dates outlined", fontsize=9, color=MUTED)
+            label_color = "white" if level == 4 else INK
+        patch.set_gid(f"week-{week['week']:02}-{week['start']}-to-{week['end']}-{week['timer_hours']:.2f}-hours")
+        ax.add_patch(patch)
+        ax.text(x + cell / 2, y + cell / 2 + (4 if mobile else 3), f"{week['week']:02}",
+                fontsize=11 if mobile else 10, ha="center", color=label_color)
+    ax.text(24, height - 65, "Running hours per week · light to dark: 0, <2, 2–4, 4–6, 6+", fontsize=10, color=INK)
+    ax.text(24, height - 20, "Source: RunGap FIT exports · Future weeks outlined", fontsize=9, color=MUTED)
     plt.rcParams["svg.fonttype"] = "none"
-    plt.rcParams["svg.hashsalt"] = f"barts-running-{year}"
+    plt.rcParams["svg.hashsalt"] = f"barts-running-{data['year']}"
     suffix = "-mobile" if mobile else ""
-    svg_path = output / f"running-{year}{suffix}.svg"
+    svg_path = output / f"running-{data['year']}{suffix}.svg"
     fig.savefig(svg_path, metadata={"Date": None})
     svg_path.write_text("\n".join(line.rstrip() for line in svg_path.read_text().splitlines()) + "\n")
-    fig.savefig(output / f"running-{year}{suffix}.png", dpi=150)
+    fig.savefig(output / f"running-{data['year']}{suffix}.png", dpi=150)
     plt.close(fig)
 
 
@@ -180,9 +187,9 @@ def main():
     data = aggregate(args.source, args.through)
     args.output_dir.mkdir(parents=True, exist_ok=True)
     (args.output_dir / f"running-{data['year']}-summary.json").write_text(json.dumps(data, indent=2) + "\n")
-    draw_heatmap(data, args.output_dir, 3)
-    draw_heatmap(data, args.output_dir, 2)
-    print(json.dumps({"summary": data["summary"], "method": data["method"], "monthly": data["monthly"]}, indent=2))
+    draw_heatmap(data, args.output_dir, 13)
+    draw_heatmap(data, args.output_dir, 8)
+    print(json.dumps({"summary": data["summary"], "method": data["method"]}, indent=2))
 
 
 if __name__ == "__main__":
