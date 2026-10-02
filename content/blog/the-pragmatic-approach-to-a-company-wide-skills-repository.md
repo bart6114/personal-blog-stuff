@@ -2,7 +2,8 @@
 title: "the pragmatic approach to a company-wide skills repository"
 description: "A central Git repository, two entry-point skills, and a practical way to turn how your company works into knowledge that people and agents can use."
 slug: "the-pragmatic-approach-to-a-company-wide-skills-repository"
-draft: true
+publishedAt: "2026-10-09T06:00:00+02:00"
+draft: false
 tags: []
 ---
 
