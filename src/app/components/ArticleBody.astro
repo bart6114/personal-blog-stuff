@@ -5,3 +5,60 @@ const html = await optimizeArticleImages(await Astro.slots.render("default"));
 ---
 
 <div class="article-body" set:html={html} />
+
+<script>
+  const wideScreen = window.matchMedia("(min-width: 1280px)");
+
+  document.querySelectorAll<HTMLElement>(".article-body").forEach((article) => {
+    const section = article.querySelector<HTMLElement>("[data-footnotes]");
+    if (!section) return;
+
+    const notes = Array.from(section.querySelectorAll<HTMLElement>("ol > li"));
+    const references = Array.from(article.querySelectorAll<HTMLAnchorElement>("[data-footnote-ref]"));
+    const entries = notes.map((note) => ({
+      note,
+      reference: references.find((reference) => reference.hash === `#${note.id}`)
+    }));
+    // Keep ordinary endnotes when a reference is missing or JavaScript is unavailable.
+    if (!entries.length || entries.some((entry) => !entry.reference)) return;
+
+    let pending = false;
+    const layout = () => {
+      pending = false;
+      if (!wideScreen.matches) {
+        delete article.dataset.sidenotes;
+        article.style.removeProperty("--sidenote-overflow");
+        notes.forEach((note) => note.style.removeProperty("--sidenote-top"));
+        return;
+      }
+
+      article.dataset.sidenotes = "";
+      const articleTop = article.getBoundingClientRect().top;
+      const contentHeight = article.getBoundingClientRect().height - parseFloat(getComputedStyle(article).paddingBottom);
+      let bottom = 0;
+
+      for (const { note, reference } of entries) {
+        const referenceTop = reference!.getBoundingClientRect().top - articleTop;
+        const top = Math.max(referenceTop, bottom);
+        note.style.setProperty("--sidenote-top", `${top}px`);
+        bottom = top + note.getBoundingClientRect().height + 16;
+      }
+
+      // A long final note must not run into the article tags or page footer.
+      article.style.setProperty("--sidenote-overflow", `${Math.max(0, bottom - contentHeight)}px`);
+    };
+    const scheduleLayout = () => {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(layout);
+    };
+
+    const observer = new ResizeObserver(scheduleLayout);
+    observer.observe(article);
+    notes.forEach((note) => observer.observe(note));
+    wideScreen.addEventListener("change", scheduleLayout);
+    window.addEventListener("resize", scheduleLayout);
+    document.fonts.ready.then(scheduleLayout);
+    scheduleLayout();
+  });
+</script>

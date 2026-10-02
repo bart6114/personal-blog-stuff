@@ -510,6 +510,86 @@ td {
   margin-top: 0;
 }
 
+.article-body {
+  position: relative;
+  padding-bottom: var(--sidenote-overflow, 0px);
+}
+
+.article-body [data-footnote-ref] {
+  font-size: 0.85em;
+}
+
+.article-body [data-footnotes] {
+  margin-top: 2.5rem;
+  padding-top: 0.5rem;
+  color: var(--muted);
+  font-size: 0.85em;
+  border-top: 1px solid var(--rule);
+}
+
+.article-body [data-footnotes] h2 {
+  margin-top: 0.5rem;
+  font-size: 1em;
+}
+
+.article-body [data-footnotes] ol {
+  padding-inline-start: 1.5rem;
+}
+
+.article-body [data-footnotes] li {
+  padding-inline-start: 0.25rem;
+  scroll-margin-top: 1.5rem;
+}
+
+.article-body [data-footnotes] p:first-child {
+  margin-top: 0;
+}
+
+.article-body [data-footnotes] p:last-child {
+  margin-bottom: 0;
+}
+
+.article-body [data-footnote-ref] {
+  scroll-margin-top: 1.5rem;
+}
+
+@media screen and (min-width: 1280px) {
+  .article-body[data-sidenotes] [data-footnotes] {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .article-body[data-sidenotes] [data-footnotes] h2 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .article-body[data-sidenotes] [data-footnotes] ol {
+    margin: 0;
+    padding: 0;
+  }
+
+  .article-body[data-sidenotes] [data-footnotes] li {
+    position: absolute;
+    top: var(--sidenote-top);
+    left: calc(100% + 36px);
+    width: 220px;
+    padding: 0;
+  }
+}
+
+@media print {
+  .article-body {
+    padding-bottom: 0;
+  }
+}
+
 .article-body a,
 .article-body a:visited {
   color: var(--article-link);
