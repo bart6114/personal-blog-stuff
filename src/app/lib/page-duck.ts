@@ -74,8 +74,7 @@ export function initPageDuck(root: HTMLElement) {
   const effects = root.querySelector<HTMLElement>(".duck-effects")!;
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
   const desktop = matchMedia("(min-width: 901px) and (hover: hover) and (pointer: fine)");
-  let paused = false;
-  try { if (!preview) paused = localStorage.getItem("page-duck-paused") === "true"; } catch { /* Storage is optional. */ }
+  let paused = !preview;
   let x = Math.min(80, Math.max(0, viewportWidth() - 64));
   let y = viewportTop() + viewportHeight() * 0.55;
   let worldHeight = document.documentElement.scrollHeight;
@@ -467,11 +466,9 @@ export function initPageDuck(root: HTMLElement) {
   });
   function resume() {
     paused = false; syncToggle();
-    try { if (!preview) localStorage.setItem("page-duck-paused", "false"); } catch { /* Optional. */ }
   }
   function sleep() {
     paused = true; syncToggle();
-    try { if (!preview) localStorage.setItem("page-duck-paused", "true"); } catch { /* Optional. */ }
     start("sleep", false, true);
   }
   pet.addEventListener("pointerdown", (event) => {
