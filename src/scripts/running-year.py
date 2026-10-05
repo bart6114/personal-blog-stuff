@@ -8,11 +8,10 @@ Run from src/, for example:
 uv run scripts/running-year.py --source /path/to/RunGap/Export \
     --through 2026-10-01 --output-dir public/media/an-ai-agent-for-my-running-schedule
 
-Only aggregate dates, distances and durations are written to the public output.
+Public graphics show only broad activity bands, without dates or exact totals.
 """
 
 import argparse
-import json
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor
 from datetime import date, timedelta
@@ -131,29 +130,19 @@ def draw_heatmap(data, output, columns):
     cell = 46 if mobile else 40
     gap = 8 if mobile else 10
     rows = (52 + columns - 1) // columns
-    height = 160 + rows * (cell + gap) + 90
+    height = 90 + rows * (cell + gap) + 60 + (12 if mobile else 0)
     fig = plt.figure(figsize=(width / 100, height / 100), dpi=150, facecolor="white")
     ax = fig.add_axes([0, 0, 1, 1])
     ax.set(xlim=(0, width), ylim=(height, 0))
     ax.axis("off")
-    ax.text(24, 32, f"My {data['year']} running", fontsize=20, weight="bold", color=INK)
-    through = date.fromisoformat(data["through"])
-    ax.text(24, 57, f"Recorded runs · 1 Jan to {through.day} {through:%b %Y}", fontsize=10, color=MUTED)
-    summary = data["summary"]
-    total_minutes = round(summary["timer_hours"] * 60)
-    stats = [(f"{summary['runs']}", "runs"), (f"{summary['distance_km']:,.0f}", "km"),
-             (f"{total_minutes // 60}h {total_minutes % 60:02}m", "running time")]
-    for index, (value, label) in enumerate(stats):
-        x = 24 + index * (width - 48) / 3
-        ax.text(x, 94, value, fontsize=17 if mobile else 19, weight="bold", color=INK)
-        ax.text(x, 115, label, fontsize=10, color=MUTED)
-    ax.text(24, 146, "Weeks 01–52 · read left to right, top to bottom", fontsize=10, color=MUTED)
+    ax.text(24, 32, "Running history", fontsize=16, color=INK)
+    ax.text(24, 57, "A rough weekly view", fontsize=10, color=MUTED)
     for index, week in enumerate(data["weekly"]):
         row, column = divmod(index, columns)
         row_items = min(columns, 52 - row * columns)
         row_width = row_items * cell + (row_items - 1) * gap
         x = (width - row_width) / 2 + column * (cell + gap)
-        y = 160 + row * (cell + gap)
+        y = 90 + row * (cell + gap)
         if week["status"] == "future":
             patch = Rectangle((x, y), cell, cell, facecolor="white", edgecolor=RULE, linewidth=0.5)
             label_color = MUTED
@@ -162,12 +151,15 @@ def draw_heatmap(data, output, columns):
             level = 0 if hours == 0 else 1 if hours < 2 else 2 if hours < 4 else 3 if hours < 6 else 4
             patch = Rectangle((x, y), cell, cell, facecolor=COLORS[level], linewidth=0)
             label_color = "white" if level == 4 else INK
-        patch.set_gid(f"week-{week['week']:02}-{week['start']}-to-{week['end']}-{week['timer_hours']:.2f}-hours")
+        patch.set_gid(f"week-{week['week']:02}")
         ax.add_patch(patch)
         ax.text(x + cell / 2, y + cell / 2 + (4 if mobile else 3), f"{week['week']:02}",
                 fontsize=11 if mobile else 10, ha="center", color=label_color)
-    ax.text(24, height - 65, "Running hours per week · light to dark: 0, <2, 2–4, 4–6, 6+", fontsize=10, color=INK)
-    ax.text(24, height - 20, "Source: RunGap FIT exports · Future weeks outlined", fontsize=9, color=MUTED)
+    ax.text(24, height - 37, "Less running", fontsize=9, color=MUTED)
+    for index, color in enumerate(COLORS):
+        ax.add_patch(Rectangle((115 + index * 20, height - 48), 14, 14, facecolor=color, linewidth=0))
+    ax.text(220, height - 37, "More running", fontsize=9, color=MUTED)
+    ax.text(24, height - 14, "Read left to right · Future weeks outlined", fontsize=9, color=MUTED)
     plt.rcParams["svg.fonttype"] = "none"
     plt.rcParams["svg.hashsalt"] = f"barts-running-{data['year']}"
     suffix = "-mobile" if mobile else ""
@@ -186,10 +178,10 @@ def main():
     args = parser.parse_args()
     data = aggregate(args.source, args.through)
     args.output_dir.mkdir(parents=True, exist_ok=True)
-    (args.output_dir / f"running-{data['year']}-summary.json").write_text(json.dumps(data, indent=2) + "\n")
+    (args.output_dir / f"running-{data['year']}-summary.json").unlink(missing_ok=True)
     draw_heatmap(data, args.output_dir, 13)
     draw_heatmap(data, args.output_dir, 8)
-    print(json.dumps({"summary": data["summary"], "method": data["method"]}, indent=2))
+    print(f"Wrote desktop and mobile running-history graphics to {args.output_dir}")
 
 
 if __name__ == "__main__":
