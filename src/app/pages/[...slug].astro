@@ -2,7 +2,7 @@
 import { render, type CollectionEntry } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticleBody from "../components/ArticleBody.astro";
-import { formatPostDate, getVisiblePosts } from "../lib/posts";
+import { formatPostDate, getVisiblePosts, isPublishedPost } from "../lib/posts";
 
 interface Props {
   post: CollectionEntry<"blog">;
@@ -15,6 +15,7 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const isPreview = !isPublishedPost(post.data);
 ---
 
 <BaseLayout
@@ -25,12 +26,13 @@ const { Content } = await render(post);
   image={post.data.image}
   publishedAt={post.data.publishedAt}
   updatedAt={post.data.updatedAt}
-  noindex={post.data.draft}
+  noindex={isPreview}
 >
   <article>
     <header class="article-header">
       <h1>{post.data.title}</h1>
       {post.data.draft && <p class="article-date">Draft preview</p>}
+      {isPreview && !post.data.draft && <p class="article-date">Scheduled post preview</p>}
       {post.data.publishedAt && (
         <p class="article-date"><time datetime={post.data.publishedAt.toISOString()}>{formatPostDate(post.data.publishedAt)}</time></p>
       )}

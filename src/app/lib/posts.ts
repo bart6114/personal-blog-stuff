@@ -6,7 +6,7 @@ export function isPublishedPost(data: { draft: boolean; publishedAt?: Date }, no
 
 async function getPosts(now: Date, includeDrafts = false) {
   const posts = await getCollection("blog", ({ data }) =>
-    isPublishedPost(data, now) || (includeDrafts && data.draft)
+    isPublishedPost(data, now) || includeDrafts
   );
   return posts.sort((a, b) => {
     if (a.data.draft !== b.data.draft) return a.data.draft ? -1 : 1;
