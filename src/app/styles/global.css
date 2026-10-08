@@ -306,7 +306,7 @@ td {
   height: 100%;
 }
 
-.spacecraft:is(:hover, :focus-visible, .is-speaking) {
+.spacecraft:is(:hover, :focus-visible, :active, .is-speaking) {
   animation-play-state: paused;
 }
 
@@ -318,13 +318,15 @@ td {
 .spacecraft-bubble {
   position: fixed;
   z-index: 3;
-  padding: 3px 6px;
-  border: 1px solid var(--rule);
+  width: max-content;
+  max-width: min(300px, calc(100vw - 24px));
+  padding: 8px 12px;
+  border: 1px solid var(--link-accent);
   background: var(--background);
-  color: var(--muted);
-  font-size: 10px;
-  line-height: 1.4;
-  white-space: nowrap;
+  color: var(--text);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  text-align: center;
   transform: translate(-50%, -100%);
 }
 
@@ -335,11 +337,11 @@ td {
 .spacecraft-bubble::after {
   position: absolute;
   bottom: -4px;
-  left: calc(50% - 3px);
+  left: calc(var(--bubble-tail-left, 50%) - 3px);
   width: 6px;
   height: 6px;
-  border-inline-end: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
+  border-inline-end: 1px solid var(--link-accent);
+  border-bottom: 1px solid var(--link-accent);
   background: var(--background);
   content: "";
   transform: rotate(45deg);
