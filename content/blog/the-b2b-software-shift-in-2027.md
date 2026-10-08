@@ -7,6 +7,11 @@ draft: false
 tags: []
 ---
 
+<aside class="article-edit-note" aria-label="Edit note">
+  <span class="article-edit-note-label">Edit</span>
+  <p>People have let me know that what I'm hinting at here is apparently called "<strong>reverse SaaS</strong>" or "<strong>service as software</strong>". So there's that.</p>
+</aside>
+
 My bet for 2027: fewer new startups building B2B applications that support a company's full workflow. More companies building their own workflows, on top of infrastructure they still happily pay someone else to run.
 
 <link rel="stylesheet" href="/media/the-b2b-software-shift-in-2027/diagrams.css">
