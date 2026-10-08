@@ -1,7 +1,43 @@
 <footer class="site-footer">
   <p><a href="/">barts.space</a></p>
 </footer>
-<div class="space-scene" aria-hidden="true">
+<div class="space-scene">
   <img class="pixel-planet" src="/assets/pixel-planet-muted.webp" alt="" width="512" height="512" />
-  <img class="spacecraft" src="/assets/spacecraft.webp" alt="" width="60" height="60" />
+  <button class="spacecraft" type="button" aria-label="Make the rocket speak">
+    <img src="/assets/spacecraft.webp" alt="" width="60" height="60" />
+  </button>
+  <span class="spacecraft-bubble" role="status" hidden></span>
 </div>
+
+<script>
+  const rocket = document.querySelector<HTMLButtonElement>(".spacecraft");
+  const bubble = document.querySelector<HTMLElement>(".spacecraft-bubble");
+
+  if (rocket && bubble) {
+    let hideBubble: number | undefined;
+    const positionBubble = () => {
+      const rect = rocket.getBoundingClientRect();
+      const halfWidth = bubble.offsetWidth / 2;
+      const center = rect.left + rect.width / 2;
+      bubble.style.left = `${Math.max(halfWidth + 8, Math.min(center, window.innerWidth - halfWidth - 8))}px`;
+      bubble.style.top = `${Math.max(bubble.offsetHeight + 8, rect.top - 8)}px`;
+    };
+
+    rocket.addEventListener("click", () => {
+      window.clearTimeout(hideBubble);
+      rocket.classList.add("is-speaking");
+      bubble.hidden = false;
+      bubble.textContent = "SPLURT!";
+      positionBubble();
+      hideBubble = window.setTimeout(() => {
+        bubble.hidden = true;
+        bubble.textContent = "";
+        rocket.classList.remove("is-speaking");
+      }, 2400);
+    });
+
+    window.addEventListener("resize", () => {
+      if (!bubble.hidden) positionBubble();
+    });
+  }
+</script>
