@@ -1,52 +1,33 @@
 ---
-title: "let them throw their molotovs. you're f*cking poseidon."
-description: "Why early-stage founders need to separate healthy doubt from fear of their competitors."
+title: "let them throw their molotovs. you're fucking poseidon."
+description: "Take your competitors seriously without letting their success talk you out of competing."
 slug: "let-them-throw-their-molotovs-youre-fucking-poseidon"
 draft: true
 tags: []
 ---
 
-I've been to a few meetups recently with early-stage founders. Small groups where people talk openly about where they are, what's working, what's not, and what keeps them awake at night.
-
-I admire the openness. Building a company is lonely enough without pretending everything is going great. Being able to sit among peers and say *I don't know* is healthy.
-
-You should doubt whether you're building the right product, talking to the right customers, or charging the right price. Question your assumptions, including whether the thing you spent the last six months building is actually what the market needs.
-
-But I keep hearing a kind of doubt that feels very different from my own path as an entrepreneur: seeing a competitor's progress and taking it as proof that you don't stand a chance.
+At a few recent meetups with early-stage founders, I've heard the same worry in different forms: someone sees a competitor doing well and takes it as proof they don't stand a chance.
 
 *They're growing so fast. They raised so much money. They have all these customers. How are we ever going to compete with them?*
 
-F*ck that.
+I admire the openness. Being able to sit among peers and say *I don't know* is healthy. You should question whether anyone wants the thing you've spent the last six months building.
 
-Let them throw their Molotovs. You're f*cking Poseidon.
+What bothers me is the jump from *they're doing well* to *we don't stand a chance*. You've turned another company's progress into a verdict on your own ability.
 
-Your competitors probably aren't idiots. Some will be exceptionally good. They might have more money, better connections, a stronger brand, or fifty engineers while you have five. Respect them, learn from them, and steal every good idea you can (legally) steal. But don't let their progress talk you out of competing.
+Fuck that.
 
-You might lose. Your competitor might have a better product, you might run out of money, or you might make the wrong strategic call. The market might disappear underneath you.
+Early on, we had a competitor double our size, with a brand that was very well respected. I never let that worry me. I believed I could do this shit better, and that my company could too.
 
-Conviction isn't certainty about the outcome. It's deciding how you're going to respond when a competitor is ahead of you. *They're f\*cking good. How do we beat them?*
+Your competitors probably aren't idiots. Some will be exceptionally good. Look at what they've built and why customers choose it. Learn from them. But don't let their progress talk you out of competing.
 
-Building a startup is hard enough as it is. For years, you're walking toward a castle you can barely see. Somewhere inside is a throne (or a treasure, for that matter).
+You have to believe you can build something worth choosing, even when someone else looks more impressive. You can be wrong about the product you're building today and still trust yourself to work out what to do next.
 
-You expect to walk through the front gate, but it's closed. You knock and nobody opens it. Eventually you realize nobody is going to open the f*cking gate for you.<sup><a href="#note-closed-gates" id="ref-closed-gates" data-footnote-ref aria-label="Footnote 1: closed gates" role="doc-noteref">1</a></sup> So you find the back door. If it's locked, you break the latch off.
+You might lose. They might build a better product, or you might run out of money. You can know that and still back yourself.
 
-Maybe this attitude doesn't come naturally to you. Some founders seem convinced they'll win; for others, doubt comes much more easily. If that's you, I think you need to consciously practise the next response.
+When a competitor announces something impressive, ask what it changes for the customers you're trying to serve. Have they solved a problem your product still struggles with? Has reaching those customers become harder? Those are reasons to reconsider what you're doing. The fact that their company now looks more impressive beside yours isn't enough on its own.
 
-When you see a competitor announce something impressive, notice what happens in your head. If your first thought is *F\*ck, we're falling behind*, don't stay there. Ask the next question.
+Not every announcement needs a response. Sometimes you should close the tab and get back to the customer problem you were working on before you opened it.
 
-*Okay. What are we going to do about it?*
+When an announcement does matter, your first thought might still be *Fuck, we're falling behind.* Fine. Ask the next question: *They're fucking good. Where can we win?* You don't have to match everything they do to give your customers a reason to choose you.
 
-Go back to the product, the customers, the distribution channel. Those are things you can work on.
-
-You don't need to become an asshole, publicly shit on competitors, or tell everyone you're better than them. This is a conversation inside your own head. Building a company is hard enough without spending the whole time wondering whether the person next to you deserves to be there more than you do.
-
-Let them throw their Molotovs. You're f*cking Poseidon.
-
-<section data-footnotes role="doc-endnotes" aria-label="Footnotes">
-  <h2>Footnotes</h2>
-  <ol>
-    <li id="note-closed-gates" role="doc-endnote">
-      <p>The obvious distribution channel doesn't work, customers apparently don't care about that feature, the incumbent owns the enterprise market, the competitor raised €50 million. <a href="#ref-closed-gates" data-footnote-backref aria-label="Back to reference 1" role="doc-backlink">↩</a></p>
-    </li>
-  </ol>
-</section>
+Let them throw their Molotovs. You're fucking Poseidon.
