@@ -16,7 +16,9 @@ I'd originally printed the [Ultimate Plane Launcher](https://makerworld.com/nl/m
 
 Making those changes used to be the part that took some of the fun out of projects like this. In the past, I've dabbled in Fusion 360 and Tinkercad, but I was average at best, and a significant change could take quite a while. With Astra<sup><a href="#note-astra" id="ref-astra" data-footnote-ref aria-label="Footnote 1: Astra and other agents" role="doc-noteref">1</a></sup> helping on the model, I can describe what I'd like to change or give it an image with a few sketches on top. That makes it much easier to spend the time I have tinkering with the kids.
 
-There's still plenty to work out once a part is printed. An extra guide we tried underneath the slider added friction and made the launch worse, so we took it back off again.
+There's still plenty to work out once a part is printed. An extra guide we tried underneath the slider, for example, added friction and made the launch worse, so we took it back off again.
+
+Being able to try things this way is what I really enjoy about using agents. I can explore a hobby without first committing a lot of time to learning the tools. Becoming an expert still takes time and effort, but I get to experiment and figure out whether it's something I want to get better at.
 
 <figure style="max-width: 405px; margin: 1.5rem auto;">
   <video controls playsinline preload="metadata" width="405" height="720" poster="/media/that-paper-plane-launcher/launcher-video-poster.jpeg" aria-label="A paper plane being launched from the 3D-printed launcher">
@@ -32,9 +34,7 @@ I use PLA for everything except the slider, which I print in PETG for a bit more
 
 The [printing and assembly notes](https://github.com/bart6114/that-paper-plane-launcher/blob/main/docs/printing.md) cover putting it together. There are individual part downloads and editable sources in the repo too, so you can work on a part and print it again. Treat it as a prototype: the latest version still needs more testing to see how well it holds up.
 
-It's also a good starting point if you're curious about making physical things with an AI agent.
-
-Interested in making stuff with your kids? Pick a project you like on [MakerWorld](https://makerworld.com/)<sup><a href="#note-model-sites" id="ref-model-sites" data-footnote-ref aria-label="Footnote 2: other places to find projects" role="doc-noteref">2</a></sup> and start building on it together. ❤️
+Interested in making stuff with your kids? Pick a project you like on [MakerWorld](https://makerworld.com/)<sup><a href="#note-model-sites" id="ref-model-sites" data-footnote-ref aria-label="Footnote 2: other places to find projects" role="doc-noteref">2</a></sup> and start building on it together.<sup><a href="#note-godot" id="ref-godot" data-footnote-ref aria-label="Footnote 3: another project with the kids" role="doc-noteref">3</a></sup> ❤️
 
 <section data-footnotes role="doc-endnotes" aria-label="Footnotes">
   <h2>Footnotes</h2>
@@ -44,6 +44,9 @@ Interested in making stuff with your kids? Pick a project you like on [MakerWorl
     </li>
     <li id="note-model-sites" role="doc-endnote">
       <p><a href="https://www.printables.com/">Printables</a> and <a href="https://www.thingiverse.com/">Thingiverse</a> are other places to find a project to start from. <a href="#ref-model-sites" data-footnote-backref aria-label="Back to reference 2" role="doc-backlink">↩</a></p>
+    </li>
+    <li id="note-godot" role="doc-endnote">
+      <p>I'm also building a four-player split-screen game set in a 3D world with the kids, using AI and Godot. Maybe that's another post. 🤔 <a href="#ref-godot" data-footnote-backref aria-label="Back to reference 3" role="doc-backlink">↩</a></p>
     </li>
   </ol>
 </section>
