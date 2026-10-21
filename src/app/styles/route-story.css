@@ -1,0 +1,30 @@
+.route-story { margin: 1.5rem 0 2rem; padding-block: 1rem; border-block: 1px solid var(--rule); }
+.route-heading { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; font-size: .85em; }
+.route-heading > span { font-weight: 700; }
+.route-heading a, .route-points a { text-decoration-color: var(--link-accent); }
+.route-details { margin-top: .75rem; scroll-margin-top: 1.5rem; }
+.route-details summary { cursor: pointer; padding-block: .5rem; font-size: .85em; }
+.route-details summary:focus-visible, .route-story a:focus-visible, .gpxs-chart-marker:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.route-map { height: 300px; margin-top: .5rem; background: var(--surface); z-index: 0; font-family: inherit; }
+.route-status { color: var(--muted); font-size: .75em; margin-block: .6rem; }
+.route-points { display: flex; flex-wrap: wrap; gap: .6rem 1.25rem; padding: 0; list-style: none; font-size: .8em; }
+.route-points li, .article-body [id] { scroll-margin-top: 1.5rem; }
+.route-number { display: inline-grid; place-items: center; width: 1.65em; height: 1.65em; border-radius: 50%; background: var(--link-accent); color: var(--text); }
+.route-story .route-pin { display: grid; place-items: center; border: 2px solid var(--background); border-radius: 50%; background: var(--link-accent); color: var(--text); font: bold 13px "Roboto Mono", monospace; box-shadow: 0 1px 4px var(--muted); }
+.route-map .leaflet-popup-content { font-family: "Roboto Mono", monospace; line-height: 1.6; }
+.route-map .leaflet-popup-content a { color: var(--article-link); text-decoration: underline; }
+.gpxs-chart-svg { display: block; max-width: 100%; touch-action: pan-y; }
+.gpxs-grid { stroke: var(--rule); stroke-width: .5; }
+.gpxs-tick { fill: var(--muted); font-size: 10px; }
+.gpxs-tick-y { text-anchor: end; }
+.gpxs-tick-x { text-anchor: middle; }
+.gpxs-area { fill: var(--link-accent); fill-opacity: .2; }
+.gpxs-line { fill: none; stroke: var(--link-accent); stroke-width: 2; }
+.gpxs-cross-line, .gpxs-marker-stem { stroke: var(--muted); stroke-width: 1; }
+.gpxs-cross-dot, .gpxs-chart-marker circle { fill: var(--text); stroke: var(--background); stroke-width: 1.5; }
+.gpxs-cross-label { fill: var(--text); font-size: 11px; }
+.gpxs-chart-marker { cursor: pointer; }
+.route-story ~ .article-body figure { margin-inline: 0; }
+.route-story ~ .article-body figcaption { margin-top: .5rem; color: var(--muted); font-size: .85em; }
+@media (max-width: 699px) { .route-map { height: 260px; } }
+@media print { .route-details { display: none; } }

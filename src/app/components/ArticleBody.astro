@@ -1,10 +1,22 @@
 ---
 import { optimizeArticleImages } from "../lib/images";
+import type { CollectionEntry } from "astro:content";
+import RouteStory from "./RouteStory.astro";
 
+interface Props { route?: CollectionEntry<"blog">["data"]["route"] }
+const { route } = Astro.props;
 const html = await optimizeArticleImages(await Astro.slots.render("default"));
+const marker = /<!--\s*route\s*-->/;
+const position = route ? marker.exec(html) : null;
+const before = position ? html.slice(0, position.index) : "";
+const after = position ? html.slice(position.index + position[0].length) : html;
 ---
 
-<div class="article-body" set:html={html} />
+<div class="article-body">
+  <Fragment set:html={before} />
+  {route && <RouteStory route={route} />}
+  <Fragment set:html={after} />
+</div>
 
 <script>
   const wideScreen = window.matchMedia("(min-width: 1280px)");

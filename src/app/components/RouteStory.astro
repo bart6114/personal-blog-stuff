@@ -1,0 +1,30 @@
+---
+import type { CollectionEntry } from "astro:content";
+import "../styles/route-story.css";
+interface Props { route: NonNullable<CollectionEntry<"blog">["data"]["route"]> }
+const { route } = Astro.props;
+---
+<section class="route-story" aria-label="Route for this article" data-route={JSON.stringify(route)}>
+  <div class="route-heading">
+    <span>{route.title}</span>
+    <a href={route.gpx} download>Download GPX ↓</a>
+  </div>
+  <details class="route-details">
+    <summary>Explore the route and elevation profile</summary>
+    <div class="route-map" aria-label="Map of the recorded route"></div>
+    <p class="route-status" role="status">Open the map to load the route.</p>
+    <div class="route-chart" aria-label="Elevation profile"></div>
+  </details>
+  <ol class="route-points" aria-label="Places in the story">
+    {route.points.map((point, index) => (
+      <li id={`route-point-${point.id}`} tabindex="-1">
+        <a href={`#${point.section}`}><span class="route-number">{index + 1}</span> {point.title} <span aria-hidden="true">↘</span></a>
+      </li>
+    ))}
+  </ol>
+  <noscript><p>The interactive map needs JavaScript. The GPX download and links to the story work without it.</p></noscript>
+</section>
+<script>
+  import { initRouteStories } from "../lib/route-story";
+  initRouteStories();
+</script>

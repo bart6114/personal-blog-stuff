@@ -37,7 +37,7 @@ const isPreview = !isPublishedPost(post.data);
         <p class="article-date"><time datetime={post.data.publishedAt.toISOString()}>{formatPostDate(post.data.publishedAt)}</time></p>
       )}
     </header>
-    <ArticleBody>
+    <ArticleBody route={post.data.route}>
       <Content />
     </ArticleBody>
     {post.data.tags.length > 0 && (

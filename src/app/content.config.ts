@@ -15,7 +15,19 @@ const blog = defineCollection({
     slug: z.string().min(1),
     draft: z.boolean(),
     tags: z.array(z.string()),
-    image: z.string().optional()
+    image: z.string().optional(),
+    route: z.object({
+      gpx: z.string().startsWith("/media/"),
+      title: z.string(),
+      points: z.array(z.object({
+        id: z.string().regex(/^[a-z][a-z0-9-]*$/),
+        title: z.string(),
+        lat: z.number().min(-90).max(90),
+        lon: z.number().min(-180).max(180),
+        section: z.string().regex(/^[a-z][a-z0-9-]*$/),
+        source: z.string()
+      })).min(1).refine(points => new Set(points.map(point => point.id)).size === points.length, "Route point IDs must be unique")
+    }).optional()
   })
 });
 
