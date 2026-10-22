@@ -26,7 +26,7 @@ const sprite = [
 export type Action = "walk" | "sleep" | "shoot" | "poop" | "flap" | "peck" | "love" | "spritz" | "smoke" | "read" | "music" | "fish";
 export const activities: Record<Action, { seconds: number; caption: string; label: string }> = {
   walk: { seconds: 24, caption: "", label: "Play with the duck" },
-  sleep: { seconds: 18, caption: "z z z", label: "Duck is sleeping. Click to wake it up" },
+  sleep: { seconds: 18, caption: "", label: "Duck is sleeping. Click to wake it up" },
   shoot: { seconds: 1.8, caption: "", label: "Duck is causing trouble" },
   poop: { seconds: 2.6, caption: "...", label: "Duck needs a moment" },
   flap: { seconds: 2.6, caption: "quack!", label: "Duck is flapping" },
@@ -75,6 +75,7 @@ export function initPageDuck(root: HTMLElement) {
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
   const desktop = matchMedia("(min-width: 901px) and (hover: hover) and (pointer: fine)");
   let paused = !preview;
+  let atDefaultPosition = !preview;
   let x = Math.min(80, Math.max(0, viewportWidth() - 64));
   let y = viewportTop() + viewportHeight() * 0.55;
   let worldHeight = document.documentElement.scrollHeight;
@@ -465,6 +466,7 @@ export function initPageDuck(root: HTMLElement) {
     if (preview) start(preview);
   });
   function resume() {
+    atDefaultPosition = false;
     paused = false; syncToggle();
   }
   function sleep() {
@@ -486,6 +488,7 @@ export function initPageDuck(root: HTMLElement) {
     if (!pointer || pointer.id !== event.pointerId) return;
     if (Math.hypot(event.clientX - pointer.startX, event.clientY - pointer.startY) > 5) pointer.moved = true;
     if (!pointer.moved) return;
+    atDefaultPosition = false;
     const bounds = root.getBoundingClientRect();
     x = Math.max(0, Math.min(viewportWidth() - 64, event.clientX - bounds.left - pointer.offsetX));
     y = Math.max(0, Math.min(worldHeight - 70, event.clientY - bounds.top - pointer.offsetY));
@@ -525,6 +528,7 @@ export function initPageDuck(root: HTMLElement) {
     const move = { ArrowLeft: [-20, 0], ArrowRight: [20, 0], ArrowUp: [0, -20], ArrowDown: [0, 20] }[event.key];
     if (move) {
       event.preventDefault();
+      atDefaultPosition = false;
       x = Math.max(0, Math.min(viewportWidth() - 64, x + move[0]));
       y = Math.max(0, Math.min(worldHeight - 70, y + move[1]));
       if (action === "walk") chooseDestination();
@@ -535,6 +539,13 @@ export function initPageDuck(root: HTMLElement) {
     if (!root) return;
     worldHeight = preview ? root.clientHeight : Math.max(document.body.getBoundingClientRect().height, viewportHeight());
     if (!preview) root.style.height = `${worldHeight}px`;
+    const quote = atDefaultPosition ? document.querySelector(".site-quote") : null;
+    if (quote) {
+      const bounds = quote.getBoundingClientRect();
+      const origin = root.getBoundingClientRect();
+      x = Math.max(0, bounds.right - origin.left - 64);
+      y = Math.max(0, bounds.bottom - origin.top + 12);
+    }
     x = Math.min(x, Math.max(0, viewportWidth() - 64));
     y = Math.min(y, Math.max(0, worldHeight - 70));
     targetX = Math.min(targetX, Math.max(0, viewportWidth() - 64));
