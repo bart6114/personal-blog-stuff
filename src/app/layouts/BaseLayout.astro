@@ -2,6 +2,7 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import PageDuck from "../components/PageDuck.astro";
+import PageNeko from "../components/PageNeko.astro";
 import { socialImage } from "../lib/images";
 import "../styles/global.css";
 
@@ -88,6 +89,7 @@ const jsonLd = type === "article"
     </main>
     <Footer />
     {duck && <PageDuck />}
+    <PageNeko />
     <script is:inline>
       const copyCode = async (text) => {
         if (!navigator.clipboard?.writeText) throw new Error("Clipboard unavailable");

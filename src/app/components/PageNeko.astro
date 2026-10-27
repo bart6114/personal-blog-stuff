@@ -1,0 +1,41 @@
+<button class="page-neko" type="button" hidden aria-label="Let the cat follow your cursor" aria-pressed="false" aria-keyshortcuts="Escape" title="Click for a little company">
+  <span class="neko-sprite" aria-hidden="true"></span>
+</button>
+
+<script>
+  import { initPageNeko } from "../lib/page-neko";
+  document.querySelectorAll<HTMLButtonElement>(".page-neko").forEach(initPageNeko);
+</script>
+
+<style>
+  .page-neko {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 31;
+    width: 48px;
+    height: 48px;
+    padding: 8px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .page-neko[hidden] { display: none; }
+  .neko-sprite {
+    display: block;
+    width: 32px;
+    height: 32px;
+    background: url("/assets/oneko/oneko.gif") -96px -96px no-repeat;
+    image-rendering: pixelated;
+  }
+  .page-neko:focus-visible { outline: 2px dashed var(--link-accent); outline-offset: 2px; }
+  .page-neko[aria-disabled="true"] { cursor: default; }
+
+  @media (max-width: 900px), (hover: none), (pointer: coarse) {
+    .page-neko { display: none; }
+  }
+
+  @media print { .page-neko { display: none; } }
+</style>
