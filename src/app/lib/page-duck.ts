@@ -76,8 +76,8 @@ export function initPageDuck(root: HTMLElement) {
   const desktop = matchMedia("(min-width: 901px) and (hover: hover) and (pointer: fine)");
   let paused = !preview;
   let atDefaultPosition = !preview;
-  let x = Math.min(80, Math.max(0, viewportWidth() - 64));
-  let y = viewportTop() + viewportHeight() * 0.55;
+  let x = Math.min(preview ? 80 : 12, Math.max(0, viewportWidth() - 64));
+  let y = preview ? viewportHeight() * 0.55 : viewportTop() + Math.max(0, viewportHeight() - 70);
   let worldHeight = document.documentElement.scrollHeight;
   let targetX = x + 160;
   let targetY = y - 60;
@@ -539,12 +539,9 @@ export function initPageDuck(root: HTMLElement) {
     if (!root) return;
     worldHeight = preview ? root.clientHeight : Math.max(document.body.getBoundingClientRect().height, viewportHeight());
     if (!preview) root.style.height = `${worldHeight}px`;
-    const quote = atDefaultPosition ? document.querySelector(".site-quote") : null;
-    if (quote) {
-      const bounds = quote.getBoundingClientRect();
-      const origin = root.getBoundingClientRect();
-      x = Math.max(0, bounds.right - origin.left - 64);
-      y = Math.max(0, bounds.bottom - origin.top + 12);
+    if (atDefaultPosition) {
+      x = 12;
+      y = viewportTop() + Math.max(0, viewportHeight() - 70);
     }
     x = Math.min(x, Math.max(0, viewportWidth() - 64));
     y = Math.min(y, Math.max(0, worldHeight - 70));

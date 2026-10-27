@@ -1,4 +1,0 @@
-Original Oneko sprite sheet and license from https://github.com/adryd325/oneko.js
-Revision: 5281d057c4ea9bd4f6f997ee96ba30491aed16c0
-Local controller: app/lib/page-neko.ts, adapted from oneko.js.
-The original 32x32 artwork, frame mapping, and 100ms animation timing are preserved.
