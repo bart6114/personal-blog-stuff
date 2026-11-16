@@ -51,6 +51,7 @@ route:
 <aside class="article-edit-note" aria-label="Edit note">
   <span class="article-edit-note-label">Edit</span>
   <p>I had a good view of Mont Chauffé today, which reminded me I'd started writing about this traverse I did last summer, but never quite finished the write-up. I've finally got around to it, so here it is.</p>
+  <p>Update, 16 November 2026: I was nearby again the other day, so I've added a view of the full crossing from Pointe de Lachau and a separate photo of the Pas du Chien, which is hard to make out in the overview.</p>
 </aside>
 
 I do quite a few routes like the Mont Chauffé arête, usually travelling light with my trail-running gear. Sometimes that means running; sometimes it means walking and scrambling. I couldn't find much clear information about the Arête du Mont Chauffé before going, so I'm writing up the trip with photos and a route map to give the next person a better idea of what to expect.
@@ -65,6 +66,11 @@ I do quite a few routes like the Mont Chauffé arête, usually travelling light 
 The first half of my traverse of the Arête du Mont Chauffé was fairly straightforward. The second half involved much more scrambling and route-finding, with some exposed sections. The information I'd found beforehand hadn't made that distinction very clear.
 
 OpenStreetMap showed an alpine walking route, which I took to suggest something around T5. That seemed plausible for the first half. The later sections felt considerably more technical. I'd put the climbing around grade II, but the challenge is that where it reaches that grade, it's also very exposed. That's my impression of the difficulty, rather than a formal route assessment.
+
+<figure>
+<img src="/media/mont-chauffe/pointe-de-lachau-overview.jpg" alt="The long Mont Chauffé ridge seen from across the valley, with a high limestone summit on the left and lower rocky and wooded sections stretching to the right." width="2400" height="1800" loading="lazy" />
+<figcaption>Mont Chauffé from Pointe de Lachau (1,960 m). This angle nicely captures the full crossing.</figcaption>
+</figure>
 
 <h2 id="naar-de-graat">Finding the ridge</h2>
 
@@ -100,6 +106,11 @@ The early part went easily enough. Further along, scrambling sections alternated
 The hardest section for me was the Pas du Chien. It began with a steep downclimb beside a steel cable that looked rather flimsy. I didn't really trust it and didn't really use it on the downclimb. It seemed to offer a false sense of security. The downclimb felt manageable if you took it slowly, but it was no place to fall.
 
 Before climbing down, I looked at the wall on the other side and wondered how on earth I was going to get up it. From below, it looked much more manageable. I moved a little to the right and climbed towards a tree, using clear holds. There was a substantial drop, especially to the right. That part felt committed.
+
+<figure>
+<img src="/media/mont-chauffe/pas-du-chien-overview.jpg" alt="A deep, narrow notch between steep limestone walls at the Pas du Chien, with trees along the crest." width="1800" height="2400" loading="lazy" />
+<figcaption>A separate view of the Pas du Chien, which is hard to make out in the overview above.</figcaption>
+</figure>
 
 Then I went wrong (because I didn't stay on the crest, again). The logical line was to follow the crest, but I was tempted by a path heading off to the right. In hindsight, it was probably an animal track. I looked for a way back and eventually climbed up a rocky face to regain the crest, without a clear track to follow.
 
